@@ -5,14 +5,14 @@ export default class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { forecasts: [], loading: true };
+        this.state = { courseinfo: [], loading: true };
     }
 
     componentDidMount() {
-        this.populateWeatherData();
+        this.populateCourseData();
     }
 
-    static renderForecastsTable(forecasts) {
+    static rendercourseinfoTable(courseinfo) {
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
@@ -23,7 +23,7 @@ export default class App extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {forecasts.map(forecast =>
+                    {courseinfo.map(forecast =>
                         <tr key={forecast.courses}>
                             <td>{forecast.kurskod}</td>
                             <td>{forecast.kursnamn}</td>
@@ -38,20 +38,20 @@ export default class App extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-            : App.renderForecastsTable(this.state.forecasts);
+            : App.rendercourseinfoTable(this.state.courseinfo);
 
         return (
             <div>
-                <h1 id="tabelLabel" >Weather forecast</h1>
-                <p>This component demonstrates fetching data from the server.</p>
+                <h1 id="tabelLabel" >Kursval</h1>
+                <p>Tabell med kursdata.</p>
                 {contents}
             </div>
         );
     }
 
-    async populateWeatherData() {
-        const response = await fetch('weatherforecast');
+    async populateCourseData() {
+        const response = await fetch('kurser');
         const data = await response.json();
-        this.setState({ forecasts: data, loading: false });
+        this.setState({ courseinfo: data, loading: false });
     }
 }
