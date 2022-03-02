@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchBar from './components/SearchBar';
 
 export default class App extends Component {
     static displayName = App.name;
@@ -9,11 +10,15 @@ export default class App extends Component {
     }
 
     componentDidMount() {
+       
+
         this.populateCourseData();
     }
 
     static rendercourseinfoTable(courseinfo) {
         return (
+            <div>
+            <SearchBar/>
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
                     <tr>
@@ -31,7 +36,8 @@ export default class App extends Component {
                         </tr>
                     )}
                 </tbody>
-            </table>
+                </table>
+                </div>
         );
     }
 
@@ -50,7 +56,21 @@ export default class App extends Component {
     }
 
     async populateCourseData() {
-        const response = await fetch('kurser');
+
+        const { search } = window.location;
+        const query = new URLSearchParams(search).get('s');
+        console.log(query);
+
+        var response;
+        if (query != null) {
+            response = await fetch("kurser/"+query);
+        }
+        else {
+            response = await fetch("kurser");
+        
+        }
+
+       
         const data = await response.json();
         this.setState({ courseinfo: data, loading: false });
     }
