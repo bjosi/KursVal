@@ -7,18 +7,43 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = { courseinfo: [], loading: true };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    //filterPosts(posts, query) {
+    //    if (!query) {
+    //        return posts;
+    //    }
+
+    //    return posts.filter((post) => {
+    //        const postName = post.name.toLowerCase();
+    //        return postName.includes(query);
+    //    });
+    //}
+
+    getvalue() {
+        console.log("hejGet");
+        return this.state.value;
+
+    }
+
+    handleChange() {
+        console.log("hejChange");
+    }
+
+    handleSubmit() {
+        console.log("hejSub");
     }
 
     componentDidMount() {
-       
-
         this.populateCourseData();
     }
 
     static rendercourseinfoTable(courseinfo) {
         return (
             <div>
-            <SearchBar/>
+                <SearchBar/>
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
                     <tr>
@@ -59,19 +84,21 @@ export default class App extends Component {
 
         const { search } = window.location;
         const query = new URLSearchParams(search).get('s');
-        console.log(query);
-
+        //console.log(query);
+        
         var response;
+        //var filteredPosts;
         if (query != null) {
+            //query = query.toLowerCase();
             response = await fetch("kurser/"+query);
         }
         else {
             response = await fetch("kurser");
         
         }
-
-       
         const data = await response.json();
+
         this.setState({ courseinfo: data, loading: false });
+        
     }
 }
