@@ -9,13 +9,18 @@ namespace masterval_backend
         [BsonId]
         public ObjectId Id { get; set; }
 
-        [BsonElement("termin")]
+        [BsonRepresentation(BsonType.Int32, AllowTruncation = true)]
+        [BsonElement("term")]
         public int Termin { get; set; }
 
-        [BsonElement("kursnamn")]
+        [BsonRepresentation(BsonType.Int32, AllowTruncation = true)]
+        [BsonElement("period")]
+        public int Period { get; set; }
+
+        [BsonElement("coursename")]
         public string? Kursnamn { get; set; }
 
-        [BsonElement("kurskod")]
+        [BsonElement("coursecode")]
         public string? Kurskod { get; set; }
     }
 }

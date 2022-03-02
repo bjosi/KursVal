@@ -50,6 +50,7 @@ export default class App extends Component {
                         <th>Kurskod</th>
                         <th>Kursnamn</th>
                         <th>Termin</th>
+                        <th>Period</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,6 +59,7 @@ export default class App extends Component {
                             <td>{forecast.kurskod}</td>
                             <td>{forecast.kursnamn}</td>
                             <td>{forecast.termin}</td>
+                            <td>{forecast.period}</td>
                         </tr>
                     )}
                 </tbody>
@@ -90,13 +92,14 @@ export default class App extends Component {
         //var filteredPosts;
         if (query != null) {
             //query = query.toLowerCase();
-            response = await fetch("kurser/"+query);
+            response = await fetch("kursinfo/"+query);
         }
         else {
-            response = await fetch("kurser");
+            response = await fetch("kursinfo");
         
         }
         const data = await response.json();
+        console.log(data);
 
         this.setState({ courseinfo: data, loading: false });
         
