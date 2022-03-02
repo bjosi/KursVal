@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sagan\\Source\\Repos\\gitKandidat\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj": {}
+    "C:\\Users\\bjorn\\Documents\\MT\\Kandidat\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sagan\\Source\\Repos\\gitKandidat\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj": {
+    "C:\\Users\\bjorn\\Documents\\MT\\Kandidat\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sagan\\Source\\Repos\\gitKandidat\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj",
+        "projectUniqueName": "C:\\Users\\bjorn\\Documents\\MT\\Kandidat\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj",
         "projectName": "masterval-backend",
-        "projectPath": "C:\\Users\\sagan\\Source\\Repos\\gitKandidat\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj",
-        "packagesPath": "C:\\Users\\sagan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sagan\\Source\\Repos\\gitKandidat\\kurs-val\\masterval\\masterval-backend\\obj\\",
+        "projectPath": "C:\\Users\\bjorn\\Documents\\MT\\Kandidat\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj",
+        "packagesPath": "C:\\Users\\bjorn\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bjorn\\Documents\\MT\\Kandidat\\kurs-val\\masterval\\masterval-backend\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\sagan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bjorn\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

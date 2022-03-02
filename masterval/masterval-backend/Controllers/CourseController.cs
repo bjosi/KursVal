@@ -32,12 +32,19 @@ namespace masterval_backend.Controllers
             var client = new MongoClient("mongodb+srv://kandidat:kand2022@cluster0.5dn6x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
             var database = client.GetDatabase("allakurser");
             var collection = database.GetCollection<Courses>("kurser");
-            var documents = collection.Find(s => s.Kurskod == id).ToList();
-
-            //return collection.Find(s => s.Kurskod == "TNA002" ).ToList();
-            return documents;
+            int val;
+            if(int.TryParse(id, out val))
+            {
+                var documents = collection.Find(s => s.Termin == val).ToList();
+                return documents;
+            }
+            else
+            {
+                var documents = collection.Find(s => (s.Kurskod.ToLower() == id.ToLower() || s.Kursnamn.ToLower().Contains(id.ToLower()))).ToList();
+                return documents;
+            }
+            
         }
-
 
     }
 }
