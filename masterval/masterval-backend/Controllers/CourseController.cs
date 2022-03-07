@@ -14,7 +14,7 @@ namespace masterval_backend.Controllers
             _logger = logger;
         }
 
-        [HttpGet("/kursinfo")]
+        [HttpGet("/courses")]
         public IEnumerable<Courses> Get()
         {
             var client = new MongoClient("mongodb+srv://kandidat:kand2022@cluster0.5dn6x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
@@ -26,22 +26,22 @@ namespace masterval_backend.Controllers
             return documents;
         }
 
-        [HttpGet("/kursinfo/{id}")]
+        [HttpGet("/courses/{id}")]
         public IEnumerable<Courses> GetSearchResult(String id)
         {
             var client = new MongoClient("mongodb+srv://kandidat:kand2022@cluster0.5dn6x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
             var database = client.GetDatabase("allakurser");
-            var collection = database.GetCollection<Courses>("kursinfo");
+            var collection = database.GetCollection<Courses>("kurser");
             int val;
             if (int.TryParse(id, out val))
             {
-                var documents = collection.Find(s => (s.Kurskod.ToLower() == id.ToLower() || s.Kursnamn.ToLower().Contains(id.ToLower()))).ToList();
-                documents.AddRange(collection.Find(s => s.Termin == val).ToList());
+                var documents = collection.Find(s => (s.Coursecode.ToLower() == id.ToLower() || s.Coursename.ToLower().Contains(id.ToLower()))).ToList();
+                documents.AddRange(collection.Find(s => s.Semester == val).ToList());
                 return documents;
             }
             else
             {
-                var documents = collection.Find(s => (s.Kurskod.ToLower() == id.ToLower() || s.Kursnamn.ToLower().Contains(id.ToLower()))).ToList();
+                var documents = collection.Find(s => (s.Coursecode.ToLower() == id.ToLower() || s.Coursename.ToLower().Contains(id.ToLower()))).ToList();
                 return documents;
 
             }

@@ -54,12 +54,12 @@ export default class App extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {courseinfo.map(forecast =>
-                        <tr key={forecast.courses}>
-                            <td>{forecast.kurskod}</td>
-                            <td>{forecast.kursnamn}</td>
-                            <td>{forecast.termin}</td>
-                            <td>{forecast.period}</td>
+                    {courseinfo.map(CourseInfo =>
+                        <tr key={CourseInfo.courses}>
+                            <td>{CourseInfo.coursecode}</td>
+                            <td>{CourseInfo.coursename}</td>
+                            <td>{CourseInfo.semester}</td>
+                            <td>{CourseInfo.period}</td>
                         </tr>
                     )}
                 </tbody>
@@ -92,10 +92,10 @@ export default class App extends Component {
         //var filteredPosts;
         if (query != null) {
             //query = query.toLowerCase();
-            response = await fetch("kursinfo/"+query);
+            response = await fetch("courses/"+query);
         }
         else {
-            response = await fetch("kursinfo");
+            response = await fetch("courses");
         
         }
         const data = await response.json();
