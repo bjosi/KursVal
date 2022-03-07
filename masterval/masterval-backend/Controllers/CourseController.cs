@@ -35,15 +35,17 @@ namespace masterval_backend.Controllers
             int val;
             if (int.TryParse(id, out val))
             {
-                var documents = collection.Find(s => s.Termin == val).ToList();
+                var documents = collection.Find(s => (s.Kurskod.ToLower() == id.ToLower() || s.Kursnamn.ToLower().Contains(id.ToLower()))).ToList();
+                documents.AddRange(collection.Find(s => s.Termin == val).ToList());
                 return documents;
             }
             else
             {
                 var documents = collection.Find(s => (s.Kurskod.ToLower() == id.ToLower() || s.Kursnamn.ToLower().Contains(id.ToLower()))).ToList();
                 return documents;
-            }
 
+            }
+            
             // var documents = collection.Find(s => s.Kurskod.ToLower() == id.ToLower()).ToList();
             //return documents;
 
