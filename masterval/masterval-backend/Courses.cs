@@ -22,5 +22,39 @@ namespace masterval_backend
 
         [BsonElement("coursecode")]
         public string? Coursecode { get; set; }
+
+        [BsonElement("courseexaminer")]
+        public string? Examiner { get; set; }
+
+
+        [BsonElement("crslevel")]
+        public string? Crslevel { get; set; }
+
+        [BsonElement("advlevel")]
+        public string? Advlevel { get; set; }
+
+        [BsonElement("progcode")]
+        public string? Progcode { get; set; }
+
+        /*[BsonElement("block")]
+        public string? Block { get; set; }*/
+
+        [BsonElement("lang")]
+        public string? Lang { get; set; }
+
+        [BsonElement("place")]
+        public string? Place { get; set; }
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
