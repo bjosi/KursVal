@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+
 .App {
   text-align: center;
 }
@@ -45,4 +48,18 @@
     position: absolute;
     white-space: nowrap;
     width: 1px;
+}
+
+body {
+    background-color: #f2f2f2;
+    font-family: 'Lato', sans-serif;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.left_wrapper{
+    margin-right: 10vw;
 }
