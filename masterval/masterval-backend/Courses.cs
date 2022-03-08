@@ -35,6 +35,10 @@ namespace masterval_backend
         [BsonElement("progcode")]
         public string? Progcode { get; set; }
 
+
+        [BsonElement("progname")]
+        public string? Progname { get; set; }
+
         [BsonElement("U")]
         public string? UChosen { get; set; }
     }
