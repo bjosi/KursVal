@@ -1,7 +1,6 @@
 
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import SearchBar from './components/SearchBar';
-import { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 import DisplayCourse from './components/DisplayCourse';
 import "./App.css"
@@ -9,8 +8,7 @@ import "./App.css"
 
 function App() {
 
-    const [state, setState] = useState({ courseinfo: ["hej"], loading: true });
-    const [selectedCourses, setSelectedCourses] = useState([]);
+
 
 
     // Getting the storage
@@ -26,7 +24,7 @@ function App() {
         localStorage.setItem('myValueInLocalStorage', JSON.stringify(selectedCourses));
     }, [selectedCourses]);
 
-    console.log(selectedCourses);
+    //console.log(selectedCourses);
 
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
@@ -37,7 +35,7 @@ function App() {
     //var retreivedObject = JSON.parse(window.localStorage.getItem(courseinfo));
     //console.log(retreivedObject)
 
-
+    //console.log(selectedCourses);
 
     let contents = state.loading
         ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
@@ -48,6 +46,7 @@ function App() {
             <h1 id="tabelLabel" >Kursval</h1>
             <p>Tabell med kursdata.</p>
             {contents}
+            {console.log(selectedCourses)}
         </div>
     );
 
@@ -66,8 +65,8 @@ async function asyncCall(setState, query) {
 };
 
 function handleSubmit(setSelectedCourses,selectedCourses,courseinfo) {
-
-    setSelectedCourses(courseinfo);
+    
+    setSelectedCourses(selectedCourses.concat(courseinfo));
     //console.log(selectedCourses);
     //window.localStorage.setItem('data', JSON.stringify(event.value));
     //const retreivedObject = JSON.parse(window.localStorage.getItem('data'));
@@ -81,30 +80,6 @@ function rendercourseinfoTable(courseinfo,setSelectedCourses,selectedCourses) {
     return (
         <div>
             <SearchBar />
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Kurskod</th>
-                        <th>Kursnamn</th>
-                        <th>Termin</th>
-                        <th>Period</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {courseinfo.map(CourseInfo =>
-                        <tr key={CourseInfo.courses}>
-                            <td>{CourseInfo.coursecode}</td>
-                            <td>{CourseInfo.coursename}</td>
-                            <td>{CourseInfo.semester}</td>
-                            <td>{CourseInfo.uChosen}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-            <form onSubmit={() => handleSubmit(setSelectedCourses, selectedCourses, courseinfo)}> <button type="submit">Copy Text</button> </form >
-            <div>selectedCourses[0].coursename</div>
-        </div>
-
             <div class="wrapper">
                 <div> </div>
                 <div class="left_wrapper">
@@ -112,9 +87,10 @@ function rendercourseinfoTable(courseinfo,setSelectedCourses,selectedCourses) {
                         DisplayCourse(forecast)
                     )}
                     </div>
-
                 </div>
-            <form onSubmit={handleSubmit}> <button type="submit">Copy Text</button> </form >
+
+            <form onSubmit={() => handleSubmit(setSelectedCourses, selectedCourses, courseinfo)}> <button type="submit">Copy Text</button> </form >
+            <div> {selectedCourses.map(forecast => DisplayCourse(forecast))}</div>
         </div>
     );
 }
