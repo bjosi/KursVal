@@ -13,14 +13,13 @@ namespace masterval_backend
         [BsonElement("term")]
         public int Semester { get; set; }
 
-        [BsonRepresentation(BsonType.Int32, AllowTruncation = true)]
-        [BsonElement("period")]
-        public int Period { get; set; }
-
         [BsonElement("coursename")]
         public string? Coursename { get; set; }
 
         [BsonElement("coursecode")]
         public string? Coursecode { get; set; }
+
+        [BsonElement("U")]
+        public string? UChosen { get; set; }
     }
 }

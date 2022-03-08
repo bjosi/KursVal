@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import SearchBar from './components/SearchBar';
+import { useState } from 'react'; 
 
 export default class App extends Component {
     static displayName = App.name;
+    //static course_list = useState([]);
 
     constructor(props) {
         super(props);
         this.state = { courseinfo: [], loading: true };
+        //this.state = { course_list: [] }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        
     }
 
     //filterPosts(posts, query) {
@@ -50,7 +54,7 @@ export default class App extends Component {
                         <th>Kurskod</th>
                         <th>Kursnamn</th>
                         <th>Termin</th>
-                        <th>Period</th>
+                        <th>IUA-matris uppfyllda</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,12 +63,12 @@ export default class App extends Component {
                             <td>{CourseInfo.coursecode}</td>
                             <td>{CourseInfo.coursename}</td>
                             <td>{CourseInfo.semester}</td>
-                            <td>{CourseInfo.period}</td>
+                            <td>{CourseInfo.uChosen}</td>
                         </tr>
                     )}
                 </tbody>
                 </table>
-                </div>
+            </div>
         );
     }
 
@@ -102,6 +106,7 @@ export default class App extends Component {
         console.log(data);
 
         this.setState({ courseinfo: data, loading: false });
+        
         
     }
 }
