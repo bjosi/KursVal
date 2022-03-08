@@ -51,18 +51,24 @@ export default class App extends Component {
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
                     <tr>
+                        <th>Termin</th>
+                        <th>Period</th>
+                        <th>Kursblock</th>
                         <th>Kurskod</th>
                         <th>Kursnamn</th>
-                        <th>Termin</th>
+                        <th>Kursnivå</th>
                         <th>IUA-matris uppfyllda</th>
                     </tr>
                 </thead>
                 <tbody>
                     {courseinfo.map(CourseInfo =>
                         <tr key={CourseInfo.courses}>
+                            <td>{CourseInfo.semester}</td>
+                            <td>{CourseInfo.period}</td>
+                            <td>{CourseInfo.courseblock}</td>
                             <td>{CourseInfo.coursecode}</td>
                             <td>{CourseInfo.coursename}</td>
-                            <td>{CourseInfo.semester}</td>
+                            <td>{CourseInfo.courselevel}</td>
                             <td>{CourseInfo.uChosen}</td>
                         </tr>
                     )}
