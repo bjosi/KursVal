@@ -1,21 +1,50 @@
 import React, { Component } from 'react';
 import SearchBar from './components/SearchBar';
+import { useState } from 'react'; 
 
 export default class App extends Component {
-    
+    static displayName = App.name;
+    //static course_list = useState([]);
+
     constructor(props) {
         super(props);
         this.state = { courseinfo: [], loading: true };
+        //this.state = { course_list: [] }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        
     }
 
-    
+    //filterPosts(posts, query) {
+    //    if (!query) {
+    //        return posts;
+    //    }
+
+    //    return posts.filter((post) => {
+    //        const postName = post.name.toLowerCase();
+    //        return postName.includes(query);
+    //    });
+    //}
+
+    getvalue() {
+        console.log("hejGet");
+        return this.state.value;
+
+    }
+
+    handleChange() {
+        console.log("hejChange");
+    }
+
+    handleSubmit() {
+        console.log("hejSub");
+    }
+
     componentDidMount() {
         this.populateCourseData();
     }
 
     static rendercourseinfoTable(courseinfo) {
-
-
         return (
             <div>
                 <SearchBar/>
@@ -24,18 +53,8 @@ export default class App extends Component {
                     <tr>
                         <th>Kurskod</th>
                         <th>Kursnamn</th>
-                            <th>Termin</th>
-
-                         <th>Period</th>
-                        <th>Examinator</th>
-
-
-                        <th>Språk</th>
-                            <th>Nivå</th>
-
-                        <th>Plats</th>
-
-
+                        <th>Termin</th>
+                        <th>IUA-matris uppfyllda</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,22 +63,12 @@ export default class App extends Component {
                             <td>{CourseInfo.coursecode}</td>
                             <td>{CourseInfo.coursename}</td>
                             <td>{CourseInfo.semester}</td>
-                            <td>{CourseInfo.period}</td>
-                            <td>{CourseInfo.examiner}</td>
-
-                            <td>{CourseInfo.lang}</td>
-
-                            <td>{CourseInfo.crslevel}</td>
-
-                            <td>{CourseInfo.place}</td>
-
-
-
+                            <td>{CourseInfo.uChosen}</td>
                         </tr>
                     )}
                 </tbody>
                 </table>
-                </div>
+            </div>
         );
     }
 
@@ -97,6 +106,7 @@ export default class App extends Component {
         console.log(data);
 
         this.setState({ courseinfo: data, loading: false });
+        
         
     }
 }

@@ -21,8 +21,6 @@ namespace masterval_backend.Controllers
             var database = client.GetDatabase("allakurser");
             var collection = database.GetCollection<Courses>("kursinfo");
             var documents = collection.Find(_ => true).ToList();
-
-            //return collection.Find(s => s.Kurskod == "TNA002" ).ToList();
             return documents;
         }
 
@@ -45,11 +43,6 @@ namespace masterval_backend.Controllers
                 return documents;
 
             }
-            
-            // var documents = collection.Find(s => s.Kurskod.ToLower() == id.ToLower()).ToList();
-            //return documents;
-
         }
-
     }
 }
