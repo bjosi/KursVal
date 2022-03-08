@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchBar from './components/SearchBar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 
 
@@ -20,7 +20,13 @@ function App() {
 
 
     const [state, setState] = useState({ courseinfo: [], loading: true });
-    //const [selectedCourses, setSelectedCourses] = useState([]);
+    const [selectedCourses, setSelectedCourses] = React.useState(JSON.parse(localStorage.getItem('myValueInLocalStorage')) || [])
+
+    React.useEffect(() => {
+        localStorage.setItem('myValueInLocalStorage', JSON.stringify(selectedCourses));
+    }, [selectedCourses]);
+
+    console.log(selectedCourses);
 
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
@@ -28,14 +34,14 @@ function App() {
 
     asyncCall(setState, query);
 
-    var retreivedObject = JSON.parse(window.localStorage.getItem(courseinfo));
-    console.log(retreivedObject)
+    //var retreivedObject = JSON.parse(window.localStorage.getItem(courseinfo));
+    //console.log(retreivedObject)
 
 
 
     let contents = state.loading
         ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : rendercourseinfoTable(state.courseinfo, retreivedObject);
+        : rendercourseinfoTable(state.courseinfo, setSelectedCourses, selectedCourses);
 
     return (
         <div>
@@ -61,16 +67,18 @@ async function asyncCall(setState, query) {
     setState({ courseinfo: data, loading: false });
 };
 
-function handleSubmit(event) {
+function handleSubmit(setSelectedCourses,selectedCourses,courseinfo) {
 
-    console.log()
+    setSelectedCourses(courseinfo);
+    //console.log(selectedCourses);
     //window.localStorage.setItem('data', JSON.stringify(event.value));
     //const retreivedObject = JSON.parse(window.localStorage.getItem('data'));
     //console.log(retreivedObject);
+    //rendercourseinfoTable(event.value);
 
 }
 
-function rendercourseinfoTable(courseinfo, retrievedObject) {
+function rendercourseinfoTable(courseinfo,setSelectedCourses,selectedCourses) {
 
 
     return (
@@ -96,8 +104,8 @@ function rendercourseinfoTable(courseinfo, retrievedObject) {
                     )}
                 </tbody>
             </table>
-            <form onSubmit={handleSubmit}> <button type="submit" value={courseinfo}>Copy Text</button> </form >
-            <div>{retrievedObject[0].coursename}</div>
+            <form onSubmit={() => handleSubmit(setSelectedCourses, selectedCourses, courseinfo)}> <button type="submit">Copy Text</button> </form >
+            <div>selectedCourses[0].coursename</div>
         </div>
 
     );
