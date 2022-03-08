@@ -1,0 +1,38 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+.disp_course {
+    background-color: #fff;
+    width: 40vw;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    padding: 1vw;
+    margin: 1vw;
+    display: flex;
+}
+
+.c_name {
+    color: black;
+    font-size: 1.4vw;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    margin-bottom: 0.5vw;
+    margin-top: 0.2vw;
+}
+
+.c_info {
+    color: #2B6778;
+    font-size: 1.1vw;
+    font-family: 'Lato', sans-serif;
+    margin-top: 0.2vw;
+    margin-bottom: 0.1vw;
+}
+
+#div_l {
+    width:80%;
+    float:left;
+}
+
+#div_r {
+    width: 20%;
+    right: 1vw;
+}
