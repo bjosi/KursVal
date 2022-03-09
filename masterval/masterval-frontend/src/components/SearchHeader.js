@@ -1,5 +1,5 @@
 import SearchBar from './SearchBar';
-import "../SearchHeader.css"
+import "../styles/SearchHeader.css"
 
 const SearchHeader = () => (
 

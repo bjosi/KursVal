@@ -3,7 +3,7 @@ import React, { Component, useEffect, useState } from 'react';
 import SearchHeader from './components/SearchHeader';
 import { render } from 'react-dom';
 import DisplayCourse from './components/DisplayCourse';
-import "./App.css"
+import "./styles/App.css"
 
 
 function App() {
