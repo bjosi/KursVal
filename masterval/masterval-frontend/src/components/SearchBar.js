@@ -23,4 +23,5 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => (<form class="searchform"
 </form>
 );
 
+
 export default SearchBar;
