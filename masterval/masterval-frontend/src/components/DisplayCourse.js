@@ -1,4 +1,4 @@
-import "../DisplayCourse.css"
+import "../styles/DisplayCourse.css"
 
 
 function DisplayCourse(props) {
