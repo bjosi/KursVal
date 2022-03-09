@@ -1,4 +1,4 @@
-import "../DisplayCourse.css"
+import "../styles/DisplayCourse.css"
 import Btn_addcourse from "./Btn_addcourse";
 
 import React, { Component, useEffect, useState } from 'react';
