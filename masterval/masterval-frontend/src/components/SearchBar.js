@@ -1,16 +1,24 @@
 //import { useHistory } from 'react-router-dom';
 
-const SearchBar = ({ searchQuery, setSearchQuery }) => (<form action="/" method="get">
+import "../SearchHeader.css"
+
+
+const SearchBar = ({ searchQuery, setSearchQuery }) => (<form class="searchform" action="/" method="get">
     <label htmlFor="header-search">
-        <span className="visually-hidden">Search blog posts</span>
+        <span className="visually-hidden">posts</span>
     </label>
-    <input
+    <input class="SearchbarInput"
         value={searchQuery} onInput={e => setSearchQuery(e.target.value)} type="text"
         id="header-search"
-        placeholder="Search blog posts"
+        placeholder="Sok kurs"
         name="s"
     />
-    <button type="submit">Search</button>
+    <select class="terminInput">
+        <option value="fruit">Fruit</option>
+        <option value="vegetable">Vegetable</option>
+        <option value="meat">Meat</option>
+    </select>
+    <button class="search_btn" type="submit">Sok kurser</button>
 </form>
 );
 

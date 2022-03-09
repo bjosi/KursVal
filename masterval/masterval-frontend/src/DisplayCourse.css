@@ -29,11 +29,11 @@
 }
 
 #div_l {
-    width:80%;
+    width:30vw;
     float:left;
 }
 
 #div_r {
-    width: 20%;
+    width: 10vw;
     right: 1vw;
 }
