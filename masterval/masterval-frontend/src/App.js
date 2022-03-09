@@ -4,11 +4,15 @@ import SearchHeader from './components/SearchHeader';
 import { render } from 'react-dom';
 import DisplayCourse from './components/DisplayCourse';
 import "./styles/App.css"
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+} from "react-router-dom";
 
 
 function App() {
-
-
 
     const [state, setState] = useState({ courseinfo: [], loading: true });
     const [selectedCourses, setSelectedCourses] = React.useState(JSON.parse(localStorage.getItem('myValueInLocalStorage')) || [])
@@ -34,8 +38,37 @@ function App() {
         : rendercourseinfoTable(state.courseinfo, setSelectedCourses, selectedCourses);
 
     return (
-        <div>{contents}
+
+        <div >
+            <Router>
+                <div class="Footer">
+                    <Link to="/MyCourses">Mina kurser</Link>
+                    <Link to="/LogIn">Logga in</Link>
+                    <Link to="/">Hem</Link>
+                </div>
+                <Switch>
+                    <Route path="/MyCourses">
+                        <div>Mina kurser</div>
+                    </Route>
+
+                    <Route path="/LogIn">
+                        <div>Logga in
+                        </div>
+                    </Route>
+                    <Route path="/">
+                        <div>{contents}
+                        </div>
+                    </Route>
+                </Switch>
+                
+            </Router>
         </div>
+
+
+
+
+
+    
     );
 
 }
