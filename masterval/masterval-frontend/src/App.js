@@ -1,17 +1,14 @@
 
-import React, { useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import SearchHeader from './components/SearchHeader';
+import { render } from 'react-dom';
 import DisplayCourse from './components/DisplayCourse';
 import "./styles/App.css"
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-} from "react-router-dom";
 
 
 function App() {
+
+
 
     const [state, setState] = useState({ courseinfo: [], loading: true });
     const [selectedCourses, setSelectedCourses] = React.useState(JSON.parse(localStorage.getItem('myValueInLocalStorage')) || [])
@@ -37,39 +34,8 @@ function App() {
         : rendercourseinfoTable(state.courseinfo, setSelectedCourses, selectedCourses);
 
     return (
-        //<div>{contents}
-        //</div>
-
-
-        <div >
-            <Router>
-
-                <div className="header">
-                    <Link to="/MyCourses" className="header-option">Mina kurser </Link>
-                    <Link to="/" className="header-option"> Hem </Link>
-                    <Link to="/LogIn" className="header-option"> Logga in </Link>
-                </div>
-
-                <Switch>
-                    <Route path="/MyCourses">
-                        <div>Mina kurser</div>
-                    </Route>
-                    <Route path="/LogIn">
-                        <div>Logga in</div>
-                    </Route>
-                    <Route path="/">
-                        <div>{contents}
-                        </div>
-                    </Route>
-                    
-                </Switch>
-                
-            </Router>
+        <div>{contents}
         </div>
-
-
-
-
     );
 
 }
@@ -88,20 +54,20 @@ async function asyncCall(setState, query) {
 
 
 
-function rendercourseinfoTable(courseinfo, setSelectedCourses, selectedCourses) {
+function rendercourseinfoTable(courseinfo,setSelectedCourses,selectedCourses) {
 
     return (
         <div>
-            <SearchHeader />
+            <SearchHeader/>
             <div class="wrapper">
                 <div> </div>
                 <div class="left_wrapper">
-                    {courseinfo.map(card => <DisplayCourse courseinfo={card} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} />
+                    {courseinfo.map(forecast => <DisplayCourse courseinfo={forecast} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses}  />
                     )}
+                    </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
     );
 }
 // <form onSubmit={() => handleSubmit(setSelectedCourses, selectedCourses, courseinfo)}> <button type="submit">Copy Text</button> </form >
@@ -110,3 +76,6 @@ function rendercourseinfoTable(courseinfo, setSelectedCourses, selectedCourses) 
 
 
 export default App;
+
+
+
