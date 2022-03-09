@@ -1,6 +1,6 @@
 //import { useHistory } from 'react-router-dom';
 
-import "../SearchHeader.css"
+import "../styles/SearchHeader.css"
 
 
 const SearchBar = ({ searchQuery, setSearchQuery }) => (<form class="searchform" action="/" method="get">
