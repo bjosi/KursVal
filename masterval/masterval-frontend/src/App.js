@@ -3,6 +3,7 @@ import React, { Component, useEffect, useState } from 'react';
 import SearchHeader from './components/SearchHeader';
 import { render } from 'react-dom';
 import DisplayCourse from './components/DisplayCourse';
+import MyCourses from './Pages/MyCourses';
 import "./styles/App.css"
 import {
     BrowserRouter as Router,
@@ -48,7 +49,7 @@ function App() {
                 </div>
                 <Switch>
                     <Route path="/MyCourses">
-                        <div>Mina kurser</div>
+                        <MyCourses selectedCourses={selectedCourses} setSelectedCourses={setSelectedCourses}/>
                     </Route>
 
                     <Route path="/LogIn">
