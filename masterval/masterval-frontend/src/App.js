@@ -25,8 +25,13 @@ function App() {
 
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
-
-    asyncCall(setState, query);
+    var filter = new URLSearchParams(search).get('f');
+    filter = parseInt(filter);
+    if (isNaN(filter)) {
+        filter = 0;
+    }
+    console.log(filter);
+    asyncCall(setState, query, filter);
 
     //var retreivedObject = JSON.parse(window.localStorage.getItem(courseinfo));
     //console.log(retreivedObject)
@@ -63,18 +68,12 @@ function App() {
                 
             </Router>
         </div>
-
-
-
-
-
-    
     );
 
 }
 
 
-async function asyncCall(setState, query) {
+async function asyncCall(setState, query, filter) {
     if (query != null) {
         var response = await fetch("courses/" + query);
     }
@@ -82,7 +81,15 @@ async function asyncCall(setState, query) {
         var response = await fetch("courses");
     }
     const data = await response.json();
-    setState({ courseinfo: data, loading: false });
+    if (filter == 0) {
+        var courses = data.filter(myCourse => (myCourse.semester == 7 || myCourse.semester == 8 || myCourse.semester == 9 || myCourse.semester == 10));
+    }
+    else {
+        var courses = data.filter(myCourse => myCourse.semester == filter)
+    }
+    
+    console.log(courses);
+    setState({ courseinfo: courses, loading: false });
 };
 
 
@@ -95,7 +102,7 @@ function rendercourseinfoTable(courseinfo,setSelectedCourses,selectedCourses) {
             <div class="wrapper">
                 <div> </div>
                 <div class="left_wrapper">
-                    {courseinfo.map(forecast => <DisplayCourse courseinfo={forecast} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses}  />
+                    {courseinfo.map(courses => <DisplayCourse courseinfo={courses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses}  />
                     )}
                     </div>
                 </div>
@@ -103,11 +110,6 @@ function rendercourseinfoTable(courseinfo,setSelectedCourses,selectedCourses) {
             </div>
     );
 }
-// <form onSubmit={() => handleSubmit(setSelectedCourses, selectedCourses, courseinfo)}> <button type="submit">Copy Text</button> </form >
-
-//<div> {selectedCourses.map(forecast => DisplayCourse(forecast))}</div>
-
-
 export default App;
 
 
