@@ -15,7 +15,7 @@ const DisplayCourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => {
             <div id="div_l">
                 <p className="c_name"> {courseinfo.coursename} </p>
                 <p class="c_info"> {courseinfo.progname} </p>
-                <p class="c_info"> {courseinfo.coursepoints} HP </p>
+                <p class="c_info"> Termin {courseinfo.semester} </p>
                     <p class="c_info"> {courseinfo.courselevel} </p>
                     {showresult ? <Results courseinfo={courseinfo}/> : null}
             </div>
