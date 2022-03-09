@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+
+
+.SearchHeader{
+    width: 100vw;
+    background-color: #fff;
+    height: 20vw;
+    display: center;
+}
+
+.h1search {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    margin: 0;
+    padding-top: 8vw;
+    margin-bottom: 2vw;
+    padding-left: 18vw;
+}
+
+.SearchbarInput {
+    margin-left: 18vw;
+    width: 30vw;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5vw;
+    border-radius: 0;
+    border: 1px solid #00000066;
+    border-bottom: 1px solid #000000cc; 
+    padding-left: 1vw;
+
+}
+
+.search_btn {
+    width: 15vw;
+    margin-left: 2vw;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5vw;
+    border: none;
+    color: #fff;
+    background-color: #F9a26C;
+}
+
+.terminInput {
+    width: 15vw;
+    margin-left: 2vw;
+    font-family: 'Lato', sans-serif;
+    border-radius: 0;
+    border: 1px solid #000000cc;
+}
+
+.searchform{
+    display: flex;
+    height: 3.2vw;
+}

@@ -1,19 +1,12 @@
 
 import React, { Component, useEffect, useState } from 'react';
-import SearchBar from './components/SearchBar';
+import SearchHeader from './components/SearchHeader';
 import { render } from 'react-dom';
 import DisplayCourse from './components/DisplayCourse';
 import "./App.css"
 
 
 function App() {
-
-
-
-
-    // Getting the storage
-//    const retreivedObject = JSON.parse(window.localStorage.getItem('data'))
-    //console.log(retreivedObject)
 
 
 
@@ -42,10 +35,7 @@ function App() {
         : rendercourseinfoTable(state.courseinfo, setSelectedCourses, selectedCourses);
 
     return (
-        <div>
-            <h1 id="tabelLabel" >Kursval</h1>
-            <p>Tabell med kursdata.</p>
-            {contents}
+        <div>{contents}
             {console.log(selectedCourses)}
         </div>
     );
@@ -67,11 +57,7 @@ async function asyncCall(setState, query) {
 function handleSubmit(setSelectedCourses,selectedCourses,courseinfo) {
     
     setSelectedCourses(selectedCourses.concat(courseinfo));
-    //console.log(selectedCourses);
-    //window.localStorage.setItem('data', JSON.stringify(event.value));
-    //const retreivedObject = JSON.parse(window.localStorage.getItem('data'));
-    //console.log(retreivedObject);
-    //rendercourseinfoTable(event.value);
+
 
 }
 
@@ -79,7 +65,7 @@ function rendercourseinfoTable(courseinfo,setSelectedCourses,selectedCourses) {
 
     return (
         <div>
-            <SearchBar />
+            <SearchHeader/>
             <div class="wrapper">
                 <div> </div>
                 <div class="left_wrapper">
