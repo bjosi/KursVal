@@ -7,7 +7,8 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => (<form class="searchform"
     <label htmlFor="header-search">
         <span className="visually-hidden">posts</span>
     </label>
-    <input class="SearchbarInput"
+    <input 
+        class="SearchbarInput"
         value={searchQuery} onInput={e => setSearchQuery(e.target.value)} type="text"
         id="header-search"
         placeholder="Sok kurs"

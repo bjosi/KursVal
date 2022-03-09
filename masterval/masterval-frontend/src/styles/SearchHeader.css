@@ -2,53 +2,61 @@
 
 
 
-.SearchHeader{
+.SearchHeader {
     width: 100vw;
     background-color: #fff;
-    height: 20vw;
-    display: center;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchbar_container {
+    width: 70vw;
+  
+    
 }
 
 .h1search {
     font-family: 'Lato', sans-serif;
     font-weight: bold;
-    margin: 0;
-    padding-top: 8vw;
-    margin-bottom: 2vw;
-    padding-left: 18vw;
+    margin: 1rem 0; 
+ 
 }
 
 .SearchbarInput {
-    margin-left: 18vw;
-    width: 30vw;
+    width: 50%;
     font-family: 'Lato', sans-serif;
-    font-size: 1.5vw;
-    border-radius: 0;
-    border: 1px solid #00000066;
-    border-bottom: 1px solid #000000cc; 
-    padding-left: 1vw;
+    border: 1px solid black;
+    padding: 1em; 
 
 }
 
 .search_btn {
-    width: 15vw;
-    margin-left: 2vw;
+    width: 25%;
     font-family: 'Lato', sans-serif;
-    font-size: 1.5vw;
-    border: none;
     color: #fff;
     background-color: #F9a26C;
+    border: none; 
 }
 
 .terminInput {
-    width: 15vw;
-    margin-left: 2vw;
+    width: 25%;
     font-family: 'Lato', sans-serif;
-    border-radius: 0;
-    border: 1px solid #000000cc;
+    margin: 0 1rem;
+    border: 1px solid black;
+    padding: 1em; 
 }
+
 
 .searchform{
     display: flex;
-    height: 3.2vw;
+    height: 50px;
+
+}
+
+
+
+*:focus {
+    outline: none; 
 }

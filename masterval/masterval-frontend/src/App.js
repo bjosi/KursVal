@@ -69,14 +69,14 @@ function rendercourseinfoTable(courseinfo,setSelectedCourses,selectedCourses) {
             <div class="wrapper">
                 <div> </div>
                 <div class="left_wrapper">
-                    {courseinfo.map(forecast =>
-                        DisplayCourse(forecast)
+                    {courseinfo.map(card =>
+                        DisplayCourse(card)
                     )}
                     </div>
                 </div>
-
+            
             <form onSubmit={() => handleSubmit(setSelectedCourses, selectedCourses, courseinfo)}> <button type="submit">Copy Text</button> </form >
-            <div> {selectedCourses.map(forecast => DisplayCourse(forecast))}</div>
+            <div> {selectedCourses.map(card => DisplayCourse(card))}</div>
         </div>
     );
 }
