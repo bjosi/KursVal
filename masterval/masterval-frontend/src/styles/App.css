@@ -63,15 +63,3 @@ body {
 .left_wrapper{
     margin-right: 10vw;
 }
-
-.header {
-    display: flex;
-    background-color: #fff;
-    justify-content: flex-end;
-    margin: 0.1em;
-    margin-bottom: 0.6em;
-}
-
-.header-option{
-    margin: 1em;
-}
