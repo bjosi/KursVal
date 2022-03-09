@@ -89,7 +89,7 @@ async function asyncCall(setState, query, filter) {
         var courses = data.filter(myCourse => myCourse.semester == filter)
     }
     
-    console.log(courses);
+    //console.log(courses);
     setState({ courseinfo: courses, loading: false });
 };
 
@@ -103,7 +103,7 @@ function rendercourseinfoTable(courseinfo,setSelectedCourses,selectedCourses) {
             <div class="wrapper">
                 <div> </div>
                 <div class="left_wrapper">
-                    {courseinfo.map(courses => <DisplayCourse courseinfo={courses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses}  />
+                    {courseinfo.map(courses => <DisplayCourse courseinfo={courses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={true}  />
                     )}
                     </div>
                 </div>

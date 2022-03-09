@@ -1,10 +1,12 @@
 import "../styles/DisplayCourse.css"
 import Btn_addcourse from "./Btn_addcourse";
+import Btn_removeCourse from "./Btn_removeCourse";
 
+import Btn_moveCourse from "./Btn_moveCourse";
 import React, { Component, useEffect, useState } from 'react';
 
 
-const DisplayCourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => {
+const DisplayCourse = ({ courseinfo, setSelectedCourses, selectedCourses, homePage }) => {
     const [showresult, setShowResults] = React.useState(false);
     const onClick = () => setShowResults(!showresult);
 
@@ -22,13 +24,16 @@ const DisplayCourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => {
 
             <div id="div_r" >
                     <button id="btnShowMore" type="button" onClick={onClick} ></button>
-               
-
             </div>
         </div>
-        <div>
-            <Btn_addcourse courseinfo={courseinfo} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} />
-        </div>
+            <div>
+                {homePage ? <Btn_addcourse courseinfo={courseinfo} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} /> :
+                    <div><Btn_moveCourse courseinfo={courseinfo} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} />
+                        <Btn_removeCourse courseinfo={courseinfo} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} />
+
+                    </div>
+                }
+            </div>
     </div>
 
 )
