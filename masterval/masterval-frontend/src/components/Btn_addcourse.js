@@ -1,4 +1,4 @@
-import "../DisplayCourse.css"
+import "../styles/DisplayCourse.css"
 
 
 const Btn_addcourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => (
