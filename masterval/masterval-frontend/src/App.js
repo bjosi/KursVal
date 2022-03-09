@@ -4,7 +4,6 @@ import SearchHeader from './components/SearchHeader';
 import { render } from 'react-dom';
 import DisplayCourse from './components/DisplayCourse';
 import MyCourses from './Pages/MyCourses';
-import CourseSection from "./components/CourseSection";
 import "./styles/App.css"
 import {
     BrowserRouter as Router,
@@ -90,7 +89,7 @@ async function asyncCall(setState, query, filter) {
         var courses = data.filter(myCourse => myCourse.semester == filter)
     }
     
-    console.log(courses);
+    //console.log(courses);
     setState({ courseinfo: courses, loading: false });
 };
 
@@ -99,11 +98,17 @@ async function asyncCall(setState, query, filter) {
 function rendercourseinfoTable(courseinfo,setSelectedCourses,selectedCourses) {
 
     return (
-        <>
+        <div>
             <SearchHeader/>
-            <CourseSection courseinfo={courseinfo} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} />
+            <div class="wrapper">
+                <div> </div>
+                <div class="left_wrapper">
+                    {courseinfo.map(courses => <DisplayCourse courseinfo={courses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={true}  />
+                    )}
+                    </div>
+                </div>
 
-        </>
+            </div>
     );
 }
 export default App;

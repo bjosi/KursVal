@@ -1,13 +1,11 @@
 import "../styles/DisplayCourse.css"
 
 
-const Btn_addcourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => (
-
-
-    <button onClick={() => handleSubmit(setSelectedCourses, selectedCourses, courseinfo)}> klicka mig </button>
-
-
-);
+const Btn_addcourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => {
+    return(
+        <button onClick={() => handleSubmit(setSelectedCourses, selectedCourses, courseinfo)}> lagg till </button>
+    )
+}
 
 function handleSubmit(setSelectedCourses, selectedCourses, courseinfo) {
     var allCourses = selectedCourses.concat(courseinfo);
