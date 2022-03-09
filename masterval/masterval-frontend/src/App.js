@@ -17,11 +17,10 @@ function App() {
         localStorage.setItem('myValueInLocalStorage', JSON.stringify(selectedCourses));
     }, [selectedCourses]);
 
-    //console.log(selectedCourses);
+    console.log(selectedCourses);
 
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
-
 
     asyncCall(setState, query);
 
@@ -36,7 +35,6 @@ function App() {
 
     return (
         <div>{contents}
-            {console.log(selectedCourses)}
         </div>
     );
 
@@ -54,12 +52,7 @@ async function asyncCall(setState, query) {
     setState({ courseinfo: data, loading: false });
 };
 
-function handleSubmit(setSelectedCourses,selectedCourses,courseinfo) {
-    
-    setSelectedCourses(selectedCourses.concat(courseinfo));
 
-
-}
 
 function rendercourseinfoTable(courseinfo,setSelectedCourses,selectedCourses) {
 
@@ -69,17 +62,17 @@ function rendercourseinfoTable(courseinfo,setSelectedCourses,selectedCourses) {
             <div class="wrapper">
                 <div> </div>
                 <div class="left_wrapper">
-                    {courseinfo.map(forecast =>
-                        DisplayCourse(forecast)
+                    {courseinfo.map(forecast => <DisplayCourse courseinfo={forecast} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses}  />
                     )}
                     </div>
                 </div>
 
-            <form onSubmit={() => handleSubmit(setSelectedCourses, selectedCourses, courseinfo)}> <button type="submit">Copy Text</button> </form >
-            <div> {selectedCourses.map(forecast => DisplayCourse(forecast))}</div>
-        </div>
+            </div>
     );
 }
+// <form onSubmit={() => handleSubmit(setSelectedCourses, selectedCourses, courseinfo)}> <button type="submit">Copy Text</button> </form >
+
+//<div> {selectedCourses.map(forecast => DisplayCourse(forecast))}</div>
 
 
 export default App;
