@@ -28,7 +28,7 @@ const DisplayCourse = ({ courseinfo, setSelectedCourses, selectedCourses, homePa
         </div>
             <div>
                 {homePage ? <Btn_addcourse courseinfo={courseinfo} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} /> :
-                    <div><Btn_moveCourse courseinfo={courseinfo} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} />
+                    <div className="btn-displaycourse"><Btn_moveCourse courseinfo={courseinfo} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} />
                         <Btn_removeCourse courseinfo={courseinfo} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} />
 
                     </div>

@@ -13,9 +13,9 @@ function handleSubmit(setSelectedCourses, selectedCourses, courseinfo) {
 
     var uniqueSet = new Set(jsonObject);
     var uniqueArray = Array.from(uniqueSet).map(JSON.parse);
+    uniqueArray[uniqueArray.length - 1].choosensemester = courseinfo.semester;
+    console.log(uniqueArray);
     setSelectedCourses(uniqueArray);
-    console.log(selectedCourses);
-   
 }
 
 export default Btn_addcourse;

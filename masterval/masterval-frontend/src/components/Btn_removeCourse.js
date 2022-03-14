@@ -3,7 +3,7 @@ import "../styles/DisplayCourse.css"
 
 const Btn_removeCourse = ({ courseinfo,setSelectedCourses,selectedCourses }) => {
 
-    return (<button onClick={() => handleSubmit(courseinfo, setSelectedCourses, selectedCourses)}> ta bort </button>)
+    return (<button className="btn-removecourse" onClick={() => handleSubmit(courseinfo, setSelectedCourses, selectedCourses)}> &#9747; </button>)
 }
 
 function handleSubmit(clickedobjekt,setSelectedCourses,selectedCourses) {

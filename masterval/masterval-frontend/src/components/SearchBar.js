@@ -11,7 +11,7 @@ const SearchBar = ({ searchQuery, filterQuery, setSearchQuery, setFilterQuery })
         class="SearchbarInput"
         value={searchQuery} onInput={e => setSearchQuery(e.target.value)} type="text"
         id="header-search"
-        placeholder="Sok kurs"
+        placeholder="S&ouml;k kurs"
         name="s"
     />
     <select class="terminInput"
@@ -23,7 +23,7 @@ const SearchBar = ({ searchQuery, filterQuery, setSearchQuery, setFilterQuery })
         <option value="8">8</option>
         <option value="9">9</option>
     </select>
-    <button class="search_btn" type="submit">Sok kurser</button>
+    <button class="search_btn" type="submit" >S&ouml;k kurser</button>
 </form>
 );
 
