@@ -1,5 +1,5 @@
 import "../styles/MyCourses.css"
-import DisplayCourse from '../components/DisplayCourse';
+import DisplayPeriod from '../components/DisplayPeriod';
 
 const MyCourses = ({ selectedCourses, setSelectedCourses}) => {
 
@@ -15,23 +15,25 @@ const MyCourses = ({ selectedCourses, setSelectedCourses}) => {
 
 
 const SplitInPeriod = ({ selectedCourses, setSelectedCourses }) => {
-
-    const firstPeriod = selectedCourses.filter((item) => item.period == 1);
-    const secondPeriod = selectedCourses.filter((item) => item.period == 2);
-
-    return (
-        <div>
-            {firstPeriod.length !== 0 ? <h1> 1a Period </h1> : null}
-
-            {firstPeriod.map(forecast => <DisplayCourse courseinfo={forecast} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} />
-            )}
-            {secondPeriod.length !== 0 ? <h1> 2a Period </h1> : null}
-
-            {secondPeriod.map(forecast => <DisplayCourse courseinfo={forecast} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} />
-            )}
-      
     
-        </div>)
+    return (<div>
+        <h1> Termin 7 </h1>
+        <div className="wrapper-mycourses">
+            <DisplayPeriod courseinfo={selectedCourses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} semester={7}/>
+        </div>
+        <h1> Termin 8 </h1>
+        <div className="wrapper-mycourses">
+            <DisplayPeriod courseinfo={selectedCourses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} semester={8} />
+        </div>
+
+        <h1> Termin 9 </h1>
+        <div className="wrapper-mycourses">           
+
+            <DisplayPeriod courseinfo={selectedCourses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} semester={9} />
+
+
+        </div>
+    </div>)
 }
 
 

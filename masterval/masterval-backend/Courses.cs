@@ -41,5 +41,7 @@ namespace masterval_backend
 
         [BsonElement("U")]
         public string? UChosen { get; set; }
+
+        public string? choosensemester;
     }
 }

@@ -1,4 +1,7 @@
-body {
-
+.wrapper-mycourses {
+    display: flex;
+    justify-content: center;
+    width:100vw;
+    background-color: #f2f2f2;
 }
 
