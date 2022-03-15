@@ -1,40 +1,24 @@
 import "../styles/MyCourses.css"
-import DisplayPeriod from '../components/DisplayPeriod';
+import Semesters from '../components/Semesters';
+import Overview from '../components/Overview';
+import ToggleOverviewButton from '../components/ToggleOverviewButton';
+
+import React, {useState } from 'react';
+
+
 
 const MyCourses = ({ selectedCourses, setSelectedCourses}) => {
 
+    const [showOverview, setShowOverview] = useState(false);
 
     return (
         <div>
-            <SplitInPeriod selectedCourses={selectedCourses} setSelectedCourses={setSelectedCourses}/>
+            <ToggleOverviewButton showOverview={showOverview} setShowOverview={setShowOverview} />
+            {showOverview ? <Overview selectedCourses= { selectedCourses } setSelectedCourses={setSelectedCourses}/> : <Semesters selectedCourses={selectedCourses} setSelectedCourses={setSelectedCourses} />}
         </div>)
 }
 
 // {selectedCourses.map(forecast => <DisplayCourse courseinfo={forecast} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} /> )}
-
-
-
-const SplitInPeriod = ({ selectedCourses, setSelectedCourses }) => {
-    
-    return (<div>
-        <h1> Termin 7 </h1>
-        <div className="wrapper-mycourses">
-            <DisplayPeriod courseinfo={selectedCourses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} semester={7}/>
-        </div>
-        <h1> Termin 8 </h1>
-        <div className="wrapper-mycourses">
-            <DisplayPeriod courseinfo={selectedCourses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} semester={8} />
-        </div>
-
-        <h1> Termin 9 </h1>
-        <div className="wrapper-mycourses">           
-
-            <DisplayPeriod courseinfo={selectedCourses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} semester={9} />
-
-
-        </div>
-    </div>)
-}
 
 
 export default MyCourses;

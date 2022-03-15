@@ -5,3 +5,53 @@
     background-color: #f2f2f2;
 }
 
+
+.selected_togglebutton{
+    color: red;
+    margin: 4rem;}
+
+
+.non_selected_togglebutton {
+    color: black;
+    margin: 4rem;
+}
+
+.arrow_button{
+    width:50px;
+    color:black;
+    font-size: 40px;
+}
+
+.arrow_button:hover{
+    cursor: pointer;
+}
+
+#disabled{
+    color: lightgray;
+}
+
+#disabled:hover {
+     cursor: default;
+}
+
+.semester_selector {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    margin: 100px;
+    padding: 4rem;
+}
+
+.toggle_overview {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    margin:100px;
+}
+
+.overview {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    margin: 100px;
+}

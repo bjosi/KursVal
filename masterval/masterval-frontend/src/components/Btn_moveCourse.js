@@ -6,25 +6,44 @@ import Popup from './popup.js';
 const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => {
     const [isOpen, setIsOpen] = useState(false);
 
+    let newTerm;
+
+    if (courseinfo.semester == 7) {
+        newTerm = 9
+    } else {
+        newTerm = 7;
+    }
+
     const togglePopup = () => {
         setIsOpen(!isOpen);
     }
 
-    return <div>
-        <button className="btn-movecourse"
-            onClick={togglePopup}
-        > &rarr; </button>
-        {isOpen && <Popup
-            content={<>
-                <b>Design your Popup</b>
-                <p></p>
+    const handleConfirm = () => {
 
-            </>}
-            handleClose={togglePopup}
-        />}
+
+        setSelectedCourses(
+            selectedCourses.map(item =>
+                item.coursecode === courseinfo.coursecode
+                    ? { ...item, semester: newTerm }
+                    : item
+            ))
+
+        console.log("hh");
+
+        console.log(selectedCourses);
+
+    }
+
+
+    return <div>
+        <button className={courseinfo.semester == 8 ? 'btn-movecoursehidden' : "btn-movecourse"}
+ onClick={togglePopup}> &rarr; </button>
+        {isOpen && <Popup handleClose={togglePopup} handleConfirm={handleConfirm} newTerm={newTerm}/>}
     </div>
 
 }
+
+
 
 //<button className="btn-movecourse" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}> 	&rarr; </button>
 

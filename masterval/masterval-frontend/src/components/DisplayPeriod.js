@@ -4,9 +4,9 @@ import DisplayCourse from '../components/DisplayCourse';
 
 const DisplayPeriod = ({ courseinfo, setSelectedCourses, selectedCourses, semester }) => {
 
-    const newListperiodone = courseinfo.filter((item) => item.choosensemester == semester && item.period == 1);
+    const newListperiodone = courseinfo.filter((item) => item.semester == semester && item.period == 1);
     
-    const newListperiodtwo = courseinfo.filter((item) => item.choosensemester == semester && item.period == 2);
+    const newListperiodtwo = courseinfo.filter((item) => item.semester == semester && item.period == 2);
 
 
     return (<div>
