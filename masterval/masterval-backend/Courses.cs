@@ -26,6 +26,9 @@ namespace masterval_backend
         [BsonElement("coursename")]
         public string? Coursename { get; set; }
 
+        [BsonElement("area")]
+        public string? Area { get; set; }
+
         [BsonElement("coursecode")]
         public string? Coursecode { get; set; }
 

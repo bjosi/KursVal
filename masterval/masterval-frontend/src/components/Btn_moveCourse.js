@@ -34,8 +34,10 @@ const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => 
 
     }
 
+
     return <div>
-        <button className="btn-movecourse" onClick={togglePopup}> &rarr; </button>
+        <button className={courseinfo.semester == 8 ? 'btn-movecoursehidden' : "btn-movecourse"}
+ onClick={togglePopup}> &rarr; </button>
         {isOpen && <Popup handleClose={togglePopup} handleConfirm={handleConfirm} newTerm={newTerm}/>}
     </div>
 

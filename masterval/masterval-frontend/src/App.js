@@ -5,6 +5,7 @@ import { render } from 'react-dom';
 import DisplayCourse from './components/DisplayCourse';
 import MyCourses from './Pages/MyCourses';
 import "./styles/App.css"
+import NavBar from './components/NavBar'
 import {
     BrowserRouter as Router,
     Switch,
@@ -27,6 +28,7 @@ function App() {
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
     var filter = new URLSearchParams(search).get('f');
+    console.log("filter:" + filter);
     filter = parseInt(filter);
     if (isNaN(filter)) {
         filter = 0;
@@ -45,30 +47,9 @@ function App() {
 
     return (
 
-        <div >
-            <Router>
-                <div class="Footer">
-                    <Link to="/MyCourses">Mina kurser</Link>
-                    <Link to="/LogIn">Logga in</Link>
-                    <Link to="/">Hem</Link>
-                </div>
-                <Switch>
-                    <Route path="/MyCourses">
-                        <MyCourses selectedCourses={selectedCourses} setSelectedCourses={setSelectedCourses}/>
-                    </Route>
-
-                    <Route path="/LogIn">
-                        <div>Logga in
-                        </div>
-                    </Route>
-                    <Route path="/">
-                        <div>{contents}
-                        </div>
-                    </Route>
-                </Switch>
-                
-            </Router>
-        </div>
+        <>
+            <NavBar selectedCourses={selectedCourses} setSelectedCourses={setSelectedCourses} contents={contents }/>
+        </>
     );
 
 }
@@ -82,7 +63,7 @@ async function asyncCall(setState, query, filter) {
         var response = await fetch("courses");
     }
     const data = await response.json();
-    if (filter == 0) {
+    if (filter === 0) {
         var courses = data.filter(myCourse => (myCourse.semester == 7 || myCourse.semester == 8 || myCourse.semester == 9 || myCourse.semester == 10));
     }
     else {

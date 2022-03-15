@@ -1,27 +1,22 @@
 import "../styles/MyCourses.css"
 import DisplayPeriod from '../components/DisplayPeriod';
+import SemesterSelector from '../components/SemesterSelector';
+
+import React, {useState } from 'react';
 
 
 
 const Semesters = ({ selectedCourses, setSelectedCourses }) => {
 
+    const [semester, setSemester] = useState(7);
+
     return (<div>
-        <h1> Termin 7 </h1>
+        <SemesterSelector semester={semester} setSemester={setSemester} />
+
         <div className="wrapper-mycourses">
-            <DisplayPeriod courseinfo={selectedCourses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} semester={7} />
+            <DisplayPeriod courseinfo={selectedCourses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} semester={semester} />
         </div>
-        <h1> Termin 8 </h1>
-        <div className="wrapper-mycourses">
-            <DisplayPeriod courseinfo={selectedCourses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} semester={8} />
-        </div>
-
-        <h1> Termin 9 </h1>
-        <div className="wrapper-mycourses">
-
-            <DisplayPeriod courseinfo={selectedCourses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} semester={9} />
-
-
-        </div>
+       
     </div>)
 }
 

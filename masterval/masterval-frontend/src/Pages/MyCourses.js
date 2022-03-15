@@ -11,7 +11,6 @@ const MyCourses = ({ selectedCourses, setSelectedCourses}) => {
 
     const [showOverview, setShowOverview] = useState(false);
 
-
     return (
         <div>
             <ToggleOverviewButton showOverview={showOverview} setShowOverview={setShowOverview} />

@@ -56,6 +56,10 @@
     background-color: #BEC8A7;
 }
 
+.btn-movecoursehidden{
+    visibility: hidden;
+}
+
 .btn-removecourse {
     height: 40px;
     width: 40px;
