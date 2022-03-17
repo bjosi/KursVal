@@ -44,5 +44,24 @@ namespace masterval_backend.Controllers
 
             }
         }
+        /*
+        [HttpPost("/test")]
+        public IActionResult Test(string pl)
+        {
+            if (pl == null)
+            {
+                return Ok();
+            }
+            //PL plobj = JsonConvert.DeserializeObject<PL>(pl);
+            //return Ok($"Test Test a=={plobj.a} b=={plobj.b}");
+            return Ok();
+        }
+        */
+
+
+
+
+       
+
     }
 }
