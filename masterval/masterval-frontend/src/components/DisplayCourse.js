@@ -23,7 +23,7 @@ const DisplayCourse = ({ courseinfo, setSelectedCourses, selectedCourses, homePa
             </div>
 
             <div id="div_r" >
-                    <button id="btnShowMore" type="button" onClick={onClick} ></button>
+                    <button id="btnShowMore" type="button" onClick={onClick} >Visa mer</button>
             </div>
         </div>
             <div>
