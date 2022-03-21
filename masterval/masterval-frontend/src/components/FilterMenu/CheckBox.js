@@ -3,7 +3,6 @@ import "./FilterMenu.css";
 
 const CheckBox = ({ label, name }) => {
   //state
-
   return (
     <>
       <li className="filter_item">
