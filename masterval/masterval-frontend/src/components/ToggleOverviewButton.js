@@ -1,4 +1,9 @@
 import "../styles/MyCourses.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faMagnifyingGlass,
+    faBookOpen,
+} from "@fortawesome/free-solid-svg-icons";
 
 
 const ToggleOverviewButton = ({ showOverview, setShowOverview }) => {
@@ -9,10 +14,18 @@ const ToggleOverviewButton = ({ showOverview, setShowOverview }) => {
         }
     }
 
-    return (<div className='toggle_overview'>
-        <span className={showOverview ? 'non_selected_togglebutton' : 'selected_togglebutton'}  onClick={() => onToggle(false)}>Mina terminer</span>
-        <span className={showOverview ? 'selected_togglebutton' : 'non_selected_togglebutton'}  onClick={() => onToggle(true)}>Översikt</span>
-    </div>)
+    return (
+        <>
+            <div className='toggle_overview'>
+                <span className='toggle_button' onClick={() => onToggle(false)}> <FontAwesomeIcon icon={faBookOpen} />Mina terminer </span>
+                <span className='toggle_button' onClick={() => onToggle(true)}> <FontAwesomeIcon icon={faMagnifyingGlass} /> Översikt</span>
+    </div>
+            <div className='underline_toggle_overview'>
+                <div className={showOverview ? 'underline_left' : 'underline_left underline_selected'}></div>
+                <div className={showOverview ? 'underline_right underline_selected' : 'underline_right'}></div>
+            </div>
+       </>
+    )
 }
 
 export default ToggleOverviewButton;

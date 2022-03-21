@@ -586,24 +586,30 @@
     ]
   },
   "packageFolders": {
-    "/Users/denkan/.nuget/packages/": {}
+    "C:\\Users\\sagan\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/denkan/kurs-val/masterval/masterval-backend/masterval-backend.csproj",
+      "projectUniqueName": "C:\\Users\\sagan\\Source\\Repos\\gitKandidat220321\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj",
       "projectName": "masterval-backend",
-      "projectPath": "/Users/denkan/kurs-val/masterval/masterval-backend/masterval-backend.csproj",
-      "packagesPath": "/Users/denkan/.nuget/packages/",
-      "outputPath": "/Users/denkan/kurs-val/masterval/masterval-backend/obj/",
+      "projectPath": "C:\\Users\\sagan\\Source\\Repos\\gitKandidat220321\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj",
+      "packagesPath": "C:\\Users\\sagan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sagan\\Source\\Repos\\gitKandidat220321\\kurs-val\\masterval\\masterval-backend\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "/Users/denkan/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\sagan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -649,7 +655,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

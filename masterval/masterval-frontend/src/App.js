@@ -97,7 +97,7 @@ function rendercourseinfoTable(
       <SearchHeader />
       <div class="wrapper">
         <div class="left-section">
-          <FilterMenu />
+                  <FilterMenu />
         </div>
         <div className="right-section">
           {courseinfo.map((courses) => (

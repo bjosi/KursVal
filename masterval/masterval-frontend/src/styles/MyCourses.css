@@ -6,15 +6,12 @@
 }
 
 
-.selected_togglebutton{
-    color: red;
-    margin: 4rem;}
 
-
-.non_selected_togglebutton {
+.toggle_button {
     color: black;
-    margin: 4rem;
+    margin: 0.5rem;
 }
+
 
 .arrow_button{
     width:50px;
@@ -37,21 +34,38 @@
 .semester_selector {
     display: flex;
     align-items: center;
-    position: fixed;
-    margin: 100px;
+    margin: 1rem 3rem 1rem 3rem;
     padding: 4rem;
 }
 
 .toggle_overview {
     display: flex;
-    align-items: center;
-    position: fixed;
-    margin:100px;
+    width: 60vw;
+    margin: 5rem auto 0.4rem auto;
 }
 
 .overview {
     display: flex;
     align-items: center;
-    position: fixed;
-    margin: 100px;
+}
+
+.underline_toggle_overview {
+    display: flex;
+    height: 2px;
+    background-color: white;
+    width: 60vw;
+    margin: 0rem auto 0rem auto;
+    
+}
+
+.underline_left {
+    width:8rem;
+}
+
+.underline_right {
+    width: 8rem;
+}
+
+.underline_selected {
+    background-color:#F9A26C;
 }
