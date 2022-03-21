@@ -1,11 +1,13 @@
-import React from "react";
-import "../styles/FilterMenu.css";
+import React, { useState } from "react";
+import "./FilterMenu.css";
 
 const CheckBox = ({ label, name }) => {
+  //state
+
   return (
     <>
-      <li className="filter-item">
-        <label for={name}>
+      <li className="filter_item">
+        <label forhtml={name}>
           <input type="checkbox" name={name} />
           {label}
         </label>

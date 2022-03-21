@@ -5,7 +5,7 @@ import DisplayCourse from "./components/DisplayCourse";
 import MyCourses from "./Pages/MyCourses";
 import "./styles/App.css";
 import NavBar from "./components/NavBar";
-import FilterMenu from "./components/FilterMenu";
+import FilterMenu from "./components/FilterMenu/FilterMenu";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
