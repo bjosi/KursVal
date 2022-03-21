@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+
+.filter-menu {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 1rem 0;
+  width: 25vw;
+}
+
+.filter-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-align: left;
+}
+
+.filter-header p {
+  color: #f9a26c;
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.filter-item {
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Lato", sans-serif;
+  text-align: left;
+}
+
+input {
+  margin-right: 0.5rem;
+}
+
+[type="checkbox"] {
+  vertical-align: middle;
+}
+
+hr {
+  margin: 0.5rem;
+}
+
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
