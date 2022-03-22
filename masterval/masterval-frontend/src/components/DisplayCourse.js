@@ -4,9 +4,7 @@ import Btn_removeCourse from "./Btn_removeCourse";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Btn_moveCourse from "./Btn_moveCourse";
 import React, { Component, useEffect, useState } from "react";
-import {
-  faAngleDown
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 const DisplayCourse = ({
   courseinfo,
@@ -29,37 +27,34 @@ const DisplayCourse = ({
             {showresult ? <Results courseinfo={courseinfo} /> : null}
           </div>
           <div className="div_r">
-          {homePage ? (
-            <Btn_addcourse
-              courseinfo={courseinfo}
-              setSelectedCourses={setSelectedCourses}
-              selectedCourses={selectedCourses}
-            />
-          ) : (
-            <div className="btn-displaycourse">
-              <Btn_moveCourse
+            {homePage ? (
+              <Btn_addcourse
                 courseinfo={courseinfo}
                 setSelectedCourses={setSelectedCourses}
                 selectedCourses={selectedCourses}
               />
-              <Btn_removeCourse
-                courseinfo={courseinfo}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
-              />
-            </div>
-          )}
-          <p>hej</p>
+            ) : (
+              <div className="btn-displaycourse">
+                <Btn_moveCourse
+                  courseinfo={courseinfo}
+                  setSelectedCourses={setSelectedCourses}
+                  selectedCourses={selectedCourses}
+                />
+                <Btn_removeCourse
+                  courseinfo={courseinfo}
+                  setSelectedCourses={setSelectedCourses}
+                  selectedCourses={selectedCourses}
+                />
+              </div>
+            )}
+            <p>hej</p>
           </div>
         </div>
-        
+
         <span id="button_show_more" type="button" onClick={onClick}>
-        <FontAwesomeIcon icon={faAngleDown} />
+          <FontAwesomeIcon icon={faAngleDown} />
         </span>
-        
-        
       </div>
-        
     </div>
   );
 };
@@ -76,8 +71,5 @@ const Results = ({ courseinfo }) => {
     </div>
   );
 };
-
-
-
 
 export default DisplayCourse;
