@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProgressBar = ({ progress }) => {
+const ProgressBar = ({ progress,isSmall }) => {
     var prog = progress;
     if (prog > 1) {
         prog = 1;
@@ -22,7 +22,7 @@ const ProgressBar = ({ progress }) => {
     }
 
     return (
-        <div className="progressbar_parent" >
+        <div className={isSmall ? 'progressbar_parent_small' : 'progressbar_parent' } >
             <div style={Childdiv}>
                 <span style={progresstext}></span>
             </div>

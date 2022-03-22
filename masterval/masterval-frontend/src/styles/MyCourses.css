@@ -43,6 +43,7 @@
     justify-content: center;
     font-weight: 700;
     font-size: 1.875rem;
+    margin: 0 0 1rem 0;
 }
 
 .toggle_overview {
@@ -59,7 +60,11 @@
 
 .overview {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    background-color: white;
+    padding: 0 0 1rem 0;
+
 }
 
 .underline_toggle_overview {
@@ -128,18 +133,20 @@
     margin-bottom: 0.1rem;
     color: lightgrey;
     font-size: 1rem;
+    font-family: "Lato", sans-serif;
 }
 
 .semester_header {
     background-color: white;
-    height: 120px;
+    height: 140px;
     padding: 2rem 0 2rem 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    font-family: "Lato", sans-serif;
 }
 
 .text_period_2 {
@@ -170,6 +177,13 @@
     width: 30rem;
     background-color: #E1E1E1;
     margin: 0;
+}
+
+.progressbar_parent_small {
+    height: 6px;
+    width: 12rem;
+    background-color: #E1E1E1;
+    margin: 0.5rem 0.5rem 0 0;
 }
 
 .div_display_progress{
@@ -282,5 +296,19 @@
 
 .text_in_progressbar {
 
+}
+
+.progress_bar_wrapper{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    color: grey;
+}
+
+.semester_header_small_text {
+    font-size: 0.75rem;
+    color: grey;
+    margin: 0.4rem 0 0rem 0;
 }
 
