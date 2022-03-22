@@ -17,6 +17,8 @@ const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
 
     const [showOverview, setShowOverview] = useState(false);
 
+ 
+
     return (
         <div>
             <div className='my_courses_header'>
