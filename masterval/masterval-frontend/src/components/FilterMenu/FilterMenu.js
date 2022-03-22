@@ -59,6 +59,8 @@ const FilterMenu = () => {
     },
   ];
 
+  const [checkBox, setCheckBox] = useState(levels);
+
   return (
     <div className="filter_menu">
       <div className="filter_header">
@@ -71,8 +73,14 @@ const FilterMenu = () => {
       <ul className="filter_list">
         <div className="filter_item">
           <h2>Välj Nivå</h2>
-          {levels.map(({ name, label }) => (
-            <CheckBox name={name} label={label} />
+          {levels.map(({ name, label, checked }) => (
+            <CheckBox
+              name={name}
+              label={label}
+              checked={checked}
+              checkBox={checkBox}
+              setCheckBox={setCheckBox}
+            />
           ))}
         </div>
         <hr />

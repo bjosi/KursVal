@@ -1,116 +1,88 @@
-import React, { Component, useEffect, useState } from "react";
-import SearchHeader from "./components/SearchHeader";
-import { render } from "react-dom";
-import DisplayCourse from "./components/DisplayCourse";
-import MyCourses from "./Pages/MyCourses";
+import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import NavBar from "./components/NavBar";
-import FilterMenu from "./components/FilterMenu/FilterMenu";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
-  const [state, setState] = useState({ courseinfo: [], loading: true });
-  const [selectedCourses, setSelectedCourses] = React.useState(
+  const [courses, setCourses] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(null);
+  const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
+    fetch("courses")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setLoaded(true);
+          setCourses(result);
+        },
+        (error) => {
+          setLoaded(true);
+          setError(error);
+        }
+      );
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem(
       "myValueInLocalStorage",
       JSON.stringify(selectedCourses)
     );
   }, [selectedCourses]);
 
-  console.log(selectedCourses);
-
   const { search } = window.location;
-  const query = new URLSearchParams(search).get("s");
+  //const query = new URLSearchParams(search).get("s");
   var filter = new URLSearchParams(search).get("f");
-  console.log("filter:" + filter);
+  const query = new URLSearchParams(search).get("s");
+
   filter = parseInt(filter);
   if (isNaN(filter)) {
     filter = 0;
   }
-  console.log(filter);
-  asyncCall(setState, query, filter);
 
-  //var retreivedObject = JSON.parse(window.localStorage.getItem(courseinfo));
-  //console.log(retreivedObject)
+  asyncCall(setCourses, query, filter);
 
-  //console.log(selectedCourses);
-
-  let contents = state.loading ? (
-    <p>
-      <em>
-        Loading... Please refresh once the ASP.NET backend has started. See{" "}
-        <a href="https://aka.ms/jspsintegrationreact">
-          https://aka.ms/jspsintegrationreact
-        </a>{" "}
-        for more details.
-      </em>
-    </p>
-  ) : (
-    rendercourseinfoTable(state.courseinfo, setSelectedCourses, selectedCourses)
-  );
-
-  return (
-    <>
-      <NavBar
-        selectedCourses={selectedCourses}
-        setSelectedCourses={setSelectedCourses}
-        contents={contents}
-      />
-    </>
-  );
-}
-
-async function asyncCall(setState, query, filter) {
-  if (query != null) {
-    var response = await fetch("courses/" + query);
+  if (error) {
+    return <div>Error: {error.message} </div>;
+  } else if (!loaded) {
+    return <div>Loading...</div>;
   } else {
-    var response = await fetch("courses");
-  }
-  const data = await response.json();
-  if (filter === 0) {
-    var courses = data.filter(
-      (myCourse) =>
-        myCourse.semester == 7 ||
-        myCourse.semester == 8 ||
-        myCourse.semester == 9 ||
-        myCourse.semester == 10
-    );
-  } else {
-    var courses = data.filter((myCourse) => myCourse.semester == filter);
-  }
-
-  //console.log(courses);
-  setState({ courseinfo: courses, loading: false });
-}
-
-function rendercourseinfoTable(
-  courseinfo,
-  setSelectedCourses,
-  selectedCourses
-) {
-  return (
-    <div>
-      <SearchHeader />
-      <div class="wrapper">
-        <div class="left-section">
-          <FilterMenu />
-        </div>
-        <div className="right-section">
-          {courseinfo.map((courses) => (
-            <DisplayCourse
-              courseinfo={courses}
-              setSelectedCourses={setSelectedCourses}
-              selectedCourses={selectedCourses}
-              homePage={true}
-            />
-          ))}
-        </div>
+    return (
+      <div>
+        <NavBar
+          selectedCourses={selectedCourses}
+          setSelectedCourses={setSelectedCourses}
+          courses={courses}
+        />
       </div>
-    </div>
-  );
+    );
+  }
+
+  async function asyncCall(setCourses, query, filter) {
+    if (query != null) {
+      var response = await fetch("courses/" + query);
+      const data = await response.json();
+      if (filter === 0) {
+        const filteredData = data.filter(
+          (myCourse) =>
+            myCourse.semester == 7 ||
+            myCourse.semester == 8 ||
+            myCourse.semester == 9 ||
+            myCourse.semester == 10
+        );
+        setCourses(filteredData);
+      } else {
+        const filteredData = data.filter(
+          (myCourse) => myCourse.semester == filter
+        );
+        setCourses(filteredData);
+      }
+    }
+
+    //console.log(courses);
+  }
 }
+
 export default App;
