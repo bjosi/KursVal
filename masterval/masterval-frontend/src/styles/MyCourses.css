@@ -50,8 +50,149 @@
 }
 
 .overview {
+    align-items: start;
+    justify-content: center;
+  flex-direction:column;
     display: flex;
-    align-items: center;
-    position: fixed;
-    margin: 100px;
+    height: 500px;
+    width: 100vw;
+    background: #FFF;
+   margin-top: 60px;
 }
+
+.the_progress_bars {
+    align-items: center;
+    justify-content: center;
+    
+    width: 100vw;
+    height: 300px;
+    display: flex;
+}
+
+.cirkular_progressbar {
+    margin-right: 1rem;
+}
+
+.vertical_progressbar{
+    margin-left: 1rem;
+}
+
+.progressbar_parent {
+    height: 8px;
+    width: 30rem;
+    background-color: #E1E1E1;
+    margin: 0;
+}
+
+.div_display_progress{
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+
+}
+
+.bold_text {
+    text-align: center;
+    font-weight: 900;
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+
+.normal_text {
+    text-align: center;
+    font-weight: normal;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+.div_summary {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.summary_normal_text {
+    text-align: left;
+    font-weight: normal;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #2B6778;
+}
+
+.div_summary_text{
+    width: 28rem;
+}
+
+.summary_bold_text {
+    text-align: center;
+    font-weight: 900;
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+
+
+/*här är progress baren*/
+.CircularProgressbar {
+    /*
+   * This fixes an issue where the CircularProgressbar svg has
+   * 0 width inside a "display: flex" container, and thus not visible.
+   */
+    width: 12rem;
+    stroke-width: 0.3rem;
+    /*
+   * This fixes a centering issue with CircularProgressbarWithChildren:
+   * https://github.com/kevinsqi/react-circular-progressbar/issues/94
+   */
+    vertical-align: middle;
+}
+
+    .CircularProgressbar .CircularProgressbar-path {
+        stroke-width: 0.3rem;
+        stroke: #F9A26C;
+        border-radius: 2rem;
+    }
+
+    .CircularProgressbar .CircularProgressbar-trail {
+        stroke-width: 0.3rem;
+        stroke: #E1E1E1;
+        /* Used when trail is not full diameter, i.e. when props.circleRatio is set */
+    }
+
+    .CircularProgressbar .CircularProgressbar-text {
+        fill: #000;
+        font-size: 1.5rem;
+        font-weight: 900;
+        text-anchor: middle;
+    }
+
+    .CircularProgressbar .CircularProgressbar-background {
+        fill: #d6d6d6;
+    }
+
+.CircularProgressbarWithChildren__children {
+    font-size: 1.5rem;
+}
+
+.bold_text_progressbar {
+    text-align: center;
+    font-weight: 900;
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+    font-size: 4rem;
+    justify-content: end;
+}
+
+
+.text_in_progressbar {
+
+}
+
