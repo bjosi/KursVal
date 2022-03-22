@@ -24,9 +24,11 @@ const NavBar = ({
       <Router>
         <div className="menu">
           <div className="first-menu-item">
-            <FontAwesomeIcon icon={faTag} />
-          </div>
-          <Link to="/MyCourses">
+                      <FontAwesomeIcon icon={faTag} />
+                   
+                  </div>
+
+                  <Link to="/MyCourses">
             <div className="menu-item">
               <FontAwesomeIcon icon={faFloppyDisk} />
               <h1>Mina kurser</h1>

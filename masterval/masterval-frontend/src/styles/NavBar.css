@@ -11,6 +11,7 @@
 }
 
 .first-menu-item {
+    display: flex;
     margin-right: auto;
     width: 70vw;
     margin-left: 4rem;
@@ -29,11 +30,12 @@
         font-size: 1rem;
         color: white;
         margin-top: 0.3rem;
+        text-align: center;
     }
 
 .menu a {
     text-decoration: none;
     display: inline;
-    width: auto;
-    margin: 1rem;
+    width: 13rem;
+    margin: 0 0 0 0rem;
 }
