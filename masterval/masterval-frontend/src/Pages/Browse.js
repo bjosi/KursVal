@@ -3,10 +3,13 @@ import SearchHeader from "../components/SearchHeader";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import DisplayCourse from "../components/DisplayCourse";
 
-const Browse = ({ courses, searchHandler }) => {
+const Browse = ({ courses, searchHandler, semesterHandler }) => {
   return (
     <>
-      <SearchHeader searchHandler={searchHandler} />
+      <SearchHeader
+        searchHandler={searchHandler}
+        semesterHandler={semesterHandler}
+      />
       <div className="wrapper">
         <div className="left-section">
           <FilterMenu />

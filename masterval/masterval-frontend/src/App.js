@@ -23,6 +23,20 @@ function App() {
     setSearchQuery(searchResult);
   };
 
+  const semesterHandler = (semester) => {
+    // Kika på om man kan söka och välja semester separat
+    // sedan skkicka till en gemensam array och filtrera den
+    console.log(semester);
+    const userInput = parseInt(semester);
+    if (searchQuery !== null) {
+      const choosenSemester = searchQuery.filter(
+        (course) => course.semester === userInput
+      );
+
+      setSearchQuery(choosenSemester);
+    }
+  };
+
   useEffect(() => {
     fetch("courses")
       .then((res) => res.json())
@@ -45,17 +59,6 @@ function App() {
     );
   }, [selectedCourses]);
 
-  const { search } = window.location;
-  //const query = new URLSearchParams(search).get("s");
-  var filter = new URLSearchParams(search).get("f");
-
-  filter = parseInt(filter);
-  if (isNaN(filter)) {
-    filter = 0;
-  }
-
-  //asyncCall(setCourses, query, filter);
-
   if (error) {
     return <div>Error: {error.message} </div>;
   } else if (!loaded) {
@@ -68,34 +71,11 @@ function App() {
           setSelectedCourses={setSelectedCourses}
           courses={searchQuery !== null ? searchQuery : courses}
           searchHandler={searchHandler}
+          semesterHandler={semesterHandler}
         />
       </div>
     );
   }
-
-  // async function asyncCall(setCourses, query, filter) {
-  //   if (query != null) {
-  //     var response = await fetch("courses/" + query);
-  //     const data = await response.json();
-  //     if (filter === 0) {
-  //       const filteredData = data.filter(
-  //         (myCourse) =>
-  //           myCourse.semester == 7 ||
-  //           myCourse.semester == 8 ||
-  //           myCourse.semester == 9 ||
-  //           myCourse.semester == 10
-  //       );
-  //       setCourses(filteredData);
-  //     } else {
-  //       const filteredData = data.filter(
-  //         (myCourse) => myCourse.semester == filter
-  //       );
-  //       setCourses(filteredData);
-  //     }
-  //   }
-
-  //   //console.log(courses);
-  // }
 }
 
 export default App;
