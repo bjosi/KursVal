@@ -4,9 +4,7 @@ import Btn_removeCourse from "./Btn_removeCourse";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Btn_moveCourse from "./Btn_moveCourse";
 import React, { Component, useEffect, useState } from "react";
-import {
-  faAngleDown
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
 const DisplayCourse = ({
   courseinfo,
@@ -22,44 +20,47 @@ const DisplayCourse = ({
       <div className="course_card">
         <div className="top">
           <div className="div_l">
-            <p className="c_name"> {courseinfo.coursename} </p>
+            <div className="title_container">
+              <p className="c_title"> {courseinfo.coursename} </p>
+              <ShowBlockOfCourse courseinfo={courseinfo}></ShowBlockOfCourse>
+            </div>
             <p class="c_info"> {courseinfo.progname} </p>
             <p class="c_info"> Termin {courseinfo.semester} </p>
             <p class="c_info"> {courseinfo.courselevel} </p>
             {showresult ? <Results courseinfo={courseinfo} /> : null}
           </div>
           <div className="div_r">
-          {homePage ? (
-            <Btn_addcourse
-              courseinfo={courseinfo}
-              setSelectedCourses={setSelectedCourses}
-              selectedCourses={selectedCourses}
-            />
-          ) : (
-            <div className="btn-displaycourse">
-              <Btn_moveCourse
+            {homePage ? (
+              <Btn_addcourse
                 courseinfo={courseinfo}
                 setSelectedCourses={setSelectedCourses}
                 selectedCourses={selectedCourses}
               />
-              <Btn_removeCourse
-                courseinfo={courseinfo}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
-              />
-            </div>
-          )}
-          <p>hej</p>
+            ) : (
+              <div className="btn-displaycourse">
+                <Btn_moveCourse
+                  courseinfo={courseinfo}
+                  setSelectedCourses={setSelectedCourses}
+                  selectedCourses={selectedCourses}
+                />
+                <Btn_removeCourse
+                  courseinfo={courseinfo}
+                  setSelectedCourses={setSelectedCourses}
+                  selectedCourses={selectedCourses}
+                />
+              </div>
+            )}
+            <ShowPaseOfCourse courseinfo={courseinfo} />
           </div>
         </div>
-        
         <span id="button_show_more" type="button" onClick={onClick}>
-        <FontAwesomeIcon icon={faAngleDown} />
+          {showresult ? (
+            <FontAwesomeIcon icon={faAngleUp} />
+          ) : (
+            <FontAwesomeIcon icon={faAngleDown} />
+          )}
         </span>
-        
-        
       </div>
-        
     </div>
   );
 };
@@ -77,7 +78,27 @@ const Results = ({ courseinfo }) => {
   );
 };
 
+const ShowPaseOfCourse = ({ courseinfo }) => {
+  let blocks = courseinfo.courseblock.split(",");
+  let paseIsFull = true;
 
+  if (blocks.length === 2) {
+    paseIsFull = false;
+  }
+  return <div>{paseIsFull ? <p>Helfart</p> : <p>Halvfart</p>}</div>;
+};
 
+const ShowBlockOfCourse = ({ courseinfo }) => {
+  let blocks = courseinfo.courseblock.split(",");
+  return (
+    <div>
+    
+    {blocks.map((block) => (
+    <div className="course_block_icon">{block}</div>
+    ))}
+    </div>
+  )
+  
+};
 
 export default DisplayCourse;
