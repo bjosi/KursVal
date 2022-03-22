@@ -13,7 +13,12 @@ import {
 //stylesheet
 import "../styles/NavBar.css";
 
-const NavBar = ({ selectedCourses, setSelectedCourses, courses }) => {
+const NavBar = ({
+  selectedCourses,
+  setSelectedCourses,
+  courses,
+  searchHandler,
+}) => {
   return (
     <>
       <Router>
@@ -55,11 +60,7 @@ const NavBar = ({ selectedCourses, setSelectedCourses, courses }) => {
             <div>Logga in</div>
           </Route>
           <Route path="/">
-            <Browse
-              courses={courses}
-              selectedCourses={selectedCourses}
-              setSelectedCourses={setSelectedCourses}
-            />
+            <Browse courses={courses} searchHandler={searchHandler} />
           </Route>
         </Switch>
       </Router>

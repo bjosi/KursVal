@@ -1,6 +1,4 @@
-//import { useHistory } from 'react-router-dom';
-
-import React from "react";
+import React, { useState } from "react";
 import "../styles/SearchHeader.css";
 
 const SearchBar = ({
@@ -8,7 +6,10 @@ const SearchBar = ({
   filterQuery,
   setSearchQuery,
   setFilterQuery,
+  searchHandler,
 }) => {
+  const [query, setQuery] = useState("");
+
   return (
     <form className="searchform" action="/" method="get">
       <label htmlFor="header-search">
@@ -16,8 +17,12 @@ const SearchBar = ({
       </label>
       <input
         className="SearchbarInput"
-        value={searchQuery}
-        onInput={(e) => setSearchQuery(e.target.value)}
+        //value={searchQuery}
+        //onInput={(e) => setSearchQuery(e.target.value)}
+        onInput={(e) => {
+          searchHandler(e.target.value);
+          setQuery(e.target.value);
+        }}
         type="text"
         id="header-search"
         placeholder="S&ouml;k kurs"
@@ -35,7 +40,14 @@ const SearchBar = ({
         <option value="8">8</option>
         <option value="9">9</option>
       </select>
-      <button className="search_btn" type="submit">
+      <button
+        className="search_btn"
+        type="submit"
+        onClick={(e) => {
+          e.preventDefault();
+          searchHandler(query);
+        }}
+      >
         S&ouml;k kurser
       </button>
     </form>

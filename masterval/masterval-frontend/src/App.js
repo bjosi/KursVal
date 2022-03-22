@@ -6,9 +6,22 @@ function App() {
   const [courses, setCourses] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState(null);
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
   );
+
+  const searchHandler = (query) => {
+    console.log(query);
+    const searchResult = courses.filter((course) => {
+      return (
+        course.coursename.toLowerCase().includes(query.toLowerCase()) ||
+        course.coursecode.toLowerCase().includes(query.toLowerCase())
+      );
+    });
+
+    setSearchQuery(searchResult);
+  };
 
   useEffect(() => {
     fetch("courses")
@@ -35,14 +48,13 @@ function App() {
   const { search } = window.location;
   //const query = new URLSearchParams(search).get("s");
   var filter = new URLSearchParams(search).get("f");
-  const query = new URLSearchParams(search).get("s");
 
   filter = parseInt(filter);
   if (isNaN(filter)) {
     filter = 0;
   }
 
-  asyncCall(setCourses, query, filter);
+  //asyncCall(setCourses, query, filter);
 
   if (error) {
     return <div>Error: {error.message} </div>;
@@ -54,35 +66,36 @@ function App() {
         <NavBar
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}
-          courses={courses}
+          courses={searchQuery !== null ? searchQuery : courses}
+          searchHandler={searchHandler}
         />
       </div>
     );
   }
 
-  async function asyncCall(setCourses, query, filter) {
-    if (query != null) {
-      var response = await fetch("courses/" + query);
-      const data = await response.json();
-      if (filter === 0) {
-        const filteredData = data.filter(
-          (myCourse) =>
-            myCourse.semester == 7 ||
-            myCourse.semester == 8 ||
-            myCourse.semester == 9 ||
-            myCourse.semester == 10
-        );
-        setCourses(filteredData);
-      } else {
-        const filteredData = data.filter(
-          (myCourse) => myCourse.semester == filter
-        );
-        setCourses(filteredData);
-      }
-    }
+  // async function asyncCall(setCourses, query, filter) {
+  //   if (query != null) {
+  //     var response = await fetch("courses/" + query);
+  //     const data = await response.json();
+  //     if (filter === 0) {
+  //       const filteredData = data.filter(
+  //         (myCourse) =>
+  //           myCourse.semester == 7 ||
+  //           myCourse.semester == 8 ||
+  //           myCourse.semester == 9 ||
+  //           myCourse.semester == 10
+  //       );
+  //       setCourses(filteredData);
+  //     } else {
+  //       const filteredData = data.filter(
+  //         (myCourse) => myCourse.semester == filter
+  //       );
+  //       setCourses(filteredData);
+  //     }
+  //   }
 
-    //console.log(courses);
-  }
+  //   //console.log(courses);
+  // }
 }
 
 export default App;
