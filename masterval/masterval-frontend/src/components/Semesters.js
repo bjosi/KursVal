@@ -10,14 +10,16 @@ const Semesters = ({ selectedCourses, setSelectedCourses }) => {
 
     const [semester, setSemester] = useState(7);
 
-    return (<div>
-        <SemesterSelector semester={semester} setSemester={setSemester} />
-
-        <div className="wrapper-mycourses">
+    return (
+    <>
+        <div className='semester_header'>
+                <SemesterSelector semester={semester} setSemester={setSemester} />
+                <h> Högskolepoäng </h>
+            </div>
             <DisplayPeriod courseinfo={selectedCourses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} semester={semester} />
-        </div>
+      
        
-    </div>)
+    </>)
 }
 
 export default Semesters;

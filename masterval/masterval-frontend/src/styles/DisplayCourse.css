@@ -116,3 +116,10 @@
     border: 1px solid #999;
     font-size: 20px;
 }
+
+.empty_period{
+    margin: 0.5rem 0 0.5rem 0;
+    height: 80%;
+    background-color:#F6F6F6;
+    width: auto;
+}

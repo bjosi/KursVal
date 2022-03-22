@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Sy3ppJ3SZgbtXsv3YOtMISLMhQyx2VmJOp9k1ylCNXaG7Vb1hy8XcwzAYSEYunJYR7NUpX3srxCE59PFkawdJg==",
+  "dgSpecHash": "woogRNfdvU0lqsSSFA9lOLIkFUtcpYFFBfSlpR3zaX5nDHjz0plcSDP3pJ2z7MSVZ1W/auK3yRNrnKqs5JjQ1g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sagan\\Source\\Repos\\gitKandidat220321\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj",
+  "projectFilePath": "C:\\Users\\sagan\\source\\repos\\gitKandidat220321\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sagan\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
     "C:\\Users\\sagan\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
