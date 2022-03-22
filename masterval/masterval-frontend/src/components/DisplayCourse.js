@@ -6,6 +6,7 @@ import Btn_moveCourse from "./Btn_moveCourse";
 import React, { Component, useEffect, useState } from "react";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
+
 const DisplayCourse = ({
   courseinfo,
   setSelectedCourses,
@@ -59,6 +60,7 @@ const DisplayCourse = ({
           ) : (
             <FontAwesomeIcon icon={faAngleDown} />
           )}
+
         </span>
       </div>
     </div>

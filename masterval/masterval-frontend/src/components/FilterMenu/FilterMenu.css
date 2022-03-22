@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
 
-.filter-menu {
+.filter_menu {
   display: flex;
   flex-direction: column;
   height: auto;
@@ -11,7 +11,7 @@
   width: 25vw;
 }
 
-.filter-header {
+.filter_header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -19,17 +19,14 @@
   text-align: left;
 }
 
-.filter-header p {
+.filter_header p {
   color: #f9a26c;
 }
 
-.filter-item {
+.filter_item {
   display: flex;
   flex-direction: column;
   text-align: left;
-}
-
-.filter-item {
 }
 
 h2 {
@@ -37,6 +34,7 @@ h2 {
   font-weight: bold;
   font-family: "Lato", sans-serif;
   text-align: left;
+  margin: 0.75rem 0;
 }
 
 input {
@@ -48,7 +46,7 @@ input {
 }
 
 hr {
-  margin: 0.5rem;
+  margin: 1rem 0;
 }
 
 button,
