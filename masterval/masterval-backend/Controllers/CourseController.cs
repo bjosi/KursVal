@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace masterval_backend.Controllers
 {
@@ -20,6 +21,16 @@ namespace masterval_backend.Controllers
             var client = new MongoClient("mongodb+srv://kandidat:kand2022@cluster0.5dn6x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
             var database = client.GetDatabase("allakurser");
             var collection = database.GetCollection<Courses>("kursinfo");
+
+            /*Courses myCourse = new Courses();
+            myCourse.Coursename = "testname";
+
+            collection.InsertOne(myCourse);*/
+            
+
+
+
+
             var documents = collection.Find(_ => true).ToList();
             return documents;
         }

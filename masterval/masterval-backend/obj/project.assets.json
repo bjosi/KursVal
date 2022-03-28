@@ -31,7 +31,7 @@
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
         }
       },
-      "MongoDB.Bson/2.14.1": {
+      "MongoDB.Bson/2.15.0": {
         "type": "package",
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "5.0.0"
@@ -293,10 +293,10 @@
         "microsoft.openapi.nuspec"
       ]
     },
-    "MongoDB.Bson/2.14.1": {
-      "sha512": "+5LZSrOiQgubSyIfwdofiAiX1KM5m0mpZ55/o9yzJyZr9TviMbVbaxWjaHaQP4pv46fKA2LWSuuQD4SEj2tg0Q==",
+    "MongoDB.Bson/2.15.0": {
+      "sha512": "5uPSADVLydGJ4CbmjrsQn7v3NugSdx6htJ4cMNbo8youlfBa5v6YbEqztbipnl+dT1L/YBkJKZ1DDp6LWl0Hqw==",
       "type": "package",
-      "path": "mongodb.bson/2.14.1",
+      "path": "mongodb.bson/2.15.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -307,7 +307,7 @@
         "lib/netstandard2.0/MongoDB.Bson.xml",
         "lib/netstandard2.1/MongoDB.Bson.dll",
         "lib/netstandard2.1/MongoDB.Bson.xml",
-        "mongodb.bson.2.14.1.nupkg.sha512",
+        "mongodb.bson.2.15.0.nupkg.sha512",
         "mongodb.bson.nuspec",
         "packageIcon.png"
       ]
@@ -581,6 +581,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "MongoDB.Bson >= 2.15.0",
       "MongoDB.Driver >= 2.14.1",
       "Swashbuckle.AspNetCore >= 6.2.3"
     ]
@@ -592,11 +593,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sagan\\Source\\Repos\\gitKandidat220321\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj",
+      "projectUniqueName": "C:\\Users\\sagan\\source\\repos\\gitKandidat220321\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj",
       "projectName": "masterval-backend",
-      "projectPath": "C:\\Users\\sagan\\Source\\Repos\\gitKandidat220321\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj",
+      "projectPath": "C:\\Users\\sagan\\source\\repos\\gitKandidat220321\\kurs-val\\masterval\\masterval-backend\\masterval-backend.csproj",
       "packagesPath": "C:\\Users\\sagan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sagan\\Source\\Repos\\gitKandidat220321\\kurs-val\\masterval\\masterval-backend\\obj\\",
+      "outputPath": "C:\\Users\\sagan\\source\\repos\\gitKandidat220321\\kurs-val\\masterval\\masterval-backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -628,6 +629,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "MongoDB.Bson": {
+            "target": "Package",
+            "version": "[2.15.0, )"
+          },
           "MongoDB.Driver": {
             "target": "Package",
             "version": "[2.14.1, )"
