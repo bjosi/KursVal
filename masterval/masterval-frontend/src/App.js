@@ -10,13 +10,19 @@ function App() {
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
   );
-  const [filter, setFilter] = useState({
-    semester: null,
-    level: null,
-    area: null,
-    block: null,
-    speed: null,
-  });
+  const [selectedFilters, setSelectedFilters] = useState([]);
+  const filters = [
+    "semester",
+    "Grundnivå",
+    "Avancerad Nivå",
+    "Medieteknik",
+    "Block 1",
+    "Block 2",
+    "Block 3",
+    "Block 4",
+    "Helfart",
+    "Halvfart",
+  ];
 
   useEffect(() => {
     localStorage.setItem(
@@ -79,6 +85,9 @@ function App() {
           courses={searchQuery !== null ? searchQuery : courses}
           searchHandler={searchHandler}
           semesterHandler={semesterHandler}
+          filters={filters}
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters}
         />
       </div>
     );
