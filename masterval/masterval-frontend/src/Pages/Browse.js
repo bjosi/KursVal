@@ -16,7 +16,12 @@ const Browse = ({ courses, searchHandler, semesterHandler }) => {
         </div>
         <div className="right-section">
           {courses.map((course) => (
-            <DisplayCourse courseinfo={course} homePage={true} />
+            <DisplayCourse
+              courseinfo={course}
+              homePage={true}
+              setSelectedCourses={setSelectedCourses}
+              selectedCourses={selectedCourses}
+            />
           ))}
         </div>
       </div>

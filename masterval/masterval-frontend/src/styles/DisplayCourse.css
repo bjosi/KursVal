@@ -109,6 +109,31 @@
   border-radius: 2px;
 }
 
+.pase_container {
+  display: flex;
+  align-items: center;
+}
+
+.pase_text {
+  margin-right: 0.3rem;
+  font-weight: 300;
+  color: #2b6778;
+}
+
+.pase_icon {
+  color: #bec8a7;
+}
+
+.pase_icon_half {
+  color: #f9a26c;
+}
+
+.add_course_icon {
+  font-size: 2rem;
+  color: #bec8a7;
+  margin: 0px;
+}
+
 /* Popup style */
 .popup-box {
   position: fixed;

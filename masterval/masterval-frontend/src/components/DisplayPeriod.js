@@ -7,14 +7,14 @@ const DisplayPeriod = ({
   semester,
 }) => {
   const newListperiodone = courseinfo.filter(
-    (item) => item.semester == semester && item.period == 1
+    (item) => item.semester === semester && item.period === "1"
   );
 
   const newListperiodtwo = courseinfo.filter(
-    (item) => item.semester == semester && item.period == 2
+    (item) => item.semester === semester && item.period === "2"
     );
 
-    const newListPeriodOneAndTwo = courseinfo.filter((item) => item.semester == semester && item.period === "1,2");
+    const newListPeriodOneAndTwo = courseinfo.filter((item) => item.semester === semester && item.period === "1,2");
 
     return (
 
@@ -23,8 +23,8 @@ const DisplayPeriod = ({
             <div className='inner_wrapper_my_courses'>
 
                 <div className='period_1'>
-                    <h> Period 1 </h>
-                    {newListperiodone.size > 0 ? newListperiodone.map(forecast => <DisplayCourse courseinfo={forecast} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} />) : <div className='empty_period'> </div>
+                    <h className='text_period_1'> Period 1 </h>
+                    {newListperiodone.length > 0 ? newListperiodone.map(forecast => <DisplayCourse courseinfo={forecast} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} />) : <div className='empty_period'> </div>
                     }
                 </div>
 
@@ -47,7 +47,7 @@ const DisplayPeriod = ({
 
 const DisplayP = ({ newListperid }) => {
 
-    if (newListperid.length != 0) {
+    if (newListperid.length !== 0) {
 
         return (
             <h1>
