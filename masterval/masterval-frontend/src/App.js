@@ -7,6 +7,7 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState(null);
+  const [semesterQuery, setSemesterQuery] = useState(null);
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
   );
@@ -46,14 +47,18 @@ function App() {
     // Kika på om man kan söka och välja semester separat
     // sedan skkicka till en gemensam array och filtrera den
     console.log(semester);
-    const userInput = parseInt(semester);
-    if (searchQuery !== null) {
-      const choosenSemester = searchQuery.filter(
-        (course) => course.semester === userInput
-      );
-
-      setSearchQuery(choosenSemester);
-    }
+      const userInput = parseInt(semester);
+      console.log(userInput);
+      var choosenSemester = null; 
+      if (searchQuery !== null) {
+          if (!isNaN(userInput)) {
+              choosenSemester = searchQuery.filter(
+                  (course) => course.semester === userInput
+              );
+          }
+      }
+      setSemesterQuery(choosenSemester);
+      
   };
 
   useEffect(() => {
@@ -81,7 +86,7 @@ function App() {
         <NavBar
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}
-          courses={searchQuery !== null ? searchQuery : courses}
+          courses={semesterQuery !== null ? semesterQuery : searchQuery !== null ? searchQuery : courses }
           searchHandler={searchHandler}
           semesterHandler={semesterHandler}
           filters={filters}
