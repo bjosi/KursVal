@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SearchHeader from "../components/SearchHeader";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import DisplayCourse from "../components/DisplayCourse";

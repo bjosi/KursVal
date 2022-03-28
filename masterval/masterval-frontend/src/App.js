@@ -10,6 +10,20 @@ function App() {
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
   );
+  const [filter, setFilter] = useState({
+    semester: null,
+    level: null,
+    area: null,
+    block: null,
+    speed: null,
+  });
+
+  useEffect(() => {
+    localStorage.setItem(
+      "myValueInLocalStorage",
+      JSON.stringify(selectedCourses)
+    );
+  }, [selectedCourses]);
 
   const searchHandler = (query) => {
     console.log(query);
@@ -51,13 +65,6 @@ function App() {
         }
       );
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem(
-      "myValueInLocalStorage",
-      JSON.stringify(selectedCourses)
-    );
-  }, [selectedCourses]);
 
   if (error) {
     return <div>Error: {error.message} </div>;

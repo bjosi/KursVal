@@ -5,61 +5,30 @@ import CheckBox from "./CheckBox";
 const FilterMenu = () => {
   //states
   const [amountOfFilters, setAmountOfFilters] = useState(0);
+  const [selectedFilters, setSelectedFilters] = useState([]);
+  const filters = [
+    "Grundnivå",
+    "Avancerad Nivå",
+    "Medieteknik",
+    "Block 1",
+    "Block 2",
+    "Block 3",
+    "Block 4",
+    "Helfart",
+    "Halvfart",
+  ];
 
   const resetHandler = () => {
     setAmountOfFilters(0);
   };
 
-  const levels = [
-    {
-      name: "grundnivå",
-      label: "Grundnivå",
-      checked: false,
-    },
-    {
-      name: "avanceradnivå",
-      label: "Avancerad Nivå",
-      checked: false,
-    },
-  ];
+  const selectHandler = (filter) => {
+    const isSelected = selectedFilters.includes(filter);
 
-  const blocks = [
-    {
-      name: "block",
-      label: "Block 1",
-      checked: false,
-    },
-    {
-      name: "block",
-      label: "Block 2",
-      checked: false,
-    },
-    {
-      name: "block",
-      label: "Block 3",
-      checked: false,
-    },
-    {
-      name: "block",
-      label: "Block 4",
-      checked: false,
-    },
-  ];
-
-  const speeds = [
-    {
-      name: "fart",
-      label: "Helfart",
-      checked: false,
-    },
-    {
-      name: "fart",
-      label: "Halvfart",
-      checked: false,
-    },
-  ];
-
-  const [checkBox, setCheckBox] = useState(levels);
+    const newSelection = isSelected
+      ? selectedFilters.filter((currentFilter) => currentFilter !== filter)
+      : [...selectedFilters, filter];
+  };
 
   return (
     <div className="filter_menu">
@@ -69,19 +38,11 @@ const FilterMenu = () => {
           <p>Rensa({amountOfFilters})</p>
         </button>
       </div>
-
       <ul className="filter_list">
         <div className="filter_item">
           <h2>Välj Nivå</h2>
-          {levels.map(({ name, label, checked }) => (
-            <CheckBox
-              name={name}
-              label={label}
-              checked={checked}
-              checkBox={checkBox}
-              setCheckBox={setCheckBox}
-            />
-          ))}
+          <CheckBox name="Grundnivå" label="Grundnivå" />
+          <CheckBox name="Avancerad Nivå" label="Avancerad Nivå" />
         </div>
         <hr />
         <div className="filter_item">
@@ -91,16 +52,16 @@ const FilterMenu = () => {
         <hr />
         <div className="filter_item">
           <h2>Block</h2>
-          {blocks.map(({ name, label }) => (
-            <CheckBox name={name} label={label} />
-          ))}
+          <CheckBox name="Block 1" label="Block 1" />
+          <CheckBox name="Block 2" label="Block 2" />
+          <CheckBox name="Block 3" label="Block 3" />
+          <CheckBox name="Block 4" label="Block 4" />
         </div>
         <hr />
         <div className="filter_item">
           <h2>Fart</h2>
-          {speeds.map(({ name, label }) => (
-            <CheckBox name={name} label={label} />
-          ))}
+          <CheckBox name="Helfart" label="Helfart" />
+          <CheckBox name="Halvfart" label="Halvfart" />
         </div>
       </ul>
     </div>
