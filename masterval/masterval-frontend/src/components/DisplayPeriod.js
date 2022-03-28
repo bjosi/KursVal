@@ -7,14 +7,14 @@ const DisplayPeriod = ({
   semester,
 }) => {
   const newListperiodone = courseinfo.filter(
-    (item) => item.semester == semester && item.period == 1
+    (item) => item.semester === semester && item.period === "1"
   );
 
   const newListperiodtwo = courseinfo.filter(
-    (item) => item.semester == semester && item.period == 2
+    (item) => item.semester === semester && item.period === "2"
     );
 
-    const newListPeriodOneAndTwo = courseinfo.filter((item) => item.semester == semester && item.period === "1,2");
+    const newListPeriodOneAndTwo = courseinfo.filter((item) => item.semester === semester && item.period === "1,2");
 
     return (
 
