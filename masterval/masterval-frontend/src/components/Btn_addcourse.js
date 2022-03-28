@@ -1,13 +1,17 @@
-import "../styles/DisplayCourse.css"
-import { faSquarePlus} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import "../styles/DisplayCourse.css";
 
 const Btn_addcourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => {
-    return(
-        <button onClick={() => handleSubmit(setSelectedCourses, selectedCourses, courseinfo)}> <FontAwesomeIcon className="add_course_icon" icon={faSquarePlus}/> </button>
-    )
-}
+  return (
+    <button
+      onClick={() =>
+        handleSubmit(setSelectedCourses, selectedCourses, courseinfo)
+      }
+    >
+      {" "}
+      lagg till{" "}
+    </button>
+  );
+};
 
 function handleSubmit(setSelectedCourses, selectedCourses, courseinfo) {
     var myFilter = selectedCourses.filter(

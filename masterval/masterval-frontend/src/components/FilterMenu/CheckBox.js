@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./FilterMenu.css";
 
-const CheckBox = ({ label, name, checked, CheckBox, setCheckBox }) => {
+const CheckBox = ({ label, name }) => {
   //state
 
+  const [checked, setChecked] = useState(false);
+
   const changeHandler = (e) => {
-    console.log(e.target.checked);
-    setCheckBox({ ...CheckBox, checked: e.target.checked });
+    checked ? setChecked(false) : setChecked(true);
   };
 
   return (
