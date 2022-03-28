@@ -64,6 +64,8 @@ const NavBar = ({
               courses={courses}
               searchHandler={searchHandler}
               semesterHandler={semesterHandler}
+              setSelectedCourses={setSelectedCourses}
+              selectedCourses={selectedCourses}
             />
           </Route>
         </Switch>

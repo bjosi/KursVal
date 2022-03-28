@@ -4,7 +4,7 @@ import FilterMenu from "../components/FilterMenu/FilterMenu";
 import DisplayCourse from "../components/DisplayCourse";
 import "./Browse.css";
 
-const Browse = ({ courses, searchHandler, semesterHandler }) => {
+const Browse = ({ courses, searchHandler, semesterHandler, setSelectedCourses, selectedCourses }) => {
   return (
     <>
       <SearchHeader
