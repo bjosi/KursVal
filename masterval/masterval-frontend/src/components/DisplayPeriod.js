@@ -1,4 +1,5 @@
 import DisplayCourse from "../components/DisplayCourse";
+import "../styles/App.css";
 
 const DisplayPeriod = ({
   courseinfo,

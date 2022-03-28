@@ -1,4 +1,5 @@
 import "../styles/MyCourses.css";
+import "../styles/App.css";
 import Semesters from '../components/Semesters';
 import Overview from '../components/Overview';
 import ToggleOverviewButton from '../components/ToggleOverviewButton';

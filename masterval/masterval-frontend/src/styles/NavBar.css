@@ -1,41 +1,41 @@
 .menu {
-    width: 100vw;
-    background-color: #2b6778;
-    height: 60px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    position: relative;
-    position: fixed;
-    top: 0;
+  width: 100%;
+  background-color: #2b6778;
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  position: fixed;
+  top: 0;
 }
 
 .first-menu-item {
-    display: flex;
-    margin-right: auto;
-    width: 70vw;
-    margin-left: 4rem;
-    font-size: 2rem;
-    color: peru;
+  display: flex;
+  margin-right: auto;
+  width: 70vw;
+  margin-left: 4rem;
+  font-size: 2rem;
+  color: peru;
 }
 
 .menu-item {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    margin: 1rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
 }
 
-    .menu-item h1 {
-        font-size: 1rem;
-        color: white;
-        margin-top: 0.3rem;
-        text-align: center;
-    }
+.menu-item h1 {
+  font-size: 1rem;
+  color: white;
+  margin-top: 0.3rem;
+  text-align: center;
+}
 
 .menu a {
-    text-decoration: none;
-    display: inline;
-    width: 13rem;
-    margin: 0 0 0 0rem;
+  text-decoration: none;
+  display: inline;
+  width: 13rem;
+  margin: 0 0 0 0rem;
 }
