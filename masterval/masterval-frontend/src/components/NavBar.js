@@ -18,17 +18,17 @@ const NavBar = ({
   setSelectedCourses,
   courses,
   searchHandler,
+  semesterHandler,
 }) => {
   return (
     <>
       <Router>
         <div className="menu">
           <div className="first-menu-item">
-                      <FontAwesomeIcon icon={faTag} />
-                   
-                  </div>
+            <FontAwesomeIcon icon={faTag} />
+          </div>
 
-                  <Link to="/MyCourses">
+          <Link to="/MyCourses">
             <div className="menu-item">
               <FontAwesomeIcon icon={faFloppyDisk} />
               <h1>Mina kurser</h1>
@@ -60,7 +60,11 @@ const NavBar = ({
             <div>Logga in</div>
           </Route>
           <Route path="/">
-            <Browse courses={courses} searchHandler={searchHandler} />
+            <Browse
+              courses={courses}
+              searchHandler={searchHandler}
+              semesterHandler={semesterHandler}
+            />
           </Route>
         </Switch>
       </Router>
