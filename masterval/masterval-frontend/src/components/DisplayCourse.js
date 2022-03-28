@@ -4,7 +4,7 @@ import Btn_removeCourse from "./Btn_removeCourse";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Btn_moveCourse from "./Btn_moveCourse";
 import React, { Component, useEffect, useState } from "react";
-import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faAngleUp, faCircleHalfStroke, faCircle } from "@fortawesome/free-solid-svg-icons";
 
 
 const DisplayCourse = ({
@@ -87,7 +87,7 @@ const ShowPaseOfCourse = ({ courseinfo }) => {
   if (blocks.length === 2) {
     paseIsFull = false;
   }
-  return <div>{paseIsFull ? <p>Helfart</p> : <p>Halvfart</p>}</div>;
+  return <div className="pase_container">{paseIsFull ? <p className="pase_text">Helfart</p> : <p className="pase_text">Halvfart</p>} {paseIsFull ? <FontAwesomeIcon className="pase_icon_half" icon={faCircle}/> : <FontAwesomeIcon className="pase_icon" icon={faCircleHalfStroke}/>}</div>;
 };
 
 const ShowBlockOfCourse = ({ courseinfo }) => {
@@ -100,7 +100,8 @@ const ShowBlockOfCourse = ({ courseinfo }) => {
     ))}
     </div>
   )
-  
 };
+
+
 
 export default DisplayCourse;
