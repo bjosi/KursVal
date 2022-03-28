@@ -1,8 +1,10 @@
 import "../styles/MyCourses.css";
-import Semesters from "../components/Semesters";
-import Overview from "../components/Overview";
-import ToggleOverviewButton from "../components/ToggleOverviewButton";
-import React, { useState } from "react";
+import "../styles/App.css";
+import Semesters from '../components/Semesters';
+import Overview from '../components/Overview';
+import ToggleOverviewButton from '../components/ToggleOverviewButton';
+import React, { useState } from 'react';
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faHeart, faPen } from "@fortawesome/free-solid-svg-icons";

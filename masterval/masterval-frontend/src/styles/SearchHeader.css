@@ -1,62 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 
 .SearchHeader {
-    width: 100vw;
-    background-color: #fff;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  background-color: #fff;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .searchbar_container {
-    width: 70vw;
-  
-    
+  width: 70vw;
 }
 
 .h1search {
-    font-family: 'Lato', sans-serif;
-    font-weight: bold;
-    margin: 1rem 0; 
- 
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  margin: 1rem 0;
 }
 
 .SearchbarInput {
-    width: 50%;
-    font-family: 'Lato', sans-serif;
-    border: 1px solid black;
-    padding: 1em; 
-
+  width: 50%;
+  font-family: "Lato", sans-serif;
+  border: 1px solid black;
+  padding: 1em;
 }
 
 .search_btn {
-    width: 25%;
-    font-family: 'Lato', sans-serif;
-    color: #fff;
-    background-color: #F9a26C;
-    border: none; 
+  width: 25%;
+  font-family: "Lato", sans-serif;
+  color: #fff;
+  background-color: #f9a26c;
+  border: none;
 }
 
 .terminInput {
-    width: 25%;
-    font-family: 'Lato', sans-serif;
-    margin: 0 1rem;
-    border: 1px solid black;
-    padding: 1em; 
+  width: 25%;
+  font-family: "Lato", sans-serif;
+  margin: 0 1rem;
+  border: 1px solid black;
+  padding: 1em;
 }
 
-
-.searchform{
-    display: flex;
-    height: 50px;
-    
+.searchform {
+  display: flex;
+  height: 50px;
 }
-
-
 
 *:focus {
-    outline: none; 
+  outline: none;
 }

@@ -1,314 +1,324 @@
 .inner_wrapper_my_courses {
-    display: flex;
-    justify-content: space-between;
-    background-color: #f2f2f2;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f2f2f2;
+  width: 100%;
+}
+
+.empty_period {
+  background-color: white;
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem 0;
+  height: 8rem;
+}
+
+.period_1 {
+  width: 50%;
+}
+
+.period_2 {
+  width: 50%;
+}
+
+.period_1_2 {
+  width: 100%;
 }
 
 .outer_wrapper_my_courses {
-    padding: 2rem 9rem 0 9rem;
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
+  width: 1000px;
+  margin: 0 auto;
+
+  /*padding: 2rem 5rem 2rem 5rem;*/
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 .toggle_button {
-    color: black;
-    margin: 0.5rem;
+  color: black;
+  margin: 0.5rem;
 }
-
 
 .arrow_icon {
-    color: black;
-    margin: 0 1rem 0 1rem;
-    width: 0.8rem;
-    font-weight: 300;
-    border-radius: 0;
+  color: black;
+  margin: 0 1rem 0 1rem;
+  width: 0.8rem;
+  font-weight: 300;
+  border-radius: 0;
 }
 
-    .arrow_icon:hover {
-        cursor: pointer;
-    }
-
+.arrow_icon:hover {
+  cursor: pointer;
+}
 
 .arrow_icon_disabled {
-    color: lightgray;
+  color: lightgray;
 }
 .arrow_icon_disabled:hover {
-        cursor: default;
-    }
+  cursor: default;
+}
 
 .semester_selector {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.875rem;
-    margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.875rem;
+  margin: 0 0 1rem 0;
 }
 
 .toggle_overview {
-    display: flex;
-    width: 60vw;
-    margin: 0rem auto 0rem auto;
-    font-weight: 700;
-    font-size: 1rem;
+  display: flex;
+  width: 60vw;
+  margin: 0rem auto 0rem auto;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 .toggle_overview:hover {
-        cursor: pointer;
+  cursor: pointer;
 }
 
 .overview {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    padding: 0 0 1rem 0;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 0 0 1rem 0;
 }
 
 .underline_toggle_overview {
-    display: flex;
-    height: 2px;
-    background-color: #F2F2F2;
-    width: 60vw;
-    margin: 0rem auto 0rem auto;
+  display: flex;
+  height: 2px;
+  background-color: #f2f2f2;
+  width: 60vw;
+  margin: 0rem auto 0rem auto;
 }
 
 .underline_left {
-    width: 8rem;
+  width: 8rem;
 }
 
 .underline_right {
-    width: 8rem;
+  width: 8rem;
 }
 
 .underline_selected {
-    background-color: #F9A26C;
+  background-color: #f9a26c;
 }
 
 .my_courses_header {
-    background-color: white;
-    /* margin-top: 60px;*/
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 200px;
+  background-color: white;
+  /* margin-top: 60px;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 200px;
 }
 
 .upper_header {
-    height: 30px;
-    width: 60vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 0 auto 0 auto;
+  height: 30px;
+  width: 60vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto 0 auto;
 }
 
 .exam_name {
-    margin: 1rem auto 1.5rem auto;
-    font-weight: 700;
-    font-size: 1.25rem;
+  margin: 1rem auto 1.5rem auto;
+  font-weight: 700;
+  font-size: 1.25rem;
 }
 
 .toggle_icon {
-    margin-right: 0.2rem;
-    width: 1rem;
+  margin-right: 0.2rem;
+  width: 1rem;
 }
 
 .upper_header_link {
-    font-size: 0.75rem;
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
-    font-weight: 400;
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  font-weight: 400;
 }
 
 .upper_header_icon {
-    margin: 0 0.2rem 0 0.2rem;
+  margin: 0 0.2rem 0 0.2rem;
 }
 
 .exam_name_icon {
-    margin-left: 0.2rem;
-    margin-bottom: 0.1rem;
-    color: lightgrey;
-    font-size: 1rem;
-    font-family: "Lato", sans-serif;
+  margin-left: 0.2rem;
+  margin-bottom: 0.1rem;
+  color: lightgrey;
+  font-size: 1rem;
+  font-family: "Lato", sans-serif;
 }
 
 .semester_header {
-    background-color: white;
-    height: 140px;
-    padding: 2rem 0 2rem 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-weight: 400;
-    font-size: 0.9rem;
-    font-family: "Lato", sans-serif;
+  background-color: white;
+  height: 140px;
+  padding: 2rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  font-size: 0.9rem;
+  font-family: "Lato", sans-serif;
 }
 
 .text_period_2 {
-    margin-right: 28rem;
 }
 
-
-
 .the_progress_bars {
-    align-items: center;
-    justify-content: center;
-    
-    width: 100vw;
-    height: 300px;
-    display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100vw;
+  height: 300px;
+  display: flex;
 }
 
 .cirkular_progressbar {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
-.vertical_progressbar{
-    margin-left: 1rem;
+.vertical_progressbar {
+  margin-left: 1rem;
 }
 
 .progressbar_parent {
-    height: 8px;
-    width: 30rem;
-    background-color: #E1E1E1;
-    margin: 0;
+  height: 8px;
+  width: 30rem;
+  background-color: #e1e1e1;
+  margin: 0;
 }
 
 .progressbar_parent_small {
-    height: 6px;
-    width: 12rem;
-    background-color: #E1E1E1;
-    margin: 0.5rem 0.5rem 0 0;
+  height: 6px;
+  width: 12rem;
+  background-color: #e1e1e1;
+  margin: 0.5rem 0.5rem 0 0;
 }
 
-.div_display_progress{
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-
+.div_display_progress {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .bold_text {
-    text-align: center;
-    font-weight: 900;
-    margin-bottom: 0.2rem;
-    font-weight: 600;
-    font-size: 1rem;
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
-
 .normal_text {
-    text-align: center;
-    font-weight: normal;
-    margin-top: 0.2rem;
-    margin-bottom: 0.2rem;
-    font-weight: 300;
-    font-size: 1rem;
+  text-align: center;
+  font-weight: normal;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  font-weight: 300;
+  font-size: 1rem;
 }
 
 .div_summary {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .summary_normal_text {
-    text-align: left;
-    font-weight: normal;
-    margin-top: 0.2rem;
-    margin-bottom: 0.2rem;
-    font-weight: 400;
-    font-size: 1rem;
-    color: #2B6778;
+  text-align: left;
+  font-weight: normal;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #2b6778;
 }
 
-.div_summary_text{
-    width: 28rem;
+.div_summary_text {
+  width: 28rem;
 }
 
 .summary_bold_text {
-    text-align: center;
-    font-weight: 900;
-    margin-bottom: 0.2rem;
-    font-weight: 600;
-    font-size: 1.25rem;
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+  font-size: 1.25rem;
 }
 
-
-
-/*här är progress baren*/
+/*hï¿½r ï¿½r progress baren*/
 .CircularProgressbar {
-    /*
+  /*
    * This fixes an issue where the CircularProgressbar svg has
    * 0 width inside a "display: flex" container, and thus not visible.
    */
-    width: 12rem;
-    stroke-width: 0.3rem;
-    /*
+  width: 12rem;
+  stroke-width: 0.3rem;
+  /*
    * This fixes a centering issue with CircularProgressbarWithChildren:
    * https://github.com/kevinsqi/react-circular-progressbar/issues/94
    */
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
-    .CircularProgressbar .CircularProgressbar-path {
-        stroke-width: 0.3rem;
-        stroke: #F9A26C;
-        border-radius: 2rem;
-    }
+.CircularProgressbar .CircularProgressbar-path {
+  stroke-width: 0.3rem;
+  stroke: #f9a26c;
+  border-radius: 2rem;
+}
 
-    .CircularProgressbar .CircularProgressbar-trail {
-        stroke-width: 0.3rem;
-        stroke: #E1E1E1;
-        /* Used when trail is not full diameter, i.e. when props.circleRatio is set */
-    }
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke-width: 0.3rem;
+  stroke: #e1e1e1;
+  /* Used when trail is not full diameter, i.e. when props.circleRatio is set */
+}
 
-    .CircularProgressbar .CircularProgressbar-text {
-        fill: #000;
-        font-size: 1.5rem;
-        font-weight: 900;
-        text-anchor: middle;
-    }
+.CircularProgressbar .CircularProgressbar-text {
+  fill: #000;
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-anchor: middle;
+}
 
-    .CircularProgressbar .CircularProgressbar-background {
-        fill: #d6d6d6;
-    }
+.CircularProgressbar .CircularProgressbar-background {
+  fill: #d6d6d6;
+}
 
 .CircularProgressbarWithChildren__children {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .bold_text_progressbar {
-    text-align: center;
-    font-weight: 900;
-    margin-bottom: 0.2rem;
-    font-weight: 600;
-    font-size: 4rem;
-    justify-content: end;
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+  font-size: 4rem;
+  justify-content: end;
 }
-
 
 .text_in_progressbar {
-
 }
 
-.progress_bar_wrapper{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.75rem;
-    color: grey;
+.progress_bar_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  color: grey;
 }
 
 .semester_header_small_text {
-    font-size: 0.75rem;
-    color: grey;
-    margin: 0.4rem 0 0rem 0;
+  font-size: 0.75rem;
+  color: grey;
+  margin: 0.4rem 0 0rem 0;
 }
-
