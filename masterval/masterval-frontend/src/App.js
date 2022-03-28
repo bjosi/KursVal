@@ -12,7 +12,6 @@ function App() {
   );
   const [selectedFilters, setSelectedFilters] = useState([]);
   const filters = [
-    "semester",
     "Grundnivå",
     "Avancerad Nivå",
     "Medieteknik",
