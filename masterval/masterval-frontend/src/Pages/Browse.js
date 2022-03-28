@@ -1,19 +1,27 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SearchHeader from "../components/SearchHeader";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import DisplayCourse from "../components/DisplayCourse";
 
-const Browse = ({ courses, searchHandler, setSelectedCourses, selectedCourses }) => {
+const Browse = ({ courses, searchHandler, semesterHandler }) => {
   return (
     <>
-      <SearchHeader searchHandler={searchHandler} />
+      <SearchHeader
+        searchHandler={searchHandler}
+        semesterHandler={semesterHandler}
+      />
       <div className="wrapper">
         <div className="left-section">
           <FilterMenu />
         </div>
         <div className="right-section">
-                  {courses.map((course) => (
-                      <DisplayCourse courseinfo={course} homePage={true} setSelectedCourses={setSelectedCourses} selectedCourses={ selectedCourses} />
+          {courses.map((course) => (
+            <DisplayCourse
+              courseinfo={course}
+              homePage={true}
+              setSelectedCourses={setSelectedCourses}
+              selectedCourses={selectedCourses}
+            />
           ))}
         </div>
       </div>

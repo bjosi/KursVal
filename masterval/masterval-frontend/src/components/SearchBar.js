@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import "../styles/SearchHeader.css";
 
-const SearchBar = ({
-  searchQuery,
-  filterQuery,
-  setSearchQuery,
-  setFilterQuery,
-  searchHandler,
-}) => {
+const SearchBar = ({ searchHandler, semesterHandler }) => {
   const [query, setQuery] = useState("");
+  const [semester, setSemester] = useState("");
 
   return (
     <form className="searchform" action="/" method="get">
@@ -17,8 +12,6 @@ const SearchBar = ({
       </label>
       <input
         className="SearchbarInput"
-        //value={searchQuery}
-        //onInput={(e) => setSearchQuery(e.target.value)}
         onInput={(e) => {
           searchHandler(e.target.value);
           setQuery(e.target.value);
@@ -30,8 +23,10 @@ const SearchBar = ({
       />
       <select
         className="terminInput"
-        defaultValue={filterQuery}
-        onChange={({ target: { value } }) => setFilterQuery(value)}
+        onChange={(e) => {
+          semesterHandler(e.target.value);
+          setSemester(e.target.value);
+        }}
         id="header-search"
         name="f"
       >
@@ -46,6 +41,7 @@ const SearchBar = ({
         onClick={(e) => {
           e.preventDefault();
           searchHandler(query);
+          semesterHandler(semester);
         }}
       >
         S&ouml;k kurser
