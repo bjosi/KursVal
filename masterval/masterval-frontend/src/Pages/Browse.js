@@ -3,7 +3,7 @@ import SearchHeader from "../components/SearchHeader";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import DisplayCourse from "../components/DisplayCourse";
 
-const Browse = ({ courses, searchHandler }) => {
+const Browse = ({ courses, searchHandler, setSelectedCourses, selectedCourses }) => {
   return (
     <>
       <SearchHeader searchHandler={searchHandler} />
@@ -12,8 +12,8 @@ const Browse = ({ courses, searchHandler }) => {
           <FilterMenu />
         </div>
         <div className="right-section">
-          {courses.map((course) => (
-            <DisplayCourse courseinfo={course} homePage={true} />
+                  {courses.map((course) => (
+                      <DisplayCourse courseinfo={course} homePage={true} setSelectedCourses={setSelectedCourses} selectedCourses={ selectedCourses} />
           ))}
         </div>
       </div>

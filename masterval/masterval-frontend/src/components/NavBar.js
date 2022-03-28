@@ -60,7 +60,7 @@ const NavBar = ({
             <div>Logga in</div>
           </Route>
           <Route path="/">
-            <Browse courses={courses} searchHandler={searchHandler} />
+                      <Browse courses={courses} searchHandler={searchHandler} setSelectedCourses={setSelectedCourses} selectedCourses={ selectedCourses}/>
           </Route>
         </Switch>
       </Router>
