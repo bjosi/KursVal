@@ -1,4 +1,6 @@
 import "../styles/DisplayCourse.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 
 const Btn_addcourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => {
   return (
@@ -7,8 +9,7 @@ const Btn_addcourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => {
         handleSubmit(setSelectedCourses, selectedCourses, courseinfo)
       }
     >
-      {" "}
-      lagg till{" "}
+      <FontAwesomeIcon className="add_course_icon " icon={faSquarePlus} />
     </button>
   );
 };

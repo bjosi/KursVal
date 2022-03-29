@@ -10,7 +10,15 @@
 }
 
 .searchbar_container {
-  width: 70vw;
+  width: 1000px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .searchbar_container {
+    width: 100%;
+  }
 }
 
 .h1search {

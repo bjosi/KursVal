@@ -4,9 +4,9 @@ import React from "react";
 const CourseSection = ({courses, courseinfo, setSelectedCourses, selectedCourses}) => {
 
     return (
-        <div class="wrapper">
-        <div class="left_wrapper">
-            {courseinfo.map(courses => <DisplayCourse courseinfo={courses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} />
+        <div className="wrapper">
+            <div className="left_wrapper">
+                {courseinfo.map(courses => <DisplayCourse key={courses.Id} courseinfo={courses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} />
             )}
         </div>
         </div>

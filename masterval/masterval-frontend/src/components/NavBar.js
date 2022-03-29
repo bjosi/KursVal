@@ -27,29 +27,31 @@ const NavBar = ({
     <>
       <Router>
         <div className="menu">
-          <div className="first-menu-item">
-            <FontAwesomeIcon icon={faTag} />
+          <div className="menu_container">
+            <div className="first-menu-item">
+              <FontAwesomeIcon icon={faTag} />
+            </div>
+
+            <Link to="/MyCourses">
+              <div className="menu-item">
+                <FontAwesomeIcon icon={faFloppyDisk} />
+                <h1>Mina kurser</h1>
+              </div>
+            </Link>
+            <Link to="/LogIn">
+              <div className="menu-item">
+                <FontAwesomeIcon icon={faUser} />
+
+                <h1>Logga in</h1>
+              </div>
+            </Link>
+            <Link to="/">
+              <div className="menu-item">
+                <FontAwesomeIcon icon={faBars} />
+                <h1>Hem</h1>
+              </div>
+            </Link>
           </div>
-
-          <Link to="/MyCourses">
-            <div className="menu-item">
-              <FontAwesomeIcon icon={faFloppyDisk} />
-              <h1>Mina kurser</h1>
-            </div>
-          </Link>
-          <Link to="/LogIn">
-            <div className="menu-item">
-              <FontAwesomeIcon icon={faUser} />
-
-              <h1>Logga in</h1>
-            </div>
-          </Link>
-          <Link to="/">
-            <div className="menu-item">
-              <FontAwesomeIcon icon={faBars} />
-              <h1>Hem</h1>
-            </div>
-          </Link>
         </div>
         <Switch>
           <Route path="/MyCourses">
