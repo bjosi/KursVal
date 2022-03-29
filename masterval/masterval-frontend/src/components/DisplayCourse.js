@@ -26,9 +26,9 @@ const DisplayCourse = ({
               <ShowBlockOfCourse courseinfo={courseinfo}></ShowBlockOfCourse>
             </div>
 
-            <p class="c_info"> {courseinfo.progname} </p>
-            <p class="c_info"> Termin {courseinfo.semester} </p>
-            <p class="c_info"> {courseinfo.courselevel} </p>
+                      <p className="c_info"> {courseinfo.progname} </p>
+                      <p className="c_info"> Termin {courseinfo.semester} </p>
+                      <p className="c_info"> {courseinfo.courselevel} </p>
             {showresult ? <Results courseinfo={courseinfo} /> : null}
           </div>
           <div className="div_r">
@@ -73,8 +73,8 @@ const Results = ({ courseinfo }) => {
   const link = "https://studieinfo.liu.se/kurs/" + courseinfo.coursecode;
   return (
     <div>
-      <p class="c_info"> {courseinfo.coursepoints} HP </p>
-      <p class="c_info"> Kurskod: {courseinfo.coursecode } </p>
+          <p className="c_info"> {courseinfo.coursepoints} HP </p>
+          <p className="c_info"> Kurskod: {courseinfo.coursecode } </p>
       <a href={link} target="_blank" rel="noreferrer">
         Besök kurshemsidan
       </a>
@@ -93,12 +93,13 @@ const ShowPaseOfCourse = ({ courseinfo }) => {
 };
 
 const ShowBlockOfCourse = ({ courseinfo }) => {
-  let blocks = courseinfo.courseblock.split(",");
+    let blocks = courseinfo.courseblock.split(",");
+    
   return (
     <div>
     
-    {blocks.map((block) => (
-    <div className="course_block_icon">{block}</div>
+    {blocks.map((block,i) => (
+    <div key={courseinfo.Id} className="course_block_icon">{block}</div>
     ))}
     </div>
   )
