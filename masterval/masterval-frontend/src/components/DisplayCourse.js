@@ -25,6 +25,7 @@ const DisplayCourse = ({
               <p className="c_title"> {courseinfo.coursename} </p>
               <ShowBlockOfCourse courseinfo={courseinfo}></ShowBlockOfCourse>
             </div>
+
             <p class="c_info"> {courseinfo.progname} </p>
             <p class="c_info"> Termin {courseinfo.semester} </p>
             <p class="c_info"> {courseinfo.courselevel} </p>
@@ -67,14 +68,15 @@ const DisplayCourse = ({
   );
 };
 
+//"Show more" - information 
 const Results = ({ courseinfo }) => {
   const link = "https://studieinfo.liu.se/kurs/" + courseinfo.coursecode;
   return (
     <div>
       <p class="c_info"> {courseinfo.coursepoints} HP </p>
-      <p class="c_info"> {courseinfo.courselevel} </p>
+      <p class="c_info"> Kurskod: {courseinfo.coursecode } </p>
       <a href={link} target="_blank" rel="noreferrer">
-        Besök kurshemsidan!
+        Besök kurshemsidan
       </a>
     </div>
   );

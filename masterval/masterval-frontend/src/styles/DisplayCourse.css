@@ -2,12 +2,11 @@
 
 .course_card {
   background-color: #fff;
-  width: 40vw;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   padding: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  padding-right: 1em;
+  margin-left: 0.5rem;
   position: relative;
 }
 
@@ -172,11 +171,4 @@
   text-align: center;
   border: 1px solid #999;
   font-size: 20px;
-}
-
-.empty_period {
-    margin: 0.5rem 0 0.5rem 0;
-    height: 80%;
-    background-color: #F6F6F6;
-    width: auto;
 }
