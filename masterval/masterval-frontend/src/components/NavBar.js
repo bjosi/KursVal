@@ -19,6 +19,9 @@ const NavBar = ({
   courses,
   searchHandler,
   semesterHandler,
+  filters,
+  selectedFilters,
+  setSelectedFilters,
 }) => {
   return (
     <>
@@ -64,6 +67,11 @@ const NavBar = ({
               courses={courses}
               searchHandler={searchHandler}
               semesterHandler={semesterHandler}
+              selectedCourses={selectedCourses}
+              setSelectedCourses={setSelectedCourses}
+              filters={filters}
+              selectedFilters={selectedFilters}
+              setSelectedFilters={setSelectedFilters}
             />
           </Route>
         </Switch>

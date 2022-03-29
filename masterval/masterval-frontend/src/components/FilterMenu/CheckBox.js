@@ -10,21 +10,7 @@ const CheckBox = ({ label, name }) => {
     checked ? setChecked(false) : setChecked(true);
   };
 
-  return (
-    <>
-      <li className="filter_item">
-        <label forhtml={name}>
-          <input
-            type="checkbox"
-            name={name}
-            checked={checked}
-            onChange={(e) => changeHandler(e)}
-          />
-          {label}
-        </label>
-      </li>
-    </>
-  );
+  return <></>;
 };
 
 export default CheckBox;

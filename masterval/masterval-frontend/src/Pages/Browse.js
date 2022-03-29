@@ -2,8 +2,18 @@ import React from "react";
 import SearchHeader from "../components/SearchHeader";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import DisplayCourse from "../components/DisplayCourse";
+import "./Browse.css";
 
-const Browse = ({ courses, searchHandler, semesterHandler }) => {
+const Browse = ({
+  courses,
+  searchHandler,
+  semesterHandler,
+  selectedCourses,
+  setSelectedCourses,
+  filters,
+  selectedFilters,
+  setSelectedFilters,
+}) => {
   return (
     <>
       <SearchHeader
@@ -12,7 +22,11 @@ const Browse = ({ courses, searchHandler, semesterHandler }) => {
       />
       <div className="wrapper">
         <div className="left-section">
-          <FilterMenu />
+          <FilterMenu
+            filters={filters}
+            selectedFilters={selectedFilters}
+            setSelectedFilters={setSelectedFilters}
+          />
         </div>
         <div className="right-section">
           {courses.map((course) => (
