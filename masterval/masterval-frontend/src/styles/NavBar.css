@@ -3,18 +3,32 @@
   background-color: #2b6778;
   height: 60px;
   display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 1;
+}
+
+.menu_container {
+  width: 1000px;
+  height: 60px;
+  display: flex;
   justify-content: flex-end;
   align-items: center;
-  position: relative;
   position: fixed;
-  top: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .menu_container {
+    width: 100%;
+  }
 }
 
 .first-menu-item {
   display: flex;
   margin-right: auto;
   width: 70vw;
-  margin-left: 4rem;
   font-size: 2rem;
   color: peru;
 }
@@ -36,6 +50,5 @@
 .menu a {
   text-decoration: none;
   display: inline;
-  width: 13rem;
-  margin: 0 0 0 0rem;
+  white-space: nowrap;
 }
