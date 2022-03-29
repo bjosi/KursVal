@@ -14,7 +14,7 @@ function App() {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const filters = [
     "Grundnivå",
-    "Avancerad Nivå",
+    "Avancerad nivå",
     "Medieteknik",
     "Block 1",
     "Block 2",
@@ -23,6 +23,29 @@ function App() {
     "Helfart",
     "Halvfart",
   ];
+
+  useEffect(() => {
+    var filterQuery = null;
+
+    if (selectedFilters.length > 0) {
+      if (searchQuery !== null) {
+        if (semesterQuery !== null) {
+          filterQuery = semesterQuery.filter((course) =>
+            selectedFilters.includes(course.courselevel)
+          );
+        } else {
+          filterQuery = searchQuery.filter((course) =>
+            selectedFilters.includes(course.courselevel)
+          );
+        }
+      } else {
+        filterQuery = courses.filter((course) =>
+          selectedFilters.includes(course.courselevel)
+        );
+      }
+    }
+    setSemesterQuery(filterQuery);
+  }, [selectedFilters]);
 
   useEffect(() => {
     localStorage.setItem(
@@ -44,21 +67,21 @@ function App() {
   };
 
   const semesterHandler = (semester) => {
-    // Kika på om man kan söka och välja semester separat
-    // sedan skkicka till en gemensam array och filtrera den
-    console.log(semester);
-      const userInput = parseInt(semester);
-      console.log(userInput);
-      var choosenSemester = null; 
-      if (searchQuery !== null) {
-          if (!isNaN(userInput)) {
-              choosenSemester = searchQuery.filter(
-                  (course) => course.semester === userInput
-              );
-          }
+    const userInput = parseInt(semester);
+    var choosenSemester = null;
+    if (searchQuery !== null) {
+      if (!isNaN(userInput)) {
+        choosenSemester = searchQuery.filter(
+          (course) => course.semester === userInput
+        );
       }
-      setSemesterQuery(choosenSemester);
-      
+    } else {
+      choosenSemester = courses.filter(
+        (course) => course.semester === userInput
+      );
+    }
+
+    setSemesterQuery(choosenSemester);
   };
 
   useEffect(() => {
@@ -86,7 +109,13 @@ function App() {
         <NavBar
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}
-          courses={semesterQuery !== null ? semesterQuery : searchQuery !== null ? searchQuery : courses }
+          courses={
+            semesterQuery !== null
+              ? semesterQuery
+              : searchQuery !== null
+              ? searchQuery
+              : courses
+          }
           searchHandler={searchHandler}
           semesterHandler={semesterHandler}
           filters={filters}
