@@ -25,23 +25,53 @@ function App() {
   ];
 
   useEffect(() => {
-    var filterQuery = null;
-
+      var filterQuery = null;
+      var temp = selectedFilters;
+      var temp2 = selectedFilters;
+      var myNum = temp.map((selected) => selected.match(/\d+/)).toString();
+      var all = temp2.map((selected) => !selected.includes("Block") ? " "+selected : "").toString();
+      console.log(all);
+      console.log(myNum);
     if (selectedFilters.length > 0) {
-      if (searchQuery !== null) {
-        if (semesterQuery !== null) {
-          filterQuery = semesterQuery.filter((course) =>
-            selectedFilters.includes(course.courselevel)
-          );
+      
+        if (searchQuery !== null) {
+            if (semesterQuery !== null) {
+                filterQuery = semesterQuery.filter((course) => {
+                    
+                    return (
+                        (myNum && all) ?
+                            (myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) &&
+                                all.includes(course.courselevel || course.area))
+                            : myNum ? myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) :
+                                all ? all.includes(course.courselevel || course.area ) : course)
+
+
+                })
+            } else {
+
+                filterQuery = searchQuery.filter((course) => {
+                    
+                    return (
+                        (myNum && all) ?
+                            (myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) &&
+                                all.includes(course.courselevel || course.area ))
+                            : myNum ? myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) :
+                                all ? all.includes(course.courselevel || course.area ) : course)
+
+                    }
+                );
+            }
+        
         } else {
-          filterQuery = searchQuery.filter((course) =>
-            selectedFilters.includes(course.courselevel)
-          );
-        }
-      } else {
-        filterQuery = courses.filter((course) =>
-          selectedFilters.includes(course.courselevel)
-        );
+            var filterQuery = courses.filter((course) => {
+                return (
+                    (myNum && all) ?
+                        (myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) &&
+                            all.includes(course.courselevel || course.area))
+                            : myNum ? myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) :
+                            all ? all.includes(course.courselevel || course.area) : course)
+                }
+            );
       }
     }
     setSemesterQuery(filterQuery);
