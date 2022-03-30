@@ -8,8 +8,11 @@ const Browse = ({
   courses,
   searchHandler,
   semesterHandler,
-  setSelectedCourses,
   selectedCourses,
+  setSelectedCourses,
+  filters,
+  selectedFilters,
+  setSelectedFilters,
 }) => {
   const [showFilter, setShowFilter] = React.useState(false);
   const filterToggle = () => setShowFilter(!showFilter);
@@ -23,7 +26,11 @@ const Browse = ({
         <button className="button_filter" onClick={filterToggle}>Filter</button>
         <div className="wrapper">
           <div className="left-section">
-            <FilterMenu showFilter={showFilter} setShowFilter={setShowFilter} />
+            <FilterMenu
+              filters={filters}
+              selectedFilters={selectedFilters}
+              setSelectedFilters={setSelectedFilters}
+            />
           </div>
           <div className="right-section">
             {courses.map((course) => (

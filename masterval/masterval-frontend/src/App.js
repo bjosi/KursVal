@@ -11,13 +11,71 @@ function App() {
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
   );
-  const [filter, setFilter] = useState({
-    semester: null,
-    level: null,
-    area: null,
-    block: null,
-    speed: null,
-  });
+  const [selectedFilters, setSelectedFilters] = useState([]);
+  const filters = [
+    "Grundnivå",
+    "Avancerad nivå",
+    "Medieteknik",
+    "Block 1",
+    "Block 2",
+    "Block 3",
+    "Block 4",
+    "Helfart",
+    "Halvfart",
+  ];
+
+  useEffect(() => {
+      var filterQuery = null;
+      var temp = selectedFilters;
+      var temp2 = selectedFilters;
+      var myNum = temp.map((selected) => selected.match(/\d+/)).toString();
+      var all = temp2.map((selected) => !selected.includes("Block") ? " "+selected : "").toString();
+      console.log(all);
+      console.log(myNum);
+    if (selectedFilters.length > 0) {
+      
+        if (searchQuery !== null) {
+            if (semesterQuery !== null) {
+                filterQuery = semesterQuery.filter((course) => {
+                    
+                    return (
+                        (myNum && all) ?
+                            (myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) &&
+                                all.includes(course.courselevel || course.area))
+                            : myNum ? myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) :
+                                all ? all.includes(course.courselevel || course.area ) : course)
+
+
+                })
+            } else {
+
+                filterQuery = searchQuery.filter((course) => {
+                    
+                    return (
+                        (myNum && all) ?
+                            (myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) &&
+                                all.includes(course.courselevel || course.area ))
+                            : myNum ? myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) :
+                                all ? all.includes(course.courselevel || course.area ) : course)
+
+                    }
+                );
+            }
+        
+        } else {
+            var filterQuery = courses.filter((course) => {
+                return (
+                    (myNum && all) ?
+                        (myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) &&
+                            all.includes(course.courselevel || course.area))
+                            : myNum ? myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) :
+                            all ? all.includes(course.courselevel || course.area) : course)
+                }
+            );
+      }
+    }
+    setSemesterQuery(filterQuery);
+  }, [selectedFilters]);
 
   useEffect(() => {
     localStorage.setItem(
@@ -39,21 +97,21 @@ function App() {
   };
 
   const semesterHandler = (semester) => {
-    // Kika på om man kan söka och välja semester separat
-    // sedan skkicka till en gemensam array och filtrera den
-    console.log(semester);
-      const userInput = parseInt(semester);
-      console.log(userInput);
-      var choosenSemester = null; 
-      if (searchQuery !== null) {
-          if (!isNaN(userInput)) {
-              choosenSemester = searchQuery.filter(
-                  (course) => course.semester === userInput
-              );
-          }
+    const userInput = parseInt(semester);
+    var choosenSemester = null;
+    if (searchQuery !== null) {
+      if (!isNaN(userInput)) {
+        choosenSemester = searchQuery.filter(
+          (course) => course.semester === userInput
+        );
       }
-      setSemesterQuery(choosenSemester);
-      
+    } else {
+      choosenSemester = courses.filter(
+        (course) => course.semester === userInput
+      );
+    }
+
+    setSemesterQuery(choosenSemester);
   };
 
   useEffect(() => {
@@ -81,9 +139,18 @@ function App() {
         <NavBar
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}
-          courses={semesterQuery !== null ? semesterQuery : searchQuery !== null ? searchQuery : courses }
+          courses={
+            semesterQuery !== null
+              ? semesterQuery
+              : searchQuery !== null
+              ? searchQuery
+              : courses
+          }
           searchHandler={searchHandler}
           semesterHandler={semesterHandler}
+          filters={filters}
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters}
         />
       </div>
     );
