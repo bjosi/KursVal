@@ -17,7 +17,7 @@ const DisplayCourse = ({
   const onClick = () => setShowResults(!showresult);
 
   return (
-    <div>
+    <>
       <div className="course_card">
         <div className="top">
           <div className="div_l">
@@ -64,7 +64,7 @@ const DisplayCourse = ({
 
         </span>
       </div>
-    </div>
+    </>
   );
 };
 
