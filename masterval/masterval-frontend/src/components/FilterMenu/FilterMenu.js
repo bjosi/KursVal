@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./FilterMenu.css";
 import CheckBox from "./CheckBox";
 
-const FilterMenu = () => {
+const FilterMenu = (showFilter, setShowFilter) => {
   //states
   const [amountOfFilters, setAmountOfFilters] = useState(0);
   const [selectedFilters, setSelectedFilters] = useState([]);

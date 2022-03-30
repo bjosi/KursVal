@@ -2,6 +2,43 @@
   width: 30%;
 }
 
+@media screen and (max-width: 760px) {
+  .left-section {
+    display: none;
+  }
+}
+
 .right-section {
   width: 70%;
+}
+
+@media screen and (max-width: 760px) {
+  .right-section {
+    width: 100%;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.container {
+  width: 1000px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 760px) {
+  .button_filter {
+    display: none;
+  }
 }
