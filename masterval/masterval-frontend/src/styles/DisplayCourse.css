@@ -68,20 +68,25 @@
   text-align: center;
 }
 
+.icon_show_more:hover {
+    cursor: pointer;
+}
+
+.remove_course_icon {
+    font-size: 2rem;
+    color: #f9a26c;
+}
+
 .btn-movecourse {
     font-size: 2rem;
     color: #bec8a7;
+    margin-right: 0.2rem;
 }
 
 .btn-movecoursehidden {
   visibility: hidden;
 }
 
-.btn-removecourse {
-    font-size: 2rem;
-    color: #f9a26c;
-    margin-left: 0.2em;
-}
 
 .btn-displaycourse {
   width: 100px;
@@ -121,7 +126,7 @@ justify-content: right;}
 .add_course_icon {
   font-size: 2rem;
   color: #bec8a7;
-  margin: 0px;
+  margin: 0;
 }
 
 /* Popup style */
@@ -162,4 +167,8 @@ justify-content: right;}
   text-align: center;
   border: 1px solid #999;
   font-size: 20px;
+}
+
+.course_website:hover{
+    cursor:pointer;
 }

@@ -56,8 +56,14 @@ const NavBar = ({
         <Switch>
           <Route path="/MyCourses">
             <MyCourses
-              selectedCourses={selectedCourses}
-              setSelectedCourses={setSelectedCourses}
+                          courses={courses}
+                          searchHandler={searchHandler}
+                          semesterHandler={semesterHandler}
+                          selectedCourses={selectedCourses}
+                          setSelectedCourses={setSelectedCourses}
+                          filters={filters}
+                          selectedFilters={selectedFilters}
+                          setSelectedFilters={setSelectedFilters}
             />
           </Route>
 

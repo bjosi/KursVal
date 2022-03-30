@@ -9,12 +9,11 @@ const Btn_removeCourse = ({
 }) => {
   return (
     <button
-      className="btn-removecourse"
       onClick={() =>
         handleSubmit(courseinfo, setSelectedCourses, selectedCourses)
       }
     >
-          <FontAwesomeIcon icon={faSquareXmark} />
+          <FontAwesomeIcon className="remove_course_icon"icon={faSquareXmark} />
     </button>
   );
 };

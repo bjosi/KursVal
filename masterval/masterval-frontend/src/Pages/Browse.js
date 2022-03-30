@@ -54,11 +54,11 @@ const Browse = ({
           <div className="right-section">
             {courses.map((course) => (
               <DisplayCourse
-                key={course.Id}
-                courseinfo={course}
-                homePage={true}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
+                    key={course.Id}
+                    courseinfo={course}
+                    homePage={true}
+                    setSelectedCourses={setSelectedCourses}
+                    selectedCourses={selectedCourses}
               />
             ))}
           </div>
