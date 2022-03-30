@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./FilterMenu.css";
 
 const FilterMenu = ({ filters, selectedFilters, setSelectedFilters }) => {
+
   //states
   const [amountOfFilters, setAmountOfFilters] = useState(0);
 
