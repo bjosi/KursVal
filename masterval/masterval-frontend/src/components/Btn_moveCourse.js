@@ -1,6 +1,8 @@
 import "../styles/DisplayCourse.css"
 import React, { useState } from 'react';
 import Popup from './popup.js';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquareCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 
 const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => {
@@ -28,18 +30,16 @@ const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => 
                     : item
             ))
 
-        console.log("hh");
 
-        console.log(selectedCourses);
 
     }
 
 
-    return <div>
+    return <>
         <button className={courseinfo.semester == 8 ? 'btn-movecoursehidden' : "btn-movecourse"}
- onClick={togglePopup}> &rarr; </button>
+            onClick={togglePopup}> <FontAwesomeIcon icon={faSquareCaretRight} /> </button>
         {isOpen && <Popup handleClose={togglePopup} handleConfirm={handleConfirm} newTerm={newTerm}/>}
-    </div>
+    </>
 
 }
 
