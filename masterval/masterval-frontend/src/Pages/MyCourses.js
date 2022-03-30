@@ -4,6 +4,8 @@ import Semesters from '../components/Semesters';
 import Overview from '../components/Overview';
 import ToggleOverviewButton from '../components/ToggleOverviewButton';
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,13 +16,13 @@ const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
 
   return (
     <div>
-      <div className="my_courses_header">
-        <div className="upper_header">
-          <a className="upper_header_link" href="/">
-            {" "}
+          <div className="my_courses_header">
+
+              <div className="upper_header">
+            <Link to="/" className="upper_header_link">{" "}
             <FontAwesomeIcon className="upper_header_icon" icon={faArrowLeft} />
-            Hitta fler kurser{" "}
-          </a>
+            Hitta fler kurser{" "}</Link>
+          
           <a className="upper_header_link">
             {" "}
             Spara profil{" "}

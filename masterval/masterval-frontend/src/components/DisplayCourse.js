@@ -11,10 +11,20 @@ const DisplayCourse = ({
   courseinfo,
   setSelectedCourses,
   selectedCourses,
-  homePage,
+    homePage,
 }) => {
-  const [showresult, setShowResults] = React.useState(false);
-  const onClick = () => setShowResults(!showresult);
+    const [showresult, setShowResults] = React.useState(false);
+
+    const [showAddButton, setShowAddButton] = useState(false);
+
+    /*useEffect(() => {
+        console.log(selectedCourses);
+        setShowAddButton(selectedCourses.includes(courseinfo));
+        
+    });*/
+
+
+    const onClick = () => setShowResults(!showresult);
 
   return (
     <>
@@ -31,14 +41,18 @@ const DisplayCourse = ({
                       <p className="c_info"> {courseinfo.courselevel} </p>
             {showresult ? <Results courseinfo={courseinfo} /> : null}
           </div>
-          <div className="div_r">
-            {homePage ? (
-              <Btn_addcourse
-                courseinfo={courseinfo}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
-              />
-            ) : (
+                  <div className="div_r">
+                      {homePage ? <> {!selectedCourses.includes(courseinfo) ?
+              (<Btn_addcourse
+                              courseinfo={courseinfo}
+                              setSelectedCourses={setSelectedCourses}
+                              selectedCourses={selectedCourses}
+                          />) : <Btn_removeCourse
+                              courseinfo={courseinfo}
+                              setSelectedCourses={setSelectedCourses}
+                              selectedCourses={selectedCourses}
+                          />
+                      }</> : (
               <div className="btn-displaycourse">
                 <Btn_moveCourse
                   courseinfo={courseinfo}
@@ -57,9 +71,9 @@ const DisplayCourse = ({
         </div>
         <span id="button_show_more" type="button" onClick={onClick}>
           {showresult ? (
-            <FontAwesomeIcon icon={faAngleUp} />
+            <FontAwesomeIcon className="icon_show_more" icon={faAngleUp} />
           ) : (
-            <FontAwesomeIcon icon={faAngleDown} />
+            <FontAwesomeIcon className="icon_show_more" icon={faAngleDown} />
           )}
 
         </span>
@@ -75,7 +89,7 @@ const Results = ({ courseinfo }) => {
     <div>
           <p className="c_info"> {courseinfo.coursepoints} HP </p>
           <p className="c_info"> Kurskod: {courseinfo.coursecode } </p>
-      <a href={link} target="_blank" rel="noreferrer">
+      <a href={link} className="course_website" target="_blank" rel="noreferrer">
         Besök kurshemsidan
       </a>
     </div>
