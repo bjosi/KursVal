@@ -36,9 +36,34 @@
     width: 100%;
   }
 }
+.div_filter {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  padding: 1rem 1rem 0rem 1rem;
+}
 
 @media screen and (min-width: 760px) {
   .button_filter {
     display: none;
   }
+}
+
+.close_button_container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  cursor: pointer;
+}
+
+.close_button {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: white;
+  background-color: #f9a26c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
 }
