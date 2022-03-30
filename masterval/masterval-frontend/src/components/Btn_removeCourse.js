@@ -1,4 +1,6 @@
 import "../styles/DisplayCourse.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquareXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Btn_removeCourse = ({
   courseinfo,
@@ -12,8 +14,7 @@ const Btn_removeCourse = ({
         handleSubmit(courseinfo, setSelectedCourses, selectedCourses)
       }
     >
-      {" "}
-      &#9747;{" "}
+          <FontAwesomeIcon icon={faSquareXmark} />
     </button>
   );
 };

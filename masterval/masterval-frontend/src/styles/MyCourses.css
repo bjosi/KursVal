@@ -1,38 +1,85 @@
+.outer_wrapper_my_courses {
+    width: 1000px;
+    margin: 1rem auto 0 auto;
+    /*padding: 2rem 5rem 2rem 5rem;*/
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+}
+
+.outer_wrapper_my_courses h{
+   padding: 0 0.5rem;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .outer_wrapper_my_courses {
+        width: 100%;
+    }
+}
+
+
+
+
 .inner_wrapper_my_courses {
   display: flex;
   justify-content: space-between;
   background-color: #f2f2f2;
   width: 100%;
+  padding: 0 1rem;
 }
+
+
 
 .empty_period {
   background-color: white;
   width: 100%;
-  padding: 1rem;
-  margin: 1rem 0;
+  /*padding: 1rem;*/
+  margin: 1rem 0.5rem;
   height: 8rem;
 }
 
 .period_1 {
   width: 50%;
+  padding: 0 0.5rem;
 }
 
 .period_2 {
-  width: 50%;
+    width: 50%;
+    padding: 0 0.5rem;
 }
+
 
 .period_1_2 {
-  width: 100%;
+    width: 100%;
+    padding: 0 1.5rem;
 }
 
-.outer_wrapper_my_courses {
-  width: 1000px;
-  margin: 0 auto;
+@media screen and (max-width: 700px) {
+    .inner_wrapper_my_courses {
+        display: block;
+        justify-content: normal;
+    }
 
-  /*padding: 2rem 5rem 2rem 5rem;*/
-  font-size: 1.25rem;
-  font-weight: 700;
+    .period_1 {
+        width: 100%;
+        padding: 0 0.1rem;
+    }
+
+    .period_2 {
+        width: 100%;
+        padding: 0 0.1rem;
+    }
+
+    .period_1_2 {
+        padding: 0 1.1rem;
+    }
 }
+
+
+
+
 
 .toggle_button {
   color: black;
@@ -169,8 +216,6 @@
   font-family: "Lato", sans-serif;
 }
 
-.text_period_2 {
-}
 
 .the_progress_bars {
   align-items: center;
