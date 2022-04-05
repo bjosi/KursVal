@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import SearchHeader from "../components/SearchHeader";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import DisplayCourse from "../components/DisplayCourse";
@@ -15,7 +15,7 @@ const Browse = ({
   selectedFilters,
   setSelectedFilters,
 }) => {
-  const [backdrop, setBackdrop] = React.useState(false);
+    const [backdrop, setBackdrop] = useState(false);
 
   return (
     <>
