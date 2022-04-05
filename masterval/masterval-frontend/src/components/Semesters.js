@@ -20,13 +20,13 @@ const Semesters = ({ selectedCourses, setSelectedCourses }) => {
         <>
             <div className='semester_header'>
                 <SemesterSelector semester={semester} setSemester={setSemester} />
-                <h> Högskolepoäng </h>
+                <h> HÃ¶gskolepoÃ¤ng </h>
                 <div className='progress_bar_wrapper'>
                     <ProgressBar progress={HPPerSemester / 30} isSmall={true} />
                     <h>{HPPerSemester} av 30HP</h>
                 </div>
 
-                {HPPerSemester >= 30 ? <h className='semester_header_small_text'>Grattis, du har valt kurser på helfart för terminen</h> : <h className='semester_header_small_text'> Du har {30 - HPPerSemester} HP kvar för att läsa på helfart den här terminen</h>}
+                {HPPerSemester >= 30 ? <h className='semester_header_small_text'>Grattis, du har valt kurser pÃ¥ helfart fÃ¶r terminen</h> : <h className='semester_header_small_text'> Du har {30 - HPPerSemester} HP kvar fÃ¶r att lÃ¤sa pÃ¥ helfart den hÃ¤r terminen</h>}
                 
             </div>
             <DisplayPeriod courseinfo={selectedCourses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} homePage={false} semester={semester} />

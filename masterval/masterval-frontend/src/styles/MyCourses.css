@@ -1,85 +1,72 @@
 .outer_wrapper_my_courses {
-    width: 1000px;
-    margin: 1rem auto 1rem auto;
-    /*padding: 2rem 5rem 2rem 5rem;*/
-    font-size: 1.25rem;
-    font-weight: 700;
-    display: flex;
-    flex-direction: column;
+  width: 1000px;
+  margin: 1rem auto 1rem auto;
+  /*padding: 2rem 5rem 2rem 5rem;*/
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
 }
 
-.outer_wrapper_my_courses h{
-   padding: 0 0.5rem;
+.outer_wrapper_my_courses h {
+  padding: 0 0.5rem;
 }
-
 
 @media screen and (max-width: 1000px) {
-    .outer_wrapper_my_courses {
-        width: 100%;
-    }
+  .outer_wrapper_my_courses {
+    width: 100%;
+  }
 }
-
-
-
 
 .inner_wrapper_my_courses {
   display: flex;
   justify-content: space-between;
   background-color: #f2f2f2;
   width: 100%;
-  padding: 0 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
-
-
 .empty_period {
-    background-color: white;
-    padding: 1rem;
-    margin: 1rem 0.5rem;
-    height: 8rem;
-    opacity: 50%;
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem 0rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  height: 8rem;
+  opacity: 50%;
 }
 
 .period_1 {
   width: 50%;
-  padding: 0 0.5rem;
 }
 
 .period_2 {
-    width: 50%;
-    padding: 0 0.5rem;
+  width: 50%;
 }
 
-
 .period_1_2 {
-    width: 100%;
-    padding: 0 1.5rem;
+  width: 100%;
+  padding: 0 0.5rem;
 }
 
 @media screen and (max-width: 700px) {
-    .inner_wrapper_my_courses {
-        display: block;
-        justify-content: normal;
-    }
+  .inner_wrapper_my_courses {
+    display: block;
+    justify-content: normal;
+  }
 
-    .period_1 {
-        width: 100%;
-        padding: 0 0.1rem;
-    }
+  .period_1 {
+    width: 100%;
+    padding: 0 0.1rem;
+  }
 
-    .period_2 {
-        width: 100%;
-        padding: 0 0.1rem;
-    }
+  .period_2 {
+    width: 100%;
+    padding: 0 0.1rem;
+  }
 
-    .period_1_2 {
-        padding: 0 1.1rem;
-    }
 }
-
-
-
-
 
 .toggle_button {
   color: black;
@@ -116,8 +103,6 @@
 
 .toggle_overview {
   display: flex;
-  width: 60vw;
-  margin: 0rem auto 0rem auto;
   font-weight: 700;
   font-size: 1rem;
 }
@@ -138,8 +123,18 @@
   display: flex;
   height: 2px;
   background-color: #f2f2f2;
-  width: 60vw;
+}
+
+.toggle_overview_wrapper{
+  width: 1000px;
   margin: 0rem auto 0rem auto;
+  padding: 0 1rem 0 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .toggle_overview_wrapper {
+    width: 100%
+  }
 }
 
 .underline_left {
@@ -165,7 +160,8 @@
 
 .upper_header {
   height: 30px;
-  width: 60vw;
+  width: 1000px;
+  padding: 0 1rem 0 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -173,9 +169,9 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .my_courses_header {
-        height: 220px;
-    }
+  .upper_header{
+    width: 100%;
+  }
 }
 
 .exam_name {
@@ -221,7 +217,6 @@
   font-size: 0.9rem;
   font-family: "Lato", sans-serif;
 }
-
 
 .the_progress_bars {
   align-items: center;
