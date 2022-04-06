@@ -65,7 +65,6 @@
     width: 100%;
     padding: 0 0.1rem;
   }
-
 }
 
 .toggle_button {
@@ -125,7 +124,7 @@
   background-color: #f2f2f2;
 }
 
-.toggle_overview_wrapper{
+.toggle_overview_wrapper {
   width: 1000px;
   margin: 0rem auto 0rem auto;
   padding: 0 1rem 0 1rem;
@@ -133,7 +132,7 @@
 
 @media screen and (max-width: 1000px) {
   .toggle_overview_wrapper {
-    width: 100%
+    width: 100%;
   }
 }
 
@@ -169,7 +168,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .upper_header{
+  .upper_header {
     width: 100%;
   }
 }
@@ -221,18 +220,25 @@
 .the_progress_bars {
   align-items: center;
   justify-content: center;
-
-  width: 100vw;
-  height: 300px;
   display: flex;
+  margin-top: 2rem;
 }
 
-.cirkular_progressbar {
-  margin-right: 1rem;
+@media screen and (max-width: 750px) {
+  .the_progress_bars {
+    flex-direction: column;
+  }
+}
+
+.cirkular_progressbar_wrapper {
+}
+
+.circular_progressbar {
+  margin: 0.5rem;
 }
 
 .vertical_progressbar {
-  margin-left: 1rem;
+  margin: 1rem;
 }
 
 .progressbar_parent {
@@ -240,6 +246,12 @@
   width: 30rem;
   background-color: #e1e1e1;
   margin: 0;
+}
+
+@media screen and (max-width: 500px) {
+  .progressbar_parent {
+    width: 80vw;
+  }
 }
 
 .progressbar_parent_small {
@@ -252,14 +264,26 @@
 .div_display_progress {
   margin-bottom: 2rem;
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bold_text {
   text-align: center;
   font-weight: 900;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
   font-weight: 600;
   font-size: 1rem;
+}
+.center {
+  text-align: center;
+}
+
+.title {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.875rem;
 }
 
 .normal_text {
@@ -290,7 +314,8 @@
 }
 
 .div_summary_text {
-  width: 28rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .summary_bold_text {
@@ -348,7 +373,7 @@
   font-weight: 900;
   margin-bottom: 0.2rem;
   font-weight: 600;
-  font-size: 4rem;
+  font-size: 3rem;
   justify-content: end;
 }
 
