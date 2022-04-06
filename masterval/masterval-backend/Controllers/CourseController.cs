@@ -24,25 +24,64 @@ namespace masterval_backend.Controllers
             return documents;
         }
 
-        [HttpGet("/courses/{id}")]
-        public IEnumerable<Courses> GetSearchResult(String id)
+
+        [HttpGet("/save/{info}/{list}")]
+        public string Save(String info, String list)
         {
+
+            string[] splitInfo = info.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+
             var client = new MongoClient("mongodb+srv://kandidat:kand2022@cluster0.5dn6x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-            var database = client.GetDatabase("allakurser");
-            var collection = database.GetCollection<Courses>("kursinfo");
-            int val;
-            if (int.TryParse(id, out val))
+            var database = client.GetDatabase("Saved");
+
+
+            try
             {
-                var documents = collection.Find(s => (s.Coursecode.ToLower() == id.ToLower() || s.Coursename.ToLower().Contains(id.ToLower()))).ToList();
-                documents.AddRange(collection.Find(s => s.Semester == val).ToList());
-                return documents;
+                database.CreateCollection(splitInfo[0]);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            var collection = database.GetCollection<Profile>(splitInfo[0]);
+
+            string[] splitList = list.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            List<ProfileCourse> newList = new List<ProfileCourse>();
+
+            for (int i = 0; i < splitList.Length; i += 2)
+            {
+                ProfileCourse newCourse = new ProfileCourse();
+                newCourse.Coursecode = splitList[i];
+                newCourse.Choosensemester = splitList[i + 1];
+                newList.Add(newCourse);
+            }
+
+            var documents = collection.Find(s => (s.Name.ToLower() == splitInfo[1].ToLower())).ToList();
+
+            if (documents.Count > 0)
+            {
+
+                var filterDefinition = MongoDB.Driver.Builders<Profile>.Filter.Eq(p => p.Id, documents.ElementAt(0).Id);
+                var updateDefinition = MongoDB.Driver.Builders<Profile>.Update.Set(p => p.Courselist, newList);
+                var options = new UpdateOptions { IsUpsert = true };
+                collection.UpdateOne(filterDefinition, updateDefinition, options);
+
             }
             else
             {
-                var documents = collection.Find(s => (s.Coursecode.ToLower() == id.ToLower() || s.Coursename.ToLower().Contains(id.ToLower()))).ToList();
-                return documents;
+                Profile newProfile = new Profile();
+                newProfile.Name = splitInfo[1];
+                newProfile.Courselist = newList;
+
+                collection.InsertOne(newProfile);
 
             }
+
+            return info;
         }
+
     }
 }
