@@ -29,13 +29,15 @@ const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
         const username = "usernamebla,minexamen"
 
 
-        fetch("save/" + username + "/" + data)
-            .then((res) => res.json())
-            .then(
-                (result) => {
-                    console.log(result);
-                }
-            );
+        fetch("save/" + username + "/" + data);
+            
+    }
+
+    const onDelete = () => {
+        
+        const username = "usernamebla,minexamen"
+
+        fetch("delete/" + username);
     }
 
   return (
@@ -51,8 +53,14 @@ const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
             {" "}
             Spara profil{" "}
                       <FontAwesomeIcon  className="upper_header_icon" icon={faHeart} />
-          </button>
-        </div>
+                  </button>
+
+                  <button onClick={onDelete} className="upper_header_link">
+                      {" "}
+                      ta bort profil{" "}
+                      <FontAwesomeIcon className="upper_header_icon" icon={faHeart} />
+                  </button>
+              </div>
         <h className="exam_name">
           {" "}
           Min masterexamen{" "}
