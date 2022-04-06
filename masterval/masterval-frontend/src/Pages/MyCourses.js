@@ -12,7 +12,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faHeart, faPen } from "@fortawesome/free-solid-svg-icons";
 
 const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
-  const [showOverview, setShowOverview] = useState(false);
+    const [showOverview, setShowOverview] = useState(false);
+
+
+    const onSave = () => {
+
+        let data = "";
+        console.log(data);
+
+        selectedCourses.map((course) => data += ("," + course.coursecode + "," + course.semester))
+
+        console.log(data);
+
+        //"save/username:minexamen:TNM02:1"
+
+        const username = "usernamebla,minexamen"
+
+
+        fetch("save/" + username + "/" + data)
+            .then((res) => res.json())
+            .then(
+                (result) => {
+                    console.log(result);
+                }
+            );
+    }
 
   return (
     <div>
@@ -23,11 +47,11 @@ const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
             <FontAwesomeIcon className="upper_header_icon" icon={faArrowLeft} />
             Hitta fler kurser{" "}</Link>
           
-          <a className="upper_header_link">
+                  <button onClick={onSave} className="upper_header_link">
             {" "}
             Spara profil{" "}
-            <FontAwesomeIcon className="upper_header_icon" icon={faHeart} />
-          </a>
+                      <FontAwesomeIcon  className="upper_header_icon" icon={faHeart} />
+          </button>
         </div>
         <h className="exam_name">
           {" "}
