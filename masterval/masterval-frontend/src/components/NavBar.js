@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
   faFloppyDisk,
-  faBars,
+  faSuitcase,
   faTag,
+  faHouse,
 } from "@fortawesome/free-solid-svg-icons";
 
 //stylesheet
@@ -31,24 +32,22 @@ const NavBar = ({
             <div className="first-menu-item">
               <FontAwesomeIcon icon={faTag} />
             </div>
-
+            <Link to="/">
+              <div className="menu-item">
+                <FontAwesomeIcon icon={faHouse} />
+                <h1>Hem</h1>
+              </div>
+            </Link>
             <Link to="/MyCourses">
               <div className="menu-item">
-                <FontAwesomeIcon icon={faFloppyDisk} />
+                <FontAwesomeIcon icon={faSuitcase} />
                 <h1>Mina kurser</h1>
               </div>
             </Link>
             <Link to="/LogIn">
               <div className="menu-item">
                 <FontAwesomeIcon icon={faUser} />
-
                 <h1>Logga in</h1>
-              </div>
-            </Link>
-            <Link to="/">
-              <div className="menu-item">
-                <FontAwesomeIcon icon={faBars} />
-                <h1>Hem</h1>
               </div>
             </Link>
           </div>
@@ -56,14 +55,14 @@ const NavBar = ({
         <Switch>
           <Route path="/MyCourses">
             <MyCourses
-                          courses={courses}
-                          searchHandler={searchHandler}
-                          semesterHandler={semesterHandler}
-                          selectedCourses={selectedCourses}
-                          setSelectedCourses={setSelectedCourses}
-                          filters={filters}
-                          selectedFilters={selectedFilters}
-                          setSelectedFilters={setSelectedFilters}
+              courses={courses}
+              searchHandler={searchHandler}
+              semesterHandler={semesterHandler}
+              selectedCourses={selectedCourses}
+              setSelectedCourses={setSelectedCourses}
+              filters={filters}
+              selectedFilters={selectedFilters}
+              setSelectedFilters={setSelectedFilters}
             />
           </Route>
 

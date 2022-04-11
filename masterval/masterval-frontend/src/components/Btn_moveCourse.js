@@ -1,49 +1,68 @@
-import "../styles/DisplayCourse.css"
-import React, { useState } from 'react';
-import Popup from './popup.js';
+import "../styles/DisplayCourse.css";
+import "../Pages/Browse.css";
+import React, { useState } from "react";
+import Backdrop from "./Backdrop/Backdrop.js";
+import "./Backdrop/Backdrop.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareCaretRight } from "@fortawesome/free-solid-svg-icons";
 
+const Btn_moveCourse = ({
+  courseinfo,
+  setSelectedCourses,
+  selectedCourses,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => {
-    const [isOpen, setIsOpen] = useState(false);
+  let newTerm;
 
-    let newTerm;
+  if (courseinfo.semester == 7) {
+    newTerm = 9;
+  } else {
+    newTerm = 7;
+  }
 
-    if (courseinfo.semester == 7) {
-        newTerm = 9
-    } else {
-        newTerm = 7;
-    }
+  const handleConfirm = () => {
+    setSelectedCourses(
+      selectedCourses.map((item) =>
+        item.coursecode === courseinfo.coursecode
+          ? { ...item, semester: newTerm }
+          : item
+      )
+    );
+    setBackdrop(false);
+  };
 
-    const togglePopup = () => {
-        setIsOpen(!isOpen);
-    }
+  const [backdrop, setBackdrop] = React.useState(false);
 
-    const handleConfirm = () => {
+  return (
+    <>
+      <button
+        className={
+          courseinfo.semester == 8 ? "btn-movecoursehidden" : "btn-movecourse"
+        }
+        onClick={() => setBackdrop(true)}
+      >
+        {" "}
+        <FontAwesomeIcon icon={faSquareCaretRight} />{" "}
+      </button>
 
-
-        setSelectedCourses(
-            selectedCourses.map(item =>
-                item.coursecode === courseinfo.coursecode
-                    ? { ...item, semester: newTerm }
-                    : item
-            ))
-
-
-
-    }
-
-
-    return <>
-        <button className={courseinfo.semester == 8 ? 'btn-movecoursehidden' : "btn-movecourse"}
-            onClick={togglePopup}> <FontAwesomeIcon icon={faSquareCaretRight} /> </button>
-        {isOpen && <Popup handleClose={togglePopup} handleConfirm={handleConfirm} newTerm={newTerm}/>}
+      <Backdrop onClose={() => setBackdrop(false)} open={backdrop}>
+        <div style={{}}>
+          <div className="box">
+            <div className="close_button_container">
+              <div className="close_button" onClick={() => setBackdrop(false)}>
+                X
+              </div>
+            </div>
+            <p> Vill du flytta kursen till termin {newTerm}? </p>
+            <button onClick={handleConfirm}>Okej</button>
+            <button onClick={() => setBackdrop(false)}>Avbryt</button>
+          </div>
+        </div>
+      </Backdrop>
     </>
-
-}
-
-
+  );
+};
 
 //<button className="btn-movecourse" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}> 	&rarr; </button>
 
