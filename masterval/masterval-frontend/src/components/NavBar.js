@@ -1,5 +1,7 @@
 import React from "react";
 import MyCourses from "../Pages/MyCourses";
+import LogIn from "../Pages/LogIn";
+
 import Browse from "../Pages/Browse";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -66,9 +68,9 @@ const NavBar = ({
             />
           </Route>
 
-          <Route path="/LogIn">
-            <div>Logga in</div>
-          </Route>
+                  <Route path="/LogIn">
+                    <LogIn/>  
+            </Route>
           <Route path="/">
             <Browse
               courses={courses}
