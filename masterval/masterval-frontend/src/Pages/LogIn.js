@@ -1,11 +1,13 @@
 import { signup, useAuth, logout, login } from "../firebase";
 import "../styles/login.css";
-import { useRef , useState} from "react";
+import { useRef, useState } from "react";
+import ToggleLoginButton from '../components/ToggleLoginButton';
 
 
 export default function LogIn() {
     const [loading, setLoading] = useState(false);
     const currentUser = useAuth();
+    const [showlogin, setshowlogin] = useState(false);
 
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -17,7 +19,7 @@ export default function LogIn() {
             await signup(emailRef.current.value, passwordRef.current.value);
         }
         catch {
-                alert("Error");
+            alert("Error");
         }
 
         setLoading(false);
@@ -43,30 +45,38 @@ export default function LogIn() {
             alert("Error");
         }
 
-        setLoading(false); }
+        setLoading(false);
+    }
 
 
     return (
         <>
             <div className="testing">
-            </div>
+          
 
+            <ToggleLoginButton showOverview={showlogin} setShowOverview={setshowlogin} />
+  </div>
             <div > currently logged in as: {currentUser?.email}
             </div>
 
             <div className="fields">
-                <input ref={emailRef} placeholder="Email" />
 
-                <input ref={passwordRef} type= "password" placeholder="Lösenord" />
+                <input className="email_input" ref={emailRef} placeholder="Email" />
+
+                <input className="password_input" ref={passwordRef} type="password" placeholder="Lösenord" />
+            </div>
+            <div className="testingmore">
+
+            <div className="buttons">
+            {showlogin ? <button className="Btn_LogIn" disabled={loading || currentUser} onClick={handleSignup}> Registera dig </button> :
+
+                <button className="Btn_LogIn" disabled={loading || currentUser} onClick={handleLogin}> Logga in </button>
+            }
+
+            {showlogin ? <div> </div> : <button className="Btn_LogIn" disabled={loading || !currentUser} onClick={handleLogout}> Logga ut </button> }
             </div>
 
-            <button disabled={loading || currentUser} onClick={handleSignup}> Registera dig </button>
-
-            <button disabled={loading || !currentUser} onClick={handleLogin}> Logga in </button>
-
-            <button disabled={loading || !currentUser}  onClick={handleLogout}> Logga ut </button>
-
-
+            </div>
         </>
         )
 }
