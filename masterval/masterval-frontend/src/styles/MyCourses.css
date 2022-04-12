@@ -393,3 +393,44 @@
   color: grey;
   margin: 0.4rem 0 0rem 0;
 }
+
+
+.table_matrix {
+    display: flex;
+    align-content: space-evenly;
+    flex-direction: row;
+    justify-content:center;
+}
+
+.table_vertical {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.vertical_div_k {
+    width: 4rem;
+    height:2.5rem;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    border: 1px solid black;
+    padding: 1em;
+}
+
+.vertical_div {
+    width: 6rem;
+    height: 2.5rem;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    border: 1px solid black;
+    padding: 1em;
+}
+.vertical_div_g {
+    background-color: aquamarine;
+    width: 6rem;
+    height: 2.5rem;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    border: 1px solid black;
+    padding: 1em;
+}
