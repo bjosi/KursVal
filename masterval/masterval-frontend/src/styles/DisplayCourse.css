@@ -30,6 +30,14 @@
 .title_container {
   display: flex;
   align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.c_info_container {
+  display: flex;
+  align-items: center;
+  color: #2b6778;
+  margin-top: 0.2rem;
 }
 
 .c_info {
@@ -37,7 +45,11 @@
   font-size: 1rem;
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  margin-top: 0.1rem;
+}
+
+.c_info_icon {
+  size: 0.5rem;
+  margin-right: 0.2rem;
 }
 
 .div_l {
