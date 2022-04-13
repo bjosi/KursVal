@@ -10,8 +10,20 @@ function App() {
   const [semesterQuery, setSemesterQuery] = useState(null);
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
-  );
-  const [selectedFilters, setSelectedFilters] = useState([]);
+    );
+    const [selectedProfileCourses, setSelectedProfileCourses] = useState(JSON.parse(localStorage.getItem("selectedProfileCourses")) || selectedCourses);
+
+
+    useEffect(() => {
+        localStorage.setItem(
+            "selectedProfileCourses",
+            JSON.stringify(selectedProfileCourses)
+        );
+
+    }, [selectedProfileCourses]);
+
+    const [selectedFilters, setSelectedFilters] = useState([]);
+
   const filters = [
     "Grundnivå",
     "Avancerad nivå",
@@ -81,7 +93,8 @@ function App() {
     localStorage.setItem(
       "myValueInLocalStorage",
       JSON.stringify(selectedCourses)
-    );
+      );
+
   }, [selectedCourses]);
 
   const searchHandler = (query) => {
@@ -138,7 +151,9 @@ function App() {
       <div>
         <NavBar
           selectedCourses={selectedCourses}
-          setSelectedCourses={setSelectedCourses}
+                setSelectedCourses={setSelectedCourses}
+                selectedProfileCourses={selectedProfileCourses}
+                setSelectedProfileCourses={setSelectedProfileCourses}
           courses={
             semesterQuery !== null
               ? semesterQuery

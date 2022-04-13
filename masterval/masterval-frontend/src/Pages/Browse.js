@@ -13,9 +13,13 @@ const Browse = ({
   setSelectedCourses,
   filters,
   selectedFilters,
-  setSelectedFilters,
+    setSelectedFilters,
+  selectedProfileCourses,
+  setSelectedProfileCourses
 }) => {
     const [backdrop, setBackdrop] = useState(false);
+    const isLocalStorage = (JSON.stringify(selectedCourses) == JSON.stringify(selectedProfileCourses));
+
 
   return (
     <>
@@ -59,6 +63,8 @@ const Browse = ({
                     homePage={true}
                     setSelectedCourses={setSelectedCourses}
                     selectedCourses={selectedCourses}
+                    setSelectedProfileCourses={setSelectedProfileCourses}
+                    selectedProfileCourses={selectedProfileCourses}
               />
             ))}
           </div>

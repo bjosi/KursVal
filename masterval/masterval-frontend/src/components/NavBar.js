@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react";
 import MyCourses from "../Pages/MyCourses";
 import Browse from "../Pages/Browse";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -21,8 +21,14 @@ const NavBar = ({
   semesterHandler,
   filters,
   selectedFilters,
-  setSelectedFilters,
+    setSelectedFilters,
+    selectedProfileCourses,
+    setSelectedProfileCourses,
 }) => {
+
+
+
+
   return (
     <>
       <Router>
@@ -56,15 +62,12 @@ const NavBar = ({
         <Switch>
           <Route path="/MyCourses">
             <MyCourses
-                          courses={courses}
-                          searchHandler={searchHandler}
-                          semesterHandler={semesterHandler}
                           selectedCourses={selectedCourses}
                           setSelectedCourses={setSelectedCourses}
-                          filters={filters}
-                          selectedFilters={selectedFilters}
-                          setSelectedFilters={setSelectedFilters}
-            />
+                          selectedProfileCourses={selectedProfileCourses}
+                          setSelectedProfileCourses={setSelectedProfileCourses}
+                          
+                                     />
           </Route>
 
           <Route path="/LogIn">
@@ -76,10 +79,13 @@ const NavBar = ({
               searchHandler={searchHandler}
               semesterHandler={semesterHandler}
               selectedCourses={selectedCourses}
-              setSelectedCourses={setSelectedCourses}
+                          setSelectedCourses={setSelectedCourses}
+                          selectedProfileCourses={selectedProfileCourses}
+                          setSelectedProfileCourses={setSelectedProfileCourses}
               filters={filters}
               selectedFilters={selectedFilters}
-              setSelectedFilters={setSelectedFilters}
+                          setSelectedFilters={setSelectedFilters}
+                       
             />
           </Route>
         </Switch>

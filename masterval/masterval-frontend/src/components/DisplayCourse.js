@@ -12,24 +12,15 @@ import { faAngleDown, faAngleUp, faCircleHalfStroke, faCircle } from "@fortaweso
 const DisplayCourse = ({
   courseinfo,
   setSelectedCourses,
-  selectedCourses,
+    selectedCourses,
+    setSelectedProfileCourses,
+    selectedProfileCourses,
     homePage,
     
 }) => {
     const [showresult, setShowResults] = useState(false);
-
-    const [showAddButton, setShowAddButton] = useState(!selectedCourses.includes(courseinfo));
-
-
-
-    useEffect(() => {
-        setShowAddButton(!selectedCourses.includes(courseinfo));
-    });
-
+        const [showAddButton, setShowAddButton] = useState(!selectedProfileCourses.map((course) => course.coursename).includes(courseinfo.coursename));
     
-
-
-
     const onClick = () => setShowResults(!showresult);
 
   return (
@@ -56,20 +47,30 @@ const DisplayCourse = ({
                           setSelectedCourses={setSelectedCourses}
                           selectedCourses={selectedCourses}
                           showAddButton={showAddButton}
+                          setShowAddButton={setShowAddButton}
+                          homePage={homePage}
+                          setSelectedProfileCourses={setSelectedProfileCourses}
+                          selectedProfileCourses={selectedProfileCourses}
                           
                       /> : (
                           <div className="btn-displaycourse">
                               <Btn_moveCourse
                                   courseinfo={courseinfo}
                                   setSelectedCourses={setSelectedCourses}
-                                  selectedCourses={selectedCourses}
+                                      selectedCourses={selectedCourses}
+
+                                      setSelectedProfileCourses={setSelectedProfileCourses}
+                                      selectedProfileCourses={selectedProfileCourses}
                               />
                                   <ButtonAddRemoveCourse
                                       courseinfo={courseinfo}
                                       setSelectedCourses={setSelectedCourses}
                                       selectedCourses={selectedCourses}
-                                      showAddButton={showAddButton}
-
+                                      showAddButton={false}
+                                      setShowAddButton={setShowAddButton}
+                                      homePage={homePage}
+                                      setSelectedProfileCourses={setSelectedProfileCourses}
+                                      selectedProfileCourses={selectedProfileCourses}
                               />
                           </div>
                       )}

@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 
-const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => {
+const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
+    setSelectedProfileCourses,
+    selectedProfileCourses }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     let newTerm;
@@ -13,7 +15,7 @@ const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => 
     if (courseinfo.semester == 7) {
         newTerm = 9
     } else {
-        newTerm = 7;
+        newTerm = 7
     }
 
     const togglePopup = () => {
@@ -22,15 +24,26 @@ const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses }) => 
 
     const handleConfirm = () => {
 
+        const isLocalStorage = JSON.stringify(selectedCourses) == JSON.stringify(selectedProfileCourses);
 
-        setSelectedCourses(
-            selectedCourses.map(item =>
-                item.coursecode === courseinfo.coursecode
-                    ? { ...item, semester: newTerm }
-                    : item
-            ))
+        if (isLocalStorage) {
 
+            setSelectedCourses(
+                selectedCourses.map(item =>
+                    item.coursecode === courseinfo.coursecode
+                        ? { ...item, semester: newTerm }
+                        : item
+                ))
 
+            setSelectedProfileCourses(selectedCourses)
+        } else {
+            setSelectedProfileCourses(
+                selectedProfileCourses.map(item =>
+                    item.coursecode === courseinfo.coursecode
+                        ? { ...item, semester: newTerm }
+                        : item
+                ))
+        }
 
     }
 
