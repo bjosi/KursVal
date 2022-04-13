@@ -142,8 +142,9 @@ function App() {
       );
   }, []);
 
-  if (error) {
-    return <div>Error: {error.message} </div>;
+    if (error) {
+        window.location.reload();
+    return <div> </div>;
   } else if (!loaded) {
     return <div>Loading...</div>;
   } else {
