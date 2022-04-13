@@ -60,3 +60,14 @@
     border: 1px solid black;
     padding: 1em;
 }
+
+.error_msg {
+    height: 3em;
+    background-color: rgba(228,38,53,.38);
+    border: 0.2em solid red;
+    width: 35%;
+    align-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}

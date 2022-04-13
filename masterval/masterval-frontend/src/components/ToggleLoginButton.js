@@ -6,11 +6,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 
-const ToggleLoginButton = ({ showOverview, setShowOverview }) => {
+const ToggleLoginButton = ({ showOverview, setShowOverview, seterrorlogin, seterrorpassword, seterrosignup}) => {
     const onToggle = (props) => {
         if (props != showOverview) {
             setShowOverview(!showOverview);
         }
+        seterrosignup(false); seterrorpassword(false);
+        seterrorlogin(false);
     };
 
     return (
