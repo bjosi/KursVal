@@ -143,8 +143,8 @@ const ShowBlockOfCourse = ({ courseinfo }) => {
 
   return (
     <div>
-      {blocks.map((block, i) => (
-        <div key={courseinfo.Id} className="course_block_icon">
+      {blocks.map((block, index) => (
+        <div key={index} className="course_block_icon">
           {block}
         </div>
       ))}

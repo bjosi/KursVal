@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import SearchHeader from "../components/SearchHeader";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import DisplayCourse from "../components/DisplayCourse";
@@ -15,7 +15,7 @@ const Browse = ({
   selectedFilters,
   setSelectedFilters,
 }) => {
-    const [backdrop, setBackdrop] = useState(false);
+  const [backdrop, setBackdrop] = useState(false);
 
   return (
     <>
@@ -30,7 +30,13 @@ const Browse = ({
           </button>
         </div>
         <Backdrop onClose={() => setBackdrop(false)} open={backdrop}>
-          <div style={{ width: "300px", backgroundColor: "white", position: "relative" }}>
+          <div
+            style={{
+              width: "300px",
+              backgroundColor: "white",
+              position: "relative",
+            }}
+          >
             <FilterMenu
               filters={filters}
               selectedFilters={selectedFilters}
@@ -52,13 +58,13 @@ const Browse = ({
             />
           </div>
           <div className="right-section">
-            {courses.map((course) => (
+            {courses.map((course, index) => (
               <DisplayCourse
-                    key={course.Id}
-                    courseinfo={course}
-                    homePage={true}
-                    setSelectedCourses={setSelectedCourses}
-                    selectedCourses={selectedCourses}
+                key={index}
+                courseinfo={course}
+                homePage={true}
+                setSelectedCourses={setSelectedCourses}
+                selectedCourses={selectedCourses}
               />
             ))}
           </div>
