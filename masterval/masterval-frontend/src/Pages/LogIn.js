@@ -1,8 +1,7 @@
 import { signup, useAuth, logout, login } from "../firebase";
 import "../styles/login.css";
 import { useRef, useState } from "react";
-import ToggleLoginButton from '../components/ToggleLoginButton';
-
+import ToggleLoginButton from "../components/ToggleLoginButton";
 
 export default function LogIn() {
     const [loading, setLoading] = useState(false);
@@ -77,11 +76,11 @@ export default function LogIn() {
             {errorlogin ? < div className="error_msg" ><p> there was an error</p>
             </div> : <> </>}
 
-            {errorsignup ? < div className="error_msg"><p> Vändligen ange giltigt email</p>
+            {errorsignup ? < div className="error_msg"><p> VÃ¤ndligen ange giltigt email</p>
             </div> : <> </>}
 
 
-            {errorpassword ? < div className="error_msg" ><p> Du behöver ett lösenord</p>
+            {errorpassword ? < div className="error_msg" ><p> Du behÃ¶ver ett lÃ¶senord</p>
                 </div> : <> </>}
                 </div>
 
@@ -89,7 +88,7 @@ export default function LogIn() {
 
                 <input className="email_input" ref={emailRef} placeholder="Email" />
 
-                <input className="password_input" ref={passwordRef} type="password" placeholder="Lösenord" />
+                <input className="password_input" ref={passwordRef} type="password" placeholder="LÃ¶senord" />
             </div>
             <div className="testingmore">
 
@@ -106,4 +105,3 @@ export default function LogIn() {
         </>
         )
 }
-
