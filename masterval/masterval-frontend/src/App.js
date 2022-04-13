@@ -7,10 +7,16 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState(null);
-  const [semesterQuery, setSemesterQuery] = useState(null);
+    const [semesterQuery, setSemesterQuery] = useState(null);
+
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
-  );
+    );
+
+    const [isloggedin, setisloggedin] = useState(
+        localStorage.getItem("myValueInLocalStorageforloggedin") || false
+    );
+
   const [selectedFilters, setSelectedFilters] = useState([]);
   const filters = [
     "Grundnivå",
@@ -24,7 +30,8 @@ function App() {
     "Halvfart",
   ];
 
-  useEffect(() => {
+    useEffect(() => {
+
     var filterQuery = null;
     var temp = selectedFilters;
     var temp2 = selectedFilters;
@@ -32,8 +39,6 @@ function App() {
     var all = temp2
       .map((selected) => (!selected.includes("Block") ? " " + selected : ""))
       .toString();
-    console.log(all);
-    console.log(myNum);
     if (selectedFilters.length > 0) {
       if (searchQuery !== null) {
         if (semesterQuery !== null) {
@@ -97,6 +102,15 @@ function App() {
     );
   }, [selectedCourses]);
 
+
+    useEffect(() => {
+        localStorage.setItem(
+            "myValueInLocalStorageforloggedin",
+            JSON.stringify(isloggedin)
+        );
+    }, [isloggedin]);
+   
+
   const searchHandler = (query) => {
     console.log(query);
     const searchResult = courses.filter((course) => {
@@ -149,10 +163,11 @@ function App() {
     return <div>Loading...</div>;
   } else {
     return (
-      <div>
+        <div>
         <NavBar
           selectedCourses={selectedCourses}
-          setSelectedCourses={setSelectedCourses}
+                setSelectedCourses={setSelectedCourses}
+                
           courses={
             semesterQuery !== null
               ? semesterQuery
@@ -164,7 +179,9 @@ function App() {
           semesterHandler={semesterHandler}
           filters={filters}
           selectedFilters={selectedFilters}
-          setSelectedFilters={setSelectedFilters}
+                setSelectedFilters={setSelectedFilters}
+                isloggedin={isloggedin}
+                setisloggedin={setisloggedin}
         />
       </div>
     );
