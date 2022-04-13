@@ -6,34 +6,13 @@ const TableMatrix = ({ selectedCourses}) => {
     const kunskaper = ["Mal", '1.1', '1.2', '1.3', '1.4', '1.5', '2.1', '2.2','2.3', '2.4', '2.5','3.1', '3.2', '3.3','4.1', '4.2', '4.3', '4.4',
         '4.5', '4.6', '5.1', '5.2', '5.3', '5.4', '5.5'];
 
-    
-    const greendiv = {
-        width: '4rem',
-        height: '2.5rem',
-        textalign: 'center',
-        fontfamily: '"Lato", sans - serif',
-        border: '1px solid black',
-        padding: '1em',
-        backgroundcolor : 'green'
-}
+    var completed_goal = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+        , false, false, false, false, false, false, false, false, false];
 
-    const normaldiv = {
-        width: '4rem',
-        height: '2.5rem',
-        textalign: 'center',
-    fontfamily: '"Lato", sans - serif',
-    border: '1px solid black',
-    padding: '1em'
-
-    }
-
-    const Make_arr = ({ input }) => {
+    const make_arr = ({ input }) => {
 
         var arr = [];
-        console.log("input:");
-        console.log(input);
         var splited = input.uChosen.split(",");
-        console.log(splited);
         
         var count = 0;
 
@@ -42,8 +21,8 @@ const TableMatrix = ({ selectedCourses}) => {
             for (var i = 1; i < kunskaper.length; i++) {
                 if (splited[count] === kunskaper[i]) {
 
-                    arr.push( true);
-                    
+                    arr.push(true);
+                    completed_goal[i] = "1";
                     count++;
                 }
                 else {
@@ -51,7 +30,7 @@ const TableMatrix = ({ selectedCourses}) => {
                 }
             }
         }
-        console.log(arr);
+        console.log(completed_goal);
         return (<>
             <div className="vertical_div"><p> {input.coursecode} </p></div>
             {arr.map((s) => (
@@ -66,6 +45,7 @@ const TableMatrix = ({ selectedCourses}) => {
         <div className="table_matrix">
 
 
+            
             <div className="table_vertical" >
 
 
@@ -75,17 +55,20 @@ const TableMatrix = ({ selectedCourses}) => {
 
 
             </div>
-
-
-            
                 {selectedCourses.map((s) => (
                     <div className="table_vertical" >
 
-                    <Make_arr input={s} />
+                    <make_arr input={s} />
 
 
                     </div>
                 ))}
+
+            <div className="table_vertical" >
+                {completed_goal.map((block) => (
+                    <div className="vertical_div_k"><p>{block}</p></div>
+                ))}
+            </div>
 
 
 
