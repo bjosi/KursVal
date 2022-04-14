@@ -3,6 +3,7 @@ import MyCourses from "../Pages/MyCourses";
 import LogIn from "../Pages/LogIn";
 import { signup, useAuth, logout, login } from "../firebase";
 import Browse from "../Pages/Browse";
+import Loading from "../Pages/Loading";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -90,7 +91,15 @@ const NavBar = ({
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
             />
-          </Route>
+                  </Route>
+
+
+                  <Route path="/Loading">
+                      <Loading />
+                  </Route>
+
+
+
                   <Route path="/LogIn">
                       <LogIn isloggedin={isloggedin} setisloggedin={setisloggedin}/>
             </Route>
