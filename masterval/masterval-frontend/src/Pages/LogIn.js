@@ -95,8 +95,7 @@ const LogIn = ({ isloggedin, setisloggedin })=> {
                 <ToggleLoginButton showOverview={showlogin} setShowOverview={setshowlogin} seterrorlogin={seterrorlogin} seterrorpassword={seterrorpassword} seterrosignup={seterrosignup} />
 
 
-            </div>
-
+            </div>   
             <div className="login_header">
 
                 <div className="login_header_text">

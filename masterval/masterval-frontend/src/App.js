@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import NavBar from "./components/NavBar";
-
+import Loading from "./Pages/Loading";
 function App() {
   const [courses, setCourses] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -160,7 +160,7 @@ function App() {
         window.location.reload();
     return <div> </div>;
   } else if (!loaded) {
-    return <div>Loading...</div>;
+    return (<><Loading/></>);
   } else {
     return (
         <div>
