@@ -6,6 +6,7 @@ import ToggleOverviewButton from "../components/ToggleOverviewButton";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import TableMatrix from "../components/TableMatrix";
+import OverviewTerms from "../components/OverviewTerms";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faHeart, faPen } from "@fortawesome/free-solid-svg-icons";
@@ -72,13 +73,23 @@ const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
         <Overview
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}
-        />
-      ) : (
+              />) : (
         <Semesters
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}
         />
-      )}
+          )}
+
+          {showOverview ? (
+
+              <OverviewTerms selectedCourses={selectedCourses} />
+    ) : (
+              <></>
+          )}
+
+
+
+
       <TableMatrix selectedCourses={selectedCourses} />
     </div>
   );

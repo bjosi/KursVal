@@ -5,6 +5,7 @@ import "../styles/MyCourses.css";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import ProgressBar from "./ProgressBar";
 
+
 const Overview = ({ selectedCourses, setSelectedCourses }) => {
   let totalHP = 0;
   let percentageTotalHP = 0;
@@ -155,7 +156,9 @@ const Overview = ({ selectedCourses, setSelectedCourses }) => {
             <></>
           )}
         </div>
-      </div>
+          </div>
+
+
     </div>
   );
 };
