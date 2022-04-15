@@ -3,14 +3,14 @@ import "../styles/App.css";
 import Semesters from '../components/Semesters';
 import Overview from '../components/Overview';
 import Backdrop from "../components/Backdrop/Backdrop";
-
 import ToggleOverviewButton from '../components/ToggleOverviewButton';
 import React, { useEffect,useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faHeart, faPen, faArrowsRotate, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import ProfileSelector from "../components/ProfileSelector";
 
-const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses,setSelectedProfileCourses }) => {
+const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses, setSelectedProfileCourses }) => {
 
     const [showOverview, setShowOverview] = useState(false);
     const [backdrop, setBackdrop] = useState(false);
@@ -58,19 +58,18 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
                     }
                 );
         }
-
     }, [selectedProfileName, isFirstClick, localStorageProfileName]);
 
+    
     const onChangeProfileName = (e) => {
         setTemporaryProfileName(e.target.value);
     }
 
     const editName = () => {
-        if (editableText && temporaryProfileName!="") {
+        if (editableText && temporaryProfileName.trim()!="") {
 
             if (selectedProfileCoursesIsLocalStorage) {
-                
-                    setLocalStorageProfileName(temporaryProfileName);
+                setLocalStorageProfileName(temporaryProfileName);
                 
             } else {
                 let data = "";
@@ -90,7 +89,6 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
         setEditableText(!editableText);
 
     }
-
     const onChangeSelectedProfile = (e) => {
 
         setSelectedProfileName(e.target.value);
@@ -108,7 +106,7 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
         }
 
     }
-
+    
 
     const onSave = () => {
 
@@ -124,18 +122,15 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
             setLocalStorageProfileName("Min masterexamen");
             setSelectedProfileCourses(selectedCourses);
         }
-
    }
 
 
 
-
+    
     const onClickSelectProfile = () => {
         
         if (isFirstClick) {
-
             if (!selectedProfileCoursesIsLocalStorage) {
-
                 let transformedProfileCourses = [];
 
                 const preTransformedProfileCourses = profiles.find((profile) => profile.name == selectedProfileName);
@@ -145,9 +140,7 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
                     setBackdrop(true);
                 }
             }
-
             setIsFirstClick(false);
-
         } else {
             setIsFirstClick(true);
         }
@@ -192,19 +185,32 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
                   
 
                   
-        </div>
+              </div>
+
+              {/*<ProfileSelector
+                  onChangeProfileName={onChangeProfileName}
+                  onClickSelectProfile={onClickSelectProfile}
+                  onChangeSelectedProfile={onChangeSelectedProfile}
+                  editName={editName}
+                  selectedProfileName={selectedProfileName}
+                  localStorageProfileName={localStorageProfileName}
+                  profiles={profiles}
+                  editableText={editableText}
+              />
+              */}
+
               <h3 className="profile_name">
                   {" "}
                   {editableText ?
                       <input type="text" onChange={(e) => onChangeProfileName(e)} placeholder={selectedProfileName} />
                       : <select onClick={onClickSelectProfile} onChange={(e) => onChangeSelectedProfile(e)}  >
                           <option value={localStorageProfileName}>{localStorageProfileName}</option>
-                          {profiles.map((profile) => <option selected={profile.name==selectedProfileName ? "selected" : "" } value={profile.name}>{profile.name}</option>)}
-                  </select>}
+                          {profiles.map((profile) => <option selected={profile.name == selectedProfileName ? "selected" : ""} value={profile.name}>{profile.name}</option>)}
+                      </select>}
                   <FontAwesomeIcon onClick={editName} className="change_profile_name_icon" icon={editableText ? faCircleCheck : faPen} />
               </h3>
-
-
+             
+            
         <ToggleOverviewButton
           showOverview={showOverview}
           setShowOverview={setShowOverview}
@@ -212,15 +218,15 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
       </div>
       {showOverview ? (
         <Overview
-                  selectedCourses={selectedProfileCourses}
-                  selectedProfileName={selectedProfileName}
+            selectedCourses={selectedProfileCourses}
+            selectedProfileName={selectedProfileName}
         />
       ) : (
         <Semesters
-                      selectedCourses={selectedCourses}
-                      setSelectedCourses={setSelectedCourses}
-                      setSelectedProfileCourses={setSelectedProfileCourses}
-                      selectedProfileCourses={selectedProfileCourses}
+            selectedCourses={selectedCourses}
+            setSelectedCourses={setSelectedCourses}
+            setSelectedProfileCourses={setSelectedProfileCourses}
+            selectedProfileCourses={selectedProfileCourses}
         />
       )}
     </div>
