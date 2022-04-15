@@ -19,9 +19,15 @@ const DisplayCourse = ({
     
 }) => {
     const [showresult, setShowResults] = useState(false);
-        const [showAddButton, setShowAddButton] = useState(!selectedProfileCourses.map((course) => course.coursename).includes(courseinfo.coursename));
-    
+    const [showAddButton, setShowAddButton] = useState(selectedProfileCourses.filter((course) => course.coursename == courseinfo.coursename && course.semester == courseinfo.semester).length == 0);
+   
+    // Necessary to update the showAddButton state when searching for courses => courseinfo changes
+    useEffect(() => {
+        setShowAddButton(selectedProfileCourses.filter((course) => course.coursename == courseinfo.coursename && course.semester == courseinfo.semester).length == 0)
+    }, [courseinfo])
+
     const onClick = () => setShowResults(!showresult);
+
 
   return (
     <>
@@ -40,8 +46,6 @@ const DisplayCourse = ({
           </div>
                   <div className="div_r">
 
-
-
                       {homePage ? <ButtonAddRemoveCourse
                           courseinfo={courseinfo}
                           setSelectedCourses={setSelectedCourses}
@@ -58,7 +62,6 @@ const DisplayCourse = ({
                                   courseinfo={courseinfo}
                                   setSelectedCourses={setSelectedCourses}
                                       selectedCourses={selectedCourses}
-
                                       setSelectedProfileCourses={setSelectedProfileCourses}
                                       selectedProfileCourses={selectedProfileCourses}
                               />
@@ -132,33 +135,6 @@ const ShowBlockOfCourse = ({ courseinfo }) => {
 
 
 
-/*{
-    homePage ? <> {!selectedCourses.includes(courseinfo) ?
-        (<Btn_addcourse
-            courseinfo={courseinfo}
-            setSelectedCourses={setSelectedCourses}
-            selectedCourses={selectedCourses}
-        />) : <Btn_removeCourse
-            courseinfo={courseinfo}
-            setSelectedCourses={setSelectedCourses}
-            selectedCourses={selectedCourses}
-        />
-    }</> : (
-        <div className="btn-displaycourse">
-            <Btn_moveCourse
-                courseinfo={courseinfo}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
-            />
-            <Btn_removeCourse
-                courseinfo={courseinfo}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
-            />
-        </div>
-    )
-}
-*/
 
 
 export default DisplayCourse;

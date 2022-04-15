@@ -8,6 +8,7 @@ import { faSquareCaretRight } from "@fortawesome/free-solid-svg-icons";
 const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
     setSelectedProfileCourses,
     selectedProfileCourses }) => {
+
     const [isOpen, setIsOpen] = useState(false);
 
     let newTerm;

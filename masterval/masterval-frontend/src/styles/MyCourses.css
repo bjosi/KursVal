@@ -173,7 +173,7 @@
   }
 }
 
-.exam_name {
+.profile_name {
   margin: 1rem auto 1.5rem auto;
   font-weight: 700;
   font-size: 1.25rem;
@@ -196,12 +196,13 @@
   margin: 0 0.2rem 0 0.2rem;
 }
 
-.exam_name_icon {
-  margin-left: 0.2rem;
-  margin-bottom: 0.1rem;
-  color: lightgrey;
-  font-size: 1rem;
-  font-family: "Lato", sans-serif;
+.change_profile_name_icon {
+    margin-left: 0.2rem;
+    margin-bottom: 0.1rem;
+    color: lightgrey;
+    font-size: 1rem;
+    font-family: "Lato", sans-serif;
+    cursor: pointer;
 }
 
 .semester_header {

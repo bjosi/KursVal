@@ -18,8 +18,6 @@ const Browse = ({
   setSelectedProfileCourses
 }) => {
     const [backdrop, setBackdrop] = useState(false);
-    const isLocalStorage = (JSON.stringify(selectedCourses) == JSON.stringify(selectedProfileCourses));
-
 
   return (
     <>

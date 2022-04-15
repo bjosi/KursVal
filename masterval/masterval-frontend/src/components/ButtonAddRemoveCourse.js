@@ -20,9 +20,6 @@ const ButtonAddRemoveCourse = ({
 
         const isLocalStorage = JSON.stringify(selectedCourses) == JSON.stringify(selectedProfileCourses);
 
-        console.log(isLocalStorage);
-        console.log(homePage);
-
         if (homePage) {
             if (showAddButton) {
                 var myFilter = selectedProfileCourses.filter(
@@ -34,55 +31,41 @@ const ButtonAddRemoveCourse = ({
                     var uniqueArray = Array.from(uniqueSet);
                     setShowAddButton(false);
 
+                    setSelectedProfileCourses(uniqueArray);
+
                     if (isLocalStorage) {
                         setSelectedCourses(uniqueArray);
-                        setSelectedProfileCourses(uniqueArray)
-                    } else {
-                        setSelectedProfileCourses(uniqueArray);
                     }
                 }
 
             } else {
-                const newList = selectedCourses.filter(
+                const newList = selectedProfileCourses.filter(
                     (item) => item.coursecode !== clickedobjekt.coursecode
                 );
                 setShowAddButton(true);
+
+                setSelectedProfileCourses(newList)
+
                 if (isLocalStorage) {
                     setSelectedCourses(newList);
-                    setSelectedProfileCourses(newList)
-                } else {
-                    setSelectedProfileCourses(newList)
-
-                }
+                } 
             }
 
         } else {
 
-            
+            const newList = selectedProfileCourses.filter(
+                (item) => item.coursecode !== clickedobjekt.coursecode
+            );
+
+            setSelectedProfileCourses(newList)
+
             if (isLocalStorage) {
-
-                const newList = selectedCourses.filter(
-                    (item) => item.coursecode !== clickedobjekt.coursecode
-                );
                 setSelectedCourses(newList);
-                setSelectedProfileCourses(newList)
-            } else {
-                const newList = selectedProfileCourses.filter(
-                    (item) => item.coursecode !== clickedobjekt.coursecode
-                );
-                setSelectedProfileCourses(newList)
-
-            }
+            } 
         }
 
 
     }
-
-
-
-
-
-
 
     return (
         <button

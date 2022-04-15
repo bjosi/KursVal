@@ -11,7 +11,9 @@ function App() {
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
     );
-    const [selectedProfileCourses, setSelectedProfileCourses] = useState(JSON.parse(localStorage.getItem("selectedProfileCourses")) || selectedCourses);
+
+    // The courses of the profile that is currently shown
+  const [selectedProfileCourses, setSelectedProfileCourses] = useState(JSON.parse(localStorage.getItem("selectedProfileCourses")) || selectedCourses);
 
 
     useEffect(() => {
@@ -95,7 +97,7 @@ function App() {
       JSON.stringify(selectedCourses)
       );
 
-  }, [selectedCourses]);
+  }, [selectedCourses, searchQuery]);
 
   const searchHandler = (query) => {
     console.log(query);
