@@ -40,6 +40,7 @@ body {
     align-items: center;
     align-content: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .loading_item{

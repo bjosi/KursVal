@@ -3,6 +3,7 @@ import SearchHeader from "../components/SearchHeader";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import DisplayCourse from "../components/DisplayCourse";
 import Backdrop from "../components/Backdrop/Backdrop";
+import "../styles/DisplayCourse.css";
 import "./Browse.css";
 
 const Browse = ({
@@ -24,7 +25,16 @@ const Browse = ({
         semesterHandler={semesterHandler}
       />
       <div className="container">
-        <div className="div_filter">
+              <div className="div_filter">
+                  <p> visar {courses.length} resultat </p>
+                  <div className="show_info_block">
+
+                      <div className="course_block_icon" >
+                            
+                      </div>
+                      <p> - block </p>
+                  </div>
+
           <button className="button_filter" onClick={() => setBackdrop(true)}>
             Filter
           </button>

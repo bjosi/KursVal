@@ -156,8 +156,13 @@ function App() {
       );
   }, []);
 
+
     if (error) {
-        window.location.reload();
+        //laddar om sidan efter 1 sekund om det blir error
+        setTimeout(function () {
+
+            window.location.reload();
+        }, 1000);
     return <div> </div>;
   } else if (!loaded) {
     return (<><Loading/></>);

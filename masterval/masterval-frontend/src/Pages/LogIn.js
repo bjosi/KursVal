@@ -5,7 +5,6 @@ import { useRef, useState } from "react";
 import ToggleLoginButton from "../components/ToggleLoginButton";
 
 const LogIn = ({ isloggedin, setisloggedin })=> {
-    const [loading, setLoading] = useState(false);
     const currentUser = useAuth();
     const [showlogin, setshowlogin] = useState(false);
   //  const [isloggedin, setisloggedin] = useState("false");
@@ -21,7 +20,6 @@ const LogIn = ({ isloggedin, setisloggedin })=> {
 
     async function handleSignup() {
 
-        setLoading(true);
         try {
             await signup(emailRef.current.value, passwordRef.current.value);
             seterrosignup(false);
@@ -33,7 +31,7 @@ const LogIn = ({ isloggedin, setisloggedin })=> {
             window.location.href = '/';
         }
         catch {
-            if (passwordRef.current.value == "") {
+            if (passwordRef.current.value === "") {
                 seterrorpassword(true);
                 seterrosignup(false);
             }
@@ -43,11 +41,10 @@ const LogIn = ({ isloggedin, setisloggedin })=> {
             }
         }
 
-        setLoading(false);
     }
 
     async function handleLogout() {
-        setLoading(true);
+        
         console.log(isloggedin);
         try {
             await logout();
@@ -58,8 +55,7 @@ const LogIn = ({ isloggedin, setisloggedin })=> {
             console.log(isloggedin);
         }
         catch { }
-        setLoading(false);
-
+        
         console.log(isloggedin);
     }
 
@@ -67,7 +63,6 @@ const LogIn = ({ isloggedin, setisloggedin })=> {
     async function handleLogin() {
         console.log("försöker logga in");
 
-        setLoading(true);
         try {
             await login(emailRef.current.value, passwordRef.current.value);
             setisloggedin(true);
@@ -82,7 +77,6 @@ const LogIn = ({ isloggedin, setisloggedin })=> {
         catch {
             seterrorlogin(true);
         }
-        setLoading(false);
     }
 
 
