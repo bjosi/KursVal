@@ -89,6 +89,7 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
         setEditableText(!editableText);
 
     }
+
     const onChangeSelectedProfile = (e) => {
 
         setSelectedProfileName(e.target.value);
@@ -125,14 +126,17 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
    }
 
 
-
+    const onDelete = () => {
+        const username = "usernamebla," + selectedProfileName;
+        fetch("delete/" + username);
+        setSelectedCourses(localStorageProfileName);
+    };
     
     const onClickSelectProfile = () => {
         
         if (isFirstClick) {
             if (!selectedProfileCoursesIsLocalStorage) {
                 let transformedProfileCourses = [];
-
                 const preTransformedProfileCourses = profiles.find((profile) => profile.name == selectedProfileName);
                 preTransformedProfileCourses.courselist.map((profile) => transformedProfileCourses.push(allCourses.find((course) => course.coursecode == profile.coursecode && course.semester == profile.choosensemester)))
                
@@ -182,7 +186,15 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
                       Uppdatera profil
                       <FontAwesomeIcon className="upper_header_icon" icon={faArrowsRotate} />
                   </button>}
-                  
+
+                  <button onClick={onDelete} className="upper_header_link">
+                      {" "}
+                      ta bort profil{" "}
+                      <FontAwesomeIcon className="upper_header_icon" icon={faHeart} />
+                  </button>
+
+
+
 
                   
               </div>
