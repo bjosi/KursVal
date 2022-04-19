@@ -62,7 +62,7 @@ const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
           {" "}
           Min masterexamen{" "}
           <FontAwesomeIcon className="exam_name_icon" icon={faPen} />
-        </h>
+        </h1>
         <ToggleOverviewButton
           showOverview={showOverview}
           setShowOverview={setShowOverview}
@@ -72,8 +72,7 @@ const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
         <Overview
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}
-        />
-      ) : (
+              />) : (
         <Semesters
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}

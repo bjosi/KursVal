@@ -1,8 +1,9 @@
 import React from "react";
 import MyCourses from "../Pages/MyCourses";
 import LogIn from "../Pages/LogIn";
-
+import { signup, useAuth, logout, login } from "../firebase";
 import Browse from "../Pages/Browse";
+import Loading from "../Pages/Loading";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -24,8 +25,25 @@ const NavBar = ({
   semesterHandler,
   filters,
   selectedFilters,
-  setSelectedFilters,
+    setSelectedFilters,
+    isloggedin,
+  setisloggedin
 }) => {
+
+    async function handleLogout() {
+        
+        console.log(isloggedin);
+        try {
+            await logout();
+            setisloggedin(false);
+            console.log(isloggedin);
+        }
+        catch { }
+        
+        console.log(isloggedin);
+    }
+
+
   return (
     <>
       <Router>
@@ -45,13 +63,20 @@ const NavBar = ({
                 <FontAwesomeIcon icon={faSuitcase} />
                 <h1>Mina kurser</h1>
               </div>
-            </Link>
-            <Link to="/LogIn">
-              <div className="menu-item">
-                <FontAwesomeIcon icon={faUser} />
-                <h1>Logga in</h1>
-              </div>
-            </Link>
+                      </Link>
+                      {isloggedin ?
+                          <Link to="/" onClick={handleLogout}>
+                              <div className="menu-item">
+                                  <FontAwesomeIcon icon={faUser} />
+                                  <h1>Logga ut</h1>
+                              </div>
+                          </Link> : <Link to="/LogIn">
+                              <div className="menu-item">
+                                  <FontAwesomeIcon icon={faUser} />
+                                  <h1>Logga in</h1>
+                              </div>
+                          </Link>
+            }
           </div>
         </div>
         <Switch>
@@ -66,10 +91,17 @@ const NavBar = ({
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
             />
-          </Route>
+                  </Route>
+
+
+                  <Route path="/Loading">
+                      <Loading />
+                  </Route>
+
+
 
                   <Route path="/LogIn">
-                    <LogIn/>  
+                      <LogIn isloggedin={isloggedin} setisloggedin={setisloggedin}/>
             </Route>
           <Route path="/">
             <Browse
