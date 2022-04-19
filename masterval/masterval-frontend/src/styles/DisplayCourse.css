@@ -45,11 +45,13 @@
   font-size: 1rem;
   font-family: "Lato", sans-serif;
   font-weight: 400;
+  margin-left: 0.5rem;
 }
 
 .c_info_icon {
-  size: 0.5rem;
-  margin-right: 0.2rem;
+  font-size: 0.8rem;
+  width: 20px;
+  color: #2b6778;
 }
 
 .div_l {
