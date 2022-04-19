@@ -51,11 +51,8 @@ const TableMatrix = ({ selectedCourses }) => {
 
   const Make_arr = ({ input }) => {
     var arr = [];
-    console.log("input:");
-    console.log(input);
     var splited = input.uChosen.split(",");
-    console.log(splited);
-
+    
     var count = 0;
 
     if (input !== undefined) {
@@ -68,8 +65,8 @@ const TableMatrix = ({ selectedCourses }) => {
           arr.push(false);
         }
       }
-    }
-    console.log(arr);
+      }
+
     return (
       <>
         <div className="vertical_div">

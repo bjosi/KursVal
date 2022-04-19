@@ -12,7 +12,11 @@ import {
   faCircleHalfStroke,
   faCircle,
   faGraduationCap,
-  faCalendar,
+    faCalendar,
+    faBarcode,
+    faBookOpen,
+    faLocationDot,
+    faWindowRestore
 } from "@fortawesome/free-solid-svg-icons";
 
 const DisplayCourse = ({
@@ -43,9 +47,9 @@ const DisplayCourse = ({
               <ShowBlockOfCourse courseinfo={courseinfo}></ShowBlockOfCourse>
             </div>
 
-            <div className="c_info_container">
-              <FontAwesomeIcon className="c_info_icon" icon={faGraduationCap} />
-              <p className="c_info"> {courseinfo.progname} </p>
+                      <div className="c_info_container">
+                          <FontAwesomeIcon className="c_info_icon" icon={faBarcode} />
+                          <p className="c_info"> {courseinfo.coursecode} </p>
             </div>
             <div className="c_info_container">
               <FontAwesomeIcon className="c_info_icon" icon={faCalendar} />
@@ -100,17 +104,33 @@ const DisplayCourse = ({
 const Results = ({ courseinfo }) => {
   const link = "https://studieinfo.liu.se/kurs/" + courseinfo.coursecode;
   return (
-    <div>
-      <p className="c_info"> {courseinfo.coursepoints} HP </p>
-      <p className="c_info"> Kurskod: {courseinfo.coursecode} </p>
-      <a
-        href={link}
-        className="course_website"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Besök kurshemsidan
-      </a>
+      <div>
+
+          <div className="c_info_container">
+              <FontAwesomeIcon className="c_info_icon" icon={faBookOpen} />
+              <p className="c_info"> {courseinfo.area} </p>
+          </div>
+
+
+          <div className="c_info_container">
+              <FontAwesomeIcon className="c_info_icon" icon={faLocationDot} />
+              <p className="c_info"> {courseinfo.place} </p>
+          </div>
+
+
+          <div className="c_info_container">
+              <FontAwesomeIcon className="c_info_icon" icon={faWindowRestore} />
+
+              <a
+                  href={link}
+                  className="course_website"
+                  target="_blank"
+                  rel="noreferrer"
+              >
+                  Besök kurshemsidan
+              </a>          </div>
+
+
     </div>
   );
 };
@@ -124,7 +144,9 @@ const ShowPaseOfCourse = ({ courseinfo }) => {
   }
   return (
     <div className="pase_container">
-      {paseIsFull ? (
+          {paseIsFull ? (
+
+
         <p className="pase_text">Helfart</p>
       ) : (
         <p className="pase_text">Halvfart</p>
@@ -152,32 +174,6 @@ const ShowBlockOfCourse = ({ courseinfo }) => {
   );
 };
 
-/*{
-    homePage ? <> {!selectedCourses.includes(courseinfo) ?
-        (<Btn_addcourse
-            courseinfo={courseinfo}
-            setSelectedCourses={setSelectedCourses}
-            selectedCourses={selectedCourses}
-        />) : <Btn_removeCourse
-            courseinfo={courseinfo}
-            setSelectedCourses={setSelectedCourses}
-            selectedCourses={selectedCourses}
-        />
-    }</> : (
-        <div className="btn-displaycourse">
-            <Btn_moveCourse
-                courseinfo={courseinfo}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
-            />
-            <Btn_removeCourse
-                courseinfo={courseinfo}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
-            />
-        </div>
-    )
-}
-*/
+
 
 export default DisplayCourse;

@@ -164,7 +164,8 @@ function App() {
             window.location.reload();
         }, 1000);
     return <div> </div>;
-  } else if (!loaded) {
+    } else if (!loaded) {
+
     return (<><Loading/></>);
   } else {
     return (
