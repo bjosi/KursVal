@@ -21,11 +21,11 @@ namespace masterval_backend.Controllers
         [HttpGet("/courses/profiles/{username}")]
         public IEnumerable<Profile> Get(String username)
         {
-               var client = new MongoClient("mongodb+srv://kandidat:kand2022@cluster0.5dn6x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-              var database = client.GetDatabase("Saved");
-              var collection = database.GetCollection<Profile>(username);
-              var documents = collection.Find(_ => true).ToList();
-              return documents;
+            var client = new MongoClient("mongodb+srv://kandidat:kand2022@cluster0.5dn6x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+            var database = client.GetDatabase("Saved");
+            var collection = database.GetCollection<Profile>(username);
+            var documents = collection.Find(_ => true).ToList();
+            return documents;
         }
 
         [HttpGet("/courses")]
@@ -111,7 +111,7 @@ namespace masterval_backend.Controllers
 
 
             }
-
+            return info;
         }
 
 
