@@ -29,6 +29,9 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
     const [localStorageProfileName, setLocalStorageProfileName] = useState("Min masterexamen");
     // used when editing a profile name
     const [temporaryProfileName, setTemporaryProfileName] = useState("");
+    // used when saving with "Do you want to save changes" :)
+    const [temporaryProfileNameUpdateProfile, setTemporaryProfileNameUpdateProfile] = useState("");
+    const [temporarySelectedCoursesUpdateProfile, setTemporarySelectedCoursesUpdateProfile] = useState([]);
 
 
     useEffect(() => {fetch("courses")
@@ -58,7 +61,7 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
                     }
                 );
         }
-    }, [selectedProfileName, isFirstClick, localStorageProfileName]);
+    }, [selectedProfileName, isFirstClick, localStorageProfileName, temporaryProfileNameUpdateProfile]);
 
     
     const onChangeProfileName = (e) => {
@@ -92,6 +95,19 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
 
     const onChangeSelectedProfile = (e) => {
 
+        if (!selectedProfileCoursesIsLocalStorage) {
+            let transformedProfileCourses = [];
+            const preTransformedProfileCourses = profiles.find((profile) => profile.name == selectedProfileName);
+            preTransformedProfileCourses.courselist.map((profile) => transformedProfileCourses.push(allCourses.find((course) => course.coursecode == profile.coursecode && course.semester == profile.choosensemester)))
+
+            if (JSON.stringify(transformedProfileCourses) != JSON.stringify(selectedProfileCourses)) {
+                setBackdrop(true);
+                setTemporaryProfileNameUpdateProfile(selectedProfileName);
+                setTemporarySelectedCoursesUpdateProfile(selectedProfileCourses);
+            }
+        }
+
+
         setSelectedProfileName(e.target.value);
 
         if (e.target.value != localStorageProfileName) {
@@ -111,11 +127,24 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
 
     const onSave = () => {
 
+
+        let profileName;
+        let coursesSelected;
+
+        if (temporaryProfileNameUpdateProfile != "") {
+            profileName = temporaryProfileNameUpdateProfile;
+            coursesSelected = temporarySelectedCoursesUpdateProfile
+
+        } else {
+            profileName = selectedProfileName;
+            coursesSelected = selectedProfileCourses;
+        }
+
         let data = "";
-        selectedProfileCourses.map((course) => data += ("," + course.coursecode + "," + course.semester))
+        coursesSelected.map((course) => data += ("," + course.coursecode + "," + course.semester))
         //"save/username:minexamen:TNM02:1"
 
-        const username = "usernamebla," + selectedProfileName;
+        const username = "usernamebla," + profileName;
         fetch("save/" + username + "/" + data + "/" + "false");
           
         if (selectedProfileCoursesIsLocalStorage) {
@@ -123,6 +152,10 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
             setLocalStorageProfileName("Min masterexamen");
             setSelectedProfileCourses(selectedCourses);
         }
+
+
+        setTemporaryProfileNameUpdateProfile("");
+        setTemporarySelectedCoursesUpdateProfile([]);
    }
 
 
@@ -134,7 +167,7 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
     
     const onClickSelectProfile = () => {
         
-        if (isFirstClick) {
+        /*if (isFirstClick) {
             if (!selectedProfileCoursesIsLocalStorage) {
                 let transformedProfileCourses = [];
                 const preTransformedProfileCourses = profiles.find((profile) => profile.name == selectedProfileName);
@@ -147,15 +180,15 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
             setIsFirstClick(false);
         } else {
             setIsFirstClick(true);
-        }
+        }*/
     }
-
+    
 
   return (
       <div>
           <Backdrop onClose={() => setBackdrop(false)} open={backdrop}>
-              <div style={{ width: "400px", backgroundColor: "white", position: "relative", padding:"1rem"}}>
-                  <h1 className="save_changes">Vill du spara dina ändringar?</h1> <br/>
+              <div style={{ width: "400px", backgroundColor: "white", position: "relative", padding: "1rem" }}>
+                  <h1 className="save_changes">Vill du spara dina ändringar till "{temporaryProfileNameUpdateProfile}"?</h1> <br />
                   <button onClick={function () { onSave(); setBackdrop(false) }} className="upper_header_link">
                       Spara ändringar
                       <FontAwesomeIcon className="upper_header_icon" icon={faArrowsRotate} />
@@ -214,8 +247,8 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
               <h3 className="profile_name">
                   {" "}
                   {editableText ?
-                      <input type="text" onChange={(e) => onChangeProfileName(e)} placeholder={selectedProfileName} />
-                      : <select onClick={onClickSelectProfile} onChange={(e) => onChangeSelectedProfile(e)}  >
+                      <input className="select_profile" type="text" onChange={(e) => onChangeProfileName(e)} placeholder={selectedProfileName} />
+                      : <select className="select_profile" onClick={onClickSelectProfile} onChange={(e) => onChangeSelectedProfile(e)}  >
                           <option value={localStorageProfileName}>{localStorageProfileName}</option>
                           {profiles.map((profile) => <option selected={profile.name == selectedProfileName ? "selected" : ""} value={profile.name}>{profile.name}</option>)}
                       </select>}
