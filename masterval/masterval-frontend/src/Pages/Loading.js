@@ -1,4 +1,6 @@
-import ReactLoading from 'react-loading';
+//import ReactLoading from 'react-loading';
+
+import ReactLoading from "react-loading";
 import "../styles/App.css";
 
 import SearchHeader from "../components/SearchHeader";
