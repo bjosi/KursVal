@@ -13,11 +13,26 @@ function App() {
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
     );
 
+    // The courses of the profile that is currently shown
+  const [selectedProfileCourses, setSelectedProfileCourses] = useState(JSON.parse(localStorage.getItem("selectedProfileCourses")) || selectedCourses);
+
+
+    useEffect(() => {
+        localStorage.setItem(
+            "selectedProfileCourses",
+            JSON.stringify(selectedProfileCourses)
+        );
+
+    }, [selectedProfileCourses]);
+
+    const [selectedFilters, setSelectedFilters] = useState([]);
+
     const [isloggedin, setisloggedin] = useState(
         localStorage.getItem("myValueInLocalStorageforloggedin") || false
     );
 
   const [selectedFilters, setSelectedFilters] = useState([]);
+
   const filters = [
     "Grundnivå",
     "Avancerad nivå",
@@ -99,8 +114,9 @@ function App() {
     localStorage.setItem(
       "myValueInLocalStorage",
       JSON.stringify(selectedCourses)
-    );
-  }, [selectedCourses]);
+      );
+
+  }, [selectedCourses, searchQuery]);
 
 
     useEffect(() => {
@@ -173,7 +189,9 @@ function App() {
         <NavBar
           selectedCourses={selectedCourses}
                 setSelectedCourses={setSelectedCourses}
-                
+
+                selectedProfileCourses={selectedProfileCourses}
+                setSelectedProfileCourses={setSelectedProfileCourses}
           courses={
             semesterQuery !== null
               ? semesterQuery

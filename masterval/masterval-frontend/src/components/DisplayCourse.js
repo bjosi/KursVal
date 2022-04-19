@@ -22,20 +22,22 @@ import {
 const DisplayCourse = ({
   courseinfo,
   setSelectedCourses,
-  selectedCourses,
-  homePage,
+    selectedCourses,
+    setSelectedProfileCourses,
+    selectedProfileCourses,
+    homePage,
+    
 }) => {
-  const [showresult, setShowResults] = useState(false);
-
-  const [showAddButton, setShowAddButton] = useState(
-    !selectedCourses.includes(courseinfo)
-  );
-
-  useEffect(() => {
-    setShowAddButton(!selectedCourses.includes(courseinfo));
-  });
+    const [showresult, setShowResults] = useState(false);
+    const [showAddButton, setShowAddButton] = useState(selectedProfileCourses.filter((course) => course.coursename == courseinfo.coursename && course.semester == courseinfo.semester).length == 0);
+   
+    // Necessary to update the showAddButton state when searching for courses => courseinfo changes
+    useEffect(() => {
+        setShowAddButton(selectedProfileCourses.filter((course) => course.coursename == courseinfo.coursename && course.semester == courseinfo.semester).length == 0)
+    }, [courseinfo])
 
   const onClick = () => setShowResults(!showresult);
+
 
   return (
     <>
@@ -61,30 +63,41 @@ const DisplayCourse = ({
             </div>
             {showresult ? <Results courseinfo={courseinfo} /> : null}
           </div>
-          <div className="div_r">
-            {homePage ? (
-              <ButtonAddRemoveCourse
-                courseinfo={courseinfo}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
-                showAddButton={showAddButton}
-              />
-            ) : (
-              <div className="btn-displaycourse">
-                <Btn_moveCourse
-                  courseinfo={courseinfo}
-                  setSelectedCourses={setSelectedCourses}
-                  selectedCourses={selectedCourses}
-                />
-                <ButtonAddRemoveCourse
-                  courseinfo={courseinfo}
-                  setSelectedCourses={setSelectedCourses}
-                  selectedCourses={selectedCourses}
-                  showAddButton={showAddButton}
-                />
-              </div>
-            )}
+                  <div className="div_r">
 
+                      {homePage ? <ButtonAddRemoveCourse
+                          courseinfo={courseinfo}
+                          setSelectedCourses={setSelectedCourses}
+                          selectedCourses={selectedCourses}
+                          showAddButton={showAddButton}
+                          setShowAddButton={setShowAddButton}
+                          homePage={homePage}
+                          setSelectedProfileCourses={setSelectedProfileCourses}
+                          selectedProfileCourses={selectedProfileCourses}
+                          
+                      /> : (
+                          <div className="btn-displaycourse">
+                              <Btn_moveCourse
+                                  courseinfo={courseinfo}
+                                  setSelectedCourses={setSelectedCourses}
+                                      selectedCourses={selectedCourses}
+                                      setSelectedProfileCourses={setSelectedProfileCourses}
+                                      selectedProfileCourses={selectedProfileCourses}
+                              />
+                                  <ButtonAddRemoveCourse
+                                      courseinfo={courseinfo}
+                                      setSelectedCourses={setSelectedCourses}
+                                      selectedCourses={selectedCourses}
+                                      showAddButton={false}
+                                      setShowAddButton={setShowAddButton}
+                                      homePage={homePage}
+                                      setSelectedProfileCourses={setSelectedProfileCourses}
+                                      selectedProfileCourses={selectedProfileCourses}
+                              />
+                          </div>
+                      )}
+
+                    
             <ShowPaseOfCourse courseinfo={courseinfo} />
           </div>
         </div>

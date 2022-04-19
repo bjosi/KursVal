@@ -5,47 +5,35 @@ import ProgressBar from "./ProgressBar";
 
 import React, { useState } from "react";
 
-const Semesters = ({ selectedCourses, setSelectedCourses }) => {
-  const [semester, setSemester] = useState(7);
+const Semesters = ({ selectedCourses, setSelectedCourses, setSelectedProfileCourses, selectedProfileCourses }) => {
 
-  let HPPerSemester = 0;
+    const [semester, setSemester] = useState(7);
 
-  const coursesInSemester = selectedCourses.filter(
-    (course) => course.semester == semester
-  );
-  coursesInSemester.map((course) => (HPPerSemester += course.coursepoints));
-  console.log(HPPerSemester);
-  return (
-    <>
-      <div className="semester_header">
-        <SemesterSelector semester={semester} setSemester={setSemester} />
-        <h1> Högskolepoäng </h1>
-        <div className="progress_bar_wrapper">
-          <ProgressBar progress={HPPerSemester / 30} isSmall={true} />
-          <h4>{HPPerSemester} av 30HP</h4>
-        </div>
+    let HPPerSemester = 0;
+    console.log(selectedProfileCourses);
 
-        {HPPerSemester >= 30 ? (
-          <h4 className="semester_header_small_text">
-            Grattis, du har valt kurser på helfart för terminen
-          </h4>
-        ) : (
-          <h4 className="semester_header_small_text">
-            {" "}
-            Du har {30 - HPPerSemester} HP kvar för att läsa på helfart den här
-            terminen
-          </h4>
-        )}
-      </div>
-      <DisplayPeriod
-        courseinfo={selectedCourses}
-        setSelectedCourses={setSelectedCourses}
-        selectedCourses={selectedCourses}
-        homePage={false}
-        semester={semester}
-      />
-    </>
-  );
-};
+    const coursesInSemester = selectedProfileCourses.filter((course) => course.semester === semester);
+   // const coursesInSemester = selectedProfileCourses.map((course) => console.log(course.semester));
+
+    coursesInSemester.map((course) => HPPerSemester += course.coursepoints);
+    return (
+        <>
+            <div className='semester_header'>
+                <SemesterSelector semester={semester} setSemester={setSemester} />
+                <h> Högskolepoäng </h>
+                <div className='progress_bar_wrapper'>
+                    <ProgressBar progress={HPPerSemester / 30} isSmall={true} />
+                    <h>{HPPerSemester} av 30HP</h>
+                </div>
+
+                {HPPerSemester >= 30 ? <h className='semester_header_small_text'>Grattis, du har valt kurser på helfart för terminen</h> : <h className='semester_header_small_text'> Du har {30 - HPPerSemester} HP kvar för att läsa på helfart den här terminen</h>}
+                
+            </div>
+            <DisplayPeriod  courseinfo={selectedProfileCourses} setSelectedCourses={setSelectedCourses} selectedCourses={selectedCourses} setSelectedProfileCourses={setSelectedProfileCourses} selectedProfileCourses={selectedProfileCourses}homePage={false} semester={semester} />
+
+
+        </>)
+}
 
 export default Semesters;
+

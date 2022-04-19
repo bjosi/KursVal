@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react";
 import MyCourses from "../Pages/MyCourses";
 import LogIn from "../Pages/LogIn";
 import { signup, useAuth, logout, login } from "../firebase";
@@ -26,9 +26,13 @@ const NavBar = ({
   filters,
   selectedFilters,
     setSelectedFilters,
+    selectedProfileCourses,
+    setSelectedProfileCourses,
     isloggedin,
-  setisloggedin
+    setisloggedin
 }) => {
+
+
 
     async function handleLogout() {
         
@@ -82,16 +86,14 @@ const NavBar = ({
         <Switch>
           <Route path="/MyCourses">
             <MyCourses
-              courses={courses}
-              searchHandler={searchHandler}
-              semesterHandler={semesterHandler}
-              selectedCourses={selectedCourses}
-              setSelectedCourses={setSelectedCourses}
-              filters={filters}
-              selectedFilters={selectedFilters}
-              setSelectedFilters={setSelectedFilters}
-            />
-                  </Route>
+                          selectedCourses={selectedCourses}
+                          setSelectedCourses={setSelectedCourses}
+                          selectedProfileCourses={selectedProfileCourses}
+                          setSelectedProfileCourses={setSelectedProfileCourses}
+                          
+                                     />
+          </Route>
+
 
 
                   <Route path="/Loading">
@@ -109,10 +111,13 @@ const NavBar = ({
               searchHandler={searchHandler}
               semesterHandler={semesterHandler}
               selectedCourses={selectedCourses}
-              setSelectedCourses={setSelectedCourses}
+                          setSelectedCourses={setSelectedCourses}
+                          selectedProfileCourses={selectedProfileCourses}
+                          setSelectedProfileCourses={setSelectedProfileCourses}
               filters={filters}
               selectedFilters={selectedFilters}
-              setSelectedFilters={setSelectedFilters}
+                          setSelectedFilters={setSelectedFilters}
+                       
             />
           </Route>
         </Switch>
