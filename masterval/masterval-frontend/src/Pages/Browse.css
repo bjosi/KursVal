@@ -37,19 +37,21 @@
   }
 }
 .div_filter {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    padding: 1rem 1rem 0rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding: 2rem 1rem 0.5rem 1rem;
+}
+
+.text_search_matches {
+  align-self: flex-end;
 }
 
 .show_info_block {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 }
-
-
 
 @media screen and (min-width: 760px) {
   .button_filter {

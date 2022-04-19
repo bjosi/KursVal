@@ -7,31 +7,30 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState(null);
-    const [semesterQuery, setSemesterQuery] = useState(null);
+  const [semesterQuery, setSemesterQuery] = useState(null);
 
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
+  );
+
+  // The courses of the profile that is currently shown
+  const [selectedProfileCourses, setSelectedProfileCourses] = useState(
+    JSON.parse(localStorage.getItem("selectedProfileCourses")) ||
+      selectedCourses
+  );
+
+  useEffect(() => {
+    localStorage.setItem(
+      "selectedProfileCourses",
+      JSON.stringify(selectedProfileCourses)
     );
-
-    // The courses of the profile that is currently shown
-  const [selectedProfileCourses, setSelectedProfileCourses] = useState(JSON.parse(localStorage.getItem("selectedProfileCourses")) || selectedCourses);
-
-
-    useEffect(() => {
-        localStorage.setItem(
-            "selectedProfileCourses",
-            JSON.stringify(selectedProfileCourses)
-        );
-
-    }, [selectedProfileCourses]);
-
-    const [selectedFilters, setSelectedFilters] = useState([]);
-
-    const [isloggedin, setisloggedin] = useState(
-        localStorage.getItem("myValueInLocalStorageforloggedin") || false
-    );
+  }, [selectedProfileCourses]);
 
   const [selectedFilters, setSelectedFilters] = useState([]);
+
+  const [isloggedin, setisloggedin] = useState(
+    localStorage.getItem("myValueInLocalStorageforloggedin") || false
+  );
 
   const filters = [
     "Grundnivå",
@@ -45,8 +44,7 @@ function App() {
     "Halvfart",
   ];
 
-    useEffect(() => {
-
+  useEffect(() => {
     var filterQuery = null;
     var temp = selectedFilters;
     var temp2 = selectedFilters;
@@ -114,18 +112,15 @@ function App() {
     localStorage.setItem(
       "myValueInLocalStorage",
       JSON.stringify(selectedCourses)
-      );
-
+    );
   }, [selectedCourses, searchQuery]);
 
-
-    useEffect(() => {
-        localStorage.setItem(
-            "myValueInLocalStorageforloggedin",
-            JSON.stringify(isloggedin)
-        );
-    }, [isloggedin]);
-   
+  useEffect(() => {
+    localStorage.setItem(
+      "myValueInLocalStorageforloggedin",
+      JSON.stringify(isloggedin)
+    );
+  }, [isloggedin]);
 
   const searchHandler = (query) => {
     console.log(query);
@@ -172,26 +167,26 @@ function App() {
       );
   }, []);
 
-
-    if (error) {
-        //laddar om sidan efter 1 sekund om det blir error
-        setTimeout(function () {
-
-            window.location.reload();
-        }, 1000);
+  if (error) {
+    //laddar om sidan efter 1 sekund om det blir error
+    setTimeout(function () {
+      window.location.reload();
+    }, 1000);
     return <div> </div>;
-    } else if (!loaded) {
-
-    return (<><Loading/></>);
+  } else if (!loaded) {
+    return (
+      <>
+        <Loading />
+      </>
+    );
   } else {
     return (
-        <div>
+      <div>
         <NavBar
           selectedCourses={selectedCourses}
-                setSelectedCourses={setSelectedCourses}
-
-                selectedProfileCourses={selectedProfileCourses}
-                setSelectedProfileCourses={setSelectedProfileCourses}
+          setSelectedCourses={setSelectedCourses}
+          selectedProfileCourses={selectedProfileCourses}
+          setSelectedProfileCourses={setSelectedProfileCourses}
           courses={
             semesterQuery !== null
               ? semesterQuery
@@ -203,9 +198,9 @@ function App() {
           semesterHandler={semesterHandler}
           filters={filters}
           selectedFilters={selectedFilters}
-                setSelectedFilters={setSelectedFilters}
-                isloggedin={isloggedin}
-                setisloggedin={setisloggedin}
+          setSelectedFilters={setSelectedFilters}
+          isloggedin={isloggedin}
+          setisloggedin={setisloggedin}
         />
       </div>
     );

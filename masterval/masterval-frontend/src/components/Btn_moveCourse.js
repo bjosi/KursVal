@@ -6,56 +6,63 @@ import "./Backdrop/Backdrop.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareCaretRight } from "@fortawesome/free-solid-svg-icons";
 
+const Btn_moveCourse = ({
+  courseinfo,
+  setSelectedCourses,
+  selectedCourses,
+  setSelectedProfileCourses,
+  selectedProfileCourses,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
-    setSelectedProfileCourses,
-    selectedProfileCourses }) => {
+  let newTerm;
 
-    const [isOpen, setIsOpen] = useState(false);
+  if (courseinfo.semester == 7) {
+    newTerm = 9;
+  } else {
+    newTerm = 7;
+  }
 
-    let newTerm;
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  };
 
-    if (courseinfo.semester == 7) {
-        newTerm = 9
+  const handleConfirm = () => {
+    const isLocalStorage =
+      JSON.stringify(selectedCourses) == JSON.stringify(selectedProfileCourses);
+
+    if (isLocalStorage) {
+      setSelectedCourses(
+        selectedCourses.map((item) =>
+          item.coursecode === courseinfo.coursecode
+            ? { ...item, semester: newTerm }
+            : item
+        )
+      );
+
+      setSelectedProfileCourses(selectedCourses);
     } else {
-        newTerm = 7
+      setSelectedProfileCourses(
+        selectedProfileCourses.map((item) =>
+          item.coursecode === courseinfo.coursecode
+            ? { ...item, semester: newTerm }
+            : item
+        )
+      );
     }
+  };
 
-    const togglePopup = () => {
-        setIsOpen(!isOpen);
-    }
-
-    const handleConfirm = () => {
-
-        const isLocalStorage = JSON.stringify(selectedCourses) == JSON.stringify(selectedProfileCourses);
-
-        if (isLocalStorage) {
-
-            setSelectedCourses(
-                selectedCourses.map(item =>
-                    item.coursecode === courseinfo.coursecode
-                        ? { ...item, semester: newTerm }
-                        : item
-                ))
-
-            setSelectedProfileCourses(selectedCourses)
-        } else {
-            setSelectedProfileCourses(
-                selectedProfileCourses.map(item =>
-                    item.coursecode === courseinfo.coursecode
-                        ? { ...item, semester: newTerm }
-                        : item
-                ))
+  return (
+    <>
+      <button
+        className={
+          courseinfo.semester == 8 ? "btn-movecoursehidden" : "btn-movecourse"
         }
-
-    }
-
-
-    return <>
-        <button className={courseinfo.semester == 8 ? 'btn-movecoursehidden' : "btn-movecourse"}
-            onClick={togglePopup}> <FontAwesomeIcon icon={faSquareCaretRight} /> </button>
-        {isOpen && <Popup handleClose={togglePopup} handleConfirm={handleConfirm} newTerm={newTerm}/>}
-
+        onClick={togglePopup}
+      >
+        {" "}
+        <FontAwesomeIcon icon={faSquareCaretRight} />{" "}
+      </button>
     </>
   );
 };
