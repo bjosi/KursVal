@@ -1,65 +1,63 @@
 import "../styles/MyCourses.css";
 import "../styles/App.css";
-import Semesters from '../components/Semesters';
-import Overview from '../components/Overview';
-import ToggleOverviewButton from '../components/ToggleOverviewButton';
-import React, { useState } from 'react';
+import Semesters from "../components/Semesters";
+import Overview from "../components/Overview";
+import ToggleOverviewButton from "../components/ToggleOverviewButton";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import TableMatrix from '../components/TableMatrix';
+import TableMatrix from "../components/Matrix/TableMatrix";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faHeart, faPen } from "@fortawesome/free-solid-svg-icons";
 
 const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
-    const [showOverview, setShowOverview] = useState(false);
+  const [showOverview, setShowOverview] = useState(false);
 
+  const onSave = () => {
+    let data = "";
+    console.log(data);
 
-    const onSave = () => {
+    selectedCourses.map(
+      (course) => (data += "," + course.coursecode + "," + course.semester)
+    );
 
-        let data = "";
-        console.log(data);
+    console.log(data);
 
-        selectedCourses.map((course) => data += ("," + course.coursecode + "," + course.semester))
+    //"save/username:minexamen:TNM02:1"
 
-        console.log(data);
+    const username = "usernamebla,minexamen";
 
-        //"save/username:minexamen:TNM02:1"
+    fetch("save/" + username + "/" + data);
+  };
 
-        const username = "usernamebla,minexamen"
+  const onDelete = () => {
+    const username = "usernamebla,minexamen";
 
-
-        fetch("save/" + username + "/" + data);
-            
-    }
-
-    const onDelete = () => {
-        
-        const username = "usernamebla,minexamen"
-
-        fetch("delete/" + username);
-    }
+    fetch("delete/" + username);
+  };
 
   return (
     <div>
-          <div className="my_courses_header">
-
-              <div className="upper_header">
-            <Link to="/" className="upper_header_link">{" "}
+      <div className="my_courses_header">
+        <div className="upper_header">
+          <Link to="/" className="upper_header_link">
+            {" "}
             <FontAwesomeIcon className="upper_header_icon" icon={faArrowLeft} />
-            Hitta fler kurser{" "}</Link>
-          
-                  <button onClick={onSave} className="upper_header_link">
+            Hitta fler kurser{" "}
+          </Link>
+
+          <button onClick={onSave} className="upper_header_link">
             {" "}
             Spara profil{" "}
-                      <FontAwesomeIcon  className="upper_header_icon" icon={faHeart} />
-                  </button>
+            <FontAwesomeIcon className="upper_header_icon" icon={faHeart} />
+          </button>
 
-                  <button onClick={onDelete} className="upper_header_link">
-                      {" "}
-                      ta bort profil{" "}
-                      <FontAwesomeIcon className="upper_header_icon" icon={faHeart} />
-                  </button>
-              </div>
+          <button onClick={onDelete} className="upper_header_link">
+            {" "}
+            ta bort profil{" "}
+            <FontAwesomeIcon className="upper_header_icon" icon={faHeart} />
+          </button>
+        </div>
         <h className="exam_name">
           {" "}
           Min masterexamen{" "}
@@ -71,8 +69,7 @@ const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
         />
       </div>
       {showOverview ? (
-             
-              <Overview
+        <Overview
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}
         />
@@ -81,9 +78,8 @@ const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}
         />
-          )}
-          <TableMatrix selectedCourses={selectedCourses}
-          />
+      )}
+      <TableMatrix selectedCourses={selectedCourses} />
     </div>
   );
 };
