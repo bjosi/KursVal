@@ -13,25 +13,34 @@ import {
   faCircle,
   faCrosshairs,
   faSignal,
+  faGraduationCap,
+    faCalendar,
+    faBarcode,
+    faBookOpen,
+    faLocationDot,
+    faWindowRestore
+
 } from "@fortawesome/free-solid-svg-icons";
 
 const DisplayCourse = ({
   courseinfo,
   setSelectedCourses,
-  selectedCourses,
-  homePage,
+    selectedCourses,
+    setSelectedProfileCourses,
+    selectedProfileCourses,
+    homePage,
+    
 }) => {
-  const [showresult, setShowResults] = useState(false);
-
-  const [showAddButton, setShowAddButton] = useState(
-    !selectedCourses.includes(courseinfo)
-  );
-
-  useEffect(() => {
-    setShowAddButton(!selectedCourses.includes(courseinfo));
-  });
+    const [showresult, setShowResults] = useState(false);
+    const [showAddButton, setShowAddButton] = useState(selectedProfileCourses.filter((course) => course.coursename == courseinfo.coursename && course.semester == courseinfo.semester).length == 0);
+   
+    // Necessary to update the showAddButton state when searching for courses => courseinfo changes
+    useEffect(() => {
+        setShowAddButton(selectedProfileCourses.filter((course) => course.coursename == courseinfo.coursename && course.semester == courseinfo.semester).length == 0)
+    }, [courseinfo])
 
   const onClick = () => setShowResults(!showresult);
+
 
   return (
     <>
@@ -46,6 +55,11 @@ const DisplayCourse = ({
             <div className="c_info_container">
               <FontAwesomeIcon className="c_info_icon" icon={faCrosshairs} />
               <p className="c_info"> {courseinfo.progname} </p>
+
+                      <div className="c_info_container">
+                          <FontAwesomeIcon className="c_info_icon" icon={faBarcode} />
+                          <p className="c_info"> {courseinfo.coursecode} </p>
+
             </div>
             <div className="c_info_container">
               <MySvg className="c_info_icon" />
@@ -57,30 +71,41 @@ const DisplayCourse = ({
             </div>
             {showresult ? <Results courseinfo={courseinfo} /> : null}
           </div>
-          <div className="div_r">
-            {homePage ? (
-              <ButtonAddRemoveCourse
-                courseinfo={courseinfo}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
-                showAddButton={showAddButton}
-              />
-            ) : (
-              <div className="btn-displaycourse">
-                <Btn_moveCourse
-                  courseinfo={courseinfo}
-                  setSelectedCourses={setSelectedCourses}
-                  selectedCourses={selectedCourses}
-                />
-                <ButtonAddRemoveCourse
-                  courseinfo={courseinfo}
-                  setSelectedCourses={setSelectedCourses}
-                  selectedCourses={selectedCourses}
-                  showAddButton={showAddButton}
-                />
-              </div>
-            )}
+                  <div className="div_r">
 
+                      {homePage ? <ButtonAddRemoveCourse
+                          courseinfo={courseinfo}
+                          setSelectedCourses={setSelectedCourses}
+                          selectedCourses={selectedCourses}
+                          showAddButton={showAddButton}
+                          setShowAddButton={setShowAddButton}
+                          homePage={homePage}
+                          setSelectedProfileCourses={setSelectedProfileCourses}
+                          selectedProfileCourses={selectedProfileCourses}
+                          
+                      /> : (
+                          <div className="btn-displaycourse">
+                              <Btn_moveCourse
+                                  courseinfo={courseinfo}
+                                  setSelectedCourses={setSelectedCourses}
+                                      selectedCourses={selectedCourses}
+                                      setSelectedProfileCourses={setSelectedProfileCourses}
+                                      selectedProfileCourses={selectedProfileCourses}
+                              />
+                                  <ButtonAddRemoveCourse
+                                      courseinfo={courseinfo}
+                                      setSelectedCourses={setSelectedCourses}
+                                      selectedCourses={selectedCourses}
+                                      showAddButton={false}
+                                      setShowAddButton={setShowAddButton}
+                                      homePage={homePage}
+                                      setSelectedProfileCourses={setSelectedProfileCourses}
+                                      selectedProfileCourses={selectedProfileCourses}
+                              />
+                          </div>
+                      )}
+
+                    
             <ShowPaseOfCourse courseinfo={courseinfo} />
           </div>
         </div>
@@ -100,18 +125,37 @@ const DisplayCourse = ({
 const Results = ({ courseinfo }) => {
   const link = "https://studieinfo.liu.se/kurs/" + courseinfo.coursecode;
   return (
+
     <div>
-      <p className="c_info"> {courseinfo. } HP </p>
       <p className="c_info"> {courseinfo.coursepoints} HP </p>
       <p className="c_info"> Kurskod: {courseinfo.coursecode} </p>
-      <a
-        href={link}
-        className="course_website"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Besök kurshemsidan
-      </a>
+
+      <div>
+
+          <div className="c_info_container">
+              <FontAwesomeIcon className="c_info_icon" icon={faBookOpen} />
+              <p className="c_info"> {courseinfo.area} </p>
+          </div>
+
+
+          <div className="c_info_container">
+              <FontAwesomeIcon className="c_info_icon" icon={faLocationDot} />
+              <p className="c_info"> {courseinfo.place} </p>
+          </div>
+
+
+          <div className="c_info_container">
+              <FontAwesomeIcon className="c_info_icon" icon={faWindowRestore} />
+
+              <a
+                  href={link}
+                  className="course_website"
+                  target="_blank"
+                  rel="noreferrer"
+              >
+                  Besök kurshemsidan
+              </a>          </div>
+
     </div>
   );
 };
@@ -125,7 +169,9 @@ const ShowPaseOfCourse = ({ courseinfo }) => {
   }
   return (
     <div className="pase_container">
-      {paseIsFull ? (
+          {paseIsFull ? (
+
+
         <p className="pase_text">Helfart</p>
       ) : (
         <p className="pase_text">Halvfart</p>
@@ -152,6 +198,7 @@ const ShowBlockOfCourse = ({ courseinfo }) => {
     </div>
   );
 };
+
 
 /*{
     homePage ? <> {!selectedCourses.includes(courseinfo) ?
@@ -223,5 +270,6 @@ const MySvg = (props) => {
     </div>
   );
 };
+
 
 export default DisplayCourse;
