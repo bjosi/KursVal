@@ -84,7 +84,7 @@ const Overview = ({ selectedCourses,selectedProfileName }) => {
               <p className="center"> av HP uppfyllt </p>
             </div>
           </CircularProgressbarWithChildren>
-          <p className="center">hej</p>
+          <p className="center">{totalHP} av 90 HP</p>
         </div>
         <div className="vertical_progressbar">
           <div className="div_display_progress">
@@ -114,32 +114,50 @@ const Overview = ({ selectedCourses,selectedProfileName }) => {
       </div>
 
       <div className="div_summary">
-        <p className="summary_bold_text"> Sammanfattning</p>
+        <p className="summary_bold_text"> Sammanfattning:</p>
 
         <div className="div_summary_text">
-          <p className="summary_normal_text">
-            {" "}
-            &#8226; {HPMissing} HP saknas.{" "}
-          </p>
+          {HPMissing !== 0 ? (
+            <p className="summary_normal_text">
+              {" "}
+              &#8226; {HPMissing} HP saknas totalt{" "}
+            </p>
+          ) : (
+            <></>
+          )}
 
-          <p className="summary_normal_text">
-            {" "}
-            &#8226; {advancedHPMissing} HP p&aring; avanserad niv&aring; saknas.{" "}
-          </p>
+          {advancedHPMissing !== 0 ? (
+            <p className="summary_normal_text">
+              {" "}
+              &#8226; {advancedHPMissing} HP på avancerad nivå saknas.{" "}
+            </p>
+          ) : (
+            <></>
+          )}
 
-          <p className="summary_normal_text">
-            {" "}
-            &#8226; {mediaAdvancedHPMissing} HP p&aring; avanserad niv&aring;
-            saknas f&#246;r examen inom medieteknik.{" "}
-          </p>
+          {mediaAdvancedHPMissing !== 0 ? (
+            <p className="summary_normal_text">
+              {" "}
+              &#8226; {mediaAdvancedHPMissing} HP på avancerad nivå saknar för
+              examen inom medieteknik.{" "}
+            </p>
+          ) : (
+            <></>
+          )}
 
-          <p className="summary_normal_text">
-            {" "}
-            &#8226; {dataAdvancedHPMissing} HP p&aring; avanserad niv&aring;
-            saknas f&#246;r examen inom datateknik.{" "}
-          </p>
+          {dataAdvancedHPMissing !== 0 ? (
+            <p className="summary_normal_text">
+              {" "}
+              &#8226; {dataAdvancedHPMissing} HP på avancerad nivå saknar för
+              examen inom datateknik.{" "}
+            </p>
+          ) : (
+            <></>
+          )}
         </div>
-      </div>
+          </div>
+
+
     </div>
   );
 };

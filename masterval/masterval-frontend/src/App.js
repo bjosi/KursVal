@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import NavBar from "./components/NavBar";
-
+import Loading from "./Pages/Loading";
 function App() {
   const [courses, setCourses] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState(null);
-  const [semesterQuery, setSemesterQuery] = useState(null);
+    const [semesterQuery, setSemesterQuery] = useState(null);
+
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
     );
@@ -26,6 +27,12 @@ function App() {
 
     const [selectedFilters, setSelectedFilters] = useState([]);
 
+    const [isloggedin, setisloggedin] = useState(
+        localStorage.getItem("myValueInLocalStorageforloggedin") || false
+    );
+
+  const [selectedFilters, setSelectedFilters] = useState([]);
+
   const filters = [
     "Grundnivå",
     "Avancerad nivå",
@@ -38,54 +45,66 @@ function App() {
     "Halvfart",
   ];
 
-  useEffect(() => {
-      var filterQuery = null;
-      var temp = selectedFilters;
-      var temp2 = selectedFilters;
-      var myNum = temp.map((selected) => selected.match(/\d+/)).toString();
-      var all = temp2.map((selected) => !selected.includes("Block") ? " "+selected : "").toString();
-      console.log(all);
-      console.log(myNum);
+    useEffect(() => {
+
+    var filterQuery = null;
+    var temp = selectedFilters;
+    var temp2 = selectedFilters;
+    var myNum = temp.map((selected) => selected.match(/\d+/)).toString();
+    var all = temp2
+      .map((selected) => (!selected.includes("Block") ? " " + selected : ""))
+      .toString();
     if (selectedFilters.length > 0) {
-      
-        if (searchQuery !== null) {
-            if (semesterQuery !== null) {
-                filterQuery = semesterQuery.filter((course) => {
-                    
-                    return (
-                        (myNum && all) ?
-                            (myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) &&
-                                all.includes(course.courselevel || course.area))
-                            : myNum ? myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) :
-                                all ? all.includes(course.courselevel || course.area ) : course)
-
-
-                })
-            } else {
-
-                filterQuery = searchQuery.filter((course) => {
-                    
-                    return (
-                        (myNum && all) ?
-                            (myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) &&
-                                all.includes(course.courselevel || course.area ))
-                            : myNum ? myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) :
-                                all ? all.includes(course.courselevel || course.area ) : course)
-
-                    }
-                );
-            }
-        
+      if (searchQuery !== null) {
+        if (semesterQuery !== null) {
+          filterQuery = semesterQuery.filter((course) => {
+            return myNum && all
+              ? myNum.includes(
+                  course.courseblock.split(",")[0] ||
+                    course.courseblock.split(",")[1]
+                ) && all.includes(course.courselevel || course.area)
+              : myNum
+              ? myNum.includes(
+                  course.courseblock.split(",")[0] ||
+                    course.courseblock.split(",")[1]
+                )
+              : all
+              ? all.includes(course.courselevel || course.area)
+              : course;
+          });
         } else {
-            var filterQuery = courses.filter((course) => {
-                return (
-                    (myNum && all) ?
-                        (myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) &&
-                            all.includes(course.courselevel || course.area))
-                            : myNum ? myNum.includes(course.courseblock.split(",")[0] || course.courseblock.split(",")[1]) :
-                            all ? all.includes(course.courselevel || course.area) : course)
-                }
-            );
+          filterQuery = searchQuery.filter((course) => {
+            return myNum && all
+              ? myNum.includes(
+                  course.courseblock.split(",")[0] ||
+                    course.courseblock.split(",")[1]
+                ) && all.includes(course.courselevel || course.area)
+              : myNum
+              ? myNum.includes(
+                  course.courseblock.split(",")[0] ||
+                    course.courseblock.split(",")[1]
+                )
+              : all
+              ? all.includes(course.courselevel || course.area)
+              : course;
+          });
+        }
+      } else {
+        var filterQuery = courses.filter((course) => {
+          return myNum && all
+            ? myNum.includes(
+                course.courseblock.split(",")[0] ||
+                  course.courseblock.split(",")[1]
+              ) && all.includes(course.courselevel || course.area)
+            : myNum
+            ? myNum.includes(
+                course.courseblock.split(",")[0] ||
+                  course.courseblock.split(",")[1]
+              )
+            : all
+            ? all.includes(course.courselevel || course.area)
+            : course;
+        });
       }
     }
     setSemesterQuery(filterQuery);
@@ -98,6 +117,15 @@ function App() {
       );
 
   }, [selectedCourses, searchQuery]);
+
+
+    useEffect(() => {
+        localStorage.setItem(
+            "myValueInLocalStorageforloggedin",
+            JSON.stringify(isloggedin)
+        );
+    }, [isloggedin]);
+   
 
   const searchHandler = (query) => {
     console.log(query);
@@ -144,16 +172,24 @@ function App() {
       );
   }, []);
 
-  if (error) {
-    return <div>Error: {error.message} </div>;
-  } else if (!loaded) {
-    return <div>Loading...</div>;
+
+    if (error) {
+        //laddar om sidan efter 1 sekund om det blir error
+        setTimeout(function () {
+
+            window.location.reload();
+        }, 1000);
+    return <div> </div>;
+    } else if (!loaded) {
+
+    return (<><Loading/></>);
   } else {
     return (
-      <div>
+        <div>
         <NavBar
           selectedCourses={selectedCourses}
                 setSelectedCourses={setSelectedCourses}
+
                 selectedProfileCourses={selectedProfileCourses}
                 setSelectedProfileCourses={setSelectedProfileCourses}
           courses={
@@ -167,7 +203,9 @@ function App() {
           semesterHandler={semesterHandler}
           filters={filters}
           selectedFilters={selectedFilters}
-          setSelectedFilters={setSelectedFilters}
+                setSelectedFilters={setSelectedFilters}
+                isloggedin={isloggedin}
+                setisloggedin={setisloggedin}
         />
       </div>
     );

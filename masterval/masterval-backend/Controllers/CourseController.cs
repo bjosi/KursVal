@@ -112,6 +112,23 @@ namespace masterval_backend.Controllers
 
             }
 
+        }
+
+
+        [HttpGet("/delete/{info}")]
+        public string Deletechoise(String info)
+        {
+
+            string[] splitInfo = info.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+
+            var client = new MongoClient("mongodb+srv://kandidat:kand2022@cluster0.5dn6x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+            var database = client.GetDatabase("Saved");
+            var collection = database.GetCollection<Profile>(splitInfo[0]);
+
+
+            var filterDefinition = MongoDB.Driver.Builders<Profile>.Filter.Eq(p => p.Name, splitInfo[1]);
+            collection.DeleteOne(filterDefinition);
             return info;
         }
 

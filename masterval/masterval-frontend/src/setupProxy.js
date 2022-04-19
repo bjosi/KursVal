@@ -2,6 +2,7 @@
 
 const context = [
     "/profiles","/courses", "/save", "/delete"
+
 ];
 
 module.exports = function (app) {

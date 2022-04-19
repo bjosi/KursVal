@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./FilterMenu.css";
 
 const FilterMenu = ({ filters, selectedFilters, setSelectedFilters }) => {
-
   //states
   const [amountOfFilters, setAmountOfFilters] = useState(0);
 
@@ -33,7 +32,7 @@ const FilterMenu = ({ filters, selectedFilters, setSelectedFilters }) => {
         {filters.map((filter, index) => {
           const isSelected = selectedFilters.includes(filter);
           return (
-            <li className="filter_item">
+            <li className="filter_item" key={index}>
               <label forhtml={filter}>
                 <input
                   type="checkbox"

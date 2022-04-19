@@ -70,6 +70,7 @@
 .toggle_button {
   color: black;
   margin: 0.5rem;
+  width: 10rem;
 }
 
 .arrow_icon {
@@ -104,6 +105,7 @@
   display: flex;
   font-weight: 700;
   font-size: 1rem;
+  background: #FFF;
 }
 
 .toggle_overview:hover {
@@ -125,23 +127,25 @@
 }
 
 .toggle_overview_wrapper {
-  width: 1000px;
-  margin: 0rem auto 0rem auto;
-  padding: 0 1rem 0 1rem;
+    width: 1000px;
+    margin: 0rem auto 0rem auto;
+    padding: 0 1rem 0 1rem;
+    background: #FFF;
 }
 
-@media screen and (max-width: 1000px) {
-  .toggle_overview_wrapper {
+
+    @media screen and (max-width: 1000px) {
+        .toggle_overview_wrapper {
     width: 100%;
   }
 }
 
 .underline_left {
-  width: 8rem;
+  width: 11rem;
 }
 
 .underline_right {
-  width: 8rem;
+    width: 11rem;
 }
 
 .underline_selected {
@@ -408,5 +412,47 @@
     border: 1px solid black;
     padding: 1em;
 
+}
+
+
+
+.table_matrix {
+    display: flex;
+    align-content: space-evenly;
+    flex-direction: row;
+    justify-content:center;
+}
+
+.table_vertical {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.vertical_div_k {
+    width: 4rem;
+    height:2.5rem;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    border: 1px solid black;
+    padding: 1em;
+}
+
+.vertical_div {
+    width: 6rem;
+    height: 2.5rem;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    border: 1px solid black;
+    padding: 1em;
+}
+.vertical_div_g {
+    background-color: aquamarine;
+    width: 6rem;
+    height: 2.5rem;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    border: 1px solid black;
+    padding: 1em;
 }
 

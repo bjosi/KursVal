@@ -1,5 +1,6 @@
 import "../styles/MyCourses.css";
 import "../styles/App.css";
+
 import Semesters from '../components/Semesters';
 import Overview from '../components/Overview';
 import Backdrop from "../components/Backdrop/Backdrop";
@@ -10,12 +11,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faHeart, faPen, faArrowsRotate, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import ProfileSelector from "../components/ProfileSelector";
 
+import TableMatrix from "../components/TableMatrix";
+import OverviewTerms from "../components/OverviewTerms";
+
 const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses, setSelectedProfileCourses }) => {
 
     const [showOverview, setShowOverview] = useState(false);
     const [backdrop, setBackdrop] = useState(false);
     const [isFirstClick, setIsFirstClick] = useState(true);
     const [editableText, setEditableText] = useState(false);
+
 
     // The name of the profile that is shown on MyCourses, stored in localstorage since selectedProfileCourses is and they need to match
     const [selectedProfileName, setSelectedProfileName] = useState((localStorage.getItem("selectedProfileName")) || "Min masterexamen");
@@ -125,7 +130,13 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
     }
     
 
-    const onSave = () => {
+
+  const onSave = () => {
+   
+
+    selectedCourses.map(
+      (course) => (data += "," + course.coursecode + "," + course.semester)
+    );
 
 
         let profileName;
@@ -188,9 +199,9 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
       <div>
           <Backdrop onClose={() => setBackdrop(false)} open={backdrop}>
               <div style={{ width: "400px", backgroundColor: "white", position: "relative", padding: "1rem" }}>
-                  <h1 className="save_changes">Vill du spara dina ändringar till "{temporaryProfileNameUpdateProfile}"?</h1> <br />
+                  <h1 className="save_changes">Vill du spara dina ï¿½ndringar till "{temporaryProfileNameUpdateProfile}"?</h1> <br />
                   <button onClick={function () { onSave(); setBackdrop(false) }} className="upper_header_link">
-                      Spara ändringar
+                      Spara ï¿½ndringar
                       <FontAwesomeIcon className="upper_header_icon" icon={faArrowsRotate} />
                   </button>
                   <div className="close_button_container">
@@ -255,7 +266,7 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
                   <FontAwesomeIcon onClick={editName} className="change_profile_name_icon" icon={editableText ? faCircleCheck : faPen} />
               </h3>
              
-            
+           
         <ToggleOverviewButton
           showOverview={showOverview}
           setShowOverview={setShowOverview}
@@ -273,7 +284,19 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
             setSelectedProfileCourses={setSelectedProfileCourses}
             selectedProfileCourses={selectedProfileCourses}
         />
-      )}
+          )}
+
+          {showOverview ? (
+
+              <OverviewTerms selectedCourses={selectedCourses} />
+    ) : (
+              <></>
+          )}
+
+
+
+
+      <TableMatrix selectedCourses={selectedCourses} />
     </div>
   );
 };

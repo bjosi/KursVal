@@ -30,14 +30,26 @@
 .title_container {
   display: flex;
   align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.c_info_container {
+  display: flex;
+  align-items: center;
+  color: #2b6778;
+  margin-top: 0.2rem;
 }
 
 .c_info {
-  color: #2b6778;
-  font-size: 1rem;
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  margin-top: 0.1rem;
+    color: #2b6778;
+    font-size: 1rem;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+}
+
+.c_info_icon {
+  width:1rem;
+  margin-right: 0.3rem;
 }
 
 .div_l {
@@ -69,29 +81,29 @@
 }
 
 .icon_show_more:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .remove_course_icon {
-    font-size: 2rem;
-    color: #f9a26c;
+  font-size: 2rem;
+  color: #f9a26c;
 }
 
 .btn-movecourse {
-    font-size: 2rem;
-    color: #bec8a7;
-    margin-right: 0.2rem;
+  font-size: 2rem;
+  color: #bec8a7;
+  margin-right: 0.2rem;
 }
 
 .btn-movecoursehidden {
   visibility: hidden;
 }
 
-
 .btn-displaycourse {
   width: 100px;
   display: flex;
-justify-content: right;}
+  justify-content: right;
+}
 
 .course_block_icon {
   background-color: #2b6778;
@@ -101,6 +113,8 @@ justify-content: right;}
   margin: 2px;
   padding: 1px 6px 1px 6px;
   border-radius: 2px;
+  height:21px;
+  width: 21px;
 }
 
 .pase_container {
@@ -137,36 +151,28 @@ justify-content: right;}
   height: 100vh;
   top: 0;
   left: 0;
-  z-index:1;
+  z-index: 1;
 }
 
-.popup-box p{
-    font-size:1rem;
-    font-weight: 400;
-    padding:0.5rem 0 0 0;
+.popup-box p {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.5rem 0 0 0;
 }
 
-.popup-box button{
-    background: #F2F2F2;
-    font-size: 1rem;
-    border: solid white;
-    border-radius: 0.5rem;
-    padding: 0.2rem;
-    margin: 1rem 0 0 0;
+.box button {
+  background: #f2f2f2;
+  font-size: 1rem;
+  border: solid white;
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  margin: 1rem 0 0 0;
 }
 
 .box {
   position: relative;
-  width: 70%;
-  margin: 0 auto;
-  height: auto;
-  max-height: 70vh;
-  margin-top: calc(100vh - 85vh - 20px);
-  background: #fff;
-  border-radius: 4px;
-  padding: 20px;
-  border: 1px solid #999;
-  overflow: auto;
+  background-color: #fff;
+  padding: 2rem;
 }
 
 .close-icon {
@@ -185,6 +191,16 @@ justify-content: right;}
   font-size: 20px;
 }
 
-.course_website:hover{
-    cursor:pointer;
+.course_website {
+    color: #2b6778;
 }
+
+    .course_website:visited {
+        color: #f9a26c;
+    }
+
+    .course_website:hover {
+        cursor: pointer;
+    }
+
+

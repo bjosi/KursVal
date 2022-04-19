@@ -1,11 +1,9 @@
-import "../styles/MyCourses.css"
-import DisplayPeriod from '../components/DisplayPeriod';
-import SemesterSelector from '../components/SemesterSelector';
-import ProgressBar from './ProgressBar';
+import "../styles/MyCourses.css";
+import DisplayPeriod from "../components/DisplayPeriod";
+import SemesterSelector from "../components/SemesterSelector";
+import ProgressBar from "./ProgressBar";
 
-import React, { useState } from 'react';
-
-
+import React, { useState } from "react";
 
 const Semesters = ({ selectedCourses, setSelectedCourses, setSelectedProfileCourses, selectedProfileCourses }) => {
 
@@ -38,3 +36,4 @@ const Semesters = ({ selectedCourses, setSelectedCourses, setSelectedProfileCour
 }
 
 export default Semesters;
+

@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "react-circular-progressbar": "^2.0.4"
+    "firebase": "^9.6.10",
+    "react-circular-progressbar": "^2.0.4",
+    "react-loading": "^2.0.3"
   }
 }

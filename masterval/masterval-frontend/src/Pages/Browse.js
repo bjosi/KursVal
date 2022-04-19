@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import SearchHeader from "../components/SearchHeader";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import DisplayCourse from "../components/DisplayCourse";
 import Backdrop from "../components/Backdrop/Backdrop";
+import "../styles/DisplayCourse.css";
 import "./Browse.css";
 
 const Browse = ({
@@ -17,7 +18,7 @@ const Browse = ({
   selectedProfileCourses,
   setSelectedProfileCourses
 }) => {
-    const [backdrop, setBackdrop] = useState(false);
+  const [backdrop, setBackdrop] = useState(false);
 
   return (
     <>
@@ -26,13 +27,28 @@ const Browse = ({
         semesterHandler={semesterHandler}
       />
       <div className="container">
-        <div className="div_filter">
+              <div className="div_filter">
+                  <p> visar {courses.length} resultat </p>
+                  <div className="show_info_block">
+
+                      <div className="course_block_icon" >
+                            
+                      </div>
+                      <p> - block </p>
+                  </div>
+
           <button className="button_filter" onClick={() => setBackdrop(true)}>
             Filter
           </button>
         </div>
         <Backdrop onClose={() => setBackdrop(false)} open={backdrop}>
-          <div style={{ width: "300px", backgroundColor: "white", position: "relative" }}>
+          <div
+            style={{
+              width: "300px",
+              backgroundColor: "white",
+              position: "relative",
+            }}
+          >
             <FilterMenu
               filters={filters}
               selectedFilters={selectedFilters}
@@ -54,8 +70,9 @@ const Browse = ({
             />
           </div>
           <div className="right-section">
-            {courses.map((course) => (
+            {courses.map((course, index) => (
               <DisplayCourse
+
                     key={course.Id}
                     courseinfo={course}
                     homePage={true}
@@ -63,6 +80,7 @@ const Browse = ({
                     selectedCourses={selectedCourses}
                     setSelectedProfileCourses={setSelectedProfileCourses}
                     selectedProfileCourses={selectedProfileCourses}
+
               />
             ))}
           </div>
