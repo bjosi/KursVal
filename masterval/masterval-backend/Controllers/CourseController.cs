@@ -19,12 +19,12 @@ namespace masterval_backend.Controllers
 
 
         [HttpGet("/courses/profiles/{username}")]
-        public IEnumerable<Profile> Get(String username)
+        public IEnumerable<Profile> Get(String? username)
         {
                var client = new MongoClient("mongodb+srv://kandidat:kand2022@cluster0.5dn6x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
               var database = client.GetDatabase("Saved");
               var collection = database.GetCollection<Profile>(username);
-              var documents = collection.Find(_ => true).ToList();
+            var documents = collection.Find(_ => true).ToList();
               return documents;
         }
 
@@ -43,17 +43,12 @@ namespace masterval_backend.Controllers
         public string Save(String info, String list, String newProfileName)
 
         {
-
-
             string[] splitInfo = info.Split(',', StringSplitOptions.RemoveEmptyEntries);
             var client = new MongoClient("mongodb+srv://kandidat:kand2022@cluster0.5dn6x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
             var database = client.GetDatabase("Saved");
 
             if (newProfileName == "false")
             {
-
-
-
                 try
                 {
                     database.CreateCollection(splitInfo[0]);
@@ -77,11 +72,12 @@ namespace masterval_backend.Controllers
                     newList.Add(newCourse);
                 }
 
+                
+
                 var documents = collection.Find(s => (s.Name.ToLower() == splitInfo[1].ToLower())).ToList();
 
                 if (documents.Count > 0)
                 {
-
                     var filterDefinition = MongoDB.Driver.Builders<Profile>.Filter.Eq(p => p.Id, documents.ElementAt(0).Id);
                     var updateDefinition = MongoDB.Driver.Builders<Profile>.Update.Set(p => p.Courselist, newList);
                     var options = new UpdateOptions { IsUpsert = true };
@@ -111,7 +107,7 @@ namespace masterval_backend.Controllers
 
 
             }
-
+            return info;
         }
 
 

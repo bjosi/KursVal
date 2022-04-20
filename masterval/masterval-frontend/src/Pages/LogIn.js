@@ -4,12 +4,12 @@ import "../styles/MyCourses.css";
 import { useRef, useState } from "react";
 import ToggleLoginButton from "../components/ToggleLoginButton";
 
-const LogIn = ({ isloggedin, setisloggedin })=> {
+const LogIn = ({ isloggedin, setisloggedin,username,setUsername })=> {
     const currentUser = useAuth();
     const [showlogin, setshowlogin] = useState(false);
   //  const [isloggedin, setisloggedin] = useState("false");
 
-
+    
     const [errorlogin, seterrorlogin] = useState(false);
     const [errorsignup, seterrosignup] = useState(false);
     const [errorpassword, seterrorpassword] = useState(false);
@@ -27,6 +27,7 @@ const LogIn = ({ isloggedin, setisloggedin })=> {
             setisloggedin(true);
             
             seterrosignup(false);
+            setUsername(emailRef.current.value);
 
             window.location.href = '/';
         }
@@ -45,33 +46,27 @@ const LogIn = ({ isloggedin, setisloggedin })=> {
 
     async function handleLogout() {
         
-        console.log(isloggedin);
         try {
             await logout();
             setisloggedin(false);
             seterrorpassword(false);
             seterrorlogin(false);
             seterrosignup(false);
-            console.log(isloggedin);
         }
         catch { }
         
-        console.log(isloggedin);
     }
 
 
     async function handleLogin() {
-        console.log("försöker logga in");
 
         try {
             await login(emailRef.current.value, passwordRef.current.value);
             setisloggedin(true);
-            console.log("nu innan jag skickar");
-            console.log(isloggedin);
             seterrorpassword(false);
             seterrorlogin(false);
             seterrosignup(false);
-
+            setUsername(emailRef.current.value);
           window.location.href = '/MyCourses';
         }
         catch {

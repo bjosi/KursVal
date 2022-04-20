@@ -10,7 +10,6 @@ const Semesters = ({ selectedCourses, setSelectedCourses, setSelectedProfileCour
     const [semester, setSemester] = useState(7);
 
     let HPPerSemester = 0;
-    console.log(selectedProfileCourses);
 
     const coursesInSemester = selectedProfileCourses.filter((course) => course.semester === semester);
    // const coursesInSemester = selectedProfileCourses.map((course) => console.log(course.semester));

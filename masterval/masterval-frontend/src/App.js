@@ -31,7 +31,15 @@ function App() {
         localStorage.getItem("myValueInLocalStorageforloggedin") || false
     );
 
-  const [selectedFilters, setSelectedFilters] = useState([]);
+
+    const [username, setUsername] = useState((localStorage.getItem("username")) || "");
+
+    useEffect(() => {
+        localStorage.setItem("username", username);
+    }, [username]);
+
+
+
 
   const filters = [
     "Grundnivå",
@@ -128,7 +136,6 @@ function App() {
    
 
   const searchHandler = (query) => {
-    console.log(query);
     const searchResult = courses.filter((course) => {
       return (
         course.coursename.toLowerCase().includes(query.toLowerCase()) ||
@@ -187,25 +194,27 @@ function App() {
     return (
         <div>
         <NavBar
-          selectedCourses={selectedCourses}
+                selectedCourses={selectedCourses}
                 setSelectedCourses={setSelectedCourses}
 
                 selectedProfileCourses={selectedProfileCourses}
                 setSelectedProfileCourses={setSelectedProfileCourses}
-          courses={
-            semesterQuery !== null
-              ? semesterQuery
-              : searchQuery !== null
-              ? searchQuery
-              : courses
-          }
-          searchHandler={searchHandler}
-          semesterHandler={semesterHandler}
-          filters={filters}
-          selectedFilters={selectedFilters}
+                courses={
+                    semesterQuery !== null
+                        ? semesterQuery
+                        : searchQuery !== null
+                            ? searchQuery
+                            : courses
+                }
+                searchHandler={searchHandler}
+                semesterHandler={semesterHandler}
+                filters={filters}
+                selectedFilters={selectedFilters}
                 setSelectedFilters={setSelectedFilters}
                 isloggedin={isloggedin}
                 setisloggedin={setisloggedin}
+                username={username}
+                setUsername={setUsername}
         />
       </div>
     );

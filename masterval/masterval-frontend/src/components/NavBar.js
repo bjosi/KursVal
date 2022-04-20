@@ -6,6 +6,7 @@ import Browse from "../Pages/Browse";
 import Loading from "../Pages/Loading";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faUser,
   faFloppyDisk,
@@ -29,22 +30,20 @@ const NavBar = ({
     selectedProfileCourses,
     setSelectedProfileCourses,
     isloggedin,
-    setisloggedin
+    setisloggedin,
+    username,
+    setUsername
 }) => {
-
 
 
     async function handleLogout() {
         
-        console.log(isloggedin);
         try {
             await logout();
             setisloggedin(false);
-            console.log(isloggedin);
         }
         catch { }
         
-        console.log(isloggedin);
     }
 
 
@@ -85,11 +84,13 @@ const NavBar = ({
         </div>
         <Switch>
           <Route path="/MyCourses">
-            <MyCourses
+                      <MyCourses
                           selectedCourses={selectedCourses}
                           setSelectedCourses={setSelectedCourses}
                           selectedProfileCourses={selectedProfileCourses}
                           setSelectedProfileCourses={setSelectedProfileCourses}
+                          isloggedin={isloggedin}
+                          username={username}
                           
                                      />
           </Route>
@@ -103,7 +104,7 @@ const NavBar = ({
 
 
                   <Route path="/LogIn">
-                      <LogIn isloggedin={isloggedin} setisloggedin={setisloggedin}/>
+                      <LogIn isloggedin={isloggedin} setisloggedin={setisloggedin} username={username} setUsername={setUsername} />
             </Route>
           <Route path="/">
             <Browse
