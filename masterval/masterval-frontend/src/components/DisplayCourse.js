@@ -55,7 +55,7 @@ const DisplayCourse = ({
             <div className="c_info_container">
               <FontAwesomeIcon className="c_info_icon" icon={faCrosshairs} />
               <p className="c_info"> {courseinfo.progname} </p>
-
+</div>
                       <div className="c_info_container">
                           <FontAwesomeIcon className="c_info_icon" icon={faBarcode} />
                           <p className="c_info"> {courseinfo.coursecode} </p>
@@ -83,7 +83,7 @@ const DisplayCourse = ({
                           setSelectedProfileCourses={setSelectedProfileCourses}
                           selectedProfileCourses={selectedProfileCourses}
                           
-                      /> : (
+                      /> : 
                           <div className="btn-displaycourse">
                               <Btn_moveCourse
                                   courseinfo={courseinfo}
@@ -103,7 +103,7 @@ const DisplayCourse = ({
                                       selectedProfileCourses={selectedProfileCourses}
                               />
                           </div>
-                      )}
+                      }
 
                     
             <ShowPaseOfCourse courseinfo={courseinfo} />
@@ -130,7 +130,7 @@ const Results = ({ courseinfo }) => {
       <p className="c_info"> {courseinfo.coursepoints} HP </p>
       <p className="c_info"> Kurskod: {courseinfo.coursecode} </p>
 
-      <div>
+      
 
           <div className="c_info_container">
               <FontAwesomeIcon className="c_info_icon" icon={faBookOpen} />
@@ -167,6 +167,7 @@ const ShowPaseOfCourse = ({ courseinfo }) => {
   if (blocks.length === 2) {
     paseIsFull = false;
   }
+
   return (
     <div className="pase_container">
           {paseIsFull ? (
