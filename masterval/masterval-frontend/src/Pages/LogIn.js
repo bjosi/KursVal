@@ -4,7 +4,7 @@ import "../styles/MyCourses.css";
 import { useRef, useState } from "react";
 import ToggleLoginButton from "../components/ToggleLoginButton";
 
-const LogIn = ({ isloggedin, setisloggedin,username,setUsername })=> {
+const LogIn = ({ isloggedin, setisloggedin,username,setUsername,setSelectedProfileName, setSelectedProfileCourses,selectedCourses })=> {
     const currentUser = useAuth();
     const [showlogin, setshowlogin] = useState(false);
   //  const [isloggedin, setisloggedin] = useState("false");
@@ -28,6 +28,9 @@ const LogIn = ({ isloggedin, setisloggedin,username,setUsername })=> {
             
             seterrosignup(false);
             setUsername(emailRef.current.value);
+
+            setSelectedProfileCourses(selectedCourses);
+            setSelectedProfileName("Min masterexamen");
 
             window.location.href = '/';
         }
@@ -67,6 +70,10 @@ const LogIn = ({ isloggedin, setisloggedin,username,setUsername })=> {
             seterrorlogin(false);
             seterrosignup(false);
             setUsername(emailRef.current.value);
+
+
+            setSelectedProfileCourses(selectedCourses);
+            setSelectedProfileName("Min masterexamen");
           window.location.href = '/MyCourses';
         }
         catch {

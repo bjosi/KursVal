@@ -15,6 +15,12 @@ function App() {
 
     // The courses of the profile that is currently shown
   const [selectedProfileCourses, setSelectedProfileCourses] = useState(JSON.parse(localStorage.getItem("selectedProfileCourses")) || selectedCourses);
+    // The name of the profile that is shown on MyCourses, stored in localstorage since selectedProfileCourses is and they need to match
+    const [selectedProfileName, setSelectedProfileName] = useState((localStorage.getItem("selectedProfileName")) || "Min masterexamen");
+
+    useEffect(() => {
+        localStorage.setItem("selectedProfileName", selectedProfileName);
+    }, [selectedProfileName]);
 
 
     useEffect(() => {
@@ -215,6 +221,8 @@ function App() {
                 setisloggedin={setisloggedin}
                 username={username}
                 setUsername={setUsername}
+                selectedProfileName={selectedProfileName}
+                setSelectedProfileName={setSelectedProfileName}
         />
       </div>
     );

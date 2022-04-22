@@ -32,7 +32,9 @@ const NavBar = ({
     isloggedin,
     setisloggedin,
     username,
-    setUsername
+    setUsername,
+    selectedProfileName,
+    setSelectedProfileName
 }) => {
 
 
@@ -91,6 +93,9 @@ const NavBar = ({
                           setSelectedProfileCourses={setSelectedProfileCourses}
                           isloggedin={isloggedin}
                           username={username}
+                          selectedProfileName={selectedProfileName}
+                          setSelectedProfileName={setSelectedProfileName}
+
                           
                                      />
           </Route>
@@ -104,7 +109,7 @@ const NavBar = ({
 
 
                   <Route path="/LogIn">
-                      <LogIn isloggedin={isloggedin} setisloggedin={setisloggedin} username={username} setUsername={setUsername} />
+                      <LogIn isloggedin={isloggedin} setisloggedin={setisloggedin} username={username} setUsername={setUsername} setSelectedProfileName={setSelectedProfileName} setSelectedProfileCourses={setSelectedProfileCourses} selectedCourses={selectedCourses} />
             </Route>
           <Route path="/">
             <Browse
