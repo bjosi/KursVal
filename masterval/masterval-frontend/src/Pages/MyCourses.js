@@ -5,7 +5,7 @@ import Semesters from '../components/Semesters';
 import Overview from '../components/Overview';
 import Backdrop from "../components/Backdrop/Backdrop";
 import ToggleOverviewButton from '../components/ToggleOverviewButton';
-import React, { useEffect,useState } from 'react';
+import React, { useEffect,useState,useRef } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faHeart, faPen, faArrowsRotate, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
@@ -16,22 +16,23 @@ import {  useAuth } from "../firebase";
 import TableMatrix from "../components/TableMatrix";
 import OverviewTerms from "../components/OverviewTerms";
 
-const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses, setSelectedProfileCourses,isloggedin,username }) => {
+const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses, setSelectedProfileCourses, isloggedin, username, selectedProfileName, setSelectedProfileName }) => {
 
     const [showOverview, setShowOverview] = useState(false);
     const [backdrop, setBackdrop] = useState(false);
     const [editableText, setEditableText] = useState(false);
-    
-    // The name of the profile that is shown on MyCourses, stored in localstorage since selectedProfileCourses is and they need to match
-    const [selectedProfileName, setSelectedProfileName] = useState((localStorage.getItem("selectedProfileName")) || "Min masterexamen");
+
     // All the profiles saved in the database under the username that is logged in
     const [profiles, setProfiles] = useState([]);
     // All courses from database, needed to transform the simplified courses in the "Saved" database
     const [allCourses, setAllCourses] = useState([]);
-    // Is the profile that is shown from local storage? (or from the database)
-    const [selectedProfileCoursesIsLocalStorage, setSelectedProfileCoursesIsLocalStorage] = useState(JSON.stringify(selectedCourses) == JSON.stringify(selectedProfileCourses));
 
     const [localStorageProfileName, setLocalStorageProfileName] = useState("Min masterexamen");
+
+
+    // Is the profile that is shown from local storage? (or from the database)
+    const [selectedProfileCoursesIsLocalStorage, setSelectedProfileCoursesIsLocalStorage] = useState(JSON.stringify(selectedCourses) === JSON.stringify(selectedProfileCourses) && localStorageProfileName === selectedProfileName);
+
     // used when editing a profile name
     const [temporaryProfileName, setTemporaryProfileName] = useState("");
     // used when saving with "Do you want to save changes" :)
@@ -40,24 +41,32 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
 
 
     const [test, setTest] = useState(false);
+    const [fetchSucceeded,setFetchSucceeded] = useState(false);
 
-    console.log(profiles);
     console.log(selectedProfileCourses);
+    console.log(selectedCourses);
+    console.log(selectedProfileName);
+    console.log(selectedProfileCoursesIsLocalStorage);
+    console.log(localStorageProfileName);
+
+
 
     useEffect(() => {
 
         console.log("fetch")
         fetch("courses")
-        .then((res) => res.json())
-        .then(
-            (result) => {
-                setAllCourses(result);
-            }
-        ); }, []);
+            .then((res) => res.json())
+            .then(
+                (result) => {
+                    setAllCourses(result);
+                }
+        );
 
-    useEffect(() => {
-        localStorage.setItem("selectedProfileName", selectedProfileName);
-    }, [selectedProfileName]);
+        
+    }, []);
+        
+
+
 
 
     useEffect(() => {
@@ -68,20 +77,10 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
                 .then((res) => res.json());
             setProfiles(response);
 
-            console.log("fetching data");
         }
 
         if (isloggedin) {
             fetchData();
-
-          /*  fetch("courses/profiles/" + username)
-                .then((res) => res.json())
-                .then(
-                    (result) => {
-                        setProfiles(result);
-                        console.log(result);
-                    }
-            );*/
         }
 
     } , [test,selectedProfileName, localStorageProfileName, temporaryProfileNameUpdateProfile]
@@ -92,7 +91,7 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
         setTemporaryProfileName(e.target.value);
     }
 
-    const editName = () => {
+    const editName = async () => {
         if (editableText && temporaryProfileName.trim()!="") {
 
             if (selectedProfileCoursesIsLocalStorage) {
@@ -100,15 +99,25 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
             } else {
                 let data = "";
                 selectedProfileCourses.map((course) => data += ("," + course.coursecode + "," + course.semester))
-                //"save/username:minexamen:TNM02:1"
 
-                const username1 =username+"," + selectedProfileName;
-                fetch("save/" + username1 + "/" + data + "/" + temporaryProfileName);
-               
+
+                if (data == "") {
+                    data = ",";
+                }
+
+                const username1 = username + "," + selectedProfileName;
+
+                console.log(data);
+                console.log(username1);
+                console.log(temporaryProfileName);
+
+                await fetch("save/" + username1 + "/" + data + "/" + temporaryProfileName).then(setFetchSucceeded(true));
+                setSelectedProfileName(temporaryProfileName);
+                setTimeout(() => setFetchSucceeded(false), 2000);
+
+
             }
 
-
-            setSelectedProfileName(temporaryProfileName);
             setTemporaryProfileName("");
         }
         setEditableText(!editableText);
@@ -134,12 +143,10 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
 
 
             transformedProfileCourses.map((item1) => !(selectedProfileCourses.find((item2) =>  (item2.coursecode === item1.coursecode && item2.semester === item1.semester) )) ? hasChanges = true : "")
-            //transformedProfileCourses.map((item1) => console.log(selectedProfileCourses.find((item2) => (item2.coursecode === item1.coursecode && item2.semester === item1.semester))))
 
 
 
             if (hasChanges) {
-            //if (JSON.stringify(transformedProfileCourses) !== JSON.stringify(selectedProfileCourses)) {
                 setTemporaryProfileNameUpdateProfile(selectedProfileName);
                 setTemporarySelectedCoursesUpdateProfile(selectedProfileCourses);
                 setBackdrop(true);
@@ -172,25 +179,26 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
             profileName = temporaryProfileNameUpdateProfile;
             coursesSelected = temporarySelectedCoursesUpdateProfile
         } else {
-            profileName = selectedProfileName;
+            profileName = ( selectedProfileCoursesIsLocalStorage ?  localStorageProfileName : selectedProfileName );
             coursesSelected = selectedProfileCourses;
         }
 
         let data = "";
         coursesSelected.map((course) => data += ("," + course.coursecode + "," + course.semester))
 
-        console.log(username)
-        console.log(profileName)
-        console.log(data)
+        if (data == "") {
+            data = ",";
+        }
+       
+        await fetch("save/" + username + "," + profileName + "/" + data + "/" + "false").then(setFetchSucceeded(true));
+
+        setTimeout(() => setFetchSucceeded(false), 2000);
 
 
-       await fetch("save/" + username + "," + profileName + "/" + data + "/" + "false").then(console.log("data saved"));
-
-        console.log(selectedProfileCoursesIsLocalStorage);
         if (selectedProfileCoursesIsLocalStorage) {
             setSelectedCourses([]);
+            setSelectedProfileName(localStorageProfileName);
             setLocalStorageProfileName("Min masterexamen");
-            //setSelectedProfileCourses(selectedCourses);
         }
 
 
@@ -228,49 +236,45 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
                   </div>
               </div>
           </Backdrop>
-          
+
+
+          {fetchSucceeded ? <div className="profile_update_succeeded">
+              <h4  >Profil uppdaterad</h4>
+          </div> : null}
+
+
           <div className="my_courses_header">
+
 
               <div className="upper_header">
                   <Link to="/" className="upper_header_link">{" "}
             <FontAwesomeIcon className="upper_header_icon" icon={faArrowLeft} />
                       Hitta fler kurser{" "}</Link>
 
-
-
-                  {selectedProfileCoursesIsLocalStorage ?
-                      <button onClick={onSave} className="upper_header_link">
+                  {isloggedin ? <>
+                      {selectedProfileCoursesIsLocalStorage ?
+                          <button onClick = { onSave } className = "upper_header_link">
                           Spara profil
-                          <FontAwesomeIcon className="upper_header_icon" icon={faHeart} />
+                          <FontAwesomeIcon className = "upper_header_icon" icon = { faHeart } />
                       </button> : <button onClick={onSave} className="upper_header_link">
-                      Uppdatera profil
-                      <FontAwesomeIcon className="upper_header_icon" icon={faArrowsRotate} />
-                  </button>}
+                  Uppdatera profil
+                  <FontAwesomeIcon className="upper_header_icon" icon={faArrowsRotate} />
+              </button>}
 
-                  <button onClick={onDelete} className="upper_header_link">
-                      {" "}
-                      ta bort profil{" "}
-                      <FontAwesomeIcon className="upper_header_icon" icon={faHeart} />
-                  </button>
+              <button onClick={onDelete} className="upper_header_link">
+                  {" "}
+                  ta bort profil{" "}
+                  <FontAwesomeIcon className="upper_header_icon" icon={faHeart} />
+              </button> </>: <h1 className="upper_header_link not_logged_in">Logga in för att spara profil</h1>}
+
 
               </div>
 
-              {/*<ProfileSelector
-                  onChangeProfileName={onChangeProfileName}
-                  onClickSelectProfile={onClickSelectProfile}
-                  onChangeSelectedProfile={onChangeSelectedProfile}
-                  editName={editName}
-                  selectedProfileName={selectedProfileName}
-                  localStorageProfileName={localStorageProfileName}
-                  profiles={profiles}
-                  editableText={editableText}
-              />
-              */}
-
+              
               <h3 className="profile_name">
                   {" "}
                   {editableText ?
-                      <input className="select_profile" type="text" onChange={(e) => onChangeProfileName(e)} placeholder={selectedProfileName} />
+                      <input className="select_profile" type="text" onChange={(e) => onChangeProfileName(e)} placeholder={selectedProfileCoursesIsLocalStorage ? localStorageProfileName : selectedProfileName} />
                       : <select className="select_profile"  onChange={(e) => onChangeSelectedProfile(e)}  >
                           <option value={localStorageProfileName}>{localStorageProfileName}</option>
                           {profiles.map((profile) => <option selected={profile.name == selectedProfileName ? "selected" : ""} value={profile.name}>{profile.name}</option>)}

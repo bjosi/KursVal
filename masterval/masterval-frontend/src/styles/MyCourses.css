@@ -171,6 +171,7 @@
   margin: 0 auto 0 auto;
 }
 
+
 @media screen and (max-width: 1000px) {
   .upper_header {
     width: 100%;
@@ -196,6 +197,10 @@
   color: black;
   cursor: pointer;
   font-weight: 400;
+}
+
+.not_logged_in{
+    cursor: default;
 }
 
 .upper_header_icon {
@@ -456,3 +461,14 @@
     padding: 1em;
 }
 
+.profile_update_succeeded {
+    right: 0;
+    position: fixed;
+    font-size: 0.6rem;
+    padding: 0.2rem 0.2rem 0.2rem 0.7rem;
+    z-index: 999;
+    background-color: #f2f2f2;
+    color: grey;
+    font-weight: 200;
+    width: 20%;
+}
