@@ -14,9 +14,9 @@ const Browse = ({
   setSelectedCourses,
   filters,
   selectedFilters,
-    setSelectedFilters,
+  setSelectedFilters,
   selectedProfileCourses,
-  setSelectedProfileCourses
+  setSelectedProfileCourses,
 }) => {
   const [backdrop, setBackdrop] = useState(false);
 
@@ -27,19 +27,18 @@ const Browse = ({
         semesterHandler={semesterHandler}
       />
       <div className="container">
-              <div className="div_filter">
-                  <p> visar {courses.length} resultat </p>
-                  <div className="show_info_block">
-
-                      <div className="course_block_icon" >
-                            
-                      </div>
-                      <p> - block </p>
-                  </div>
-
+        <div className="div_filter">
           <button className="button_filter" onClick={() => setBackdrop(true)}>
             Filter
           </button>
+        </div>
+
+        <div className="div_info">
+          <p> visar {courses.length} resultat </p>
+          <div className="show_info_block">
+            <div className="course_block_icon"></div>
+            <p> - Block </p>
+          </div>
         </div>
         <Backdrop onClose={() => setBackdrop(false)} open={backdrop}>
           <div
@@ -72,15 +71,13 @@ const Browse = ({
           <div className="right-section">
             {courses.map((course, index) => (
               <DisplayCourse
-
-                    key={course.Id}
-                    courseinfo={course}
-                    homePage={true}
-                    setSelectedCourses={setSelectedCourses}
-                    selectedCourses={selectedCourses}
-                    setSelectedProfileCourses={setSelectedProfileCourses}
-                    selectedProfileCourses={selectedProfileCourses}
-
+                key={course.Id}
+                courseinfo={course}
+                homePage={true}
+                setSelectedCourses={setSelectedCourses}
+                selectedCourses={selectedCourses}
+                setSelectedProfileCourses={setSelectedProfileCourses}
+                selectedProfileCourses={selectedProfileCourses}
               />
             ))}
           </div>
