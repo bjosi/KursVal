@@ -62,10 +62,8 @@ const DisplayCourse = ({
             </div>
 
             <div className="c_info_container">
-
               <FontAwesomeIcon className="c_info_icon" icon={faCrosshairs} />
               <p className="c_info"> {courseinfo.progname} </p>
-
             </div>
             <div className="c_info_container">
               <FontAwesomeIcon className="c_info_icon" icon={faBarcode} />
@@ -134,7 +132,6 @@ const DisplayCourse = ({
 const Results = ({ courseinfo }) => {
   const link = "https://studieinfo.liu.se/kurs/" + courseinfo.coursecode;
   return (
-
     <div>
       <p className="c_info"> {courseinfo.coursepoints} HP </p>
       <p className="c_info"> Kurskod: {courseinfo.coursecode} </p>
@@ -201,7 +198,6 @@ const ShowBlockOfCourse = ({ courseinfo }) => {
     </div>
   );
 };
-
 
 /*{
     homePage ? <> {!selectedCourses.includes(courseinfo) ?
