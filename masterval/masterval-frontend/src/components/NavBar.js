@@ -25,24 +25,20 @@ const NavBar = ({
   semesterHandler,
   filters,
   selectedFilters,
-    setSelectedFilters,
-    isloggedin,
-  setisloggedin
+  setSelectedFilters,
+  isloggedin,
+  setisloggedin,
 }) => {
+  async function handleLogout() {
+    console.log(isloggedin);
+    try {
+      await logout();
+      setisloggedin(false);
+      console.log(isloggedin);
+    } catch {}
 
-    async function handleLogout() {
-        
-        console.log(isloggedin);
-        try {
-            await logout();
-            setisloggedin(false);
-            console.log(isloggedin);
-        }
-        catch { }
-        
-        console.log(isloggedin);
-    }
-
+    console.log(isloggedin);
+  }
 
   return (
     <>
@@ -63,20 +59,22 @@ const NavBar = ({
                 <FontAwesomeIcon icon={faSuitcase} />
                 <h1>Mina kurser</h1>
               </div>
-                      </Link>
-                      {isloggedin ?
-                          <Link to="/" onClick={handleLogout}>
-                              <div className="menu-item">
-                                  <FontAwesomeIcon icon={faUser} />
-                                  <h1>Logga ut</h1>
-                              </div>
-                          </Link> : <Link to="/LogIn">
-                              <div className="menu-item">
-                                  <FontAwesomeIcon icon={faUser} />
-                                  <h1>Logga in</h1>
-                              </div>
-                          </Link>
-            }
+            </Link>
+            {isloggedin ? (
+              <Link to="/" onClick={handleLogout}>
+                <div className="menu-item">
+                  <FontAwesomeIcon icon={faUser} />
+                  <h1>Logga ut</h1>
+                </div>
+              </Link>
+            ) : (
+              <Link to="/LogIn">
+                <div className="menu-item">
+                  <FontAwesomeIcon icon={faUser} />
+                  <h1>Logga in</h1>
+                </div>
+              </Link>
+            )}
           </div>
         </div>
         <Switch>
@@ -91,18 +89,15 @@ const NavBar = ({
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
             />
-                  </Route>
+          </Route>
 
+          <Route path="/Loading">
+            <Loading />
+          </Route>
 
-                  <Route path="/Loading">
-                      <Loading />
-                  </Route>
-
-
-
-                  <Route path="/LogIn">
-                      <LogIn isloggedin={isloggedin} setisloggedin={setisloggedin}/>
-            </Route>
+          <Route path="/LogIn">
+            <LogIn isloggedin={isloggedin} setisloggedin={setisloggedin} />
+          </Route>
           <Route path="/">
             <Browse
               courses={courses}

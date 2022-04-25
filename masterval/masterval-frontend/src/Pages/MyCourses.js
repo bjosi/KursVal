@@ -8,10 +8,16 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import TableMatrix from "../components/Matrix/TableMatrix";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faHeart, faPen } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faHeart,
+  faL,
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 
-const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
+const MyCourses = ({ selectedCourses, setSelectedCourses, courses }) => {
   const [showOverview, setShowOverview] = useState(false);
+  const [showMatrix, setShowMatrix] = useState(false);
 
   const onSave = () => {
     let data = "";
@@ -58,27 +64,34 @@ const MyCourses = ({ selectedCourses, setSelectedCourses }) => {
             <FontAwesomeIcon className="upper_header_icon" icon={faHeart} />
           </button>
         </div>
-        <h className="exam_name">
-          {" "}
-          Min masterexamen{" "}
+        <h1 className="exam_name">
+          Min masterexamen
           <FontAwesomeIcon className="exam_name_icon" icon={faPen} />
         </h1>
         <ToggleOverviewButton
           showOverview={showOverview}
           setShowOverview={setShowOverview}
+          showMatrix={showMatrix}
+          setShowMatrix={setShowMatrix}
         />
       </div>
-      {showOverview ? (
+      {showMatrix ? (
+        <TableMatrix
+          selectedCourses={selectedCourses}
+          setSelectedCourses={setSelectedCourses}
+          courses={courses}
+        />
+      ) : showOverview ? (
         <Overview
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}
-              />) : (
+        />
+      ) : (
         <Semesters
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}
         />
       )}
-      <TableMatrix selectedCourses={selectedCourses} />
     </div>
   );
 };

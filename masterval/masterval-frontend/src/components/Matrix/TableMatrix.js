@@ -3,9 +3,9 @@ import "./Matrix.css";
 import Matrix from "./Matrix";
 import MatrixInfo from "./MatrixInfo";
 
-const TableMatrix = ({ selectedCourses }) => {
+const TableMatrix = ({ selectedCourses, courses, setSelectedCourses }) => {
   const kunskaper = [
-    "Mal",
+    "Mål",
     "1.1",
     "1.2",
     "1.3",
@@ -78,7 +78,13 @@ const TableMatrix = ({ selectedCourses }) => {
         MakeArr={MakeArr}
         selectedCourses={selectedCourses}
       />
-      <MatrixInfo uppfyllda={uppfyllda} kunskaper={kunskaper} />
+      <MatrixInfo
+        selectedCourses={selectedCourses}
+        setSelectedCourses={setSelectedCourses}
+        uppfyllda={uppfyllda}
+        kunskaper={kunskaper}
+        courses={courses}
+      />
     </>
   );
 };

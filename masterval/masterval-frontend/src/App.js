@@ -7,15 +7,15 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState(null);
-    const [semesterQuery, setSemesterQuery] = useState(null);
+  const [semesterQuery, setSemesterQuery] = useState(null);
 
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
-    );
+  );
 
-    const [isloggedin, setisloggedin] = useState(
-        localStorage.getItem("myValueInLocalStorageforloggedin") || false
-    );
+  const [isloggedin, setisloggedin] = useState(
+    localStorage.getItem("myValueInLocalStorageforloggedin") || false
+  );
 
   const [selectedFilters, setSelectedFilters] = useState([]);
   const filters = [
@@ -30,8 +30,7 @@ function App() {
     "Halvfart",
   ];
 
-    useEffect(() => {
-
+  useEffect(() => {
     var filterQuery = null;
     var temp = selectedFilters;
     var temp2 = selectedFilters;
@@ -102,14 +101,12 @@ function App() {
     );
   }, [selectedCourses]);
 
-
-    useEffect(() => {
-        localStorage.setItem(
-            "myValueInLocalStorageforloggedin",
-            JSON.stringify(isloggedin)
-        );
-    }, [isloggedin]);
-   
+  useEffect(() => {
+    localStorage.setItem(
+      "myValueInLocalStorageforloggedin",
+      JSON.stringify(isloggedin)
+    );
+  }, [isloggedin]);
 
   const searchHandler = (query) => {
     console.log(query);
@@ -156,23 +153,24 @@ function App() {
       );
   }, []);
 
-
-    if (error) {
-        //laddar om sidan efter 1 sekund om det blir error
-        setTimeout(function () {
-
-            window.location.reload();
-        }, 1000);
+  if (error) {
+    //laddar om sidan efter 1 sekund om det blir error
+    setTimeout(function () {
+      window.location.reload();
+    }, 1000);
     return <div> </div>;
   } else if (!loaded) {
-    return (<><Loading/></>);
+    return (
+      <>
+        <Loading />
+      </>
+    );
   } else {
     return (
-        <div>
+      <div>
         <NavBar
           selectedCourses={selectedCourses}
-                setSelectedCourses={setSelectedCourses}
-                
+          setSelectedCourses={setSelectedCourses}
           courses={
             semesterQuery !== null
               ? semesterQuery
@@ -184,9 +182,9 @@ function App() {
           semesterHandler={semesterHandler}
           filters={filters}
           selectedFilters={selectedFilters}
-                setSelectedFilters={setSelectedFilters}
-                isloggedin={isloggedin}
-                setisloggedin={setisloggedin}
+          setSelectedFilters={setSelectedFilters}
+          isloggedin={isloggedin}
+          setisloggedin={setisloggedin}
         />
       </div>
     );
