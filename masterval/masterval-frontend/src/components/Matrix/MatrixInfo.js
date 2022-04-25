@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import CompletionCourses from "../CompletionCourses";
-import DisplayCourse from "../DisplayCourse";
 import "./Matrix.css";
 
 const MatrixInfo = ({
@@ -9,6 +8,8 @@ const MatrixInfo = ({
   courses,
   selectedCourses,
   setSelectedCourses,
+  selectedProfileCourses,
+  setSelectedProfileCourses,
 }) => {
   kunskaper = kunskaper.filter((goal) => goal !== "Mål");
 
@@ -21,18 +22,24 @@ const MatrixInfo = ({
     var test1 = courses.filter((course) => {
       return !stringOfGoals.includes(course.uChosen);
     });
-    const test2 = kunskaper.filter((mål) => !uppfyllda.includes(mål));
-    test1 = test1.filter((course) => !selectedCourses.includes(course));
+    console.log(test1);
 
-    setCompletingCourses(test1);
+    const test3 = test1.filter(
+      (course1) =>
+        !selectedProfileCourses.find(
+          (course2) => course1.coursecode == course2.coursecode
+        )
+    );
+    console.log(test3);
+    const test2 = kunskaper.filter((mål) => !uppfyllda.includes(mål));
+
+    setCompletingCourses(test3);
     setNotFullfilled(test2);
-    console.log(completingCourses);
-    console.log(selectedCourses);
-    console.log(notFullfilled);
-  }, [selectedCourses]);
+  }, [selectedProfileCourses]);
 
   return (
     <>
+      <h1>Hej</h1>
       <div className="matrix_info">
         <div className="section">
           <h2 className="matrix_info_header">Ej uppfyllda mål: </h2>
@@ -46,6 +53,8 @@ const MatrixInfo = ({
               completingCourses={completingCourses}
               selectedCourses={selectedCourses}
               setSelectedCourses={setSelectedCourses}
+              selectedProfileCourses={selectedProfileCourses}
+              setSelectedProfileCourses={setSelectedProfileCourses}
             />
           ) : (
             <h1>Alla programmål uppfyllda min fucking broder</h1>

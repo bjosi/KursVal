@@ -5,7 +5,10 @@ const CompletionCourses = ({
   completingCourses,
   selectedCourses,
   setSelectedCourses,
+  selectedProfileCourses,
+  setSelectedProfileCourses,
 }) => {
+  console.log(completingCourses);
   return (
     <>
       <h2>Kurser som uppfyller mål:</h2>
@@ -16,6 +19,8 @@ const CompletionCourses = ({
             homePage={true}
             selectedCourses={selectedCourses}
             setSelectedCourses={setSelectedCourses}
+            setSelectedProfileCourses={setSelectedProfileCourses}
+            selectedProfileCourses={selectedProfileCourses}
           />
         );
       })}
