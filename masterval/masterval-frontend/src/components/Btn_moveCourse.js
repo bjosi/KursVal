@@ -18,15 +18,8 @@ const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
     if (courseinfo.semester == 7) {
         newTerm = 9
     } else {
-      setSelectedProfileCourses(
-        selectedProfileCourses.map((item) =>
-          item.coursecode === courseinfo.coursecode
-            ? { ...item, semester: newTerm }
-            : item
-        )
-      );
+        newTerm = 7
     }
-  };
 
 
     const handleConfirm = () => {
@@ -74,6 +67,7 @@ const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
                 </div>
             </div>
         </Backdrop>
+
 
     </>
   );

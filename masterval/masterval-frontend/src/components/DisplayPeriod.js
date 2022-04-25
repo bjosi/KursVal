@@ -17,10 +17,8 @@ const DisplayPeriod = ({
     (item) => item.semester === semester && item.period === "2"
   );
 
-
   const newListPeriodOneAndTwo = courseinfo.filter(
     (item) => item.semester === semester && item.period === "1,2"
-
   );
 
   return (
