@@ -13,41 +13,40 @@ function App() {
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
   );
 
+  // The courses of the profile that is currently shown
+  const [selectedProfileCourses, setSelectedProfileCourses] = useState(
+    JSON.parse(localStorage.getItem("selectedProfileCourses")) ||
+      selectedCourses
+  );
+  // The name of the profile that is shown on MyCourses, stored in localstorage since selectedProfileCourses is and they need to match
+  const [selectedProfileName, setSelectedProfileName] = useState(
+    localStorage.getItem("selectedProfileName") || "Min masterexamen"
+  );
 
-    // The courses of the profile that is currently shown
-  const [selectedProfileCourses, setSelectedProfileCourses] = useState(JSON.parse(localStorage.getItem("selectedProfileCourses")) || selectedCourses);
-    // The name of the profile that is shown on MyCourses, stored in localstorage since selectedProfileCourses is and they need to match
-    const [selectedProfileName, setSelectedProfileName] = useState((localStorage.getItem("selectedProfileName")) || "Min masterexamen");
+  useEffect(() => {
+    localStorage.setItem("selectedProfileName", selectedProfileName);
+  }, [selectedProfileName]);
 
-    useEffect(() => {
-        localStorage.setItem("selectedProfileName", selectedProfileName);
-    }, [selectedProfileName]);
-
-
-    useEffect(() => {
-        localStorage.setItem(
-            "selectedProfileCourses",
-            JSON.stringify(selectedProfileCourses)
-        );
-
-    }, [selectedProfileCourses]);
-
-    const [selectedFilters, setSelectedFilters] = useState([]);
-
-    const [isloggedin, setisloggedin] = useState(
-        localStorage.getItem("myValueInLocalStorageforloggedin") || false
+  useEffect(() => {
+    localStorage.setItem(
+      "selectedProfileCourses",
+      JSON.stringify(selectedProfileCourses)
     );
+  }, [selectedProfileCourses]);
 
+  const [selectedFilters, setSelectedFilters] = useState([]);
 
+  const [isloggedin, setisloggedin] = useState(
+    localStorage.getItem("myValueInLocalStorageforloggedin") || false
+  );
 
-    const [username, setUsername] = useState((localStorage.getItem("username")) || "");
+  const [username, setUsername] = useState(
+    localStorage.getItem("username") || ""
+  );
 
-    useEffect(() => {
-        localStorage.setItem("username", username);
-    }, [username]);
-
-
-
+  useEffect(() => {
+    localStorage.setItem("username", username);
+  }, [username]);
 
   const filters = [
     "Grundnivå",
@@ -129,8 +128,7 @@ function App() {
     localStorage.setItem(
       "myValueInLocalStorage",
       JSON.stringify(selectedCourses)
-      );
-
+    );
   }, [selectedCourses, searchQuery]);
 
   useEffect(() => {
@@ -196,36 +194,32 @@ function App() {
         <Loading />
       </>
     );
-
   } else {
     return (
       <div>
         <NavBar
-
-                selectedCourses={selectedCourses}
-                setSelectedCourses={setSelectedCourses}
-
-                selectedProfileCourses={selectedProfileCourses}
-                setSelectedProfileCourses={setSelectedProfileCourses}
-                courses={
-                    semesterQuery !== null
-                        ? semesterQuery
-                        : searchQuery !== null
-                            ? searchQuery
-                            : courses
-                }
-                searchHandler={searchHandler}
-                semesterHandler={semesterHandler}
-                filters={filters}
-                selectedFilters={selectedFilters}
-                setSelectedFilters={setSelectedFilters}
-                isloggedin={isloggedin}
-                setisloggedin={setisloggedin}
-                username={username}
-                setUsername={setUsername}
-                selectedProfileName={selectedProfileName}
-                setSelectedProfileName={setSelectedProfileName}
-
+          selectedCourses={selectedCourses}
+          setSelectedCourses={setSelectedCourses}
+          selectedProfileCourses={selectedProfileCourses}
+          setSelectedProfileCourses={setSelectedProfileCourses}
+          courses={
+            semesterQuery !== null
+              ? semesterQuery
+              : searchQuery !== null
+              ? searchQuery
+              : courses
+          }
+          searchHandler={searchHandler}
+          semesterHandler={semesterHandler}
+          filters={filters}
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters}
+          isloggedin={isloggedin}
+          setisloggedin={setisloggedin}
+          username={username}
+          setUsername={setUsername}
+          selectedProfileName={selectedProfileName}
+          setSelectedProfileName={setSelectedProfileName}
         />
       </div>
     );
