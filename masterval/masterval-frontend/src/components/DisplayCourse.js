@@ -14,11 +14,13 @@ import {
   faCrosshairs,
   faSignal,
   faGraduationCap,
-  faCalendar,
+    faCalendar,
+    
   faBarcode,
   faBookOpen,
   faLocationDot,
   faWindowRestore,
+  faDatabase,
 } from "@fortawesome/free-solid-svg-icons";
 
 const DisplayCourse = ({
@@ -62,21 +64,29 @@ const DisplayCourse = ({
             </div>
 
             <div className="c_info_container">
-              <FontAwesomeIcon className="c_info_icon" icon={faCrosshairs} />
-              <p className="c_info"> {courseinfo.progname} </p>
+                          <MySvg className="c_info_icon" />
+              <p className="c_info">Termin {courseinfo.semester} </p>
             </div>
-            <div className="c_info_container">
-              <FontAwesomeIcon className="c_info_icon" icon={faBarcode} />
-              <p className="c_info"> {courseinfo.coursecode} </p>
-            </div>
-            <div className="c_info_container">
-              <MySvg className="c_info_icon" />
-              <p className="c_info"> Termin {courseinfo.semester} </p>
-            </div>
-            <div className="c_info_container">
-              <FontAwesomeIcon className="c_info_icon" icon={faSignal} />
-              <p className="c_info"> {courseinfo.courselevel} </p>
-            </div>
+
+                      <div className="c_info_container">
+                          <FontAwesomeIcon className="c_info_icon" icon={faSignal} />
+                          <p className="c_info"> {courseinfo.courselevel} </p>
+                      </div>
+
+
+                      <div className="c_info_container">
+                          <FontAwesomeIcon className="c_info_icon" icon={faBookOpen} />
+
+              <p className="c_info"> {courseinfo.area} </p>
+                      </div>
+
+
+            
+
+                      <div className="c_info_container">
+                          <FontAwesomeIcon className="c_info_icon" icon={faBarcode} />
+                          <p className="c_info"> {courseinfo.coursecode} </p>
+                      </div>
             {showresult ? <Results courseinfo={courseinfo} /> : null}
           </div>
           <div className="div_r">
@@ -133,12 +143,10 @@ const Results = ({ courseinfo }) => {
   const link = "https://studieinfo.liu.se/kurs/" + courseinfo.coursecode;
   return (
     <div>
-      <p className="c_info"> {courseinfo.coursepoints} HP </p>
-      <p className="c_info"> Kurskod: {courseinfo.coursecode} </p>
+          <div className="c_info_container">
+              <FontAwesomeIcon className="c_info_icon" icon={faDatabase} />
 
-      <div className="c_info_container">
-        <FontAwesomeIcon className="c_info_icon" icon={faBookOpen} />
-        <p className="c_info"> {courseinfo.area} </p>
+              <p className="c_info"> {courseinfo.coursepoints} HP </p>
       </div>
 
       <div className="c_info_container">
