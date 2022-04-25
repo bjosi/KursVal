@@ -17,7 +17,6 @@ const FilterMenu = ({ filters, selectedFilters, setSelectedFilters }) => {
       ? selectedFilters.filter((currentFilter) => currentFilter !== filter)
       : [...selectedFilters, filter];
     setSelectedFilters(newSelection);
-    console.log(selectedFilters);
   };
 
   return (

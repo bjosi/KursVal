@@ -13,11 +13,42 @@ function App() {
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
   );
 
-  const [isloggedin, setisloggedin] = useState(
-    localStorage.getItem("myValueInLocalStorageforloggedin") || false
-  );
 
-  const [selectedFilters, setSelectedFilters] = useState([]);
+    // The courses of the profile that is currently shown
+  const [selectedProfileCourses, setSelectedProfileCourses] = useState(JSON.parse(localStorage.getItem("selectedProfileCourses")) || selectedCourses);
+    // The name of the profile that is shown on MyCourses, stored in localstorage since selectedProfileCourses is and they need to match
+    const [selectedProfileName, setSelectedProfileName] = useState((localStorage.getItem("selectedProfileName")) || "Min masterexamen");
+
+    useEffect(() => {
+        localStorage.setItem("selectedProfileName", selectedProfileName);
+    }, [selectedProfileName]);
+
+
+    useEffect(() => {
+        localStorage.setItem(
+            "selectedProfileCourses",
+            JSON.stringify(selectedProfileCourses)
+        );
+
+    }, [selectedProfileCourses]);
+
+    const [selectedFilters, setSelectedFilters] = useState([]);
+
+    const [isloggedin, setisloggedin] = useState(
+        localStorage.getItem("myValueInLocalStorageforloggedin") || false
+    );
+
+
+
+    const [username, setUsername] = useState((localStorage.getItem("username")) || "");
+
+    useEffect(() => {
+        localStorage.setItem("username", username);
+    }, [username]);
+
+
+
+
   const filters = [
     "Grundnivå",
     "Avancerad nivå",
@@ -98,8 +129,9 @@ function App() {
     localStorage.setItem(
       "myValueInLocalStorage",
       JSON.stringify(selectedCourses)
-    );
-  }, [selectedCourses]);
+      );
+
+  }, [selectedCourses, searchQuery]);
 
   useEffect(() => {
     localStorage.setItem(
@@ -109,7 +141,6 @@ function App() {
   }, [isloggedin]);
 
   const searchHandler = (query) => {
-    console.log(query);
     const searchResult = courses.filter((course) => {
       return (
         course.coursename.toLowerCase().includes(query.toLowerCase()) ||
@@ -165,26 +196,36 @@ function App() {
         <Loading />
       </>
     );
+
   } else {
     return (
       <div>
         <NavBar
-          selectedCourses={selectedCourses}
-          setSelectedCourses={setSelectedCourses}
-          courses={
-            semesterQuery !== null
-              ? semesterQuery
-              : searchQuery !== null
-              ? searchQuery
-              : courses
-          }
-          searchHandler={searchHandler}
-          semesterHandler={semesterHandler}
-          filters={filters}
-          selectedFilters={selectedFilters}
-          setSelectedFilters={setSelectedFilters}
-          isloggedin={isloggedin}
-          setisloggedin={setisloggedin}
+
+                selectedCourses={selectedCourses}
+                setSelectedCourses={setSelectedCourses}
+
+                selectedProfileCourses={selectedProfileCourses}
+                setSelectedProfileCourses={setSelectedProfileCourses}
+                courses={
+                    semesterQuery !== null
+                        ? semesterQuery
+                        : searchQuery !== null
+                            ? searchQuery
+                            : courses
+                }
+                searchHandler={searchHandler}
+                semesterHandler={semesterHandler}
+                filters={filters}
+                selectedFilters={selectedFilters}
+                setSelectedFilters={setSelectedFilters}
+                isloggedin={isloggedin}
+                setisloggedin={setisloggedin}
+                username={username}
+                setUsername={setUsername}
+                selectedProfileName={selectedProfileName}
+                setSelectedProfileName={setSelectedProfileName}
+
         />
       </div>
     );

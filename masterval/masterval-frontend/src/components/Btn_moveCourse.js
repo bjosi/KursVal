@@ -6,60 +6,69 @@ import "./Backdrop/Backdrop.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareCaretRight } from "@fortawesome/free-solid-svg-icons";
 
-const Btn_moveCourse = ({
-  courseinfo,
-  setSelectedCourses,
-  selectedCourses,
-}) => {
-  const [isOpen, setIsOpen] = useState(false);
 
-  let newTerm;
+const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
+    setSelectedProfileCourses,
+    selectedProfileCourses }) => {
 
-  if (courseinfo.semester == 7) {
-    newTerm = 9;
-  } else {
-    newTerm = 7;
-  }
+    const [backdrop, setBackdrop] = useState(false);
 
-  const handleConfirm = () => {
-    setSelectedCourses(
-      selectedCourses.map((item) =>
-        item.coursecode === courseinfo.coursecode
-          ? { ...item, semester: newTerm }
-          : item
-      )
-    );
-    setBackdrop(false);
-  };
+    let newTerm;
 
-  const [backdrop, setBackdrop] = React.useState(false);
+    if (courseinfo.semester == 7) {
+        newTerm = 9
+    } else {
+        newTerm = 7
+    }
 
-  return (
-    <>
-      <button
-        className={
-          courseinfo.semester == 8 ? "btn-movecoursehidden" : "btn-movecourse"
+
+    const handleConfirm = () => {
+
+        const isLocalStorage = JSON.stringify(selectedCourses) === JSON.stringify(selectedProfileCourses);
+
+        if (isLocalStorage) {
+
+            setSelectedCourses(
+                selectedCourses.map(item =>
+                    item.coursecode === courseinfo.coursecode
+                        ? { ...item, semester: newTerm }
+                        : item
+                ))
+
+            setSelectedProfileCourses(selectedCourses)
+        } else {
+            setSelectedProfileCourses(
+                selectedProfileCourses.map(item =>
+                    item.coursecode === courseinfo.coursecode
+                        ? { ...item, semester: newTerm }
+                        : item
+                ))
         }
-        onClick={() => setBackdrop(true)}
-      >
-        {" "}
-        <FontAwesomeIcon icon={faSquareCaretRight} />{" "}
-      </button>
+        setBackdrop(false);
+    }
 
-      <Backdrop onClose={() => setBackdrop(false)} open={backdrop}>
-        <div style={{}}>
-          <div className="box">
-            <div className="close_button_container">
-              <div className="close_button" onClick={() => setBackdrop(false)}>
-                X
-              </div>
+
+    return( <>
+        <button className={courseinfo.semester === 8 ? 'btn-movecoursehidden' : "btn-movecourse"}
+            onClick={()=>setBackdrop(true)}> <FontAwesomeIcon icon={faSquareCaretRight} /> </button>
+
+
+        <Backdrop onClose={() => setBackdrop(false)} open={backdrop}>
+            <div style={{}}>
+                <div className="box">
+                    <div className="close_button_container">
+                        <div className="close_button" onClick={() => setBackdrop(false)}>
+                            X
+                        </div>
+                    </div>
+                    <p> Vill du flytta kursen till termin {newTerm}? </p>
+                    <button onClick={handleConfirm}>Okej</button>
+                    <button onClick={() => setBackdrop(false)}>Avbryt</button>
+                </div>
             </div>
-            <p> Vill du flytta kursen till termin {newTerm}? </p>
-            <button onClick={handleConfirm}>Okej</button>
-            <button onClick={() => setBackdrop(false)}>Avbryt</button>
-          </div>
-        </div>
-      </Backdrop>
+        </Backdrop>
+
+
     </>
   );
 };

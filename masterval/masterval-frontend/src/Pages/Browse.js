@@ -14,7 +14,9 @@ const Browse = ({
   setSelectedCourses,
   filters,
   selectedFilters,
-  setSelectedFilters,
+    setSelectedFilters,
+  selectedProfileCourses,
+  setSelectedProfileCourses
 }) => {
   const [backdrop, setBackdrop] = useState(false);
 
@@ -70,11 +72,15 @@ const Browse = ({
           <div className="right-section">
             {courses.map((course, index) => (
               <DisplayCourse
-                key={index}
-                courseinfo={course}
-                homePage={true}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
+
+                    key={course.Id}
+                    courseinfo={course}
+                    homePage={true}
+                    setSelectedCourses={setSelectedCourses}
+                    selectedCourses={selectedCourses}
+                    setSelectedProfileCourses={setSelectedProfileCourses}
+                    selectedProfileCourses={selectedProfileCourses}
+
               />
             ))}
           </div>

@@ -45,11 +45,23 @@
   font-size: 1rem;
   font-family: "Lato", sans-serif;
   font-weight: 400;
+  margin-left: 0.5rem;
 }
 
 .c_info_icon {
-  size: 0.5rem;
-  margin-right: 0.2rem;
+  font-size: 0.8rem;
+  width: 20px;
+  color: #2b6778;
+    color: #2b6778;
+    font-size: 1rem;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+}
+
+.c_info_icon {
+  width:1rem;
+  margin-right: 0.3rem;
+
 }
 
 .div_l {
@@ -191,6 +203,16 @@
   font-size: 20px;
 }
 
-.course_website:hover {
-  cursor: pointer;
+.course_website {
+    color: #2b6778;
 }
+
+    .course_website:visited {
+        color: #f9a26c;
+    }
+
+    .course_website:hover {
+        cursor: pointer;
+    }
+
+

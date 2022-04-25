@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react";
 import MyCourses from "../Pages/MyCourses";
 import LogIn from "../Pages/LogIn";
 import { signup, useAuth, logout, login } from "../firebase";
@@ -6,6 +6,7 @@ import Browse from "../Pages/Browse";
 import Loading from "../Pages/Loading";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faUser,
   faFloppyDisk,
@@ -25,9 +26,17 @@ const NavBar = ({
   semesterHandler,
   filters,
   selectedFilters,
-  setSelectedFilters,
-  isloggedin,
-  setisloggedin,
+
+    setSelectedFilters,
+    selectedProfileCourses,
+    setSelectedProfileCourses,
+    isloggedin,
+    setisloggedin,
+    username,
+    setUsername,
+    selectedProfileName,
+    setSelectedProfileName
+
 }) => {
   async function handleLogout() {
     console.log(isloggedin);
@@ -37,8 +46,18 @@ const NavBar = ({
       console.log(isloggedin);
     } catch {}
 
-    console.log(isloggedin);
-  }
+
+    async function handleLogout() {
+        
+        try {
+            await logout();
+            setisloggedin(false);
+        }
+        catch { }
+        
+    }
+
+
 
   return (
     <>
@@ -79,35 +98,58 @@ const NavBar = ({
         </div>
         <Switch>
           <Route path="/MyCourses">
-            <MyCourses
-              courses={courses}
-              searchHandler={searchHandler}
-              semesterHandler={semesterHandler}
-              selectedCourses={selectedCourses}
-              setSelectedCourses={setSelectedCourses}
+
+                      <MyCourses
+                          selectedCourses={selectedCourses}
+                          setSelectedCourses={setSelectedCourses}
+                          selectedProfileCourses={selectedProfileCourses}
+                          setSelectedProfileCourses={setSelectedProfileCourses}
+                          isloggedin={isloggedin}
+                          username={username}
+                          selectedProfileName={selectedProfileName}
+                          setSelectedProfileName={setSelectedProfileName}
+
               filters={filters}
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
-            />
+              courses={courses}
+searchHandler={searchHandler}
+              semesterHandler={semesterHandler}
+              
+
+
+                          
+                                     />
           </Route>
+
+
+
+                  <Route path="/Loading">
+                      <Loading />
+                  </Route>
+
 
           <Route path="/Loading">
             <Loading />
           </Route>
 
-          <Route path="/LogIn">
-            <LogIn isloggedin={isloggedin} setisloggedin={setisloggedin} />
-          </Route>
+
+                  <Route path="/LogIn">
+                      <LogIn isloggedin={isloggedin} setisloggedin={setisloggedin} username={username} setUsername={setUsername} setSelectedProfileName={setSelectedProfileName} setSelectedProfileCourses={setSelectedProfileCourses} selectedCourses={selectedCourses} />
+            </Route>
           <Route path="/">
             <Browse
               courses={courses}
               searchHandler={searchHandler}
               semesterHandler={semesterHandler}
               selectedCourses={selectedCourses}
-              setSelectedCourses={setSelectedCourses}
+                          setSelectedCourses={setSelectedCourses}
+                          selectedProfileCourses={selectedProfileCourses}
+                          setSelectedProfileCourses={setSelectedProfileCourses}
               filters={filters}
               selectedFilters={selectedFilters}
-              setSelectedFilters={setSelectedFilters}
+                          setSelectedFilters={setSelectedFilters}
+                       
             />
           </Route>
         </Switch>
