@@ -1,0 +1,50 @@
+.table_matrix {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 1rem;
+  width: 65vw;
+  overflow-x: scroll;
+}
+.table_vertical {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.vertical_div_k {
+  width: 4rem;
+  height: 2.5rem;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  border: 1px solid black;
+  padding: 1em;
+}
+.vertical_div {
+  width: 6rem;
+  height: 2.5rem;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  border: 1px solid black;
+  padding: 1em;
+}
+.vertical_div_g {
+  background-color: #f8a26b;
+  width: 6rem;
+  height: 2.5rem;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  border: 1px solid black;
+  padding: 1em;
+}
+
+.matrix_info {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.section {
+  margin: 2rem;
+}
+
+.section:nth-child(2) {
+}

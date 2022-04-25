@@ -155,9 +155,7 @@ const Overview = ({ selectedCourses,selectedProfileName }) => {
             <></>
           )}
         </div>
-          </div>
-
-
+      </div>
     </div>
   );
 };

@@ -105,7 +105,7 @@
   display: flex;
   font-weight: 700;
   font-size: 1rem;
-  background: #FFF;
+  background: #fff;
 }
 
 .toggle_overview:hover {
@@ -127,15 +127,15 @@
 }
 
 .toggle_overview_wrapper {
-    width: 1000px;
-    margin: 0rem auto 0rem auto;
-    padding: 0 1rem 0 1rem;
-    background: #FFF;
+  width: 70vw;
+  margin: 0 auto;
+  padding: 0 1rem 0 1rem;
+  background: #fff;
+  margin-bottom: 2rem;
 }
 
-
-    @media screen and (max-width: 1000px) {
-        .toggle_overview_wrapper {
+@media screen and (max-width: 1000px) {
+  .toggle_overview_wrapper {
     width: 100%;
   }
 }
@@ -145,7 +145,7 @@
 }
 
 .underline_right {
-    width: 11rem;
+  width: 11rem;
 }
 
 .underline_selected {
@@ -181,8 +181,8 @@
   margin: 1rem auto 1.5rem auto;
   font-weight: 700;
   font-size: 1.25rem;
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
 }
 
 .toggle_icon {
@@ -198,17 +198,21 @@
   font-weight: 400;
 }
 
+.not_logged_in {
+  cursor: default;
+}
+
 .upper_header_icon {
   margin: 0 0.2rem 0 0.2rem;
 }
 
 .change_profile_name_icon {
-    margin-left: 0.2rem;
-    margin-bottom: 0.1rem;
-    color: lightgrey;
-    font-size: 1rem;
-    font-family: "Lato", sans-serif;
-    cursor: pointer;
+  margin-left: 0.2rem;
+  margin-bottom: 0.1rem;
+  color: lightgrey;
+  font-size: 1rem;
+  font-family: "Lato", sans-serif;
+  cursor: pointer;
 }
 
 .semester_header {
@@ -401,58 +405,77 @@
   margin: 0.4rem 0 0rem 0;
 }
 
-.save_changes{
-    font-size:1rem;
+.save_changes {
+  font-size: 1rem;
 }
 
 .select_profile {
-    width: 80%;
-    font-family: "Lato", sans-serif;
-    margin: 0 1rem;
-    border: 1px solid black;
-    padding: 1em;
-
+  width: 80%;
+  font-family: "Lato", sans-serif;
+  margin: 0 1rem;
+  border: 1px solid black;
+  padding: 1em;
 }
 
-
+.profile_update_succeeded {
+  right: 0;
+  position: fixed;
+  font-size: 0.6rem;
+  padding: 0.2rem 0.2rem 0.2rem 0.7rem;
+  z-index: 999;
+  background-color: #f2f2f2;
+  color: grey;
+  font-weight: 200;
+  width: 20%;
+}
 
 .table_matrix {
-    display: flex;
-    align-content: space-evenly;
-    flex-direction: row;
-    justify-content:center;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 1rem;
+  width: 65vw;
+  overflow-x: scroll;
 }
-
 .table_vertical {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-
 .vertical_div_k {
-    width: 4rem;
-    height:2.5rem;
-    text-align: center;
-    font-family: "Lato", sans-serif;
-    border: 1px solid black;
-    padding: 1em;
+  width: 4rem;
+  height: 2.5rem;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  border: 1px solid black;
+  padding: 1em;
 }
-
 .vertical_div {
-    width: 6rem;
-    height: 2.5rem;
-    text-align: center;
-    font-family: "Lato", sans-serif;
-    border: 1px solid black;
-    padding: 1em;
+  width: 6rem;
+  height: 2.5rem;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  border: 1px solid black;
+  padding: 1em;
 }
 .vertical_div_g {
-    background-color: aquamarine;
-    width: 6rem;
-    height: 2.5rem;
-    text-align: center;
-    font-family: "Lato", sans-serif;
-    border: 1px solid black;
-    padding: 1em;
+  background-color: #f8a26b;
+  width: 6rem;
+  height: 2.5rem;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  border: 1px solid black;
+  padding: 1em;
 }
 
+.matrix_info {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.section {
+  margin: 2rem;
+}
+
+.section:nth-child(2) {
+}

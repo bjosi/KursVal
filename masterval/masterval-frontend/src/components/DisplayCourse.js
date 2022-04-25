@@ -5,12 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Btn_moveCourse from "./Btn_moveCourse";
 import ButtonAddRemoveCourse from "./ButtonAddRemoveCourse";
 
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   faAngleDown,
   faAngleUp,
   faCircleHalfStroke,
   faCircle,
+  faCrosshairs,
+  faSignal,
   faGraduationCap,
   faCalendar,
   faBarcode,
@@ -60,15 +62,21 @@ const DisplayCourse = ({
             </div>
 
             <div className="c_info_container">
+
+              <FontAwesomeIcon className="c_info_icon" icon={faCrosshairs} />
+              <p className="c_info"> {courseinfo.progname} </p>
+
+            </div>
+            <div className="c_info_container">
               <FontAwesomeIcon className="c_info_icon" icon={faBarcode} />
               <p className="c_info"> {courseinfo.coursecode} </p>
             </div>
             <div className="c_info_container">
-              <FontAwesomeIcon className="c_info_icon" icon={faCalendar} />
+              <MySvg className="c_info_icon" />
               <p className="c_info"> Termin {courseinfo.semester} </p>
             </div>
             <div className="c_info_container">
-              <FontAwesomeIcon className="c_info_icon" icon={faGraduationCap} />
+              <FontAwesomeIcon className="c_info_icon" icon={faSignal} />
               <p className="c_info"> {courseinfo.courselevel} </p>
             </div>
             {showresult ? <Results courseinfo={courseinfo} /> : null}
@@ -126,7 +134,11 @@ const DisplayCourse = ({
 const Results = ({ courseinfo }) => {
   const link = "https://studieinfo.liu.se/kurs/" + courseinfo.coursecode;
   return (
-    <div className="additional_info">
+
+    <div>
+      <p className="c_info"> {courseinfo.coursepoints} HP </p>
+      <p className="c_info"> Kurskod: {courseinfo.coursecode} </p>
+
       <div className="c_info_container">
         <FontAwesomeIcon className="c_info_icon" icon={faBookOpen} />
         <p className="c_info"> {courseinfo.area} </p>
@@ -159,6 +171,7 @@ const ShowPaseOfCourse = ({ courseinfo }) => {
   if (blocks.length === 2) {
     paseIsFull = false;
   }
+
   return (
     <div className="pase_container">
       {paseIsFull ? (
@@ -185,6 +198,78 @@ const ShowBlockOfCourse = ({ courseinfo }) => {
           {block}
         </div>
       ))}
+    </div>
+  );
+};
+
+
+/*{
+    homePage ? <> {!selectedCourses.includes(courseinfo) ?
+        (<Btn_addcourse
+            courseinfo={courseinfo}
+            setSelectedCourses={setSelectedCourses}
+            selectedCourses={selectedCourses}
+        />) : <Btn_removeCourse
+            courseinfo={courseinfo}
+            setSelectedCourses={setSelectedCourses}
+            selectedCourses={selectedCourses}
+        />
+    }</> : (
+        <div className="btn-displaycourse">
+            <Btn_moveCourse
+                courseinfo={courseinfo}
+                setSelectedCourses={setSelectedCourses}
+                selectedCourses={selectedCourses}
+            />
+            <Btn_removeCourse
+                courseinfo={courseinfo}
+                setSelectedCourses={setSelectedCourses}
+                selectedCourses={selectedCourses}
+            />
+        </div>
+    )
+}
+*/
+export const CalendarIcon = () => {
+  return (
+    <svg
+      style={{ width: "inherit", height: "inherit" }}
+      version="1.1"
+      viewBox="0 0 448 512"
+      xmlns="http://www.w3.org/2000/svg"
+      width="10%"
+    >
+      <path
+        strokeWidth="2"
+        d="M152 64H296V24C296 10.75 306.7 0 320 0C333.3 0 344 10.75 344 24V64H384C419.3 64 448 92.65 448 128V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V128C0 92.65 28.65 64 64 64H104V24C104 10.75 114.7 0 128 0C141.3 0 152 10.75 152 24V64zM48 448C48 456.8 55.16 464 64 464H384C392.8 464 400 456.8 400 448V192H48V448z"
+      />
+    </svg>
+  );
+};
+
+const MySvg = (props) => {
+  return (
+    // With Styling
+    <div
+      style={{
+        width: "20",
+        height: "20",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+      className="c_info_icon"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="13"
+        height="13"
+        fill="currentColor"
+        className="bi bi-calendar"
+        viewBox="0 0 16 16"
+      >
+        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+      </svg>
     </div>
   );
 };
