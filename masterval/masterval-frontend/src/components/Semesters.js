@@ -28,7 +28,7 @@ const Semesters = ({
         <h1> Högskolepoäng </h1>
         <div className="progress_bar_wrapper">
           <ProgressBar progress={HPPerSemester / 30} isSmall={true} />
-          <h2>{HPPerSemester} av 30HP</h2>
+                  <h2 className="semester_header_text">{HPPerSemester} av 30HP</h2>
         </div>
 
         {HPPerSemester >= 30 ? (
