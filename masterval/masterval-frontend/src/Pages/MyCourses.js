@@ -13,7 +13,8 @@ import {
   faHeart,
   faPen,
   faArrowsRotate,
-  faCircleCheck,
+    faCircleCheck,
+  faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 import ProfileSelector from "../components/ProfileSelector";
 import { useAuth } from "../firebase";
@@ -68,7 +69,8 @@ const MyCourses = ({
 
   const [test, setTest] = useState(false);
   const [fetchSucceeded, setFetchSucceeded] = useState(false);
-  const [showMatrix, setShowMatrix] = useState(false);
+    const [showMatrix, setShowMatrix] = useState(false);
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   useEffect(() => {
     console.log("fetch");
@@ -106,20 +108,14 @@ const MyCourses = ({
       if (selectedProfileCoursesIsLocalStorage) {
         setLocalStorageProfileName(temporaryProfileName);
       } else {
-        let data = "";
+        let data = ",";
         selectedProfileCourses.map(
           (course) => (data += "," + course.coursecode + "," + course.semester)
         );
 
-        if (data == "") {
-          data = ",";
-        }
-
+        
         const username1 = username + "," + selectedProfileName;
 
-        console.log(data);
-        console.log(username1);
-        console.log(temporaryProfileName);
 
         await fetch(
           "save/" + username1 + "/" + data + "/" + temporaryProfileName
@@ -214,14 +210,23 @@ const MyCourses = ({
       coursesSelected = selectedProfileCourses;
     }
 
-    let data = "";
+    let data = ",";
     coursesSelected.map(
       (course) => (data += "," + course.coursecode + "," + course.semester)
     );
 
-    if (data == "") {
-      data = ",";
-    }
+
+
+      if (selectedProfileCoursesIsLocalStorage) {
+
+          if (profiles.find((profile) => profile.name === localStorageProfileName)) {
+              setShowErrorMessage(true);
+              setTimeout(() => setShowErrorMessage(false), 2000);
+
+              return;
+          }
+      }
+
 
     await fetch(
       "save/" + username + "," + profileName + "/" + data + "/" + "false"
@@ -301,17 +306,17 @@ const MyCourses = ({
           </Link>
 
           {isloggedin ? (
-            <>
+                      <div className="upper_header_link_right_section">
               {selectedProfileCoursesIsLocalStorage ? (
-                <button onClick={onSave} className="upper_header_link">
-                  Spara profil
+                <button onClick={onSave} className="upper_header_link upper_header_link_margin">
+                  Spara ny profil
                   <FontAwesomeIcon
                     className="upper_header_icon"
                     icon={faHeart}
                   />
                 </button>
               ) : (
-                <button onClick={onSave} className="upper_header_link">
+                                  <button onClick={onSave} className="upper_header_link upper_header_link_margin">
                   Uppdatera profil
                   <FontAwesomeIcon
                     className="upper_header_icon"
@@ -321,10 +326,10 @@ const MyCourses = ({
               )}
               <button onClick={onDelete} className="upper_header_link">
                 {" "}
-                ta bort profil{" "}
-                <FontAwesomeIcon className="upper_header_icon" icon={faHeart} />
+                Ta bort profil{" "}
+                              <FontAwesomeIcon className="upper_header_icon" icon={faTrashCan} />
               </button>{" "}
-            </>
+            </div>
           ) : (
             <h1 className="upper_header_link not_logged_in">
               Logga in för att spara profil
@@ -370,8 +375,11 @@ const MyCourses = ({
             className="change_profile_name_icon"
             icon={editableText ? faCircleCheck : faPen}
           />
-        </h3>
-        <ToggleOverviewButton
+              </h3>
+
+              <h6 className={showErrorMessage ? "profilename_error profilename_show_error" : "profilename_error"}>Ange annat profilnamn</h6>
+
+         <ToggleOverviewButton
           showOverview={showOverview}
           setShowOverview={setShowOverview}
           showMatrix={showMatrix}
