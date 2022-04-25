@@ -7,11 +7,12 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState(null);
-    const [semesterQuery, setSemesterQuery] = useState(null);
+  const [semesterQuery, setSemesterQuery] = useState(null);
 
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
-    );
+  );
+
 
     // The courses of the profile that is currently shown
   const [selectedProfileCourses, setSelectedProfileCourses] = useState(JSON.parse(localStorage.getItem("selectedProfileCourses")) || selectedCourses);
@@ -38,6 +39,7 @@ function App() {
     );
 
 
+
     const [username, setUsername] = useState((localStorage.getItem("username")) || "");
 
     useEffect(() => {
@@ -59,8 +61,7 @@ function App() {
     "Halvfart",
   ];
 
-    useEffect(() => {
-
+  useEffect(() => {
     var filterQuery = null;
     var temp = selectedFilters;
     var temp2 = selectedFilters;
@@ -132,14 +133,12 @@ function App() {
 
   }, [selectedCourses, searchQuery]);
 
-
-    useEffect(() => {
-        localStorage.setItem(
-            "myValueInLocalStorageforloggedin",
-            JSON.stringify(isloggedin)
-        );
-    }, [isloggedin]);
-   
+  useEffect(() => {
+    localStorage.setItem(
+      "myValueInLocalStorageforloggedin",
+      JSON.stringify(isloggedin)
+    );
+  }, [isloggedin]);
 
   const searchHandler = (query) => {
     const searchResult = courses.filter((course) => {
@@ -185,21 +184,24 @@ function App() {
       );
   }, []);
 
-
-    if (error) {
-        //laddar om sidan efter 1 sekund om det blir error
-        setTimeout(function () {
-
-            window.location.reload();
-        }, 1000);
+  if (error) {
+    //laddar om sidan efter 1 sekund om det blir error
+    setTimeout(function () {
+      window.location.reload();
+    }, 1000);
     return <div> </div>;
-    } else if (!loaded) {
+  } else if (!loaded) {
+    return (
+      <>
+        <Loading />
+      </>
+    );
 
-    return (<><Loading/></>);
   } else {
     return (
-        <div>
+      <div>
         <NavBar
+
                 selectedCourses={selectedCourses}
                 setSelectedCourses={setSelectedCourses}
 
@@ -223,6 +225,7 @@ function App() {
                 setUsername={setUsername}
                 selectedProfileName={selectedProfileName}
                 setSelectedProfileName={setSelectedProfileName}
+
         />
       </div>
     );

@@ -26,6 +26,7 @@ const NavBar = ({
   semesterHandler,
   filters,
   selectedFilters,
+
     setSelectedFilters,
     selectedProfileCourses,
     setSelectedProfileCourses,
@@ -35,7 +36,15 @@ const NavBar = ({
     setUsername,
     selectedProfileName,
     setSelectedProfileName
+
 }) => {
+  async function handleLogout() {
+    console.log(isloggedin);
+    try {
+      await logout();
+      setisloggedin(false);
+      console.log(isloggedin);
+    } catch {}
 
 
     async function handleLogout() {
@@ -47,6 +56,7 @@ const NavBar = ({
         catch { }
         
     }
+
 
 
   return (
@@ -68,24 +78,27 @@ const NavBar = ({
                 <FontAwesomeIcon icon={faSuitcase} />
                 <h1>Mina kurser</h1>
               </div>
-                      </Link>
-                      {isloggedin ?
-                          <Link to="/" onClick={handleLogout}>
-                              <div className="menu-item">
-                                  <FontAwesomeIcon icon={faUser} />
-                                  <h1>Logga ut</h1>
-                              </div>
-                          </Link> : <Link to="/LogIn">
-                              <div className="menu-item">
-                                  <FontAwesomeIcon icon={faUser} />
-                                  <h1>Logga in</h1>
-                              </div>
-                          </Link>
-            }
+            </Link>
+            {isloggedin ? (
+              <Link to="/" onClick={handleLogout}>
+                <div className="menu-item">
+                  <FontAwesomeIcon icon={faUser} />
+                  <h1>Logga ut</h1>
+                </div>
+              </Link>
+            ) : (
+              <Link to="/LogIn">
+                <div className="menu-item">
+                  <FontAwesomeIcon icon={faUser} />
+                  <h1>Logga in</h1>
+                </div>
+              </Link>
+            )}
           </div>
         </div>
         <Switch>
           <Route path="/MyCourses">
+
                       <MyCourses
                           selectedCourses={selectedCourses}
                           setSelectedCourses={setSelectedCourses}
@@ -95,6 +108,15 @@ const NavBar = ({
                           username={username}
                           selectedProfileName={selectedProfileName}
                           setSelectedProfileName={setSelectedProfileName}
+
+              filters={filters}
+              selectedFilters={selectedFilters}
+              setSelectedFilters={setSelectedFilters}
+              courses={courses}
+searchHandler={searchHandler}
+              semesterHandler={semesterHandler}
+              
+
 
                           
                                      />
@@ -106,6 +128,10 @@ const NavBar = ({
                       <Loading />
                   </Route>
 
+
+          <Route path="/Loading">
+            <Loading />
+          </Route>
 
 
                   <Route path="/LogIn">

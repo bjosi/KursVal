@@ -105,7 +105,7 @@
   display: flex;
   font-weight: 700;
   font-size: 1rem;
-  background: #FFF;
+  background: #fff;
 }
 
 .toggle_overview:hover {
@@ -127,15 +127,15 @@
 }
 
 .toggle_overview_wrapper {
-    width: 1000px;
-    margin: 0rem auto 0rem auto;
-    padding: 0 1rem 0 1rem;
-    background: #FFF;
+  width: 70vw;
+  margin: 0 auto;
+  padding: 0 1rem 0 1rem;
+  background: #fff;
+  margin-bottom: 2rem;
 }
 
-
-    @media screen and (max-width: 1000px) {
-        .toggle_overview_wrapper {
+@media screen and (max-width: 1000px) {
+  .toggle_overview_wrapper {
     width: 100%;
   }
 }
@@ -145,7 +145,7 @@
 }
 
 .underline_right {
-    width: 11rem;
+  width: 11rem;
 }
 
 .underline_selected {

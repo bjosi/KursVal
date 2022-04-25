@@ -116,6 +116,7 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
                 setTimeout(() => setFetchSucceeded(false), 2000);
 
 
+
             }
 
             setTemporaryProfileName("");
@@ -249,6 +250,7 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
               <div className="upper_header">
                   <Link to="/" className="upper_header_link">{" "}
             <FontAwesomeIcon className="upper_header_icon" icon={faArrowLeft} />
+
                       Hitta fler kurser{" "}</Link>
 
                   {isloggedin ? <>
@@ -281,17 +283,25 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
                       </select>}
                   <FontAwesomeIcon onClick={editName} className="change_profile_name_icon" icon={editableText ? faCircleCheck : faPen} />
               </h3>
-             
-           
-        <ToggleOverviewButton
+           <ToggleOverviewButton
           showOverview={showOverview}
           setShowOverview={setShowOverview}
+          showMatrix={showMatrix}
+          setShowMatrix={setShowMatrix}
         />
       </div>
-      {showOverview ? (
+      {showMatrix ? (
+        <TableMatrix
+          selectedCourses={selectedCourses}
+          setSelectedCourses={setSelectedCourses}
+          courses={courses}
+        />
+      ) : showOverview ? (
         <Overview
+
             selectedCourses={selectedProfileCourses}
             selectedProfileName={selectedProfileName}
+
         />
       ) : (
         <Semesters
@@ -300,19 +310,7 @@ const MyCourses = ({ selectedCourses, setSelectedCourses, selectedProfileCourses
             setSelectedProfileCourses={setSelectedProfileCourses}
             selectedProfileCourses={selectedProfileCourses}
         />
-          )}
-
-          {showOverview ? (
-
-              <OverviewTerms selectedCourses={selectedCourses} />
-    ) : (
-              <></>
-          )}
-
-
-
-
-      <TableMatrix selectedCourses={selectedCourses} />
+      )}
     </div>
   );
 };
