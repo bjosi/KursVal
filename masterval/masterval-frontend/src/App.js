@@ -13,6 +13,7 @@ function App() {
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
   );
 
+
   // The courses of the profile that is currently shown
   const [selectedProfileCourses, setSelectedProfileCourses] = useState(
     JSON.parse(localStorage.getItem("selectedProfileCourses")) ||
@@ -34,6 +35,7 @@ function App() {
     );
   }, [selectedProfileCourses]);
 
+
   const [selectedFilters, setSelectedFilters] = useState([]);
 
   const [isloggedin, setisloggedin] = useState(
@@ -44,9 +46,14 @@ function App() {
     localStorage.getItem("username") || ""
   );
 
+
   useEffect(() => {
     localStorage.setItem("username", username);
   }, [username]);
+
+  const [isloggedin, setisloggedin] = useState(
+    localStorage.getItem("myValueInLocalStorageforloggedin") || false
+  );
 
   const filters = [
     "Grundnivå",
@@ -220,6 +227,7 @@ function App() {
           setUsername={setUsername}
           selectedProfileName={selectedProfileName}
           setSelectedProfileName={setSelectedProfileName}
+
         />
       </div>
     );

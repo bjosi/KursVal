@@ -2,9 +2,8 @@
 
 .course_card {
   background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 4px;
   padding: 1rem;
-  margin-top: 1rem;
   margin-bottom: 1rem;
   /*XX xx*/
   margin-left: 0.5rem;
@@ -59,7 +58,7 @@
 }
 
 .c_info_icon {
-  width:1rem;
+  width: 1rem;
   margin-right: 0.3rem;
 
 }
@@ -125,7 +124,7 @@
   margin: 2px;
   padding: 1px 6px 1px 6px;
   border-radius: 2px;
-  height:21px;
+  height: 21px;
   width: 21px;
 }
 
@@ -204,15 +203,13 @@
 }
 
 .course_website {
-    color: #2b6778;
+  color: #2b6778;
 }
 
-    .course_website:visited {
-        color: #f9a26c;
-    }
+.course_website:visited {
+  color: #f9a26c;
+}
 
-    .course_website:hover {
-        cursor: pointer;
-    }
-
-
+.course_website:hover {
+  cursor: pointer;
+}
