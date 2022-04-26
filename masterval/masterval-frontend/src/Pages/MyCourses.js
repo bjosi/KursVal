@@ -398,7 +398,15 @@ const MyCourses = ({
           setSelectedProfileCourses={setSelectedProfileCourses}
           selectedProfileCourses={selectedProfileCourses}
         />
-      )}
+          )}
+
+
+          {showOverview ? (
+
+              <OverviewTerms selectedCourses={selectedProfileCourses} />
+          ) : (
+              <></>
+          )}
     </div>
   );
 };
