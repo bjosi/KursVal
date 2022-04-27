@@ -13,9 +13,9 @@ function App() {
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
   );
 
-  // const [isloggedin, setisloggedin] = useState(
-  //     localStorage.getItem("myValueInLocalStorageforloggedin") || false
-  // );
+  const [isloggedin, setisloggedin] = useState(
+      localStorage.getItem("myValueInLocalStorageforloggedin") || false
+  );
 
   const [selectedFilters, setSelectedFilters] = useState([]);
 
@@ -27,8 +27,37 @@ function App() {
     { name: "Block 3", checked: false },
     { name: "Block 4", checked: false },
     { name: "Helfart", checked: false },
-    { name: "Halvfart", checked: false },
-  ];
+    { name: "Halvfart", checked: false }];
+    // The courses of the profile that is currently shown
+  const [selectedProfileCourses, setSelectedProfileCourses] = useState(
+    JSON.parse(localStorage.getItem("selectedProfileCourses")) ||
+      selectedCourses
+  );
+  // The name of the profile that is shown on MyCourses, stored in localstorage since selectedProfileCourses is and they need to match
+  const [selectedProfileName, setSelectedProfileName] = useState(
+    localStorage.getItem("selectedProfileName") || "Min masterexamen"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("selectedProfileName", selectedProfileName);
+  }, [selectedProfileName]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "selectedProfileCourses",
+      JSON.stringify(selectedProfileCourses)
+    );
+  }, [selectedProfileCourses]);
+
+
+  const [username, setUsername] = useState(
+    localStorage.getItem("username") || ""
+  );
+
+  useEffect(() => {
+    localStorage.setItem("username", username);
+  }, [username]);
+
   const [filters, setFilterState] = useState(myFilter);
 
   useEffect(() => {
@@ -226,12 +255,12 @@ function App() {
     );
   }, [selectedCourses, searchQuery]);
 
-  // useEffect(() => {
-  //     localStorage.setItem(
-  //         "myValueInLocalStorageforloggedin",
-  //         JSON.stringify(isloggedin)
-  //     );
-  // }, [isloggedin]);
+  useEffect(() => {
+      localStorage.setItem(
+          "myValueInLocalStorageforloggedin",
+          JSON.stringify(isloggedin)
+      );
+  }, [isloggedin]);
 
   const searchHandler = (query) => {
     console.log(query);
@@ -295,14 +324,20 @@ function App() {
           setSelectedCourses={setSelectedCourses}
           setFilterState={setFilterState}
           courses={filterQuery !== null ? filterQuery : courses}
+          selectedProfileCourses={selectedProfileCourses}
+          setSelectedProfileCourses={setSelectedProfileCourses}
           searchHandler={searchHandler}
           semesterHandler={semesterHandler}
           filters={filters}
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
-          // isloggedin={isloggedin}
-          // setisloggedin={setisloggedin}
-        />
+          isloggedin={isloggedin}
+          setisloggedin={setisloggedin}
+          username={username}
+          setUsername={setUsername}
+          selectedProfileName={selectedProfileName}
+          setSelectedProfileName={setSelectedProfileName}        
+          />
       </div>
     );
   }
