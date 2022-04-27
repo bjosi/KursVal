@@ -65,7 +65,11 @@ const MyCourses = ({
   const [
     temporarySelectedCoursesUpdateProfile,
     setTemporarySelectedCoursesUpdateProfile,
-  ] = useState([]);
+    ] = useState([]);
+
+
+    console.log(selectedCourses);
+    console.log(selectedProfileCourses);
 
   const [test, setTest] = useState(false);
   const [fetchSucceeded, setFetchSucceeded] = useState(false);
@@ -86,7 +90,8 @@ const MyCourses = ({
       const response = await fetch("courses/profiles/" + username).then((res) =>
         res.json()
       );
-      setProfiles(response);
+        setProfiles(response);
+        console.log("hämtar ny data")
     };
 
     if (isloggedin) {
@@ -129,7 +134,8 @@ const MyCourses = ({
     setEditableText(!editableText);
   };
 
-  const onChangeSelectedProfile = (e) => {
+    const onChangeSelectedProfile = (e) => {
+
     // "Vill du spara dina ändringar?"
     if (!selectedProfileCoursesIsLocalStorage) {
         let transformedProfileCourses1 = [];
@@ -149,26 +155,25 @@ const MyCourses = ({
         )
         );
         */
+        console.log(preTransformedProfileCourses);
+
+        if (preTransformedProfileCourses.courselist) {
+            preTransformedProfileCourses.courselist.map((profile) => {
+
+                const index = allCourses.findIndex(
+                    (course) =>
+                        course.coursecode == profile.coursecode
+                );
+
+                let element = { ...allCourses[index] };
+                element.semester = parseInt(profile.choosensemester);
+
+                transformedProfileCourses1.push(element);
 
 
-
-        preTransformedProfileCourses.courselist.map((profile) => {
-            console.log("hej");
-
-            const index = allCourses.findIndex(
-                (course) =>
-                    course.coursecode == profile.coursecode
+            }
             );
-
-            let element = { ...allCourses[index] };
-            element.semester = parseInt(profile.choosensemester);
-
-            transformedProfileCourses1.push(element);
-
-
         }
-        );
-
 
       let hasChanges = false;
       if (transformedProfileCourses1.length != selectedProfileCourses.length) {
@@ -194,43 +199,45 @@ const MyCourses = ({
 
     setSelectedProfileName(e.target.value);
 
-    if (e.target.value != localStorageProfileName) {
-      setSelectedProfileCoursesIsLocalStorage(false);
-        let transformedProfileCourses2 = [];
+        if (e.target.value != localStorageProfileName) {
+            setSelectedProfileCoursesIsLocalStorage(false);
+            let transformedProfileCourses2 = [];
 
 
-      const preTransformedProfileCourses = profiles.find(
-        (profile) => profile.name == e.target.value
-        );
+            const preTransformedProfileCourses = profiles.find(
+                (profile) => profile.name == e.target.value
+            );
 
 
-     /* preTransformedProfileCourses.courselist.map((profileCourse) =>
-        transformedProfileCourses1.push(
-          allCourses.find(
-            (course) =>
-              course.coursecode == profileCourse.coursecode &&
-              course.semester == profileCourse.choosensemester
-          )
-        )
-        );
-        */
+            /* preTransformedProfileCourses.courselist.map((profileCourse) =>
+               transformedProfileCourses1.push(
+                 allCourses.find(
+                   (course) =>
+                     course.coursecode == profileCourse.coursecode &&
+                     course.semester == profileCourse.choosensemester
+                 )
+               )
+               );
+               */
+            console.log(preTransformedProfileCourses);
 
-       preTransformedProfileCourses.courselist.map((profile) => {
-           console.log("hej");
+            if (preTransformedProfileCourses.courselist) { 
+            preTransformedProfileCourses.courselist.map((profile) => {
 
-           const index = allCourses.findIndex(
-               (course) =>
-                   course.coursecode == profile.coursecode
-           );
-           
-           let element = { ...allCourses[index]};
-           element.semester = parseInt(profile.choosensemester);
-           
-       transformedProfileCourses2.push(element);
+                const index = allCourses.findIndex(
+                    (course) =>
+                        course.coursecode == profile.coursecode
+                );
+
+                let element = { ...allCourses[index] };
+                element.semester = parseInt(profile.choosensemester);
+
+                transformedProfileCourses2.push(element);
 
 
+            }
+            );
         }
-        );
 
         
 
@@ -264,7 +271,7 @@ const MyCourses = ({
 
       if (selectedProfileCoursesIsLocalStorage) {
 
-          if (profiles.find((profile) => profile.name === localStorageProfileName)) {
+          if (profiles.find((profile) => profile.name === localStorageProfileName) || localStorageProfileName === "Min masterexamen") {
               setShowErrorMessage(true);
               setTimeout(() => setShowErrorMessage(false), 2000);
 
@@ -279,10 +286,17 @@ const MyCourses = ({
 
     setTimeout(() => setFetchSucceeded(false), 2000);
 
-    if (selectedProfileCoursesIsLocalStorage) {
-      setSelectedCourses([]);
-      setSelectedProfileName(localStorageProfileName);
-      setLocalStorageProfileName("Min masterexamen");
+      if (profileName === localStorageProfileName) {
+          console.log(selectedCourses);
+          console.log(selectedProfileCourses);
+          console.log("hello");
+          setSelectedCourses([]);
+
+          setSelectedProfileName(localStorageProfileName);
+          setLocalStorageProfileName("Min masterexamen");
+          setTest(!test);
+          
+
     }
 
     setTemporaryProfileNameUpdateProfile("");
@@ -360,20 +374,22 @@ const MyCourses = ({
                     icon={faHeart}
                   />
                 </button>
-              ) : (
+              ) : (<>
                                   <button onClick={onSave} className="upper_header_link upper_header_link_margin">
                   Uppdatera profil
                   <FontAwesomeIcon
                     className="upper_header_icon"
                     icon={faArrowsRotate}
                   />
-                </button>
-              )}
+                                  </button>
+                                  
               <button onClick={onDelete} className="upper_header_link">
                 {" "}
                 Ta bort profil{" "}
                               <FontAwesomeIcon className="upper_header_icon" icon={faTrashCan} />
-              </button>{" "}
+              </button>
+                                  </>
+              )}
             </div>
           ) : (
             <h1 className="upper_header_link not_logged_in">

@@ -15,8 +15,6 @@ const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
 
     let newTerm;
 
-    console.log(selectedCourses);
-    console.log(selectedProfileCourses);
     if (courseinfo.semester === 7) {
         newTerm = 9
     } else {
@@ -25,10 +23,8 @@ const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
 
   //  const isLocalStorage = JSON.stringify(selectedCourses) === JSON.stringify(selectedProfileCourses);
     useEffect(() => {
-        console.log("rad 28");
-        console.log(selectedProfileCoursesIsLocalStorage);
-        if (selectedProfileCoursesIsLocalStorage) {
-            console.log("rad 30");
+        if (selectedProfileCoursesIsLocalStorage && selectedCourses.length > 0) {
+            console.log("testarBarahehe")
             setSelectedProfileCourses(selectedCourses);
         }
     }, [selectedCourses]);
@@ -36,7 +32,6 @@ const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
     const handleConfirm = () => {
 
         if (selectedProfileCoursesIsLocalStorage) {
-            console.log("hör");
             setSelectedCourses(
                 selectedCourses.map(item =>
                     item.coursecode === courseinfo.coursecode
