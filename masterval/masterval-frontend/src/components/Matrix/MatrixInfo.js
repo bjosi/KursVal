@@ -19,15 +19,18 @@ const MatrixInfo = ({
   const stringOfGoals = notFullfilled.join();
 
   useEffect(() => {
-    var test1 = courses.filter((course) => {
-      return !stringOfGoals.includes(course.uChosen);
-    });
+    var test1 = courses.filter(
+      (course) =>
+        !notFullfilled.find((course2) =>
+          course.uChosen.includes(course2.uChosen)
+        )
+    );
     console.log(test1);
 
     const test3 = test1.filter(
       (course1) =>
         !selectedProfileCourses.find(
-          (course2) => course1.coursecode == course2.coursecode
+          (course2) => course1.coursecode === course2.coursecode
         )
     );
     console.log(test3);
@@ -39,15 +42,16 @@ const MatrixInfo = ({
 
   return (
     <>
-      <h1>Hej</h1>
       <div className="matrix_info">
-        <div className="section">
-          <h2 className="matrix_info_header">Ej uppfyllda mål: </h2>
-          {notFullfilled.map((goal) => (
-            <li>{goal}</li>
-          ))}
+        <div className="section_upper">
+          <h2>Kurser som uppfyller mål:</h2>
+          <ul>
+            {notFullfilled.map((goal) => (
+              <li>{goal}</li>
+            ))}
+          </ul>
         </div>
-        <div className="section">
+        <div className="section_lower">
           {notFullfilled.length > 0 ? (
             <CompletionCourses
               completingCourses={completingCourses}

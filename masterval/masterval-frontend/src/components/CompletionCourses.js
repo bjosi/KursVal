@@ -11,7 +11,6 @@ const CompletionCourses = ({
   console.log(completingCourses);
   return (
     <>
-      <h2>Kurser som uppfyller mål:</h2>
       {completingCourses.map((course) => {
         return (
           <DisplayCourse
