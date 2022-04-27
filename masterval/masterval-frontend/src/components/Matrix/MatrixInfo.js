@@ -16,29 +16,28 @@ const MatrixInfo = ({
   const [completingCourses, setCompletingCourses] = useState([]);
   const [notFullfilled, setNotFullfilled] = useState([]);
 
-  const stringOfGoals = notFullfilled.join();
+  // const stringOfGoals = notFullfilled.join();
 
   useEffect(() => {
-    var test1 = courses.filter(
-      (course) =>
-        !notFullfilled.find((course2) =>
-          course.uChosen.includes(course2.uChosen)
-        )
+    console.log(notFullfilled);
+    var test1 = courses.filter((course) =>
+      notFullfilled.find((goal) => course.uChosen.includes(goal))
     );
     console.log(test1);
 
-    const test3 = test1.filter(
-      (course1) =>
-        !selectedProfileCourses.find(
-          (course2) => course1.coursecode === course2.coursecode
-        )
-    );
-    console.log(test3);
+    // const test3 = test1.filter(
+    //   (course1) =>
+    //     !selectedProfileCourses.find(
+    //       (course2) => course1.coursecode === course2.coursecode
+    //     )
+    // );
+    // console.log(test3);
     const test2 = kunskaper.filter((mål) => !uppfyllda.includes(mål));
 
-    setCompletingCourses(test3);
+    setCompletingCourses(test1);
     setNotFullfilled(test2);
-  }, [selectedProfileCourses]);
+    console.log(notFullfilled);
+  }, [[]]);
 
   return (
     <>
