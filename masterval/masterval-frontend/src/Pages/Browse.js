@@ -15,6 +15,7 @@ const Browse = ({
   filters,
   selectedFilters,
   setSelectedFilters,
+  setFilterState
 }) => {
   const [backdrop, setBackdrop] = useState(false);
 
@@ -51,6 +52,7 @@ const Browse = ({
               filters={filters}
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
+              setFilterState={setFilterState}
             />
             <div className="close_button_container">
               <div className="close_button" onClick={() => setBackdrop(false)}>
@@ -65,6 +67,7 @@ const Browse = ({
               filters={filters}
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
+              setFilterState={setFilterState}
             />
           </div>
           <div className="right-section">

@@ -27,7 +27,8 @@ const NavBar = ({
   selectedFilters,
     setSelectedFilters,
     isloggedin,
-  setisloggedin
+  setisloggedin,
+  setFilterState
 }) => {
 
     async function handleLogout() {
@@ -113,6 +114,7 @@ const NavBar = ({
               filters={filters}
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
+              setFilterState={setFilterState}
             />
           </Route>
         </Switch>
