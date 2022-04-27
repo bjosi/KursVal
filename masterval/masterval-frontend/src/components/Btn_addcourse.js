@@ -11,7 +11,6 @@ const Btn_addcourse = ({ courseinfo, setSelectedCourses, selectedCourses}) => {
             var allCourses = myFilter.concat(courseinfo);
             var uniqueSet = new Set(allCourses);
             var uniqueArray = Array.from(uniqueSet);
-            console.log(uniqueArray);
             setSelectedCourses(uniqueArray);
         }
 

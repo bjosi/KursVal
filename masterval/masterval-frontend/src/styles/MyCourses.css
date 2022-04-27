@@ -105,7 +105,7 @@
   display: flex;
   font-weight: 700;
   font-size: 1rem;
-  background: #FFF;
+  background: #fff;
 }
 
 .toggle_overview:hover {
@@ -127,15 +127,15 @@
 }
 
 .toggle_overview_wrapper {
-    width: 1000px;
-    margin: 0rem auto 0rem auto;
-    padding: 0 1rem 0 1rem;
-    background: #FFF;
+  width: 70vw;
+  margin: 0 auto;
+  padding: 0 1rem 0 1rem;
+  background: #fff;
+  margin-bottom: 2rem;
 }
 
-
-    @media screen and (max-width: 1000px) {
-        .toggle_overview_wrapper {
+@media screen and (max-width: 1000px) {
+  .toggle_overview_wrapper {
     width: 100%;
   }
 }
@@ -145,7 +145,7 @@
 }
 
 .underline_right {
-    width: 11rem;
+  width: 11rem;
 }
 
 .underline_selected {
@@ -158,7 +158,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 200px;
+  height: 220px;
 }
 
 .upper_header {
@@ -171,16 +171,19 @@
   margin: 0 auto 0 auto;
 }
 
+
 @media screen and (max-width: 1000px) {
   .upper_header {
     width: 100%;
   }
 }
 
-.exam_name {
+.profile_name {
   margin: 1rem auto 1.5rem auto;
   font-weight: 700;
   font-size: 1.25rem;
+  display:flex;
+  align-items:center;
 }
 
 .toggle_icon {
@@ -196,16 +199,21 @@
   font-weight: 400;
 }
 
+.not_logged_in{
+    cursor: default;
+}
+
 .upper_header_icon {
   margin: 0 0.2rem 0 0.2rem;
 }
 
-.exam_name_icon {
-  margin-left: 0.2rem;
-  margin-bottom: 0.1rem;
-  color: lightgrey;
-  font-size: 1rem;
-  font-family: "Lato", sans-serif;
+.change_profile_name_icon {
+    margin-left: 0.2rem;
+    margin-bottom: 0.1rem;
+    color: lightgrey;
+    font-size: 1rem;
+    font-family: "Lato", sans-serif;
+    cursor: pointer;
 }
 
 .semester_header {
@@ -300,7 +308,7 @@
 }
 
 .div_summary {
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -398,6 +406,20 @@
   margin: 0.4rem 0 0rem 0;
 }
 
+.save_changes{
+    font-size:1rem;
+}
+
+.select_profile {
+    width: 80%;
+    font-family: "Lato", sans-serif;
+    margin: 0 1rem;
+    border: 1px solid black;
+    padding: 1em;
+
+}
+
+
 
 .table_matrix {
     display: flex;
@@ -437,4 +459,16 @@
     font-family: "Lato", sans-serif;
     border: 1px solid black;
     padding: 1em;
+}
+
+.profile_update_succeeded {
+    right: 0;
+    position: fixed;
+    font-size: 0.6rem;
+    padding: 0.2rem 0.2rem 0.2rem 0.7rem;
+    z-index: 999;
+    background-color: #f2f2f2;
+    color: grey;
+    font-weight: 200;
+    width: 20%;
 }

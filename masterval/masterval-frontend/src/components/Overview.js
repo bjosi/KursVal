@@ -5,8 +5,7 @@ import "../styles/MyCourses.css";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import ProgressBar from "./ProgressBar";
 
-
-const Overview = ({ selectedCourses, setSelectedCourses }) => {
+const Overview = ({ selectedCourses,selectedProfileName }) => {
   let totalHP = 0;
   let percentageTotalHP = 0;
   let totalAdvancedHP = 0;
@@ -71,8 +70,8 @@ const Overview = ({ selectedCourses, setSelectedCourses }) => {
   }
 
   return (
-    <div className="overview">
-      <h1 className="title">Översikt över "Min masterexamen"</h1>
+      <div className="overview">
+          <h1 className="title">Översikt över {selectedProfileName}</h1>
       <div className="the_progress_bars">
         <div className="cirkular_progressbar_wrapper">
           <h2 className="center">Totalt HP</h2>
@@ -156,9 +155,7 @@ const Overview = ({ selectedCourses, setSelectedCourses }) => {
             <></>
           )}
         </div>
-          </div>
-
-
+      </div>
     </div>
   );
 };

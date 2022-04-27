@@ -15,7 +15,7 @@ const Browse = ({
   filters,
   selectedFilters,
   setSelectedFilters,
-  setFilterState
+  setFilterState,
 }) => {
   const [backdrop, setBackdrop] = useState(false);
 
@@ -26,15 +26,12 @@ const Browse = ({
         semesterHandler={semesterHandler}
       />
       <div className="container">
-              <div className="div_filter">
-                  <p> visar {courses.length} resultat </p>
-                  <div className="show_info_block">
-
-                      <div className="course_block_icon" >
-                            
-                      </div>
-                      <p> - block </p>
-                  </div>
+        <div className="div_filter">
+          <p> visar {courses.length} resultat </p>
+          <div className="show_info_block">
+            <div className="course_block_icon"></div>
+            <p> - block </p>
+          </div>
 
           <button className="button_filter" onClick={() => setBackdrop(true)}>
             Filter
@@ -73,11 +70,13 @@ const Browse = ({
           <div className="right-section">
             {courses.map((course, index) => (
               <DisplayCourse
-                key={index}
+                key={course.Id}
                 courseinfo={course}
                 homePage={true}
                 setSelectedCourses={setSelectedCourses}
                 selectedCourses={selectedCourses}
+                setSelectedProfileCourses={setSelectedProfileCourses}
+                selectedProfileCourses={selectedProfileCourses}
               />
             ))}
           </div>
