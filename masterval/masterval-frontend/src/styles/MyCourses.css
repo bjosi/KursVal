@@ -27,8 +27,8 @@
   padding-right: 0.5rem;
 }
 
-.inner_wrapper_my_courses h2{
-    margin: 0 0 0 0.5rem;
+.inner_wrapper_my_courses h2 {
+  margin: 0 0 0 0.5rem;
 }
 
 .empty_period {
@@ -53,8 +53,8 @@
   width: 100%;
   padding: 0 0.5rem;
 }
-.period_1_2 h2{
-    margin: 0 0 0 0.5rem;
+.period_1_2 h2 {
+  margin: 0 0 0 0.5rem;
 }
 
 @media screen and (max-width: 700px) {
@@ -135,7 +135,7 @@
 }
 
 .toggle_overview_wrapper {
-  width: 70vw;
+  width: 1000px;
   margin: 0 auto;
   padding: 0 1rem 0 1rem;
   background: #fff;
@@ -206,13 +206,13 @@
   font-weight: 400;
   margin: auto 0 auto 1rem;
 }
-.upper_header_link_right_section{
-    display:flex;
-    align-content:space-between;
+.upper_header_link_right_section {
+  display: flex;
+  align-content: space-between;
 }
 
 .not_logged_in {
-    cursor: default;
+  cursor: default;
 }
 
 .upper_header_icon {
@@ -240,23 +240,22 @@
   font-size: 0.9rem;
   font-family: "Lato", sans-serif;
 }
-    .semester_header h1 {
-        font-weight: 400;
-        font-size: 1rem;
-        font-family: "Lato", sans-serif;
-    }
-
+.semester_header h1 {
+  font-weight: 400;
+  font-size: 1rem;
+  font-family: "Lato", sans-serif;
+}
 
 .semester_header_text {
-    font-weight: 300;
-    font-size: 1rem;
+  font-weight: 300;
+  font-size: 1rem;
 }
 
 .the_progress_bars {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    margin-top: 2rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-top: 2rem;
 }
 
 @media screen and (max-width: 750px) {
@@ -290,10 +289,10 @@
 }
 
 .progressbar_parent_small {
-    height: 6px;
-    width: 12rem;
-    background-color: #e1e1e1;
-    margin: 0.3rem 1rem 0 0;
+  height: 6px;
+  width: 12rem;
+  background-color: #e1e1e1;
+  margin: 0.3rem 1rem 0 0;
 }
 
 .div_display_progress {
@@ -425,11 +424,10 @@
 
 .semester_header_small_text {
   font-size: 0.75rem;
-  color:#2B6778;
+  color: #2b6778;
   margin: 0.4rem 0 0rem 0;
   font-weight: 400;
   font-family: "Lato", sans-serif;
-
 }
 
 .save_changes {
@@ -507,14 +505,14 @@
 .section:nth-child(2) {
 }
 
-.profilename_error{
-    height: 1rem;
-    margin: 0 auto 0 auto;
-    font-size: 0.6rem;
-visibility: hidden; 
-color: red;
+.profilename_error {
+  height: 1rem;
+  margin: 0 auto 0 auto;
+  font-size: 0.6rem;
+  visibility: hidden;
+  color: red;
 }
 
-.profilename_show_error{
-    visibility:visible;
+.profilename_show_error {
+  visibility: visible;
 }

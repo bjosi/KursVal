@@ -65,7 +65,7 @@ const DisplayCourse = ({
             <div className="c_info_container">
               <MySvg className="c_info_icon" />
               <p className="c_info">
-                {courseinfo.semester == 7 || courseinfo.semester == 9
+                {courseinfo.semester === 7 || courseinfo.semester === 9
                   ? "Vårtermin"
                   : "Hösttermin"}
               </p>
@@ -79,7 +79,9 @@ const DisplayCourse = ({
             <div className="c_info_container">
               <FontAwesomeIcon className="c_info_icon" icon={faBookOpen} />
 
-              <p className="c_info"> {courseinfo.area} </p>
+              <p className="c_info">
+                {courseinfo.area === "" ? "-" : courseinfo.area}
+              </p>
             </div>
 
             <div className="c_info_container">
