@@ -59,13 +59,13 @@ const TableMatrix = ({
 
     return (
       <>
-        <div className="vertical_div">
-          <p> {input.coursecode} </p>
+        <div className="vertical_div_k">
+          <p className="p_tag"> {input.coursecode} </p>
         </div>
         {arr.map((s, index) =>
           s ? (
             <div key={index} className="vertical_div_g">
-              <p> X </p>
+              
             </div>
           ) : (
             <div className="vertical_div">

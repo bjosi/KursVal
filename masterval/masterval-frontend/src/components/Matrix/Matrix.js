@@ -12,7 +12,7 @@ const Matrix = ({
       <div className="table_vertical">
         {kunskaper.map((block, index) => (
           <div key={index} className="vertical_div_k">
-            <p>{block}</p>
+                <p className="p_tag">{block}</p>
           </div>
         ))}
       </div>
