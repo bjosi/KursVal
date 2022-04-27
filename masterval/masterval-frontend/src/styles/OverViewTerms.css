@@ -1,96 +1,98 @@
 .the_box {
-  width: 31rem;
-  display: flex;
-  justify-content: space-evenly;
+    width: 31rem;
+    display: flex;
+    justify-content: space-evenly
 }
 
 .h2_overview {
-  font-size: 1.15rem;
-  font-weight: 600;
-  text-align: center;
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-align: center;
 }
-p {
-  font-size: 1rem;
-  font-weight: 300;
+p{
+    font-size: 1rem;
+    font-weight:600;
 }
 
 .the_box_big {
-  width: 31rem;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+    width: 31rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 .div_one_or_two {
-  background-color: #fff;
-  height: 3rem;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  display: flex;
-  margin: 0.17rem;
-  width: 15rem;
-  text-align: center;
+    background-color: #FFF;
+    height: 3rem;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0.17rem;
+    width: 15rem;
+    text-align: center;
 }
 
 .div_one_and_two {
-  background-color: #fff;
-  height: 3rem;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  display: flex;
-  margin: 0.17rem 0.17rem 0.17rem 0.42rem;
-  width: 30.5rem;
-  text-align: center;
+    background-color: #FFF;
+    height: 3rem;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0.17rem 0.17rem 0.17rem 0.42rem;
+    width: 30.5rem;
+    text-align: center;
 }
 
 .period_one {
-  width: 15rem;
-  display: flex;
-  flex-direction: column;
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.period_two {
-  width: 15rem;
-  display: flex;
-  flex-direction: column;
+.period_two {  
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .period_two_one {
-  width: 31rem;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+    width: 31rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .two_overview {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 2rem 0rem 2rem 0rem;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2rem 0rem 2rem 0rem;
 }
 
 .one_overview {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0rem 2rem 0rem;
-}
-
-@media screen and (max-width: 990px) {
-  .two_overview {
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    align-items: center;
-    margin: 2rem 0rem 0rem 0rem;
-  }
-
-  .the_box_big {
-    margin: 1rem 0rem 1rem 0rem;
-  }
-
-  .one_overview {
     display: flex;
     justify-content: center;
-    margin: 1rem 0rem 2rem 0rem;
-  }
+    margin: 2rem 0rem 2rem 0rem;
+}
+
+
+@media screen and (max-width: 990px) {
+    .two_overview {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        margin: 2rem 0rem 0rem 0rem;
+    }
+
+    .the_box_big {
+        margin: 1rem 0rem 1rem 0rem;
+    }
+
+    .one_overview {
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0rem 2rem 0rem;
+    }
+
 }

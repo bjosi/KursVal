@@ -3,13 +3,7 @@ import "./Matrix.css";
 import Matrix from "./Matrix";
 import MatrixInfo from "./MatrixInfo";
 
-const TableMatrix = ({
-  selectedCourses,
-  courses,
-  setSelectedCourses,
-  selectedProfileCourses,
-  setSelectedProfileCourses,
-}) => {
+const TableMatrix = ({ selectedCourses, courses, setSelectedCourses }) => {
   const kunskaper = [
     "Mål",
     "1.1",
@@ -59,13 +53,13 @@ const TableMatrix = ({
 
     return (
       <>
-        <div className="vertical_div_k">
-          <p className="p_tag"> {input.coursecode} </p>
+        <div className="vertical_div">
+          <p> {input.coursecode} </p>
         </div>
         {arr.map((s, index) =>
           s ? (
             <div key={index} className="vertical_div_g">
-              
+              <p> X </p>
             </div>
           ) : (
             <div className="vertical_div">
@@ -83,7 +77,6 @@ const TableMatrix = ({
         kunskaper={kunskaper}
         MakeArr={MakeArr}
         selectedCourses={selectedCourses}
-        selectedProfileCourses={selectedProfileCourses}
       />
       <MatrixInfo
         selectedCourses={selectedCourses}
@@ -91,8 +84,6 @@ const TableMatrix = ({
         uppfyllda={uppfyllda}
         kunskaper={kunskaper}
         courses={courses}
-        setSelectedProfileCourses={setSelectedProfileCourses}
-        selectedProfileCourses={selectedProfileCourses}
       />
     </>
   );

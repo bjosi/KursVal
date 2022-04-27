@@ -1,23 +1,17 @@
 import React from "react";
-import "./Matrix.css";
 
-const Matrix = ({
-  kunskaper,
-  MakeArr,
-  selectedCourses,
-  selectedProfileCourses,
-}) => {
+const Matrix = ({ kunskaper, MakeArr, selectedCourses }) => {
   return (
     <div className="table_matrix">
       <div className="table_vertical">
         {kunskaper.map((block, index) => (
           <div key={index} className="vertical_div_k">
-                <p className="p_tag">{block}</p>
+            <p>{block}</p>
           </div>
         ))}
       </div>
 
-      {selectedProfileCourses.map((s, index) => (
+      {selectedCourses.map((s, index) => (
         <div key={index} className="table_vertical">
           <MakeArr input={s} />
         </div>

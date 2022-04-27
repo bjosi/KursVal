@@ -15,6 +15,7 @@ const Browse = ({
   filters,
   selectedFilters,
   setSelectedFilters,
+  setFilterState,
   selectedProfileCourses,
   setSelectedProfileCourses,
 }) => {
@@ -28,6 +29,12 @@ const Browse = ({
       />
       <div className="container">
         <div className="div_filter">
+          <p> visar {courses.length} resultat </p>
+          <div className="show_info_block">
+            <div className="course_block_icon"></div>
+            <p> - block </p>
+          </div>
+
           <button className="button_filter" onClick={() => setBackdrop(true)}>
             Filter
           </button>
@@ -52,6 +59,7 @@ const Browse = ({
               filters={filters}
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
+              setFilterState={setFilterState}
             />
             <div className="close_button_container">
               <div className="close_button" onClick={() => setBackdrop(false)}>
@@ -66,6 +74,7 @@ const Browse = ({
               filters={filters}
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
+              setFilterState={setFilterState}
             />
           </div>
           <div className="right-section">

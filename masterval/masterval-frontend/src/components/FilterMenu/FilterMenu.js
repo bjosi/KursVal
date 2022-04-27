@@ -1,51 +1,40 @@
 import React, { useState } from "react";
 import "./FilterMenu.css";
+import searchValidator from "../../App";
+import CheckBox from "./CheckBox";
+const FilterMenu = ({
+  filters,
+  setFilterState,
+  setFilteredCourses,
+  setSearchQuery,
+  courses,
+}) => {
+  var [myFilter, setMyFilter] = useState(filters);
+  var myCourses = courses;
+  const updateCheckStatus = (index) => {
+    let filterVal = myFilter.map((filter, currentIndex) =>
+      currentIndex === index ? { ...filter, checked: !filter.checked } : filter
+    );
 
-const FilterMenu = ({ filters, selectedFilters, setSelectedFilters }) => {
-  //states
-  const [amountOfFilters, setAmountOfFilters] = useState(0);
-
-  const resetHandler = () => {
-    setAmountOfFilters(0);
-    setSelectedFilters([]);
+    setMyFilter(filterVal);
+    setFilterState(filterVal);
+    console.log(myFilter);
+    const myFilt = filterVal
+      .filter((myFilter) => myFilter.checked)
+      .map((filt) => filt.name);
   };
-
-  const selectHandler = (filter) => {
-    const isSelected = selectedFilters.includes(filter);
-
-    const newSelection = isSelected
-      ? selectedFilters.filter((currentFilter) => currentFilter !== filter)
-      : [...selectedFilters, filter];
-    setSelectedFilters(newSelection);
-  };
-
   return (
-    <div className="filter_menu">
-      <div className="filter_header">
-        <h1>Filtrera</h1>
-        <button onClick={resetHandler}>
-          <p>Rensa({amountOfFilters})</p>
-        </button>
-      </div>
-      <ul className="filter_list">
-        {filters.map((filter, index) => {
-          const isSelected = selectedFilters.includes(filter);
-          return (
-            <li className="filter_item" key={index}>
-              <label forhtml={filter}>
-                <input
-                  type="checkbox"
-                  name={filter}
-                  onChange={() => selectHandler(filter)}
-                />
-                {filter}
-              </label>
-            </li>
-          );
-        })}
-      </ul>
+    <div className="FilterMenu">
+      {myFilter.map((filter, index) => (
+        <CheckBox
+          key={filter.name}
+          isChecked={filter.checked}
+          checkHandler={() => updateCheckStatus(index)}
+          label={filter.name}
+          index={index}
+        />
+      ))}
     </div>
   );
 };
-
 export default FilterMenu;

@@ -25,18 +25,18 @@ const DisplayOverViewTerms = ({ theterm, sem }) => {
     <>
       <div className="the_box_big">
         {sem === 7 ? (
-          <h2 className="h2_overview"> Hösttermin, åk 4 </h2>
+          <h2 className="h2_overview"> H�sttermin, �k 4 </h2>
         ) : (
           <> </>
         )}
         {sem === 8 ? (
-          <h2 className="h2_overview"> Vårtermin, åk 4 </h2>
+          <h2 className="h2_overview"> V�rtermin, �k 4 </h2>
         ) : (
           <> </>
         )}
 
         {sem === 9 ? (
-          <h2 className="h2_overview"> Hösttermin, åk 5 </h2>
+          <h2 className="h2_overview"> H�sttermin, �k 5 </h2>
         ) : (
           <> </>
         )}
