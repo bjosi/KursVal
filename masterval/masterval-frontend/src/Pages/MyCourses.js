@@ -132,10 +132,13 @@ const MyCourses = ({
   const onChangeSelectedProfile = (e) => {
     // "Vill du spara dina ändringar?"
     if (!selectedProfileCoursesIsLocalStorage) {
-      let transformedProfileCourses = [];
+        let transformedProfileCourses1 = [];
+
       const preTransformedProfileCourses = profiles.find(
         (profile) => profile.name == selectedProfileName
-      );
+        );
+
+        /*
       preTransformedProfileCourses.courselist.map((profile) =>
         transformedProfileCourses.push(
           allCourses.find(
@@ -144,17 +147,35 @@ const MyCourses = ({
               course.semester == profile.choosensemester
           )
         )
-      );
+        );
+        */
 
-      console.log(JSON.stringify(transformedProfileCourses));
-      console.log(JSON.stringify(selectedProfileCourses));
+
+
+        preTransformedProfileCourses.courselist.map((profile) => {
+            console.log("hej");
+
+            const index = allCourses.findIndex(
+                (course) =>
+                    course.coursecode == profile.coursecode
+            );
+
+            let element = { ...allCourses[index] };
+            element.semester = parseInt(profile.choosensemester);
+
+            transformedProfileCourses1.push(element);
+
+
+        }
+        );
+
 
       let hasChanges = false;
-      if (transformedProfileCourses.length != selectedProfileCourses.length) {
+      if (transformedProfileCourses1.length != selectedProfileCourses.length) {
         hasChanges = true;
       }
 
-      transformedProfileCourses.map((item1) =>
+      transformedProfileCourses1.map((item1) =>
         !selectedProfileCourses.find(
           (item2) =>
             item2.coursecode === item1.coursecode &&
@@ -175,21 +196,45 @@ const MyCourses = ({
 
     if (e.target.value != localStorageProfileName) {
       setSelectedProfileCoursesIsLocalStorage(false);
-      let transformedProfileCourses = [];
+        let transformedProfileCourses2 = [];
+
 
       const preTransformedProfileCourses = profiles.find(
         (profile) => profile.name == e.target.value
-      );
-      preTransformedProfileCourses.courselist.map((profileCourse) =>
-        transformedProfileCourses.push(
+        );
+
+
+     /* preTransformedProfileCourses.courselist.map((profileCourse) =>
+        transformedProfileCourses1.push(
           allCourses.find(
             (course) =>
               course.coursecode == profileCourse.coursecode &&
               course.semester == profileCourse.choosensemester
           )
         )
-      );
-      setSelectedProfileCourses(transformedProfileCourses);
+        );
+        */
+
+       preTransformedProfileCourses.courselist.map((profile) => {
+           console.log("hej");
+
+           const index = allCourses.findIndex(
+               (course) =>
+                   course.coursecode == profile.coursecode
+           );
+           
+           let element = { ...allCourses[index]};
+           element.semester = parseInt(profile.choosensemester);
+           
+       transformedProfileCourses2.push(element);
+
+
+        }
+        );
+
+        
+
+      setSelectedProfileCourses(transformedProfileCourses2);
     } else {
       setSelectedProfileCoursesIsLocalStorage(true);
       setSelectedProfileCourses(selectedCourses);
@@ -401,10 +446,11 @@ const MyCourses = ({
         />
       ) : (
         <Semesters
-          selectedCourses={selectedCourses}
-          setSelectedCourses={setSelectedCourses}
-          setSelectedProfileCourses={setSelectedProfileCourses}
-          selectedProfileCourses={selectedProfileCourses}
+                          selectedCourses={selectedCourses}
+                          setSelectedCourses={setSelectedCourses}
+                          setSelectedProfileCourses={setSelectedProfileCourses}
+                          selectedProfileCourses={selectedProfileCourses}
+                          selectedProfileCoursesIsLocalStorage={selectedProfileCoursesIsLocalStorage}
         />
       )}
     </div>

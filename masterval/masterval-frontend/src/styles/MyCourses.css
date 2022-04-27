@@ -28,7 +28,7 @@
 }
 
 .inner_wrapper_my_courses h2{
-    margin: 0 0 0 0.5rem;
+    margin: 0 0 1rem 0.5rem;
 }
 
 .empty_period {
@@ -54,7 +54,7 @@
   padding: 0 0.5rem;
 }
 .period_1_2 h2{
-    margin: 0 0 0 0.5rem;
+    margin: 0 0 1rem 0.5rem;
 }
 
 @media screen and (max-width: 700px) {
