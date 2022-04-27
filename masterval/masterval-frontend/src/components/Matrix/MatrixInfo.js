@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import CompletionCourses from "../CompletionCourses";
+import CompletionCourses from "./CompletionCourses";
 import "./Matrix.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 const MatrixInfo = ({
   uppfyllda,
@@ -63,7 +65,13 @@ const MatrixInfo = ({
             setSelectedProfileCourses={setSelectedProfileCourses}
           />
         ) : (
-          <h1>Alla programmål uppfyllda min fucking broder</h1>
+          <div className="goal_complete_container">
+            <FontAwesomeIcon
+              className="icon"
+              icon={faCheckCircle}
+            ></FontAwesomeIcon>
+            <p>Alla programmål uppfyllda</p>
+          </div>
         )}
       </div>
     </>

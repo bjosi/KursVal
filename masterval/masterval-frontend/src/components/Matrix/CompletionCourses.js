@@ -1,5 +1,6 @@
 import React from "react";
-import DisplayCourse from "./DisplayCourse";
+import DisplayCourse from "../DisplayCourse";
+import "./Matrix.css";
 
 const CompletionCourses = ({
   notFullfilled,
@@ -13,8 +14,8 @@ const CompletionCourses = ({
     <>
       {notFullfilled.map((goal, index) => {
         return (
-          <div key={index}>
-            <p> Kurser som uppfyller {goal} </p>
+          <div className="completing_courses_container" key={index}>
+            <p className="text"> Kurser som uppfyller {goal} </p>
             <div className="section_lower">
               {completingCourses.map((kurs, index) =>
                 kurs.uChosen.includes(goal) ? (

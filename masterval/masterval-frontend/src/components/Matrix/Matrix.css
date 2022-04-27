@@ -8,7 +8,7 @@
   overflow-x: scroll;
 }
 .p_tag {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .table_vertical {
@@ -17,44 +17,44 @@
   flex-direction: column;
 }
 .vertical_div_k {
-    width: 6rem;
-    height: 1rem;
-    text-align: center;
-    font-family: "Lato", sans-serif;
-    border: 1px solid #f2f2f2;
-    padding: 1em;
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    background-color: #2b6778;
+  width: 6rem;
+  height: 1rem;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  border: 1px solid #f2f2f2;
+  padding: 1em;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #2b6778;
 }
 .vertical_div {
-    width: 6rem;
-    height: 1rem;
-    text-align: center;
-    font-family: "Lato", sans-serif;
-    border: 1px solid #f2f2f2;
-    padding: 1em;
-    background-color: white;
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
+  width: 6rem;
+  height: 1rem;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  border: 1px solid #f2f2f2;
+  padding: 1em;
+  background-color: white;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
 }
 .vertical_div_g {
-    background-color: #bec8a7;
-    width: 6rem;
-    display: flex;
-    height: 1rem;
-    text-align: center;
-    font-family: "Lato", sans-serif;
-    border: 1px solid #f2f2f2;
-    padding: 1em;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
+  background-color: #bec8a7;
+  width: 6rem;
+  display: flex;
+  height: 1rem;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  border: 1px solid #f2f2f2;
+  padding: 1em;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .matrix_info {
@@ -82,7 +82,6 @@
   overflow-y: scroll;
   height: 40vh;
   flex-direction: column;
-  margin: 0 0 3rem 0;
 }
 
 ul {
@@ -96,4 +95,34 @@ ul {
 li {
   margin-right: 0.5rem;
   color: #2a6778;
+}
+
+.goal_complete_container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 2rem;
+  text-align: center;
+}
+
+.icon {
+  font-size: 10rem;
+  color: #bec8a7;
+}
+
+.goal_complete_container p {
+  margin: 1rem;
+  color: #2b6778;
+}
+
+.completing_courses_container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1.5rem;
+  max-width: 70vw;
+}
+
+.completing_courses_container p {
+  margin-bottom: 0.75rem;
 }
