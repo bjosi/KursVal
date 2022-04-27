@@ -7,35 +7,54 @@
   width: 65vw;
   overflow-x: scroll;
 }
+.p_tag {
+    font-weight: 600;
+}
+
 .table_vertical {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 .vertical_div_k {
-  width: 4rem;
-  height: 2.5rem;
-  text-align: center;
-  font-family: "Lato", sans-serif;
-  border: 1px solid black;
-  padding: 1em;
+    width: 6rem;
+    height: 1rem;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    border: 1px solid #f2f2f2;
+    padding: 1em;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #2b6778;
 }
 .vertical_div {
-  width: 6rem;
-  height: 2.5rem;
-  text-align: center;
-  font-family: "Lato", sans-serif;
-  border: 1px solid black;
-  padding: 1em;
+    width: 6rem;
+    height: 1rem;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    border: 1px solid #f2f2f2;
+    padding: 1em;
+    background-color: white;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
 }
 .vertical_div_g {
-  background-color: #f8a26b;
-  width: 6rem;
-  height: 2.5rem;
-  text-align: center;
-  font-family: "Lato", sans-serif;
-  border: 1px solid black;
-  padding: 1em;
+    background-color: #bec8a7;
+    width: 6rem;
+    display: flex;
+    height: 1rem;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    border: 1px solid #f2f2f2;
+    padding: 1em;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .matrix_info {
