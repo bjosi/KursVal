@@ -71,7 +71,7 @@ const Browse = ({
           <div className="right-section">
             {courses.map((course, index) => (
               <DisplayCourse
-                key={course.Id}
+                key={index}
                 courseinfo={course}
                 homePage={true}
                 setSelectedCourses={setSelectedCourses}

@@ -37,7 +37,6 @@ const TableMatrix = ({
     "5.4",
     "5.5",
   ];
-
   const uppfyllda = [];
 
   const MakeArr = ({ input }) => {
@@ -64,11 +63,9 @@ const TableMatrix = ({
         </div>
         {arr.map((s, index) =>
           s ? (
-            <div key={index} className="vertical_div_g">
-              
-            </div>
+            <div key={index} className="vertical_div_g"></div>
           ) : (
-            <div className="vertical_div">
+            <div className="vertical_div" key={index}>
               <p></p>
             </div>
           )

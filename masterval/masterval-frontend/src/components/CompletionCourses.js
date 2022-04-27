@@ -2,49 +2,36 @@ import React from "react";
 import DisplayCourse from "./DisplayCourse";
 
 const CompletionCourses = ({
-    notFullfilled,
+  notFullfilled,
   completingCourses,
   selectedCourses,
   setSelectedCourses,
   selectedProfileCourses,
   setSelectedProfileCourses,
 }) => {
-
-    const displayTheCourses = (goal, completingCourses) => {
-        const test1 = completingCourses.filter((course) =>
-            completingCourses.find((goal) => completingCourses.uChosen.includes(goal))
-        );
-        return (<>
-            {completingCourses.map((kurs) => {
-
-
-            })}
-            </>)
-
-    }
-
   return (
-      <>
-
-          {notFullfilled.map((goal) => {
-              return (<>
-                  
-
+    <>
+      {notFullfilled.map((goal, index) => {
+        return (
+          <div key={index}>
             <p> Kurser som uppfyller {goal} </p>
-                  <div className="section_lower">
-                      {completingCourses.map((kurs) => (
-                          kurs.uChosen.includes(goal)?
-                          <DisplayCourse
-                              courseinfo={kurs}
-                              homePage={true}
-                              selectedCourses={selectedCourses}
-                              setSelectedCourses={setSelectedCourses}
-                              setSelectedProfileCourses={setSelectedProfileCourses}
-                              selectedProfileCourses={selectedProfileCourses}
-                          />: <></>
-                      ))}
-             </div>
-      </>  );
+            <div className="section_lower">
+              {completingCourses.map((kurs, index) =>
+                kurs.uChosen.includes(goal) ? (
+                  <DisplayCourse
+                    key={index}
+                    courseinfo={kurs}
+                    homePage={true}
+                    selectedCourses={selectedCourses}
+                    setSelectedCourses={setSelectedCourses}
+                    setSelectedProfileCourses={setSelectedProfileCourses}
+                    selectedProfileCourses={selectedProfileCourses}
+                  />
+                ) : null
+              )}
+            </div>
+          </div>
+        );
       })}
     </>
   );

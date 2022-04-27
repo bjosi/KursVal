@@ -44,13 +44,6 @@ const NavBar = ({
       setisloggedin(false);
       console.log(isloggedin);
     } catch {}
-
-    async function handleLogout() {
-      try {
-        await logout();
-        setisloggedin(false);
-      } catch {}
-    }
   }
 
   return (
@@ -141,6 +134,7 @@ const NavBar = ({
               filters={filters}
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
+              setSelectedProfileCourses={setSelectedProfileCourses}
             />
           </Route>
         </Switch>
