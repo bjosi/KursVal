@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import CompletionCourses from "../CompletionCourses";
+import CompletionCourses from "./CompletionCourses";
 import "./Matrix.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 const MatrixInfo = ({
   uppfyllda,
@@ -16,50 +18,61 @@ const MatrixInfo = ({
   const [completingCourses, setCompletingCourses] = useState([]);
   const [notFullfilled, setNotFullfilled] = useState([]);
 
-  const stringOfGoals = notFullfilled.join();
+  // const stringOfGoals = notFullfilled.join();
+  // const update = () => {
+  //   setTimeout(function () {
+  //     setNotFullfilled(notFullfilled);
+  //   }, 1000);
+  // };
 
   useEffect(() => {
-    var test1 = courses.filter((course) => {
-      return !stringOfGoals.includes(course.uChosen);
-    });
-    console.log(test1);
-
-    const test3 = test1.filter(
-      (course1) =>
-        !selectedProfileCourses.find(
-          (course2) => course1.coursecode == course2.coursecode
-        )
-    );
-    console.log(test3);
     const test2 = kunskaper.filter((mål) => !uppfyllda.includes(mål));
 
-    setCompletingCourses(test3);
     setNotFullfilled(test2);
   }, [selectedProfileCourses]);
+  //DETTA FUNKAR EJ
+
+  useEffect(() => {
+    var test1 = courses.filter((course) =>
+      notFullfilled.find((goal) => course.uChosen.includes(goal))
+    );
+
+    setCompletingCourses(test1);
+  }, [notFullfilled]);
 
   return (
     <>
-      <h1>Hej</h1>
       <div className="matrix_info">
-        <div className="section">
-          <h2 className="matrix_info_header">Ej uppfyllda mål: </h2>
-          {notFullfilled.map((goal) => (
-            <li>{goal}</li>
-          ))}
-        </div>
-        <div className="section">
-          {notFullfilled.length > 0 ? (
-            <CompletionCourses
-              completingCourses={completingCourses}
-              selectedCourses={selectedCourses}
-              setSelectedCourses={setSelectedCourses}
-              selectedProfileCourses={selectedProfileCourses}
-              setSelectedProfileCourses={setSelectedProfileCourses}
-            />
-          ) : (
-            <h1>Alla programmål uppfyllda min fucking broder</h1>
-          )}
-        </div>
+        {notFullfilled.length > 0 ? (
+          <div className="section_upper">
+            <h2>Din examen uppfyller ej följande mål: </h2>
+            <ul>
+              {notFullfilled.map((goal, index) => (
+                <li key={index}>{goal}</li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <> </>
+        )}
+        {notFullfilled.length > 0 ? (
+          <CompletionCourses
+            notFullfilled={notFullfilled}
+            completingCourses={completingCourses}
+            selectedCourses={selectedCourses}
+            setSelectedCourses={setSelectedCourses}
+            selectedProfileCourses={selectedProfileCourses}
+            setSelectedProfileCourses={setSelectedProfileCourses}
+          />
+        ) : (
+          <div className="goal_complete_container">
+            <FontAwesomeIcon
+              className="icon"
+              icon={faCheckCircle}
+            ></FontAwesomeIcon>
+            <p>Alla programmål uppfyllda</p>
+          </div>
+        )}
       </div>
     </>
   );
