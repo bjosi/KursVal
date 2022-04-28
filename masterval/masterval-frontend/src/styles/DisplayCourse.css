@@ -4,7 +4,9 @@
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   padding: 1rem;
-  margin: 1rem 0.5rem;
+
+  margin: 0 0.5rem 1rem 0.5rem;
+
   position: relative;
 }
 

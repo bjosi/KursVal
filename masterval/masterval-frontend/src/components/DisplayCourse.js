@@ -28,14 +28,14 @@ const DisplayCourse = ({
   selectedCourses,
   setSelectedProfileCourses,
   selectedProfileCourses,
-  homePage,
+    homePage,
+    selectedProfileCoursesIsLocalStorage,
 }) => {
   const [showresult, setShowResults] = useState(false);
   const [showAddButton, setShowAddButton] = useState(
     selectedProfileCourses.filter(
       (course) =>
-        course.coursename == courseinfo.coursename &&
-        course.semester == courseinfo.semester
+        course.coursename == courseinfo.coursename
     ).length == 0
   );
 
@@ -44,8 +44,7 @@ const DisplayCourse = ({
     setShowAddButton(
       selectedProfileCourses.filter(
         (course) =>
-          course.coursename == courseinfo.coursename &&
-          course.semester == courseinfo.semester
+          course.coursename == courseinfo.coursename
       ).length == 0
     );
   }, [courseinfo]);
@@ -105,11 +104,12 @@ const DisplayCourse = ({
             ) : (
               <div className="btn-displaycourse">
                 <Btn_moveCourse
-                  courseinfo={courseinfo}
-                  setSelectedCourses={setSelectedCourses}
-                  selectedCourses={selectedCourses}
-                  setSelectedProfileCourses={setSelectedProfileCourses}
-                  selectedProfileCourses={selectedProfileCourses}
+                                      courseinfo={courseinfo}
+                                      setSelectedCourses={setSelectedCourses}
+                                      selectedCourses={selectedCourses}
+                                      setSelectedProfileCourses={setSelectedProfileCourses}
+                                      selectedProfileCourses={selectedProfileCourses}
+                                      selectedProfileCoursesIsLocalStorage={selectedProfileCoursesIsLocalStorage}
                 />
                 <ButtonAddRemoveCourse
                   courseinfo={courseinfo}
