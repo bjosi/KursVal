@@ -26,8 +26,20 @@ const ToggleOverviewButton = ({
     <div className="toggle_overview_wrapper">
       <div className="toggle_overview">
         <span className="toggle_button" onClick={() => onToggle()}>
-          <FontAwesomeIcon className="toggle_icon" icon={faBookOpen} />
-          Mina terminer
+          <div className="title">
+            {" "}
+            <FontAwesomeIcon className="toggle_icon" icon={faBookOpen} />
+            Mina terminer
+          </div>
+          <div className="underline_toggle_overview">
+            <div
+              className={
+                showOverview || showMatrix
+                  ? "underline_left"
+                  : "underline_left underline_selected"
+              }
+            ></div>
+          </div>
         </span>
         <span
           className="toggle_button"
@@ -36,8 +48,20 @@ const ToggleOverviewButton = ({
             setShowMatrix(true);
           }}
         >
-          <FontAwesomeIcon className="toggle_icon" icon={faGolfBall} />
-          Programmål
+          <div className="title">
+            <FontAwesomeIcon className="toggle_icon" icon={faGolfBall} />
+            Programmål
+          </div>
+          <div className="underline_toggle_overview">
+            <div
+              onClick={() => setShowMatrix(true)}
+              className={
+                showMatrix
+                  ? "underline_left underline_selected  "
+                  : "underline_right"
+              }
+            ></div>
+          </div>
         </span>
         <span
           className="toggle_button"
@@ -46,36 +70,27 @@ const ToggleOverviewButton = ({
             setShowOverview(true);
           }}
         >
-          <FontAwesomeIcon className="toggle_icon" icon={faMagnifyingGlass} />
-          Översikt
+          <div className="title">
+            {" "}
+            <FontAwesomeIcon
+              className="toggle_icon"
+              icon={faMagnifyingGlass}
+            />{" "}
+            Översikt
+          </div>
+          <div className="underline_toggle_overview">
+            <div
+              onClick={() => setShowOverview(true)}
+              className={
+                showOverview
+                  ? "underline_right underline_selected"
+                  : "underline_right"
+              }
+            ></div>
+          </div>
         </span>
       </div>
-      <div className="underline_toggle_overview">
-        <div
-          onClick={() => onToggle(false)}
-          className={
-            showOverview || showMatrix
-              ? "underline_left"
-              : "underline_left underline_selected"
-          }
-        ></div>
-        <div
-          onClick={() => setShowMatrix(true)}
-          className={
-            showMatrix
-              ? "underline_left underline_selected  "
-              : "underline_right"
-          }
-        ></div>
-        <div
-          onClick={() => setShowOverview(true)}
-          className={
-            showOverview
-              ? "underline_right underline_selected"
-              : "underline_right"
-          }
-        ></div>
-      </div>
+      <div className="gray_line"></div>
     </div>
   );
 };

@@ -5,18 +5,24 @@ import {
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 
-
-const ToggleLoginButton = ({ showOverview, setShowOverview, seterrorlogin, seterrorpassword, seterrosignup}) => {
-    const onToggle = (props) => {
-        if (props != showOverview) {
-            setShowOverview(!showOverview);
-        }
-        seterrosignup(false); seterrorpassword(false);
-        seterrorlogin(false);
-    };
+const ToggleLoginButton = ({
+  showOverview,
+  setShowOverview,
+  seterrorlogin,
+  seterrorpassword,
+  seterrosignup,
+}) => {
+  const onToggle = (props) => {
+    if (props != showOverview) {
+      setShowOverview(!showOverview);
+    }
+    seterrosignup(false);
+    seterrorpassword(false);
+    seterrorlogin(false);
+  };
 
   return (
-      <div className="toggle_overview_wrapper">
+    <div className="toggle_overview_wrapper">
       <div className="toggle_overview">
         <span className="toggle_button" onClick={() => onToggle(false)}>
           {" "}
