@@ -23,6 +23,7 @@ const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
 
   //  const isLocalStorage = JSON.stringify(selectedCourses) === JSON.stringify(selectedProfileCourses);
     useEffect(() => {
+        
         if (selectedProfileCoursesIsLocalStorage && selectedCourses.length > 0) {
             console.log("testarBarahehe")
             setSelectedProfileCourses(selectedCourses);

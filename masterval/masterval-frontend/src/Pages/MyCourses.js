@@ -67,9 +67,7 @@ const MyCourses = ({
     setTemporarySelectedCoursesUpdateProfile,
     ] = useState([]);
 
-
-    console.log(selectedCourses);
-    console.log(selectedProfileCourses);
+    console.log(selectedProfileName);
 
   const [test, setTest] = useState(false);
   const [fetchSucceeded, setFetchSucceeded] = useState(false);
@@ -109,10 +107,24 @@ const MyCourses = ({
   };
 
   const editName = async () => {
-    if (editableText && temporaryProfileName.trim() != "") {
+      if (editableText && temporaryProfileName.trim() != "") {
+
+          console.log(selectedProfileName);
+          console.log(temporaryProfileName);
+          console.log(profiles.find((profile) => profile.name === temporaryProfileName));
+          // Not allowed to change a profilename to an already existing profilename
+          if (profiles.find((profile) => profile.name === temporaryProfileName) && profiles.find((profile) => profile.name === temporaryProfileName).name !== selectedProfileName) {
+              setShowErrorMessage(true);
+              setTimeout(() => setShowErrorMessage(false), 2000);
+              return;
+          }
+
+
+
       if (selectedProfileCoursesIsLocalStorage) {
         setLocalStorageProfileName(temporaryProfileName);
       } else {
+          console.log("here");
         let data = ",";
         selectedProfileCourses.map(
           (course) => (data += "," + course.coursecode + "," + course.semester)
@@ -209,16 +221,7 @@ const MyCourses = ({
             );
 
 
-            /* preTransformedProfileCourses.courselist.map((profileCourse) =>
-               transformedProfileCourses1.push(
-                 allCourses.find(
-                   (course) =>
-                     course.coursecode == profileCourse.coursecode &&
-                     course.semester == profileCourse.choosensemester
-                 )
-               )
-               );
-               */
+         
             console.log(preTransformedProfileCourses);
 
             if (preTransformedProfileCourses.courselist) { 
@@ -267,11 +270,12 @@ const MyCourses = ({
       (course) => (data += "," + course.coursecode + "," + course.semester)
     );
 
+      console.log(selectedProfileCoursesIsLocalStorage);
+      console.log(profileName);
 
 
-      if (selectedProfileCoursesIsLocalStorage) {
-
-          if (profiles.find((profile) => profile.name === localStorageProfileName) || localStorageProfileName === "Min masterexamen") {
+      if (localStorageProfileName === profileName) {
+          if (profiles.find((profile) => profile.name === profileName) || localStorageProfileName === "Min masterexamen") {
               setShowErrorMessage(true);
               setTimeout(() => setShowErrorMessage(false), 2000);
 
