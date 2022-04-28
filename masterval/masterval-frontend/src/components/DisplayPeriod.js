@@ -7,8 +7,7 @@ const DisplayPeriod = ({
   selectedCourses,
   semester,
   setSelectedProfileCourses,
-    selectedProfileCourses,
-    selectedProfileCoursesIsLocalStorage,
+  selectedProfileCourses,
 }) => {
   const newListperiodone = courseinfo.filter(
     (item) => item.semester === semester && item.period === "1"
@@ -30,14 +29,13 @@ const DisplayPeriod = ({
           {newListperiodone.length > 0 ? (
             newListperiodone.map((forecast, index) => (
               <DisplayCourse
-                    key={index}
-                    homePage={false}
-                    courseinfo={forecast}
-                    setSelectedCourses={setSelectedCourses}
-                    selectedCourses={selectedCourses}
-                    setSelectedProfileCourses={setSelectedProfileCourses}
-                    selectedProfileCourses={selectedProfileCourses}
-                    selectedProfileCoursesIsLocalStorage={selectedProfileCoursesIsLocalStorage}
+                key={index}
+                homePage={false}
+                courseinfo={forecast}
+                setSelectedCourses={setSelectedCourses}
+                selectedCourses={selectedCourses}
+                setSelectedProfileCourses={setSelectedProfileCourses}
+                selectedProfileCourses={selectedProfileCourses}
               />
             ))
           ) : (
@@ -56,9 +54,7 @@ const DisplayPeriod = ({
                 setSelectedCourses={setSelectedCourses}
                 selectedCourses={selectedCourses}
                 setSelectedProfileCourses={setSelectedProfileCourses}
-                    selectedProfileCourses={selectedProfileCourses}
-                    selectedProfileCoursesIsLocalStorage={selectedProfileCoursesIsLocalStorage}
-
+                selectedProfileCourses={selectedProfileCourses}
               />
             ))
           ) : (
@@ -78,9 +74,7 @@ const DisplayPeriod = ({
               setSelectedCourses={setSelectedCourses}
               selectedCourses={selectedCourses}
               setSelectedProfileCourses={setSelectedProfileCourses}
-                  selectedProfileCourses={selectedProfileCourses}
-                  selectedProfileCoursesIsLocalStorage={selectedProfileCoursesIsLocalStorage}
-
+              selectedProfileCourses={selectedProfileCourses}
             />
           ))
         ) : (
