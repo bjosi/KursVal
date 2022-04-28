@@ -9,8 +9,7 @@ const Semesters = ({
   selectedCourses,
   setSelectedCourses,
   setSelectedProfileCourses,
-    selectedProfileCourses,
-    selectedProfileCoursesIsLocalStorage,
+  selectedProfileCourses,
 }) => {
   const [semester, setSemester] = useState(7);
 
@@ -45,14 +44,13 @@ const Semesters = ({
         )}
       </div>
       <DisplayPeriod
-              courseinfo={selectedProfileCourses}
-              setSelectedCourses={setSelectedCourses}
-              selectedCourses={selectedCourses}
-              setSelectedProfileCourses={setSelectedProfileCourses}
-              selectedProfileCourses={selectedProfileCourses}
-              homePage={false}
-              semester={semester}
-              selectedProfileCoursesIsLocalStorage={selectedProfileCoursesIsLocalStorage}
+        courseinfo={selectedProfileCourses}
+        setSelectedCourses={setSelectedCourses}
+        selectedCourses={selectedCourses}
+        setSelectedProfileCourses={setSelectedProfileCourses}
+        selectedProfileCourses={selectedProfileCourses}
+        homePage={false}
+        semester={semester}
       />
     </>
   );
