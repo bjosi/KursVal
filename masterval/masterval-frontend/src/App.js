@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import NavBar from "./components/NavBar";
 import Loading from "./Pages/Loading";
@@ -8,27 +8,12 @@ function App() {
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState(null);
   const [semesterQuery, setSemesterQuery] = useState(null);
-  const [filterQuery, setFilterQuery] = useState(null);
+
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
   );
 
-  const [isloggedin, setisloggedin] = useState(
-      localStorage.getItem("myValueInLocalStorageforloggedin") || false
-  );
-
-  const [selectedFilters, setSelectedFilters] = useState([]);
-
-  const myFilter = [
-    { name: "Grundnivå", checked: false },
-    { name: "Avancerad nivå", checked: false },
-    { name: "Block 1", checked: false },
-    { name: "Block 2", checked: false },
-    { name: "Block 3", checked: false },
-    { name: "Block 4", checked: false },
-    { name: "Helfart", checked: false },
-    { name: "Halvfart", checked: false }];
-    // The courses of the profile that is currently shown
+  // The courses of the profile that is currently shown
   const [selectedProfileCourses, setSelectedProfileCourses] = useState(
     JSON.parse(localStorage.getItem("selectedProfileCourses")) ||
       selectedCourses
@@ -49,6 +34,11 @@ function App() {
     );
   }, [selectedProfileCourses]);
 
+  const [selectedFilters, setSelectedFilters] = useState([]);
+
+  const [isloggedin, setisloggedin] = useState(
+    localStorage.getItem("myValueInLocalStorageforloggedin") || false
+  );
 
   const [username, setUsername] = useState(
     localStorage.getItem("username") || ""
@@ -58,134 +48,20 @@ function App() {
     localStorage.setItem("username", username);
   }, [username]);
 
-  const [filters, setFilterState] = useState(myFilter);
+  const filters = [
+    "Grundnivå",
+    "Avancerad nivå",
+    "Medieteknik",
+    "Block 1",
+    "Block 2",
+    "Block 3",
+    "Block 4",
+    "Helfart",
+    "Halvfart",
+  ];
 
   useEffect(() => {
-    var myCourses = courses;
-    if (semesterQuery !== null && searchQuery !== null) {
-      myCourses = semesterQuery;
-    } else if (searchQuery !== null) {
-      myCourses = searchQuery;
-    } else if (semesterQuery !== null) {
-      myCourses = semesterQuery;
-    }
-    const myFilt = filters
-      .filter((myFilt) => myFilt.checked)
-      .map((filt) => filt.name);
-    console.log(myFilt);
-    if (filters.map((filt) => filt.checked).includes(true)) {
-      var val = [];
-      val.push(
-        myCourses.filter((course) => {
-          if (
-            (myFilt.includes("Block 1") && course.courseblock.includes("1")) ||
-            (myFilt.includes("Block 2") && course.courseblock.includes("2")) ||
-            (myFilt.includes("Block 3") && course.courseblock.includes("3")) ||
-            (myFilt.includes("Block 4") && course.courseblock.includes("4"))
-          ) {
-            if (
-              course.courselevel.includes("Avancerad nivå") &&
-              myFilt.includes("Avancerad nivå")
-            ) {
-              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
-                return course;
-              }
-              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
-                return course;
-              }
-              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
-                return course;
-              }
-            }
-            if (
-              course.courselevel.includes("Grundnivå") &&
-              myFilt.includes("Grundnivå")
-            ) {
-              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
-                return course;
-              }
-              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
-                return course;
-              }
-              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
-                return course;
-              }
-            }
-            if (
-              !myFilt.includes("Grundnivå") &&
-              !myFilt.includes("Avancerad nivå")
-            ) {
-              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
-                return course;
-              }
-              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
-                return course;
-              }
-              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
-                return course;
-              }
-            }
-          } else if (
-            !myFilt.includes("Block 1") &&
-            !myFilt.includes("Block 2") &&
-            !myFilt.includes("Block 3") &&
-            !myFilt.includes("Block 4")
-          ) {
-            if (
-              course.courselevel.includes("Avancerad nivå") &&
-              myFilt.includes("Avancerad nivå")
-            ) {
-              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
-                return course;
-              }
-              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
-                return course;
-              }
-              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
-                return course;
-              }
-            }
-            if (
-              course.courselevel.includes("Grundnivå") &&
-              myFilt.includes("Grundnivå")
-            ) {
-              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
-                return course;
-              }
-              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
-                return course;
-              }
-              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
-                return course;
-              }
-            }
-            if (
-              !myFilt.includes("Grundnivå") &&
-              !myFilt.includes("Avancerad nivå")
-            ) {
-              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
-                return course;
-              }
-              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
-                return course;
-              }
-              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
-                return course;
-              }
-            }
-          }
-        })
-      );
-      const removeRepeatCourses = (array) => [...new Set(array)];
-      val = removeRepeatCourses(val[0]);
-      console.log(val);
-      myCourses = val;
-    }
-    setFilterQuery(myCourses);
-  }, [filters, searchQuery, semesterQuery, courses]);
-
-  useEffect(() => {
-    var myQuery = null;
+    var filterQuery = null;
     var temp = selectedFilters;
     var temp2 = selectedFilters;
     var myNum = temp.map((selected) => selected.match(/\d+/)).toString();
@@ -195,7 +71,7 @@ function App() {
     if (selectedFilters.length > 0) {
       if (searchQuery !== null) {
         if (semesterQuery !== null) {
-          myQuery = semesterQuery.filter((course) => {
+          filterQuery = semesterQuery.filter((course) => {
             return myNum && all
               ? myNum.includes(
                   course.courseblock.split(",")[0] ||
@@ -211,7 +87,7 @@ function App() {
               : course;
           });
         } else {
-          myQuery = searchQuery.filter((course) => {
+          filterQuery = searchQuery.filter((course) => {
             return myNum && all
               ? myNum.includes(
                   course.courseblock.split(",")[0] ||
@@ -228,7 +104,7 @@ function App() {
           });
         }
       } else {
-        var myQuery = courses.filter((course) => {
+        var filterQuery = courses.filter((course) => {
           return myNum && all
             ? myNum.includes(
                 course.courseblock.split(",")[0] ||
@@ -245,7 +121,7 @@ function App() {
         });
       }
     }
-    setSemesterQuery(myQuery);
+    setSemesterQuery(filterQuery);
   }, [selectedFilters]);
 
   useEffect(() => {
@@ -256,36 +132,38 @@ function App() {
   }, [selectedCourses, searchQuery]);
 
   useEffect(() => {
-      localStorage.setItem(
-          "myValueInLocalStorageforloggedin",
-          JSON.stringify(isloggedin)
-      );
+    localStorage.setItem(
+      "myValueInLocalStorageforloggedin",
+      JSON.stringify(isloggedin)
+    );
   }, [isloggedin]);
 
   const searchHandler = (query) => {
-    console.log(query);
-    var myCourses = courses;
-    const searchResult = myCourses.filter((course) => {
+    const searchResult = courses.filter((course) => {
       return (
         course.coursename.toLowerCase().includes(query.toLowerCase()) ||
         course.coursecode.toLowerCase().includes(query.toLowerCase())
       );
     });
+
     setSearchQuery(searchResult);
   };
 
   const semesterHandler = (semester) => {
-    console.log(filters);
     const userInput = parseInt(semester);
-    var choosenSemester = courses;
+    var choosenSemester = null;
     if (searchQuery !== null) {
-      choosenSemester = searchQuery;
-    }
-    if (!isNaN(userInput)) {
-      choosenSemester = choosenSemester.filter(
+      if (!isNaN(userInput)) {
+        choosenSemester = searchQuery.filter(
+          (course) => course.semester === userInput
+        );
+      }
+    } else {
+      choosenSemester = courses.filter(
         (course) => course.semester === userInput
       );
     }
+
     setSemesterQuery(choosenSemester);
   };
 
@@ -322,10 +200,15 @@ function App() {
         <NavBar
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}
-          setFilterState={setFilterState}
-          courses={filterQuery !== null ? filterQuery : courses}
           selectedProfileCourses={selectedProfileCourses}
           setSelectedProfileCourses={setSelectedProfileCourses}
+          courses={
+            semesterQuery !== null
+              ? semesterQuery
+              : searchQuery !== null
+              ? searchQuery
+              : courses
+          }
           searchHandler={searchHandler}
           semesterHandler={semesterHandler}
           filters={filters}
@@ -336,8 +219,8 @@ function App() {
           username={username}
           setUsername={setUsername}
           selectedProfileName={selectedProfileName}
-          setSelectedProfileName={setSelectedProfileName}        
-          />
+          setSelectedProfileName={setSelectedProfileName}
+        />
       </div>
     );
   }

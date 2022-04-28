@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import "./FilterMenu.css";
-const CheckBox = ({ isChecked, label, checkHandler, index }) => {
-    return (
-        <div>
-            <input
-                type="checkbox"
-                id={`checkbox-${index}`}
-                checked={isChecked}
-                onChange={checkHandler}
-            />
-            <label htmlFor={`checkbox-${index}`}>{label}</label>
-        </div>
-    )
+
+const CheckBox = ({ label, name }) => {
+  //state
+
+  const [checked, setChecked] = useState(false);
+
+  const changeHandler = (e) => {
+    checked ? setChecked(false) : setChecked(true);
+  };
+
+  return <></>;
 };
+
 export default CheckBox;
