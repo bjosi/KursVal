@@ -76,10 +76,13 @@
 
 .toggle_button {
   color: black;
+  position: relative;
+  top: 2px;
 }
 
 .toggle_button:hover {
   background-color: #f5f5f5;
+  cursor: pointer;
 }
 
 .toggle_button .title {
@@ -124,9 +127,6 @@
   margin-top: 1rem;
 }
 
-.toggle_overview:hover {
-  cursor: pointer;
-}
 
 .overview {
   display: flex;
