@@ -17,6 +17,7 @@ const Browse = ({
   setSelectedFilters,
   selectedProfileCourses,
   setSelectedProfileCourses,
+  setFilterState,
 }) => {
   const [backdrop, setBackdrop] = useState(false);
 
@@ -66,6 +67,7 @@ const Browse = ({
               filters={filters}
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
+              setFilterState={setFilterState}
             />
           </div>
           <div className="right-section">

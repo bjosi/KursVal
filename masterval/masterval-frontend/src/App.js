@@ -8,7 +8,7 @@ function App() {
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState(null);
   const [semesterQuery, setSemesterQuery] = useState(null);
-
+  const [filterQuery, setFilterQuery] = useState(null);
   const [selectedCourses, setSelectedCourses] = useState(
     JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
   );
@@ -36,9 +36,9 @@ function App() {
 
   const [selectedFilters, setSelectedFilters] = useState([]);
 
-  const [isloggedin, setisloggedin] = useState(
-    localStorage.getItem("myValueInLocalStorageforloggedin") || false
-  );
+  // const [isloggedin, setisloggedin] = useState(
+  //   localStorage.getItem("myValueInLocalStorageforloggedin") || false
+  // );
 
   const [username, setUsername] = useState(
     localStorage.getItem("username") || ""
@@ -48,20 +48,144 @@ function App() {
     localStorage.setItem("username", username);
   }, [username]);
 
-  const filters = [
-    "Grundnivå",
-    "Avancerad nivå",
-    "Medieteknik",
-    "Block 1",
-    "Block 2",
-    "Block 3",
-    "Block 4",
-    "Helfart",
-    "Halvfart",
-  ];
+  const myFilter = [
+    { name: "Grundnivå", checked: false },
+    { name: "Avancerad nivå", checked: false },
+    { name: "Block 1", checked: false },
+    { name: "Block 2", checked: false },
+    { name: "Block 3", checked: false },
+    { name: "Block 4", checked: false },
+    { name: "Helfart", checked: false },
+    { name: "Halvfart", checked: false }];
+
+  const [filters, setFilterState] = useState(myFilter);
 
   useEffect(() => {
-    var filterQuery = null;
+    var myCourses = courses;
+    if (semesterQuery !== null && searchQuery !== null) {
+      myCourses = semesterQuery;
+    } else if (searchQuery !== null) {
+      myCourses = searchQuery;
+    } else if (semesterQuery !== null) {
+      myCourses = semesterQuery;
+    }
+    const myFilt = filters
+      .filter((myFilt) => myFilt.checked)
+      .map((filt) => filt.name);
+    console.log(myFilt);
+    if (filters.map((filt) => filt.checked).includes(true)) {
+      var val = [];
+      val.push(
+        myCourses.filter((course) => {
+          if (
+            (myFilt.includes("Block 1") && course.courseblock.includes("1")) ||
+            (myFilt.includes("Block 2") && course.courseblock.includes("2")) ||
+            (myFilt.includes("Block 3") && course.courseblock.includes("3")) ||
+            (myFilt.includes("Block 4") && course.courseblock.includes("4"))
+          ) {
+            if (
+              course.courselevel.includes("Avancerad nivå") &&
+              myFilt.includes("Avancerad nivå")
+            ) {
+              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                return course;
+              }
+              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                return course;
+              }
+              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                return course;
+              }
+            }
+            if (
+              course.courselevel.includes("Grundnivå") &&
+              myFilt.includes("Grundnivå")
+            ) {
+              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                return course;
+              }
+              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                return course;
+              }
+              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                return course;
+              }
+            }
+            if (
+              !myFilt.includes("Grundnivå") &&
+              !myFilt.includes("Avancerad nivå")
+            ) {
+              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                return course;
+              }
+              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                return course;
+              }
+              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                return course;
+              }
+            }
+          } else if (
+            !myFilt.includes("Block 1") &&
+            !myFilt.includes("Block 2") &&
+            !myFilt.includes("Block 3") &&
+            !myFilt.includes("Block 4")
+          ) {
+            if (
+              course.courselevel.includes("Avancerad nivå") &&
+              myFilt.includes("Avancerad nivå")
+            ) {
+              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                return course;
+              }
+              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                return course;
+              }
+              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                return course;
+              }
+            }
+            if (
+              course.courselevel.includes("Grundnivå") &&
+              myFilt.includes("Grundnivå")
+            ) {
+              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                return course;
+              }
+              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                return course;
+              }
+              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                return course;
+              }
+            }
+            if (
+              !myFilt.includes("Grundnivå") &&
+              !myFilt.includes("Avancerad nivå")
+            ) {
+              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                return course;
+              }
+              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                return course;
+              }
+              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                return course;
+              }
+            }
+          }
+        })
+      );
+      const removeRepeatCourses = (array) => [...new Set(array)];
+      val = removeRepeatCourses(val[0]);
+      console.log(val);
+      myCourses = val;
+    }
+    setFilterQuery(myCourses);
+  }, [filters, searchQuery, semesterQuery, courses]);
+
+  useEffect(() => {
+    var myQuery = null;
     var temp = selectedFilters;
     var temp2 = selectedFilters;
     var myNum = temp.map((selected) => selected.match(/\d+/)).toString();
@@ -71,7 +195,7 @@ function App() {
     if (selectedFilters.length > 0) {
       if (searchQuery !== null) {
         if (semesterQuery !== null) {
-          filterQuery = semesterQuery.filter((course) => {
+          myQuery = semesterQuery.filter((course) => {
             return myNum && all
               ? myNum.includes(
                   course.courseblock.split(",")[0] ||
@@ -87,7 +211,7 @@ function App() {
               : course;
           });
         } else {
-          filterQuery = searchQuery.filter((course) => {
+          myQuery = searchQuery.filter((course) => {
             return myNum && all
               ? myNum.includes(
                   course.courseblock.split(",")[0] ||
@@ -104,7 +228,7 @@ function App() {
           });
         }
       } else {
-        var filterQuery = courses.filter((course) => {
+        var myQuery = courses.filter((course) => {
           return myNum && all
             ? myNum.includes(
                 course.courseblock.split(",")[0] ||
@@ -121,7 +245,7 @@ function App() {
         });
       }
     }
-    setSemesterQuery(filterQuery);
+    setSemesterQuery(myQuery);
   }, [selectedFilters]);
 
   useEffect(() => {
@@ -131,12 +255,12 @@ function App() {
     );
   }, [selectedCourses, searchQuery]);
 
-  useEffect(() => {
-    localStorage.setItem(
-      "myValueInLocalStorageforloggedin",
-      JSON.stringify(isloggedin)
-    );
-  }, [isloggedin]);
+  // useEffect(() => {
+  //   localStorage.setItem(
+  //     "myValueInLocalStorageforloggedin",
+  //     JSON.stringify(isloggedin)
+  //   );
+  // }, [isloggedin]);
 
   const searchHandler = (query) => {
     const searchResult = courses.filter((course) => {
@@ -202,24 +326,22 @@ function App() {
           setSelectedCourses={setSelectedCourses}
           selectedProfileCourses={selectedProfileCourses}
           setSelectedProfileCourses={setSelectedProfileCourses}
-          courses={
-            semesterQuery !== null
-              ? semesterQuery
-              : searchQuery !== null
-              ? searchQuery
-              : courses
-          }
+          courses={ 
+            filterQuery !== null 
+            ? filterQuery 
+            : courses}
           searchHandler={searchHandler}
           semesterHandler={semesterHandler}
           filters={filters}
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
-          isloggedin={isloggedin}
-          setisloggedin={setisloggedin}
+          // isloggedin={isloggedin}
+          // setisloggedin={setisloggedin}
           username={username}
           setUsername={setUsername}
           selectedProfileName={selectedProfileName}
           setSelectedProfileName={setSelectedProfileName}
+          setFilterState={setFilterState}
         />
       </div>
     );
