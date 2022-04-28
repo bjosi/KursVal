@@ -2,6 +2,7 @@ import "../styles/DisplayCourse.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareXmark, faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import React, { useState,useEffect } from 'react';
+import SlideInCard from "../components/SlideInCard/SlideInCard";
 
 
 const ButtonAddRemoveCourse = ({
@@ -15,9 +16,9 @@ const ButtonAddRemoveCourse = ({
     homePage
     
 }) => {
-   
+    const[slideInCard, setSlideInCard] = useState(false);
     function handleSubmit(clickedobjekt, setSelectedCourses, selectedCourses, setSelectedProfileCourses, selectedProfileCourses) {
-
+        
         const isLocalStorage = JSON.stringify(selectedCourses) == JSON.stringify(selectedProfileCourses);
 
         if (homePage) {
@@ -64,10 +65,13 @@ const ButtonAddRemoveCourse = ({
             } 
         }
 
-
+        setSlideInCard(true);
     }
 
     return (
+        <>
+        {showAddButton ? <SlideInCard setSlideInCard={setSlideInCard} slideInCard={slideInCard}>Kursen borttagen</SlideInCard> : <SlideInCard setSlideInCard={setSlideInCard} slideInCard={slideInCard}>Kursen tillagd</SlideInCard>}
+        
         <button
             onClick={() =>
                 handleSubmit(courseinfo, setSelectedCourses, selectedCourses, setSelectedProfileCourses, selectedProfileCourses)
@@ -76,6 +80,7 @@ const ButtonAddRemoveCourse = ({
             <FontAwesomeIcon className={showAddButton ? 'add_course_icon' : 'remove_course_icon'} icon={showAddButton ? faSquarePlus : faSquareXmark
 } />
         </button>
+        </>
     );
 };
 

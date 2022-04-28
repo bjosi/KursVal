@@ -1,4 +1,5 @@
 import React from "react";
+import SlideInCard from "../SlideInCard/SlideInCard";
 import "./Backdrop.css";
 
 export default function Backdrop({ children, open, onClose }) {
@@ -19,4 +20,5 @@ export default function Backdrop({ children, open, onClose }) {
       {children}
     </div>
   );
-}
+};
+
