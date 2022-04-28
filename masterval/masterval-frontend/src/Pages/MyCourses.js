@@ -13,7 +13,7 @@ import {
   faHeart,
   faPen,
   faArrowsRotate,
-    faCircleCheck,
+  faCircleCheck,
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 import ProfileSelector from "../components/ProfileSelector";
@@ -69,8 +69,8 @@ const MyCourses = ({
 
   const [test, setTest] = useState(false);
   const [fetchSucceeded, setFetchSucceeded] = useState(false);
-    const [showMatrix, setShowMatrix] = useState(false);
-    const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [showMatrix, setShowMatrix] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   useEffect(() => {
     console.log("fetch");
@@ -113,9 +113,7 @@ const MyCourses = ({
           (course) => (data += "," + course.coursecode + "," + course.semester)
         );
 
-        
         const username1 = username + "," + selectedProfileName;
-
 
         await fetch(
           "save/" + username1 + "/" + data + "/" + temporaryProfileName
@@ -215,18 +213,16 @@ const MyCourses = ({
       (course) => (data += "," + course.coursecode + "," + course.semester)
     );
 
+    if (selectedProfileCoursesIsLocalStorage) {
+      if (
+        profiles.find((profile) => profile.name === localStorageProfileName)
+      ) {
+        setShowErrorMessage(true);
+        setTimeout(() => setShowErrorMessage(false), 2000);
 
-
-      if (selectedProfileCoursesIsLocalStorage) {
-
-          if (profiles.find((profile) => profile.name === localStorageProfileName)) {
-              setShowErrorMessage(true);
-              setTimeout(() => setShowErrorMessage(false), 2000);
-
-              return;
-          }
+        return;
       }
-
+    }
 
     await fetch(
       "save/" + username + "," + profileName + "/" + data + "/" + "false"
@@ -306,9 +302,12 @@ const MyCourses = ({
           </Link>
 
           {isloggedin ? (
-                      <div className="upper_header_link_right_section">
+            <div className="upper_header_link_right_section">
               {selectedProfileCoursesIsLocalStorage ? (
-                <button onClick={onSave} className="upper_header_link upper_header_link_margin">
+                <button
+                  onClick={onSave}
+                  className="upper_header_link upper_header_link_margin"
+                >
                   Spara ny profil
                   <FontAwesomeIcon
                     className="upper_header_icon"
@@ -316,7 +315,10 @@ const MyCourses = ({
                   />
                 </button>
               ) : (
-                                  <button onClick={onSave} className="upper_header_link upper_header_link_margin">
+                <button
+                  onClick={onSave}
+                  className="upper_header_link upper_header_link_margin"
+                >
                   Uppdatera profil
                   <FontAwesomeIcon
                     className="upper_header_icon"
@@ -327,7 +329,10 @@ const MyCourses = ({
               <button onClick={onDelete} className="upper_header_link">
                 {" "}
                 Ta bort profil{" "}
-                              <FontAwesomeIcon className="upper_header_icon" icon={faTrashCan} />
+                <FontAwesomeIcon
+                  className="upper_header_icon"
+                  icon={faTrashCan}
+                />
               </button>{" "}
             </div>
           ) : (
@@ -358,10 +363,11 @@ const MyCourses = ({
               <option value={localStorageProfileName}>
                 {localStorageProfileName}
               </option>
-              {profiles.map((profile) => (
+              {profiles.map((profile, index) => (
                 <option
+                  key={index}
                   selected={
-                    profile.name == selectedProfileName ? "selected" : ""
+                    profile.name === selectedProfileName ? "selected" : ""
                   }
                   value={profile.name}
                 >
@@ -375,11 +381,19 @@ const MyCourses = ({
             className="change_profile_name_icon"
             icon={editableText ? faCircleCheck : faPen}
           />
-              </h3>
+        </h3>
 
-              <h6 className={showErrorMessage ? "profilename_error profilename_show_error" : "profilename_error"}>Ange annat profilnamn</h6>
+        <h6
+          className={
+            showErrorMessage
+              ? "profilename_error profilename_show_error"
+              : "profilename_error"
+          }
+        >
+          Ange annat profilnamn
+        </h6>
 
-         <ToggleOverviewButton
+        <ToggleOverviewButton
           showOverview={showOverview}
           setShowOverview={setShowOverview}
           showMatrix={showMatrix}
@@ -406,15 +420,13 @@ const MyCourses = ({
           setSelectedProfileCourses={setSelectedProfileCourses}
           selectedProfileCourses={selectedProfileCourses}
         />
-          )}
+      )}
 
-
-          {showOverview ? (
-
-              <OverviewTerms selectedCourses={selectedProfileCourses} />
-          ) : (
-              <></>
-          )}
+      {showOverview ? (
+        <OverviewTerms selectedCourses={selectedProfileCourses} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
