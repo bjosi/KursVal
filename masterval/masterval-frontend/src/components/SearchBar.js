@@ -13,8 +13,8 @@ const SearchBar = ({ searchHandler, semesterHandler }) => {
       <input
         className="SearchbarInput"
         onInput={(e) => {
-          setQuery(e.target.value);
           searchHandler(e.target.value);
+          setQuery(e.target.value);
         }}
         type="text"
         id="header-search"
@@ -24,8 +24,8 @@ const SearchBar = ({ searchHandler, semesterHandler }) => {
       <select
         className="terminInput"
         onChange={(e) => {
-          setSemester(e.target.value);
           semesterHandler(e.target.value);
+          setSemester(e.target.value);
         }}
         id="header-search"
         name="f"

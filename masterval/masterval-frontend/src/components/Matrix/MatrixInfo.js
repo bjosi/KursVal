@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import CompletionCourses from "../CompletionCourses";
-import DisplayCourse from "../DisplayCourse";
 import "./Matrix.css";
 
 const MatrixInfo = ({
@@ -9,48 +8,64 @@ const MatrixInfo = ({
   courses,
   selectedCourses,
   setSelectedCourses,
+  selectedProfileCourses,
+  setSelectedProfileCourses,
 }) => {
   kunskaper = kunskaper.filter((goal) => goal !== "Mål");
 
   const [completingCourses, setCompletingCourses] = useState([]);
   const [notFullfilled, setNotFullfilled] = useState([]);
 
-  const stringOfGoals = notFullfilled.join();
+  // const stringOfGoals = notFullfilled.join();
+    const update = () => {
+        setTimeout(function () {
+            setNotFullfilled( notFullfilled);
+        }, 1000);
+    }
+
 
   useEffect(() => {
-    var test1 = courses.filter((course) => {
-      return !stringOfGoals.includes(course.uChosen);
-    });
-    const test2 = kunskaper.filter((mål) => !uppfyllda.includes(mål));
-    test1 = test1.filter((course) => !selectedCourses.includes(course));
 
-    setCompletingCourses(test1);
+
+      const test2 = kunskaper.filter((mål) => !uppfyllda.includes(mål));
+
+    
     setNotFullfilled(test2);
-    console.log(completingCourses);
-    console.log(selectedCourses);
-    console.log(notFullfilled);
-  }, [selectedCourses]);
+  }, [selectedProfileCourses]);
+//DETTA FUNKAR EJ
+
+    useEffect(() => {
+        var test1 = courses.filter((course) =>
+            notFullfilled.find((goal) => course.uChosen.includes(goal))
+        );
+
+        setCompletingCourses(test1);
+    }, [notFullfilled]);
+
 
   return (
-    <>
+      <>
       <div className="matrix_info">
-        <div className="section">
-          <h2 className="matrix_info_header">Ej uppfyllda mål: </h2>
-          {notFullfilled.map((goal) => (
-            <li>{goal}</li>
-          ))}
-        </div>
-        <div className="section">
+              {notFullfilled.length > 0 ? <div className="section_upper">
+                  <h2>Din examen uppfyller ej följande mål: </h2>
+                  <ul>
+                      {notFullfilled.map((goal) => (
+                          <li>{goal}</li>
+                      ))}
+                  </ul>
+              </div>: <> </>}
           {notFullfilled.length > 0 ? (
-            <CompletionCourses
+                      <CompletionCourses
+              notFullfilled={notFullfilled}
               completingCourses={completingCourses}
               selectedCourses={selectedCourses}
               setSelectedCourses={setSelectedCourses}
+              selectedProfileCourses={selectedProfileCourses}
+              setSelectedProfileCourses={setSelectedProfileCourses}
             />
           ) : (
             <h1>Alla programmål uppfyllda min fucking broder</h1>
           )}
-        </div>
       </div>
     </>
   );

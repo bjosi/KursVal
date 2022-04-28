@@ -26,6 +26,7 @@ const NavBar = ({
   semesterHandler,
   filters,
   selectedFilters,
+
   setSelectedFilters,
   selectedProfileCourses,
   setSelectedProfileCourses,
@@ -34,7 +35,7 @@ const NavBar = ({
   username,
   setUsername,
   selectedProfileName,
-  setSelectedProfileName
+  setSelectedProfileName,
 }) => {
   async function handleLogout() {
     console.log(isloggedin);
@@ -140,7 +141,6 @@ const NavBar = ({
               filters={filters}
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
-              setFilterState={setFilterState}
             />
           </Route>
         </Switch>
