@@ -275,19 +275,15 @@ function App() {
 
   const semesterHandler = (semester) => {
     const userInput = parseInt(semester);
-    var choosenSemester = null;
+    var choosenSemester = courses;
     if (searchQuery !== null) {
-      if (!isNaN(userInput)) {
-        choosenSemester = searchQuery.filter(
-          (course) => course.semester === userInput
-        );
-      }
-    } else {
-      choosenSemester = courses.filter(
+      choosenSemester = searchQuery;
+    }
+    if (!isNaN(userInput)) {
+      choosenSemester = choosenSemester.filter(
         (course) => course.semester === userInput
       );
     }
-
     setSemesterQuery(choosenSemester);
   };
 
