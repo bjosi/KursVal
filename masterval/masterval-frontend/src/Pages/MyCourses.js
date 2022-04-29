@@ -104,7 +104,16 @@ const MyCourses = ({
   };
 
   const editName = async () => {
-    if (editableText && temporaryProfileName.trim() != "") {
+      if (editableText && temporaryProfileName.trim() != "") {
+
+
+          if (profiles.find((profile) => profile.name === temporaryProfileName) && profiles.find((profile) => profile.name === temporaryProfileName).name !== selectedProfileName) {
+              setShowErrorMessage(true);
+              setTimeout(() => setShowErrorMessage(false), 2000);
+              return;
+          }
+
+
       if (selectedProfileCoursesIsLocalStorage) {
         setLocalStorageProfileName(temporaryProfileName);
       } else {
@@ -130,29 +139,37 @@ const MyCourses = ({
   const onChangeSelectedProfile = (e) => {
     // "Vill du spara dina ändringar?"
     if (!selectedProfileCoursesIsLocalStorage) {
-      let transformedProfileCourses = [];
+      let transformedProfileCourses1 = [];
       const preTransformedProfileCourses = profiles.find(
         (profile) => profile.name == selectedProfileName
-      );
-      preTransformedProfileCourses.courselist.map((profile) =>
-        transformedProfileCourses.push(
-          allCourses.find(
-            (course) =>
-              course.coursecode == profile.coursecode &&
-              course.semester == profile.choosensemester
-          )
-        )
-      );
+        );
 
-      console.log(JSON.stringify(transformedProfileCourses));
-      console.log(JSON.stringify(selectedProfileCourses));
+
+        if (preTransformedProfileCourses.courselist) {
+            preTransformedProfileCourses.courselist.map((profile) => {
+
+                const index = allCourses.findIndex(
+                    (course) =>
+                        course.coursecode == profile.coursecode
+                );
+
+                let element = { ...allCourses[index] };
+                element.semester = parseInt(profile.choosensemester);
+
+                transformedProfileCourses1.push(element);
+
+
+            }
+            );
+        }
+
 
       let hasChanges = false;
-      if (transformedProfileCourses.length != selectedProfileCourses.length) {
+      if (transformedProfileCourses1.length != selectedProfileCourses.length) {
         hasChanges = true;
       }
 
-      transformedProfileCourses.map((item1) =>
+      transformedProfileCourses1.map((item1) =>
         !selectedProfileCourses.find(
           (item2) =>
             item2.coursecode === item1.coursecode &&
@@ -173,21 +190,32 @@ const MyCourses = ({
 
     if (e.target.value != localStorageProfileName) {
       setSelectedProfileCoursesIsLocalStorage(false);
-      let transformedProfileCourses = [];
+      let transformedProfileCourses2 = [];
 
       const preTransformedProfileCourses = profiles.find(
         (profile) => profile.name == e.target.value
       );
-      preTransformedProfileCourses.courselist.map((profileCourse) =>
-        transformedProfileCourses.push(
-          allCourses.find(
-            (course) =>
-              course.coursecode == profileCourse.coursecode &&
-              course.semester == profileCourse.choosensemester
-          )
-        )
-      );
-      setSelectedProfileCourses(transformedProfileCourses);
+
+
+        if (preTransformedProfileCourses.courselist) {
+            preTransformedProfileCourses.courselist.map((profile) => {
+
+                const index = allCourses.findIndex(
+                    (course) =>
+                        course.coursecode == profile.coursecode
+                );
+
+                let element = { ...allCourses[index] };
+                element.semester = parseInt(profile.choosensemester);
+
+                transformedProfileCourses2.push(element);
+
+
+            }
+            );
+        }
+
+        setSelectedProfileCourses(transformedProfileCourses2);
     } else {
       setSelectedProfileCoursesIsLocalStorage(true);
       setSelectedProfileCourses(selectedCourses);
@@ -213,16 +241,14 @@ const MyCourses = ({
       (course) => (data += "," + course.coursecode + "," + course.semester)
     );
 
-    if (selectedProfileCoursesIsLocalStorage) {
-      if (
-        profiles.find((profile) => profile.name === localStorageProfileName)
-      ) {
-        setShowErrorMessage(true);
-        setTimeout(() => setShowErrorMessage(false), 2000);
+      if (localStorageProfileName === profileName) {
+          if (profiles.find((profile) => profile.name === profileName) || localStorageProfileName === "Min masterexamen") {
+              setShowErrorMessage(true);
+              setTimeout(() => setShowErrorMessage(false), 2000);
 
-        return;
+              return;
+          }
       }
-    }
 
     await fetch(
       "save/" + username + "," + profileName + "/" + data + "/" + "false"
@@ -230,20 +256,22 @@ const MyCourses = ({
 
     setTimeout(() => setFetchSucceeded(false), 2000);
 
-    if (selectedProfileCoursesIsLocalStorage) {
-      setSelectedCourses([]);
-      setSelectedProfileName(localStorageProfileName);
-      setLocalStorageProfileName("Min masterexamen");
-    }
+      if (profileName === localStorageProfileName) {
+          setSelectedCourses([]);
+          setSelectedProfileName(localStorageProfileName);
+          setLocalStorageProfileName("Min masterexamen");
+          setSelectedProfileCoursesIsLocalStorage(false);
+          setTest(!test);
+      }
 
     setTemporaryProfileNameUpdateProfile("");
     setTemporarySelectedCoursesUpdateProfile([]);
     setTest(!test);
   };
 
-  const onDelete = () => {
+  const onDelete = async () => {
     const username1 = username + "," + selectedProfileName;
-    fetch("delete/" + username1).then(console.log("deleted"));
+    await fetch("delete/" + username1).then(console.log("deleted"));
     setSelectedProfileCourses(selectedCourses);
     setSelectedProfileName(localStorageProfileName);
     setSelectedProfileCoursesIsLocalStorage(true);
@@ -300,46 +328,39 @@ const MyCourses = ({
             <FontAwesomeIcon className="upper_header_icon" icon={faArrowLeft} />
             Hitta fler kurser{" "}
           </Link>
+                  {isloggedin ? (
+                      <div className="upper_header_link_right_section">
+                          {selectedProfileCoursesIsLocalStorage ? (
+                              <button onClick={onSave} className="upper_header_link upper_header_link_margin">
+                                  Spara ny profil
+                                  <FontAwesomeIcon
+                                      className="upper_header_icon"
+                                      icon={faHeart}
+                                  />
+                              </button>
+                          ) : (<>
+                              <button onClick={onSave} className="upper_header_link upper_header_link_margin">
+                                  Uppdatera profil
+                                  <FontAwesomeIcon
+                                      className="upper_header_icon"
+                                      icon={faArrowsRotate}
+                                  />
+                              </button>
 
-          {isloggedin ? (
-            <div className="upper_header_link_right_section">
-              {selectedProfileCoursesIsLocalStorage ? (
-                <button
-                  onClick={onSave}
-                  className="upper_header_link upper_header_link_margin"
-                >
-                  Spara ny profil
-                  <FontAwesomeIcon
-                    className="upper_header_icon"
-                    icon={faHeart}
-                  />
-                </button>
-              ) : (
-                <button
-                  onClick={onSave}
-                  className="upper_header_link upper_header_link_margin"
-                >
-                  Uppdatera profil
-                  <FontAwesomeIcon
-                    className="upper_header_icon"
-                    icon={faArrowsRotate}
-                  />
-                </button>
-              )}
-              <button onClick={onDelete} className="upper_header_link">
-                {" "}
-                Ta bort profil{" "}
-                <FontAwesomeIcon
-                  className="upper_header_icon"
-                  icon={faTrashCan}
-                />
-              </button>{" "}
-            </div>
-          ) : (
-            <h1 className="upper_header_link not_logged_in">
-              Logga in för att spara profil
-            </h1>
-          )}
+                              <button onClick={onDelete} className="upper_header_link">
+                                  {" "}
+                                  Ta bort profil{" "}
+                                  <FontAwesomeIcon className="upper_header_icon" icon={faTrashCan} />
+                              </button>
+                          </>
+                          )}
+                      </div>
+                  ) : (
+                      <h1 className="upper_header_link not_logged_in">
+                          Logga in för att spara profil
+                      </h1>
+                  )}
+
         </div>
 
         <h3 className="profile_name">
@@ -418,7 +439,9 @@ const MyCourses = ({
           selectedCourses={selectedCourses}
           setSelectedCourses={setSelectedCourses}
           setSelectedProfileCourses={setSelectedProfileCourses}
-          selectedProfileCourses={selectedProfileCourses}
+                          selectedProfileCourses={selectedProfileCourses}
+                          selectedProfileCoursesIsLocalStorage={selectedProfileCoursesIsLocalStorage}
+
         />
       )}
 

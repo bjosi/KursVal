@@ -1,6 +1,6 @@
 import "../styles/DisplayCourse.css";
 import "../Pages/Browse.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Backdrop from "./Backdrop/Backdrop.js";
 import "./Backdrop/Backdrop.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,7 +9,7 @@ import { faSquareCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
     setSelectedProfileCourses,
-    selectedProfileCourses }) => {
+    selectedProfileCourses, selectedProfileCoursesIsLocalStorage }) => {
 
     const [backdrop, setBackdrop] = useState(false);
 
@@ -22,11 +22,19 @@ const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
     }
 
 
+    useEffect(() => {
+
+        if (selectedProfileCoursesIsLocalStorage && selectedCourses.length > 0) {
+            console.log("testarBarahehe")
+            setSelectedProfileCourses(selectedCourses);
+        }
+    }, [selectedCourses]);
+
+
     const handleConfirm = () => {
 
-        const isLocalStorage = JSON.stringify(selectedCourses) === JSON.stringify(selectedProfileCourses);
 
-        if (isLocalStorage) {
+        if (selectedProfileCoursesIsLocalStorage) {
 
             setSelectedCourses(
                 selectedCourses.map(item =>
@@ -35,7 +43,6 @@ const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
                         : item
                 ))
 
-            setSelectedProfileCourses(selectedCourses)
         } else {
             setSelectedProfileCourses(
                 selectedProfileCourses.map(item =>
