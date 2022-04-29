@@ -65,8 +65,8 @@ const DisplayCourse = ({
               <MySvg className="c_info_icon" />
               <p className="c_info">
                 {courseinfo.semester === 7 || courseinfo.semester === 9
-                  ? "Vårtermin"
-                  : "Hösttermin"}
+                                  ? "Hösttermin"
+                                  : "Vårtermin"}
               </p>
             </div>
 

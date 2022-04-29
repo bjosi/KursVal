@@ -75,13 +75,14 @@ const TableMatrix = ({
   };
 
   return (
-    <>
-      <Matrix
-        kunskaper={kunskaper}
-        MakeArr={MakeArr}
-        selectedCourses={selectedCourses}
-        selectedProfileCourses={selectedProfileCourses}
-      />
+      <>
+          {selectedProfileCourses.length === 0 ? <> </> :
+              <Matrix
+                  kunskaper={kunskaper}
+                  MakeArr={MakeArr}
+                  selectedCourses={selectedCourses}
+                  selectedProfileCourses={selectedProfileCourses}
+              />}
       <MatrixInfo
         selectedCourses={selectedCourses}
         setSelectedCourses={setSelectedCourses}

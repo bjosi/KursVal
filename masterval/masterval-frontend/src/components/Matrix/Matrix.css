@@ -1,11 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
 
 .table_matrix {
-  display: flex;
-  margin: 0 auto;
-  margin-top: 1rem;
-  width: 65vw;
-  overflow-x: scroll;
+    display: flex;
+    margin: 0 auto;
+    width: 65vw;
+    overflow-x: scroll;
 }
 .p_tag {
   font-weight: 600;
@@ -87,7 +86,6 @@
 ul {
   display: flex;
   list-style: none;
-  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -123,6 +121,20 @@ li {
   max-width: 70vw;
 }
 
-.completing_courses_container p {
-  margin-bottom: 0.75rem;
+.uppfyll {
+    display: flex;
+    justify-content: center;
+    height: 2rem;
+}
+
+.text {
+    font-weight: 700;
+}
+
+.the_matrix {
+    display: flex;
+    margin: 0 auto;
+    width: 75vw;
+    justify-content: center;
+    margin-top: 2rem;
 }
