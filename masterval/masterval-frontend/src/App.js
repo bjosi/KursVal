@@ -36,9 +36,9 @@ function App() {
 
   const [selectedFilters, setSelectedFilters] = useState([]);
 
-  // const [isloggedin, setisloggedin] = useState(
-  //   localStorage.getItem("myValueInLocalStorageforloggedin") || false
-  // );
+   const [isloggedin, setisloggedin] = useState(
+     localStorage.getItem("myValueInLocalStorageforloggedin") || false
+   );
 
   const [username, setUsername] = useState(
     localStorage.getItem("username") || ""
@@ -255,12 +255,12 @@ function App() {
     );
   }, [selectedCourses, searchQuery]);
 
-  // useEffect(() => {
-  //   localStorage.setItem(
-  //     "myValueInLocalStorageforloggedin",
-  //     JSON.stringify(isloggedin)
-  //   );
-  // }, [isloggedin]);
+   useEffect(() => {
+     localStorage.setItem(
+       "myValueInLocalStorageforloggedin",
+       JSON.stringify(isloggedin)
+     );
+   }, [isloggedin]);
 
   const searchHandler = (query) => {
     const searchResult = courses.filter((course) => {
@@ -331,8 +331,8 @@ function App() {
           filters={filters}
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
-          // isloggedin={isloggedin}
-          // setisloggedin={setisloggedin}
+          isloggedin={isloggedin}
+          setisloggedin={setisloggedin}
           username={username}
           setUsername={setUsername}
           selectedProfileName={selectedProfileName}

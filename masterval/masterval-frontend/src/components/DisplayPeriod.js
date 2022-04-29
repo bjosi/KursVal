@@ -7,7 +7,8 @@ const DisplayPeriod = ({
   selectedCourses,
   semester,
   setSelectedProfileCourses,
-  selectedProfileCourses,
+    selectedProfileCourses,
+    selectedProfileCoursesIsLocalStorage,
 }) => {
   const newListperiodone = courseinfo.filter(
     (item) => item.semester === semester && item.period === "1"
@@ -35,7 +36,8 @@ const DisplayPeriod = ({
                 setSelectedCourses={setSelectedCourses}
                 selectedCourses={selectedCourses}
                 setSelectedProfileCourses={setSelectedProfileCourses}
-                selectedProfileCourses={selectedProfileCourses}
+                    selectedProfileCourses={selectedProfileCourses}
+                    selectedProfileCoursesIsLocalStorage={selectedProfileCoursesIsLocalStorage}
               />
             ))
           ) : (
@@ -54,7 +56,9 @@ const DisplayPeriod = ({
                 setSelectedCourses={setSelectedCourses}
                 selectedCourses={selectedCourses}
                 setSelectedProfileCourses={setSelectedProfileCourses}
-                selectedProfileCourses={selectedProfileCourses}
+                    selectedProfileCourses={selectedProfileCourses}
+                    selectedProfileCoursesIsLocalStorage={selectedProfileCoursesIsLocalStorage}
+
               />
             ))
           ) : (
@@ -74,7 +78,9 @@ const DisplayPeriod = ({
               setSelectedCourses={setSelectedCourses}
               selectedCourses={selectedCourses}
               setSelectedProfileCourses={setSelectedProfileCourses}
-              selectedProfileCourses={selectedProfileCourses}
+                  selectedProfileCourses={selectedProfileCourses}
+                  selectedProfileCoursesIsLocalStorage={selectedProfileCoursesIsLocalStorage}
+
             />
           ))
         ) : (

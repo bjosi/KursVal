@@ -63,8 +63,9 @@ const LogIn = ({
 
   async function handleLogin() {
     try {
-      await login(emailRef.current.value, passwordRef.current.value);
-      setisloggedin(true);
+        await login(emailRef.current.value, passwordRef.current.value);
+        console.log("hello");
+        setisloggedin(true);
       seterrorpassword(false);
       seterrorlogin(false);
       seterrosignup(false);
@@ -74,6 +75,7 @@ const LogIn = ({
       setSelectedProfileName("Min masterexamen");
       window.location.href = "/MyCourses";
     } catch {
+        console.log("hm");
       seterrorlogin(true);
     }
   }
