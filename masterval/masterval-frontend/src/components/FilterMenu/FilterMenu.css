@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
 
-.filter_menu {
+.FilterMenu {
   display: flex;
   flex-direction: column;
   height: auto;
   background-color: #ffffff;
-  border-radius: 5px;
   padding: 1rem;
-  margin: 0rem 0.5rem 1rem 0.5rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
+  margin: 0 0.5rem 1rem 0.5rem;
 }
 
 .filter_header {
@@ -18,43 +18,29 @@
   text-align: left;
 }
 
-.filter_header p {
-  color: #f9a26c;
-}
-
-.filter_item {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
+h1 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
 }
 
 h2 {
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 700;
   font-family: "Lato", sans-serif;
   text-align: left;
+  margin: 0 0 0.5rem 0;
 }
 
 input {
   margin-right: 0.5rem;
 }
 
-[type="checkbox"] {
-  vertical-align: middle;
-}
-
 hr {
   margin: 1rem 0;
+  opacity: 40%;
 }
 
-button,
-input[type="submit"],
-input[type="reset"] {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
+label {
+  font-size: 1rem;
+  font-weight: 300;
 }

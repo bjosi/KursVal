@@ -32,6 +32,7 @@
   font-family: "Lato", sans-serif;
   border: 1px solid black;
   padding: 1em;
+  border-radius: 2px;
 }
 
 .search_btn {
@@ -40,6 +41,7 @@
   color: #fff;
   background-color: #f9a26c;
   border: none;
+  border-radius: 2px;
 }
 
 .terminInput {
@@ -48,6 +50,7 @@
   margin: 0 1rem;
   border: 1px solid black;
   padding: 1em;
+  border-radius: 2px;
 }
 
 .searchform {

@@ -43,7 +43,8 @@ const Semesters = ({
             terminen
           </h2>
         )}
-      </div>
+          </div>
+          
       <DisplayPeriod
         courseinfo={selectedProfileCourses}
         setSelectedCourses={setSelectedCourses}

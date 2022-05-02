@@ -85,18 +85,30 @@ const Matrix = ({
                 <p className="p_tag">{block}</p>
           </div>
         ))}
+
       </div>
-
-    <div className="table_matrix">
-      {selectedProfileCourses.map((s, index) => (
-        <div key={index} className="table_vertical">
-          <MakeArr input={s} />
-        </div>
-      ))}
-
+      <div className="the_matrix">
+        <div className="table_vertical">
+          {kunskaper.map((block, index) => (
+            <div key={index} className="vertical_div_k">
+              <p className="p_tag">{block}</p>
+            </div>
+          ))}
         </div>
 
         </div>*/
+
+        <div className="table_matrix">
+          {selectedProfileCourses.map((s, index) => (
+            <div key={index} className="table_vertical">
+              <MakeArr input={s} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
 
 
 export default Matrix;
