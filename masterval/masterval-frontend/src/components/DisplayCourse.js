@@ -31,11 +31,14 @@ const DisplayCourse = ({
   homePage,
   selectedProfileCoursesIsLocalStorage
 }) => {
-  const [showresult, setShowResults] = useState(false);
+    const [showresult, setShowResults] = useState(false);
+
+    const [ismandatory, setismandatory] = useState(false);
+
   const [showAddButton, setShowAddButton] = useState(
     selectedProfileCourses.filter(
       (course) =>
-        course.coursename == courseinfo.coursename
+            course.coursecode == courseinfo.coursecode
     ).length == 0
   );
 
@@ -44,10 +47,74 @@ const DisplayCourse = ({
     setShowAddButton(
       selectedProfileCourses.filter(
         (course) =>
-          course.coursename == courseinfo.coursename
+              course.coursecode == courseinfo.coursecode
       ).length == 0
     );
   }, [courseinfo]);
+
+    const showbuttons = () => {
+
+        if (homePage) {
+            if (courseinfo.coursecode === "TNM107") {
+                return (<h2> Obligatorisk kurs </h2>)
+            }
+            else {
+                return (
+                    <ButtonAddRemoveCourse
+                        courseinfo={courseinfo}
+                        setSelectedCourses={setSelectedCourses}
+                        selectedCourses={selectedCourses}
+                        showAddButton={showAddButton}
+                        setShowAddButton={setShowAddButton}
+                        homePage={homePage}
+                        setSelectedProfileCourses={setSelectedProfileCourses}
+                        selectedProfileCourses={selectedProfileCourses}
+                    />
+                )
+            }
+        }
+        else {
+            if (courseinfo.coursecode === "TNM107") {
+                return (
+                    <div className="btn-displaycourse">
+                        <Btn_moveCourse
+                            courseinfo={courseinfo}
+                            setSelectedCourses={setSelectedCourses}
+                            selectedCourses={selectedCourses}
+                            setSelectedProfileCourses={setSelectedProfileCourses}
+                            selectedProfileCourses={selectedProfileCourses}
+                            selectedProfileCoursesIsLocalStorage={selectedProfileCoursesIsLocalStorage}
+                        />
+                    </div>)
+            }
+            else {
+                return (
+                    <div className="btn-displaycourse">
+                        <Btn_moveCourse
+                            courseinfo={courseinfo}
+                            setSelectedCourses={setSelectedCourses}
+                            selectedCourses={selectedCourses}
+                            setSelectedProfileCourses={setSelectedProfileCourses}
+                            selectedProfileCourses={selectedProfileCourses}
+                            selectedProfileCoursesIsLocalStorage={selectedProfileCoursesIsLocalStorage}
+                        />
+                        <ButtonAddRemoveCourse
+                            courseinfo={courseinfo}
+                            setSelectedCourses={setSelectedCourses}
+                            selectedCourses={selectedCourses}
+                            showAddButton={false}
+                            setShowAddButton={setShowAddButton}
+                            homePage={homePage}
+                            setSelectedProfileCourses={setSelectedProfileCourses}
+                            selectedProfileCourses={selectedProfileCourses}
+                        />
+                    </div>)
+            }
+        }
+
+
+    }
+
 
   const onClick = () => setShowResults(!showresult);
 
@@ -87,43 +154,13 @@ const DisplayCourse = ({
               <FontAwesomeIcon className="c_info_icon" icon={faBarcode} />
               <p className="c_info"> {courseinfo.coursecode} </p>
             </div>
-            {showresult ? <Results courseinfo={courseinfo} /> : null}
-          </div>
-          <div className="div_r">
-            {homePage ? (
-              <ButtonAddRemoveCourse
-                courseinfo={courseinfo}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
-                showAddButton={showAddButton}
-                setShowAddButton={setShowAddButton}
-                homePage={homePage}
-                setSelectedProfileCourses={setSelectedProfileCourses}
-                selectedProfileCourses={selectedProfileCourses}
-              />
-            ) : (
-              <div className="btn-displaycourse">
-                <Btn_moveCourse
-                  courseinfo={courseinfo}
-                  setSelectedCourses={setSelectedCourses}
-                  selectedCourses={selectedCourses}
-                  setSelectedProfileCourses={setSelectedProfileCourses}
-                  selectedProfileCourses={selectedProfileCourses}
-                  selectedProfileCoursesIsLocalStorage={selectedProfileCoursesIsLocalStorage}
+              {showresult ? <Results courseinfo={courseinfo} /> : null}
+                  </div>
 
-                />
-                <ButtonAddRemoveCourse
-                  courseinfo={courseinfo}
-                  setSelectedCourses={setSelectedCourses}
-                  selectedCourses={selectedCourses}
-                  showAddButton={false}
-                  setShowAddButton={setShowAddButton}
-                  homePage={homePage}
-                  setSelectedProfileCourses={setSelectedProfileCourses}
-                  selectedProfileCourses={selectedProfileCourses}
-                />
-              </div>
-            )}
+                  <div className="div_r">
+
+                      {showbuttons()}
+
 
             <ShowPaseOfCourse courseinfo={courseinfo} />
           </div>
@@ -209,33 +246,9 @@ const ShowBlockOfCourse = ({ courseinfo }) => {
   );
 };
 
-/*{
-    homePage ? <> {!selectedCourses.includes(courseinfo) ?
-        (<Btn_addcourse
-            courseinfo={courseinfo}
-            setSelectedCourses={setSelectedCourses}
-            selectedCourses={selectedCourses}
-        />) : <Btn_removeCourse
-            courseinfo={courseinfo}
-            setSelectedCourses={setSelectedCourses}
-            selectedCourses={selectedCourses}
-        />
-    }</> : (
-        <div className="btn-displaycourse">
-            <Btn_moveCourse
-                courseinfo={courseinfo}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
-            />
-            <Btn_removeCourse
-                courseinfo={courseinfo}
-                setSelectedCourses={setSelectedCourses}
-                selectedCourses={selectedCourses}
-            />
-        </div>
-    )
-}
-*/
+
+
+
 export const CalendarIcon = () => {
   return (
     <svg
