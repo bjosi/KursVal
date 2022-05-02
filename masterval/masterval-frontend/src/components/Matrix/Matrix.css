@@ -143,3 +143,14 @@ li {
     justify-content: center;
     margin-top: 2rem;
 }
+
+.matrix_title {
+    background-color: white;
+text-align:center;
+padding: 2rem 2rem 2rem 2rem;
+font-size: 1rem;
+}
+
+    .matrix_title h1 {
+        font-size: 1.875rem;
+    }
