@@ -25,6 +25,7 @@ const FilterMenu = ({
   };
   return (
     <div className="FilterMenu">
+      <h1>Filtrera</h1>
       {myFilter.map((filter, index) => (
         <CheckBox
           key={filter.name}
