@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 
 .course_card {
-    background-color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    padding: 1rem;
-    margin: 0 0.5rem 1rem 0.5rem;
-    position: relative;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 1rem;
+  margin: 0 0.5rem 1rem 0.5rem;
+  position: relative;
 }
 
 .top {
@@ -211,5 +211,10 @@
 }
 
 .course_website:hover {
+  cursor: pointer;
+}
+
+button {
+  border: none;
   cursor: pointer;
 }
