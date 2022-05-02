@@ -2,12 +2,17 @@
 
 .table_matrix {
     display: flex;
-    margin: 0 auto;
-    width: 65vw;
-    overflow-x: scroll;
 }
+
+@media (width > 65vw){
+    .table_matrix {
+        overflow-x: scroll;
+
+    }
+}
+
 .p_tag {
-  font-weight: 600;
+    font-weight: 600;
 }
 
 .table_vertical {

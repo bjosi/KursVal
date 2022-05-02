@@ -45,12 +45,12 @@ const DisplayOverViewTerms = ({ theterm, sem }) => {
           <div className="period_one">
             <div className="div_one_or_two">
               {" "}
-              <p>Period 1</p>{" "}
+              Period 1{" "}
             </div>
             {newListperiodone.map((course, index) => (
               <div className="div_one_or_two" key={index}>
-                {" "}
-                {course.coursename}{" "}
+                {" "}<p>
+                {course.coursename}{" "}</p>
               </div>
             ))}
             {periodonebigger ? (
@@ -63,12 +63,12 @@ const DisplayOverViewTerms = ({ theterm, sem }) => {
           <div className="period_two">
             <div className="div_one_or_two">
               {" "}
-              <p>Period 1</p>{" "}
+              Period 1{" "}
             </div>
             {newListperiodtwo.map((course, index) => (
               <div className="div_one_or_two" key={index}>
-                {" "}
-                {course.coursename}{" "}
+                {" "}<p>
+                        {course.coursename}</p>{" "}
               </div>
             ))}
           </div>
@@ -78,7 +78,7 @@ const DisplayOverViewTerms = ({ theterm, sem }) => {
           {newListPeriodOneAndTwo.map((course, index) => (
             <div className="div_one_and_two" key={index}>
               {" "}
-              {course.coursename}{" "}
+                  <p>              {course.coursename}</p>{" "}
             </div>
           ))}
         </div>

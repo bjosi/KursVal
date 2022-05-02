@@ -32,13 +32,13 @@
     }
 
 .empty_period {
-  background-color: white;
-  padding: 1rem;
-  margin: 1rem 0rem;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
-  height: 8rem;
-  opacity: 50%;
+    background-color: white;
+    padding: 1rem;
+    margin: 1rem 0rem;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    height: 9.5rem;
+    opacity: 50%;
 }
 
 .period_1 {
