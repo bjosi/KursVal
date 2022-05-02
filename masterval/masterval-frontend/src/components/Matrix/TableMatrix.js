@@ -38,21 +38,7 @@ const TableMatrix = ({
     "5.5",
   ];
     const uppfyllda = [];
-    var vertical_div_k = {
-        backgroundColor: "Black",
-    };
-    const hover = () => {
-        vertical_div_k = {
-            backgroundColor: "DodgerBlue",
-        };
-    }
-
-    const leave = () => {
-        vertical_div_k = {
-            backgroundColor: "Yellow",
-        };
-    }
-
+    
 
   const MakeArr = ({ input }) => {
     const arr = [];
@@ -73,14 +59,14 @@ const TableMatrix = ({
 
     return (
         <>
-            <div className="vertical_div_k" style={vertical_div_k}>
+            <div className="vertical_div_k" >
           <p className="p_tag"> {input.coursecode} </p>
         </div>
         {arr.map((s, index) =>
             s ? (
-                <div key={index} className="vertical_div_g" onMouseEnter={hover()} onMouseLeave={leave()}></div>
+                <div key={index} className="vertical_div_g"></div>
             ) : (
-                    <div className="vertical_div" key={index} onMouseEnter={hover()} onMouseLeave={leave()} >
+                    <div className="vertical_div" key={index}  >
               <p></p>
             </div>
           )
