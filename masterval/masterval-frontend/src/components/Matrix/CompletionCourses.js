@@ -39,15 +39,4 @@ const CompletionCourses = ({
     </>
   );
 };
-/*
-
-<DisplayCourse
-    courseinfo={kurs}
-    homePage={true}
-    selectedCourses={selectedCourses}
-    setSelectedCourses={setSelectedCourses}
-    setSelectedProfileCourses={setSelectedProfileCourses}
-    selectedProfileCourses={selectedProfileCourses}
-/>
-*/
 export default CompletionCourses;
