@@ -203,6 +203,7 @@
 .course_website {
   color: #2b6778;
   font-size: 1rem;
+  margin-left: 0.5rem;
 }
 
 .course_website:visited {

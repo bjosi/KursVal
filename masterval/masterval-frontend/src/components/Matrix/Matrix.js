@@ -8,6 +8,11 @@ const Matrix = ({
   selectedProfileCourses,
 }) => {
     return (<>
+        <div className="matrix_title">
+        <h1>
+            Översikt över programmålsuppfyllnad
+            </h1>
+            </div>
         <div className="the_matrix">
          <div className="table_vertical">
         {kunskaper.map((block, index) => (

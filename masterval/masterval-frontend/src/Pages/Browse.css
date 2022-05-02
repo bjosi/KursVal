@@ -83,3 +83,10 @@
   align-items: center;
   border-radius: 100%;
 }
+
+.div_info .course_block_icon{
+height: 1rem;
+width: 1rem;
+margin:0 3px;
+
+}
