@@ -31,9 +31,9 @@ const SearchBar = ({ searchHandler, semesterHandler }) => {
         name="f"
       >
         <option value="Termin">Termin ...</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
+        <option value="7">Hösttermin, åk 4</option>
+        <option value="8">Vårtermin, åk 4</option>
+        <option value="9">Hösttermin, åk 5</option>
       </select>
       <button
         className="search_btn"
