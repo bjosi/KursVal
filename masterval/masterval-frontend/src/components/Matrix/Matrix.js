@@ -50,8 +50,7 @@ const Matrix = ({
         console.log("hej");
     }
 
-    return (<>
-
+    return (
         <div className="the_matrix">
 
             <div className="table_vertical">
@@ -70,11 +69,9 @@ const Matrix = ({
                     test(s, index)
                 ))}
 
-
             </div>
-            
-                </div>
-    </>
+        </div>
+    
   );
 };
 
@@ -98,17 +95,6 @@ const Matrix = ({
 
         </div>*/
 
-        <div className="table_matrix">
-          {selectedProfileCourses.map((s, index) => (
-            <div key={index} className="table_vertical">
-              <MakeArr input={s} />
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
-  );
-};
-
+        
 
 export default Matrix;
