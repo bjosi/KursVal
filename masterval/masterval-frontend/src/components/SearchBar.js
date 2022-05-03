@@ -21,7 +21,7 @@ const SearchBar = ({ searchHandler, semesterHandler }) => {
         placeholder="S&ouml;k kurs"
         name="s"
       />
-      <select
+      {/* <select
         className="terminInput"
         onChange={(e) => {
           semesterHandler(e.target.value);
@@ -34,14 +34,14 @@ const SearchBar = ({ searchHandler, semesterHandler }) => {
         <option value="7">Hösttermin, åk 4</option>
         <option value="8">Vårtermin, åk 4</option>
         <option value="9">Hösttermin, åk 5</option>
-      </select>
+      </select> */}
       <button
         className="search_btn"
         type="submit"
         onClick={(e) => {
           e.preventDefault();
           searchHandler(query);
-          semesterHandler(semester);
+          //semesterHandler(semester);
         }}
       >
         S&ouml;k kurser
