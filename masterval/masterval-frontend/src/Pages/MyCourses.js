@@ -257,10 +257,27 @@ const MyCourses = ({
     setTimeout(() => setFetchSucceeded(false), 2000);
 
       if (profileName === localStorageProfileName) {
-          setSelectedCourses([]);
+
+          const vetenskaplig_metod = [{
+              area: "Medieteknik,Datateknik",
+              courseblock: "3",
+              coursecode: "TNM107",
+              courselevel: "Avancerad nivå",
+              coursename: "Vetenskaplig metod",
+              coursepoints: 6,
+              period: "2",
+              place: "Norrköping",
+              progcode: "6CMEN",
+              progname: "Civilingenjör i medieteknik",
+              semester: 9,
+              uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5"
+          }];
+
           setSelectedProfileName(localStorageProfileName);
           setLocalStorageProfileName("Min masterexamen");
           setSelectedProfileCoursesIsLocalStorage(false);
+          setSelectedCourses(vetenskaplig_metod);
+
           setTest(!test);
       }
 
