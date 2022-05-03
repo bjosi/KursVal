@@ -8,6 +8,10 @@
   position: relative;
 }
 
+button {
+    background: none;
+}
+
 .top {
   display: flex;
   flex-direction: row;
