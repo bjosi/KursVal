@@ -18,19 +18,15 @@ export default function SlideInCard({ children, slideInCard, setSlideInCard }) {
     nameOfClass = "slide-out"
   }
   else if(slideInCard === "-1"){
-    nameOfClass = ""
+    nameOfClass = "s"
   }
 
   console.log(slideInCard)
 
   return (
-    <div>
-      {}
     <div id="slider" className={nameOfClass}>
       <ul>{children}</ul>
     </div>
-    </div>
 
-    
   );
 }
