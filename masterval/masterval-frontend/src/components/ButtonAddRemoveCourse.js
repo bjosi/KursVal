@@ -16,7 +16,7 @@ const ButtonAddRemoveCourse = ({
     homePage
     
 }) => {
-    const[slideInCard, setSlideInCard] = useState(false);
+    const[slideInCard, setSlideInCard] = useState("-1");
 
     function handleSubmit(clickedobjekt, setSelectedCourses, selectedCourses, setSelectedProfileCourses, selectedProfileCourses) {    
         const isLocalStorage = JSON.stringify(selectedCourses) == JSON.stringify(selectedProfileCourses);
@@ -63,7 +63,7 @@ const ButtonAddRemoveCourse = ({
                 setSelectedCourses(newList);
             } 
         }
-        setSlideInCard(true);
+        setSlideInCard("1");
     }
 
 
