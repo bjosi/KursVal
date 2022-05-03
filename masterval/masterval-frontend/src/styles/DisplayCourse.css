@@ -12,6 +12,10 @@ button {
     background: none;
 }
 
+button:hover {
+  opacity: 0.8;
+}
+
 .top {
   display: flex;
   flex-direction: row;
@@ -89,6 +93,10 @@ button {
   margin: auto;
   width: 100%;
   text-align: center;
+}
+
+#button_show_more:hover {
+  opacity: 0.6;
 }
 
 .icon_show_more:hover {

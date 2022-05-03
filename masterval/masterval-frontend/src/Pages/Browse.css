@@ -1,5 +1,5 @@
 .left-section {
-  width: 30%;
+  width: 25%;
 }
 
 @media screen and (max-width: 760px) {
@@ -9,7 +9,7 @@
 }
 
 .right-section {
-  width: 70%;
+  width: 75%;
 }
 
 @media screen and (max-width: 760px) {
@@ -68,7 +68,7 @@
 .close_button_container {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 0.5rem;
   transform: translate(50%, -50%);
   cursor: pointer;
 }
