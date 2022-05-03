@@ -53,7 +53,7 @@ uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5"
   const [selectedFilters, setSelectedFilters] = useState([]);
 
    const [isloggedin, setisloggedin] = useState(
-     localStorage.getItem("myValueInLocalStorageforloggedin") || false
+     JSON.parse(localStorage.getItem("myValueInLocalStorageforloggedin")) || false
    );
 
   const [username, setUsername] = useState(
