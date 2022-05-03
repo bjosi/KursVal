@@ -122,6 +122,7 @@
 
 
 .semester_block_collision_container{
+  margin-top: 1rem;
  
 }
 
@@ -129,15 +130,29 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 1rem 0 1rem 0;
+  font-weight: 400;
+}
+
+.dot{
+  background-color:#2b6778;
+  border-radius: 20px;
+  width: 5px;
+  height: 5px;
+  margin: 0 0.2rem 0 0.8rem;
+}
+
+.semester_block_collision .text{
+  color:#2b6778;
+  font-weight: 400;
 }
 
 .warning_box{
   background-color:#f9a26c;
-  padding: 0.5rem;
+  padding: 0.4rem;
   margin-right: 0.5rem;
   border-radius: 5px;
   color: white;
+  font-weight: 600;
 }
 
 .toggle_overview {
