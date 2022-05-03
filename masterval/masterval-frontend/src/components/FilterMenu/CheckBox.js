@@ -9,7 +9,9 @@ const CheckBox = ({ isChecked, label, checkHandler, index }) => {
         <h2>Välj block</h2>
       ) : index === 6 ? (
         <h2>Välj fart</h2>
-      ) : null}
+      ) : index === 8 ? (
+        <h2> Välj termin</h2>) 
+        : null}
       <input
         type="checkbox"
         id={`checkbox-${index}`}
@@ -23,6 +25,8 @@ const CheckBox = ({ isChecked, label, checkHandler, index }) => {
         <hr />
       ) : label === "Block 4" ? (
         <hr />
+      ) : label === "Halvfart" ? (
+        <hr /> 
       ) : null}
     </div>
   );

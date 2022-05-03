@@ -72,19 +72,18 @@ uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5"
     { name: "Block 3", checked: false },
     { name: "Block 4", checked: false },
     { name: "Helfart", checked: false },
-    { name: "Halvfart", checked: false }];
+    { name: "Halvfart", checked: false },
+    { name: "HT årskurs 4", checked: false },
+    { name: "VT årskurs 4", checked: false },
+    { name: "HT årskurs 5", checked: false }];
 
   const [filters, setFilterState] = useState(myFilter);
 
   useEffect(() => {
     var myCourses = courses;
-    if (semesterQuery !== null && searchQuery !== null) {
-      myCourses = semesterQuery;
-    } else if (searchQuery !== null) {
+    if (searchQuery !== null) {
       myCourses = searchQuery;
-    } else if (semesterQuery !== null) {
-      myCourses = semesterQuery;
-    }
+    } 
     const myFilt = filters
       .filter((myFilt) => myFilt.checked)
       .map((filt) => filt.name);
@@ -93,100 +92,203 @@ uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5"
       var val = [];
       val.push(
         myCourses.filter((course) => {
-          if (
-            (myFilt.includes("Block 1") && course.courseblock.includes("1")) ||
-            (myFilt.includes("Block 2") && course.courseblock.includes("2")) ||
-            (myFilt.includes("Block 3") && course.courseblock.includes("3")) ||
-            (myFilt.includes("Block 4") && course.courseblock.includes("4"))
-          ) {
+          if((myFilt.includes("HT årskurs 4") && course.semester===7) ||
+          (myFilt.includes("VT årskurs 4") && course.semester===8) ||
+          (myFilt.includes("HT årskurs 5") && course.semester===9)) {
             if (
-              course.courselevel.includes("Avancerad nivå") &&
-              myFilt.includes("Avancerad nivå")
+              (myFilt.includes("Block 1") && course.courseblock.includes("1")) ||
+              (myFilt.includes("Block 2") && course.courseblock.includes("2")) ||
+              (myFilt.includes("Block 3") && course.courseblock.includes("3")) ||
+              (myFilt.includes("Block 4") && course.courseblock.includes("4"))
             ) {
-              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
-                return course;
+              if (
+                course.courselevel.includes("Avancerad nivå") &&
+                myFilt.includes("Avancerad nivå")
+              ) {
+                if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                  return course;
+                }
+                if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                  return course;
+                }
+                if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                  return course;
+                }
               }
-              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
-                return course;
+              if (
+                course.courselevel.includes("Grundnivå") &&
+                myFilt.includes("Grundnivå")
+              ) {
+                if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                  return course;
+                }
+                if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                  return course;
+                }
+                if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                  return course;
+                }
               }
-              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
-                return course;
+              if (
+                !myFilt.includes("Grundnivå") &&
+                !myFilt.includes("Avancerad nivå")
+              ) {
+                if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                  return course;
+                }
+                if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                  return course;
+                }
+                if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                  return course;
+                }
+              }
+            } else if (
+              !myFilt.includes("Block 1") &&
+              !myFilt.includes("Block 2") &&
+              !myFilt.includes("Block 3") &&
+              !myFilt.includes("Block 4")
+            ) {
+              if (
+                course.courselevel.includes("Avancerad nivå") &&
+                myFilt.includes("Avancerad nivå")
+              ) {
+                if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                  return course;
+                }
+                if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                  return course;
+                }
+                if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                  return course;
+                }
+              }
+              if (
+                course.courselevel.includes("Grundnivå") &&
+                myFilt.includes("Grundnivå")
+              ) {
+                if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                  return course;
+                }
+                if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                  return course;
+                }
+                if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                  return course;
+                }
+              }
+              if (
+                !myFilt.includes("Grundnivå") &&
+                !myFilt.includes("Avancerad nivå")
+              ) {
+                if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                  return course;
+                }
+                if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                  return course;
+                }
+                if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                  return course;
+                }
+              }
+          }
+          else if(!myFilt.includes("HT årskurs 4") && !myFilt.includes("VT årskurs 4") && !myFilt.includes("HT årskurs 5")) {
+            if (
+              (myFilt.includes("Block 1") && course.courseblock.includes("1")) ||
+              (myFilt.includes("Block 2") && course.courseblock.includes("2")) ||
+              (myFilt.includes("Block 3") && course.courseblock.includes("3")) ||
+              (myFilt.includes("Block 4") && course.courseblock.includes("4"))
+            ) {
+              if (
+                course.courselevel.includes("Avancerad nivå") &&
+                myFilt.includes("Avancerad nivå")
+              ) {
+                if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                  return course;
+                }
+                if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                  return course;
+                }
+                if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                  return course;
+                }
+              }
+              if (
+                course.courselevel.includes("Grundnivå") &&
+                myFilt.includes("Grundnivå")
+              ) {
+                if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                  return course;
+                }
+                if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                  return course;
+                }
+                if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                  return course;
+                }
+              }
+              if (
+                !myFilt.includes("Grundnivå") &&
+                !myFilt.includes("Avancerad nivå")
+              ) {
+                if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                  return course;
+                }
+                if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                  return course;
+                }
+                if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                  return course;
+                }
               }
             }
-            if (
-              course.courselevel.includes("Grundnivå") &&
-              myFilt.includes("Grundnivå")
+           } else if (
+              !myFilt.includes("Block 1") &&
+              !myFilt.includes("Block 2") &&
+              !myFilt.includes("Block 3") &&
+              !myFilt.includes("Block 4")
             ) {
-              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
-                return course;
+              if (
+                course.courselevel.includes("Avancerad nivå") &&
+                myFilt.includes("Avancerad nivå")
+              ) {
+                if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                  return course;
+                }
+                if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                  return course;
+                }
+                if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                  return course;
+                }
               }
-              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
-                return course;
+              if (
+                course.courselevel.includes("Grundnivå") &&
+                myFilt.includes("Grundnivå")
+              ) {
+                if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                  return course;
+                }
+                if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                  return course;
+                }
+                if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                  return course;
+                }
               }
-              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
-                return course;
-              }
-            }
-            if (
-              !myFilt.includes("Grundnivå") &&
-              !myFilt.includes("Avancerad nivå")
-            ) {
-              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
-                return course;
-              }
-              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
-                return course;
-              }
-              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
-                return course;
-              }
-            }
-          } else if (
-            !myFilt.includes("Block 1") &&
-            !myFilt.includes("Block 2") &&
-            !myFilt.includes("Block 3") &&
-            !myFilt.includes("Block 4")
-          ) {
-            if (
-              course.courselevel.includes("Avancerad nivå") &&
-              myFilt.includes("Avancerad nivå")
-            ) {
-              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
-                return course;
-              }
-              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
-                return course;
-              }
-              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
-                return course;
-              }
-            }
-            if (
-              course.courselevel.includes("Grundnivå") &&
-              myFilt.includes("Grundnivå")
-            ) {
-              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
-                return course;
-              }
-              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
-                return course;
-              }
-              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
-                return course;
-              }
-            }
-            if (
-              !myFilt.includes("Grundnivå") &&
-              !myFilt.includes("Avancerad nivå")
-            ) {
-              if (!course.period.includes(",") && myFilt.includes("Helfart")) {
-                return course;
-              }
-              if (course.period.includes(",") && myFilt.includes("Halvfart")) {
-                return course;
-              }
-              if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
-                return course;
+              if (
+                !myFilt.includes("Grundnivå") &&
+                !myFilt.includes("Avancerad nivå")
+              ) {
+                if (!course.period.includes(",") && myFilt.includes("Helfart")) {
+                  return course;
+                }
+                if (course.period.includes(",") && myFilt.includes("Halvfart")) {
+                  return course;
+                }
+                if (!myFilt.includes("Helfart") && !myFilt.includes("Halvfart")) {
+                  return course;
+                }
               }
             }
           }
@@ -194,14 +296,12 @@ uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5"
       );
       const removeRepeatCourses = (array) => [...new Set(array)];
       val = removeRepeatCourses(val[0]);
-      console.log(val);
       myCourses = val;
     }
     setFilterQuery(myCourses);
   }, [filters, searchQuery, semesterQuery, courses]);
 
     useEffect(() => {
-        console.log(selectedCourses);
     var myQuery = null;
     var temp = selectedFilters;
     var temp2 = selectedFilters;
@@ -289,20 +389,20 @@ uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5"
 
     setSearchQuery(searchResult);
   };
-
-  const semesterHandler = (semester) => {
-    const userInput = parseInt(semester);
-    var choosenSemester = courses;
-    if (searchQuery !== null) {
-      choosenSemester = searchQuery;
-    }
-    if (!isNaN(userInput)) {
-      choosenSemester = choosenSemester.filter(
-        (course) => course.semester === userInput
-      );
-    }
-    setSemesterQuery(choosenSemester);
-  };
+  const semesterHandler = null;
+  // const semesterHandler = (semester) => {
+  //   const userInput = parseInt(semester);
+  //   var choosenSemester = courses;
+  //   if (searchQuery !== null) {
+  //     choosenSemester = searchQuery;
+  //   }
+  //   if (!isNaN(userInput)) {
+  //     choosenSemester = choosenSemester.filter(
+  //       (course) => course.semester === userInput
+  //     );
+  //   }
+  //   setSemesterQuery(choosenSemester);
+  // };
 
   useEffect(() => {
     fetch("courses")
