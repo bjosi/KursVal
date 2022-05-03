@@ -15,6 +15,7 @@ import {
   faArrowsRotate,
   faCircleCheck,
   faTrashCan,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import ProfileSelector from "../components/ProfileSelector";
 import { useAuth } from "../firebase";
@@ -429,11 +430,19 @@ const MyCourses = ({
               ))}
             </select>
           )}
-          <FontAwesomeIcon
-            onClick={editName}
-            className="change_profile_name_icon"
-            icon={editableText ? faCircleCheck : faPen}
-          />
+
+                  { isloggedin? 
+                      <> {editableText ? <button className="submit_name_change"><FontAwesomeIcon
+                          onClick={editName}
+
+                          icon={faCheck}
+                      /> </button> : <FontAwesomeIcon
+                          onClick={editName}
+                          className="change_profile_name_icon"
+                          icon={faPen}
+                      />
+                      }</> : null
+                  }
         </h3>
 
         <h6
