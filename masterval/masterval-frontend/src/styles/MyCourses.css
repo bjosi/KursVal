@@ -481,11 +481,12 @@
 }
 
 .select_profile {
-  width: 80%;
+  width: 85%;
   font-family: "Lato", sans-serif;
   margin: 0 1rem;
   border: 1px solid black;
-  padding: 1em;
+  padding: 0.5rem 1rem;
+  height:2.5rem;
 }
 
 .profile_update_succeeded {
@@ -539,4 +540,13 @@
   width: 1.25rem;
   color: #bec8a7;
   margin-right: 0.2rem;
+}
+
+.submit_name_change {
+    width: 1.7rem;
+    height: 1.5rem;
+    font-size: 1rem;
+    background-color: #bec8a7;
+    color: white;
+    border-radius: 2px;
 }
