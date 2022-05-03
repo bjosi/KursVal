@@ -49,18 +49,34 @@ const Semesters = ({
     const corsesInPeriod2Block4 = selectedProfileCourses.filter(
       (item) => item.semester === semester  && item.courseblock === "4" && (item.period === "2" ||  item.period === "1,2")
     );
+
+    let collisionCounter = 0;
+    if(corsesInPeriod1Block1.length > 1)  collisionCounter++
+    if(corsesInPeriod1Block2.length > 1)  collisionCounter++
+    if(corsesInPeriod1Block3.length > 1)  collisionCounter++
+    if(corsesInPeriod1Block4.length > 1)  collisionCounter++
+    if(corsesInPeriod2Block1.length > 1)  collisionCounter++
+    if(corsesInPeriod2Block2.length > 1)  collisionCounter++
+    if(corsesInPeriod2Block3.length > 1)  collisionCounter++
+    if(corsesInPeriod2Block4.length > 1)  collisionCounter++
+    
     
     console.log(corsesInPeriod2Block4)
     return(
       <div className="semester_block_collision_container">
-        {corsesInPeriod1Block1.length > 1 ? <div className="semester_block_collision"><div className="warning_box">OBS!</div> Block-krock under period 1 block 1</div>  : ""}
-        {corsesInPeriod1Block2.length > 1 ? <div className="semester_block_collision"><div className="warning_box">OBS!</div> Block-krock under period 1 block 2</div>  : ""}
-        {corsesInPeriod1Block3.length > 1 ? <div className="semester_block_collision"><div className="warning_box">OBS!</div> Block-krock under period 1 block 3</div>  : ""}
-        {corsesInPeriod1Block4.length > 1 ? <div className="semester_block_collision"><div className="warning_box">OBS!</div> Block-krock under period 1 block 4</div>  : ""}
-        {corsesInPeriod2Block1.length > 1 ? <div className="semester_block_collision"><div className="warning_box">OBS!</div> Block-krock under period 2 block 1</div>  : ""}
-        {corsesInPeriod2Block2.length > 1 ? <div className="semester_block_collision"><div className="warning_box">OBS!</div> Block-krock under period 2 block 2</div>  : ""}
-        {corsesInPeriod2Block3.length > 1 ? <div className="semester_block_collision"><div className="warning_box">OBS!</div> Block-krock under period 2 block 3</div>  : ""}
-        {corsesInPeriod2Block4.length > 1 ? <div className="semester_block_collision"><div className="warning_box">OBS!</div> Block-krock under period 2 block 4</div>  : ""}
+        <div className="semester_block_collision">
+        {collisionCounter > 0 ? <div className="semester_block_collision"><div className="warning_box">OBS!</div> Block-krock under: </div>  : ""}
+        <ul>
+        {corsesInPeriod1Block1.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 1, block 1</div></div>  : ""}
+        {corsesInPeriod1Block2.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 1, block 2</div></div>  : ""}
+        {corsesInPeriod1Block3.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 1, block 3</div></div>  : ""}
+        {corsesInPeriod1Block4.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 1, block 4</div></div>  : ""}
+        {corsesInPeriod2Block1.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 2, block 1</div></div>  : ""}
+        {corsesInPeriod2Block2.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 2, block 2</div></div>  : ""}
+        {corsesInPeriod2Block3.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 2, block 3</div></div>  : ""}
+        {corsesInPeriod2Block4.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 2, block 4</div></div>  : ""}
+        </ul>
+        </div>
       </div>
 
     )
@@ -110,6 +126,12 @@ const Semesters = ({
 
       />
     </>
+  );
+};
+
+const Dot = ({}) => {
+  return (
+    <div className="dot"></div>
   );
 };
 
