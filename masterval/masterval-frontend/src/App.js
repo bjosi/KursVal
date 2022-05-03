@@ -73,9 +73,9 @@ uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5"
     { name: "Block 4", checked: false },
     { name: "Helfart", checked: false },
     { name: "Halvfart", checked: false },
-    { name: "HT årskurs 4", checked: false },
-    { name: "VT årskurs 4", checked: false },
-    { name: "HT årskurs 5", checked: false }];
+    { name: "Hösttermin, åk 4", checked: false },
+    { name: "Vårtermin, åk 4", checked: false },
+    { name: "Hösttermin, åk 5", checked: false }];
 
   const [filters, setFilterState] = useState(myFilter);
 
@@ -92,9 +92,9 @@ uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5"
       var val = [];
       val.push(
         myCourses.filter((course) => {
-          if((myFilt.includes("HT årskurs 4") && course.semester===7) ||
-          (myFilt.includes("VT årskurs 4") && course.semester===8) ||
-          (myFilt.includes("HT årskurs 5") && course.semester===9)) {
+          if((myFilt.includes("Hösttermin, åk 4") && course.semester===7) ||
+          (myFilt.includes("Vårtermin, åk 4") && course.semester===8) ||
+          (myFilt.includes("Hösttermin, åk 5") && course.semester===9)) {
             if (
               (myFilt.includes("Block 1") && course.courseblock.includes("1")) ||
               (myFilt.includes("Block 2") && course.courseblock.includes("2")) ||
@@ -191,8 +191,9 @@ uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5"
                   return course;
                 }
               }
+            }
           }
-          else if(!myFilt.includes("HT årskurs 4") && !myFilt.includes("VT årskurs 4") && !myFilt.includes("HT årskurs 5")) {
+          else if(!myFilt.includes("Hösttermin, åk 4") && !myFilt.includes("Vårtermin, åk 4") && !myFilt.includes("Hösttermin, åk 5")) {
             if (
               (myFilt.includes("Block 1") && course.courseblock.includes("1")) ||
               (myFilt.includes("Block 2") && course.courseblock.includes("2")) ||
@@ -242,7 +243,7 @@ uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5"
                 }
               }
             }
-           } else if (
+            else if (
               !myFilt.includes("Block 1") &&
               !myFilt.includes("Block 2") &&
               !myFilt.includes("Block 3") &&

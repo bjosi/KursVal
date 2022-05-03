@@ -18,7 +18,7 @@ const SearchBar = ({ searchHandler, semesterHandler }) => {
         }}
         type="text"
         id="header-search"
-        placeholder="S&ouml;k kurs"
+        placeholder="S&ouml;k kurskod eller kursnamn"
         name="s"
       />
       {/* <select
