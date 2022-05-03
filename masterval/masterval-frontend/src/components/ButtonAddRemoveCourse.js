@@ -71,7 +71,7 @@ const ButtonAddRemoveCourse = ({
         <>
         {showAddButton ? <SlideInCard setSlideInCard={setSlideInCard} slideInCard={slideInCard}>Kursen borttagen</SlideInCard> : <SlideInCard setSlideInCard={setSlideInCard} slideInCard={slideInCard}>Kursen tillagd</SlideInCard>}
         
-        <button
+            <button className=" btn-movecourse"
             onClick={() =>
                 handleSubmit(courseinfo, setSelectedCourses, selectedCourses, setSelectedProfileCourses, selectedProfileCourses)
             }
