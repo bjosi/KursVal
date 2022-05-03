@@ -94,8 +94,10 @@ const Semesters = ({
           </h2>
           
         )}
+
         <CollisionOfBlocks></CollisionOfBlocks>
       </div>
+
       <DisplayPeriod
         courseinfo={selectedProfileCourses}
         setSelectedCourses={setSelectedCourses}

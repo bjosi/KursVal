@@ -37,7 +37,7 @@
   color: white;
   display: flex;
   flex-direction: column;
-  margin: 1rem;
+  padding: 0.63rem 1rem;
 }
 
 .menu-item h1 {
@@ -52,3 +52,8 @@
   display: inline;
   white-space: nowrap;
 }
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+

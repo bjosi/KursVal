@@ -37,9 +37,41 @@ const TableMatrix = ({
     "5.4",
     "5.5",
   ];
-  const uppfyllda = [];
+    const uppfyllda = [];
 
-  const MakeArr = ({ input }) => {
+    const m_arr = () => {
+        const array_return = [];
+        let a = []
+
+        /*a.push(kunskaper[0]);
+        for (let i = 0; i < selectedProfileCourses.length; i++) {
+            a.push(i);
+        }
+        array_return.push(a);*/
+        var splited = "";
+
+        for (let j = 1; j < kunskaper.length; j++) {
+            a = [];
+            //a.push(kunskaper[j]);
+            for (let i = 0; i < selectedProfileCourses.length; i++) {
+                splited = selectedProfileCourses[i].uChosen.split(",");
+                if (splited.includes(kunskaper[j])) {
+                    a.push(true);
+                    uppfyllda[j] = kunskaper[j];
+
+                } else {
+                    a.push(false);
+                }
+
+            }
+            array_return.push(a);
+        }
+        
+        console.log(array_return);
+        return array_return;
+    }
+
+ /* const MakeArr = ({ input }) => {
     const arr = [];
     const splited = input.uChosen.split(",");
     var count = 0;
@@ -55,33 +87,34 @@ const TableMatrix = ({
         }
       }
     }
-
     return (
-      <>
-        <div className="vertical_div_k">
+        <>
+            <div className="vertical_div_k" >
           <p className="p_tag"> {input.coursecode} </p>
         </div>
         {arr.map((s, index) =>
-          s ? (
-            <div key={index} className="vertical_div_g"></div>
-          ) : (
-            <div className="vertical_div" key={index}>
+            s ? (
+                <div key={index} className="vertical_div_g"></div>
+            ) : (
+                    <div className="vertical_div" key={index}  >
               <p></p>
             </div>
           )
         )}
       </>
     );
-  };
+
+  };*/
 
   return (
-    <>
-      <Matrix
-        kunskaper={kunskaper}
-        MakeArr={MakeArr}
-        selectedCourses={selectedCourses}
-        selectedProfileCourses={selectedProfileCourses}
-      />
+      <>
+          {selectedProfileCourses.length === 0 ? <> </> :
+              <Matrix
+                  kunskaper={kunskaper}
+                  MakeArr={m_arr()}
+                  selectedCourses={selectedCourses}
+                  selectedProfileCourses={selectedProfileCourses}
+              />}
       <MatrixInfo
         selectedCourses={selectedCourses}
         setSelectedCourses={setSelectedCourses}

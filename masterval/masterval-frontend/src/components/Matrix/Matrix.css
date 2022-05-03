@@ -1,60 +1,94 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
 
 .table_matrix {
-  display: flex;
-  margin: 0 auto;
-  margin-top: 1rem;
-  width: 65vw;
-  overflow-x: scroll;
-}
-.p_tag {
-  font-weight: 600;
+    display: flex;
 }
 
-.table_vertical {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+
+.p_tag {
+    font-weight: 600;
 }
+
+.table_table {
+    width: 65vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+.the_matrix_igen {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+@media (width > 55vw) {
+
+    .the_matrix_igen {
+        overflow-x: scroll;
+    }
+}
+
+.horisontal {
+    display: flex;
+    flex-direction: row;
+    height: 2.2rem;
+   
+}
+
+
+
 .vertical_div_k {
-  width: 6rem;
-  height: 1rem;
-  text-align: center;
-  font-family: "Lato", sans-serif;
-  border: 1px solid #f2f2f2;
-  padding: 1em;
-  display: flex;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  background-color: #2b6778;
+    width: 6rem;
+    height: 2.1rem;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    border: 1px solid #f2f2f2;
+  
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #2b6778;
+margin: 0.1rem;
 }
-.vertical_div {
-  width: 6rem;
-  height: 1rem;
-  text-align: center;
-  font-family: "Lato", sans-serif;
-  border: 1px solid #f2f2f2;
-  padding: 1em;
-  background-color: white;
-  display: flex;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
+
+.vert {
+    width: 6rem;
+    height: 2rem;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    border: 1px solid #f2f2f2;
+    background-color: white;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 0.1rem;
+    display: flex;
 }
+
+
+
+.horisontal:hover {
+    background-color: #f9a26c;
+}
+
+
 .vertical_div_g {
-  background-color: #bec8a7;
-  width: 6rem;
-  display: flex;
-  height: 1rem;
-  text-align: center;
-  font-family: "Lato", sans-serif;
-  border: 1px solid #f2f2f2;
-  padding: 1em;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
+    background-color: #bec8a7;
+    margin: 0.1rem;
+    width: 6rem;
+    height: 2rem;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    border: 1px solid #f2f2f2;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .matrix_info {
@@ -87,7 +121,6 @@
 ul {
   display: flex;
   list-style: none;
-  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -123,6 +156,31 @@ li {
   max-width: 70vw;
 }
 
-.completing_courses_container p {
-  margin-bottom: 0.75rem;
+.uppfyll {
+    display: flex;
+    justify-content: center;
+    height: 2rem;
 }
+
+.text {
+    font-weight: 700;
+}
+
+.the_matrix {
+    display: flex;
+    margin: 0 auto;
+    width: 75vw;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.matrix_title {
+    background-color: white;
+text-align:center;
+padding: 2rem 2rem 2rem 2rem;
+font-size: 1rem;
+}
+
+    .matrix_title h1 {
+        font-size: 1.875rem;
+    }

@@ -9,8 +9,24 @@ function App() {
   const [searchQuery, setSearchQuery] = useState(null);
   const [semesterQuery, setSemesterQuery] = useState(null);
   const [filterQuery, setFilterQuery] = useState(null);
+
+    const vetenskaplig_metod = [{
+        area: "Medieteknik,Datateknik",
+        courseblock: "3",
+        coursecode: "TNM107",
+courselevel: "Avancerad nivå",
+coursename: "Vetenskaplig metod",
+coursepoints: 6,
+period: "2",
+place: "Norrköping",
+progcode: "6CMEN",
+progname: "Civilingenjör i medieteknik",
+semester: 9,
+uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5"
+    }];
+
   const [selectedCourses, setSelectedCourses] = useState(
-    JSON.parse(localStorage.getItem("myValueInLocalStorage")) || []
+      JSON.parse(localStorage.getItem("myValueInLocalStorage")) || vetenskaplig_metod
   );
 
   // The courses of the profile that is currently shown
@@ -72,7 +88,7 @@ function App() {
     const myFilt = filters
       .filter((myFilt) => myFilt.checked)
       .map((filt) => filt.name);
-    console.log(myFilt);
+
     if (filters.map((filt) => filt.checked).includes(true)) {
       var val = [];
       val.push(
@@ -184,7 +200,8 @@ function App() {
     setFilterQuery(myCourses);
   }, [filters, searchQuery, semesterQuery, courses]);
 
-  useEffect(() => {
+    useEffect(() => {
+        console.log(selectedCourses);
     var myQuery = null;
     var temp = selectedFilters;
     var temp2 = selectedFilters;

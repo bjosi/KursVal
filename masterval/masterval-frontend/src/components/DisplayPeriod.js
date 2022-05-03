@@ -1,5 +1,9 @@
 import DisplayCourse from "../components/DisplayCourse";
 import "../styles/App.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faSquareCaretRight } from "@fortawesome/free-solid-svg-icons";
+
 
 const DisplayPeriod = ({
   courseinfo,
@@ -23,8 +27,17 @@ const DisplayPeriod = ({
   );
 
   return (
-    <div className="outer_wrapper_my_courses">
-      <div className="inner_wrapper_my_courses">
+      <div className="outer_wrapper_my_courses">
+
+          <div className="my_courses_info">
+              <FontAwesomeIcon className="info_move_course" icon={faSquareCaretRight} />
+              <p> - Flytta kurs </p>
+              <div className="course_block_icon"></div>
+              <p> - Block </p>
+          </div>
+          <div className="inner_wrapper_my_courses">
+
+
         <div className="period_1">
           <h2 className="text_period_1"> Period 1 </h2>
           {newListperiodone.length > 0 ? (

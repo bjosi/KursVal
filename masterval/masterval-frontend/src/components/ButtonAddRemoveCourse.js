@@ -17,8 +17,8 @@ const ButtonAddRemoveCourse = ({
     
 }) => {
     const[slideInCard, setSlideInCard] = useState(false);
-    function handleSubmit(clickedobjekt, setSelectedCourses, selectedCourses, setSelectedProfileCourses, selectedProfileCourses) {
-        
+
+    function handleSubmit(clickedobjekt, setSelectedCourses, selectedCourses, setSelectedProfileCourses, selectedProfileCourses) {    
         const isLocalStorage = JSON.stringify(selectedCourses) == JSON.stringify(selectedProfileCourses);
 
         if (homePage) {
@@ -51,7 +51,6 @@ const ButtonAddRemoveCourse = ({
                     setSelectedCourses(newList);
                 } 
             }
-
         } else {
 
             const newList = selectedProfileCourses.filter(
@@ -64,15 +63,15 @@ const ButtonAddRemoveCourse = ({
                 setSelectedCourses(newList);
             } 
         }
-
         setSlideInCard(true);
     }
+
 
     return (
         <>
         {showAddButton ? <SlideInCard setSlideInCard={setSlideInCard} slideInCard={slideInCard}>Kursen borttagen</SlideInCard> : <SlideInCard setSlideInCard={setSlideInCard} slideInCard={slideInCard}>Kursen tillagd</SlideInCard>}
         
-        <button
+            <button className=" btn-movecourse"
             onClick={() =>
                 handleSubmit(courseinfo, setSelectedCourses, selectedCourses, setSelectedProfileCourses, selectedProfileCourses)
             }
