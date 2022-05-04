@@ -1,0 +1,26 @@
+.circle {
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  background-color: #f9a26c;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 46px;
+  margin-top: -5px;
+}
+
+.text {
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+.animate {
+  transition: transform 0.35s ease-in-out;
+}
+
+.animate.grow {
+  transform: scale(1.5);
+}

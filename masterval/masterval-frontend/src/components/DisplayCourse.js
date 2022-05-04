@@ -161,11 +161,19 @@ const DisplayCourse = ({
             <ShowPaseOfCourse courseinfo={courseinfo} />
           </div>
         </div>
-        <span id="button_show_more" type="button" onClick={onClick}>
+        <span id="button_show_more" type="button">
           {showresult ? (
-            <FontAwesomeIcon className="icon_show_more" icon={faAngleUp} />
+            <FontAwesomeIcon
+              className="icon_show_more"
+              icon={faAngleUp}
+              onClick={onClick}
+            />
           ) : (
-            <FontAwesomeIcon className="icon_show_more" icon={faAngleDown} />
+            <FontAwesomeIcon
+              className="icon_show_more"
+              icon={faAngleDown}
+              onClick={onClick}
+            />
           )}
         </span>
       </div>
