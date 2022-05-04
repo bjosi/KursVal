@@ -29,7 +29,7 @@ const MatrixInfo = ({
     const test2 = kunskaper.filter((mål) => !uppfyllda.includes(mål));
 
     setNotFullfilled(test2);
-  }, [selectedProfileCourses]);
+  }, [selectedProfileCourses,[]]);
   //DETTA FUNKAR EJ
 
   useEffect(() => {
