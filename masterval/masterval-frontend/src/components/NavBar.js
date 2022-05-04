@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MyCourses from "../Pages/MyCourses";
 import LogIn from "../Pages/LogIn";
+import CoursesCounter from "./CoursesCounter/CourseCounter";
 import { signup, useAuth, logout, login } from "../firebase";
 import Browse from "../Pages/Browse";
 import Loading from "../Pages/Loading";
@@ -68,6 +69,9 @@ const NavBar = ({
             <Link to="/MyCourses">
               <div className="menu-item">
                 <FontAwesomeIcon icon={faSuitcase} />
+                <CoursesCounter
+                  selectedProfileCourses={selectedProfileCourses}
+                />
                 <h1>Mina kurser</h1>
               </div>
             </Link>
