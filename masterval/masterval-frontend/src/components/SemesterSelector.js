@@ -5,7 +5,7 @@ import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 const SemesterSelector = ({ semester, setSemester }) => {
   const retstring = () => {
     if (semester === 7) return "Hösttermin, åk 4";
-    else if (semester === 8) return "Vårterming, åk 4";
+    else if (semester === 8) return "Vårtermin, åk 4";
     else return "Hösttermin, åk 5";
   };
 
