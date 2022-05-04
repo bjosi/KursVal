@@ -104,39 +104,7 @@ const MyCourses = ({
     setTemporaryProfileName(e.target.value);
   };
 
-  const editName = async () => {
-    if (editableText && temporaryProfileName.trim() != "") {
-      if (
-        profiles.find((profile) => profile.name === temporaryProfileName) &&
-        profiles.find((profile) => profile.name === temporaryProfileName)
-          .name !== selectedProfileName
-      ) {
-        setShowErrorMessage(true);
-        setTimeout(() => setShowErrorMessage(false), 2000);
-        return;
-      }
 
-      if (selectedProfileCoursesIsLocalStorage) {
-        setLocalStorageProfileName(temporaryProfileName);
-      } else {
-        let data = ",";
-        selectedProfileCourses.map(
-          (course) => (data += "," + course.coursecode + "," + course.semester)
-        );
-
-        const username1 = username + "," + selectedProfileName;
-
-        await fetch(
-          "save/" + username1 + "/" + data + "/" + temporaryProfileName
-        ).then(setFetchSucceeded(true));
-        setSelectedProfileName(temporaryProfileName);
-        setTimeout(() => setFetchSucceeded(false), 2000);
-      }
-
-      setTemporaryProfileName("");
-    }
-    setEditableText(!editableText);
-  };
 
   const onChangeSelectedProfile = (e) => {
     // "Vill du spara dina ändringar?"
@@ -211,87 +179,108 @@ const MyCourses = ({
     }
   };
 
-  const onSave = async () => {
-    const vetenskaplig_metod = [
-      {
-        area: "Medieteknik,Datateknik",
-        courseblock: "3",
-        coursecode: "TNM107",
-        courselevel: "Avancerad nivå",
-        coursename: "Vetenskaplig metod",
-        coursepoints: 6,
-        period: "2",
-        place: "Norrköping",
-        progcode: "6CMEN",
-        progname: "Civilingenjör i medieteknik",
-        semester: 9,
-        uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5",
-      },
-    ];
-    let profileName;
-    let coursesSelected;
+    const onSave = async () => {
 
-    if (temporaryProfileNameUpdateProfile !== "") {
-      profileName = temporaryProfileNameUpdateProfile;
-      coursesSelected = temporarySelectedCoursesUpdateProfile;
-    } else {
-      profileName = selectedProfileCoursesIsLocalStorage
-        ? localStorageProfileName
-        : selectedProfileName;
-      coursesSelected = selectedProfileCourses;
-    }
+
+
+        const vetenskaplig_metod = [{
+            area: "Medieteknik,Datateknik",
+            courseblock: "3",
+            coursecode: "TNM107",
+            courselevel: "Avancerad nivå",
+            coursename: "Vetenskaplig metod",
+            coursepoints: 6,
+            period: "2",
+            place: "Norrköping",
+            progcode: "6CMEN",
+            progname: "Civilingenjör i medieteknik",
+            semester: 9,
+            uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5"
+        }];
+
+        let profileName;
+        let coursesSelected;
+
+        if (temporaryProfileNameUpdateProfile !== "") {
+            profileName = temporaryProfileNameUpdateProfile;
+            coursesSelected = temporarySelectedCoursesUpdateProfile;
+        } else {
+            profileName = selectedProfileName;
+
+            coursesSelected = selectedProfileCourses;
+        }
+
+
+        let newProfileName = "false";
+        
+        if (editableText) {
+            if (temporaryProfileName.trim() != "") {
+
+                if (profiles.find((profile) => profile.name === temporaryProfileName) && profiles.find((profile) => profile.name === temporaryProfileName).name !== selectedProfileName) {
+                    setShowErrorMessage(true);
+                    setTimeout(() => setShowErrorMessage(false), 2000);
+                    return;
+                }
+
+
+                if (temporaryProfileName === "Min masterexamen") {
+                        setShowErrorMessage(true);
+                        setTimeout(() => setShowErrorMessage(false), 2000);
+                        return;
+                }
+
+                if (!selectedProfileCoursesIsLocalStorage) {
+                    newProfileName = temporaryProfileName;
+                } else {
+                    profileName = temporaryProfileName;
+                }
+            }
+
+
+            setEditableText(false);
+            setTemporaryProfileName("");
+        } 
+
+
+
+        if (selectedProfileCoursesIsLocalStorage && profileName === "Min masterexamen") {
+            setShowErrorMessage(true);
+            setTimeout(() => setShowErrorMessage(false), 2000);
+            return;
+        }
+
 
     let data = ",";
     coursesSelected.map(
       (course) => (data += "," + course.coursecode + "," + course.semester)
     );
 
-    if (localStorageProfileName === profileName) {
-      if (
-        profiles.find((profile) => profile.name === profileName) ||
-        localStorageProfileName === "Min masterexamen"
-      ) {
-        setShowErrorMessage(true);
-        setTimeout(() => setShowErrorMessage(false), 2000);
 
-        return;
-      }
-    }
-
-    await fetch(
-      "save/" + username + "," + profileName + "/" + data + "/" + "false"
+        
+     await fetch(
+            "save/" + username + "," + profileName + "/" + data + "/" + newProfileName
     ).then(setFetchSucceeded(true));
 
     setTimeout(() => setFetchSucceeded(false), 2000);
 
-    if (profileName === localStorageProfileName) {
-      const vetenskaplig_metod = [
-        {
-          area: "Medieteknik,Datateknik",
-          courseblock: "3",
-          coursecode: "TNM107",
-          courselevel: "Avancerad nivå",
-          coursename: "Vetenskaplig metod",
-          coursepoints: 6,
-          period: "2",
-          place: "Norrköping",
-          progcode: "6CMEN",
-          progname: "Civilingenjör i medieteknik",
-          semester: 9,
-          uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5",
-        },
-      ];
+        if (newProfileName != "false") {
+            setSelectedProfileName(newProfileName);
+        } else {
+            if (selectedProfileCoursesIsLocalStorage) {
+                setSelectedProfileName(profileName);
+                setSelectedProfileCoursesIsLocalStorage(false);
 
-      setSelectedProfileName(localStorageProfileName);
-      setLocalStorageProfileName("Min masterexamen");
-      setSelectedProfileCoursesIsLocalStorage(false);
-      setSelectedCourses(vetenskaplig_metod);
+                setSelectedCourses(vetenskaplig_metod);
+                setTest(!test);
 
-      setTest(!test);
-    }
+            }
+        }
+
+
 
     setTemporaryProfileNameUpdateProfile("");
     setTemporarySelectedCoursesUpdateProfile([]);
+
     setTest(!test);
   };
 
@@ -432,22 +421,16 @@ const MyCourses = ({
               ))}
             </select>
           )}
-          {isloggedin ? (
-            <>
-              {" "}
-              {editableText ? (
-                <button className="submit_name_change">
-                  <FontAwesomeIcon onClick={editName} icon={faCheck} />{" "}
-                </button>
-              ) : (
-                <FontAwesomeIcon
-                  onClick={editName}
-                  className="change_profile_name_icon"
-                  icon={faPen}
-                />
-              )}
-            </>
-          ) : null}
+
+                  { isloggedin? 
+                      <> {editableText ? null  : <FontAwesomeIcon
+                          onClick={editName}
+                          className="change_profile_name_icon"
+                          icon={faPen}
+                      />
+                      }</> : null
+                  }
+
         </h3>
 
         <h6
