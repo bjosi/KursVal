@@ -105,6 +105,10 @@ const MyCourses = ({
   };
 
 
+    const editName = async () => {
+        setEditableText(true);
+    }
+
 
   const onChangeSelectedProfile = (e) => {
     // "Vill du spara dina ändringar?"
