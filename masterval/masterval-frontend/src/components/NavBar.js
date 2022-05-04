@@ -102,7 +102,7 @@ const NavBar = ({
 
         <Backdrop onClose={() => setBackdrop(false)} open={backdrop}>
           <div className="logout_popup">
-            <p> S�ker p� att du vill logga ut? </p>
+            <p> Säker på att du vill logga ut? </p>
             <button className="search_btn_popup" onClick={() => handleLogout()}>
               {" "}
               Logga ut{" "}
