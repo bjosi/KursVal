@@ -4,28 +4,22 @@ import searchValidator from "../../App";
 import CheckBox from "./CheckBox";
 const FilterMenu = ({
   filters,
-  setFilterState,
-  setFilteredCourses,
-  setSearchQuery,
-  courses,
+  setFilterState
 }) => {
-  var [myFilter, setMyFilter] = useState(filters);
-  var myCourses = courses;
   const updateCheckStatus = (index) => {
-    let filterVal = myFilter.map((filter, currentIndex) =>
+    let filterVal = filters.map((filter, currentIndex) =>
       currentIndex === index ? { ...filter, checked: !filter.checked } : filter
     );
-
-    setMyFilter(filterVal);
+    
     setFilterState(filterVal);
     const myFilt = filterVal
-      .filter((myFilter) => myFilter.checked)
+      .filter((filters) => filters.checked)
       .map((filt) => filt.name);
   };
   return (
     <div className="FilterMenu">
       <h1>Filtrera</h1>
-      {myFilter.map((filter, index) => (
+      {filters.map((filter, index) => (
         <CheckBox
           key={filter.name}
           isChecked={filter.checked}
