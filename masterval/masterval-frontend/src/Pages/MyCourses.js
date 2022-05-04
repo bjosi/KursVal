@@ -241,7 +241,6 @@ const MyCourses = ({
             }
 
 
-            setEditableText(false);
             setTemporaryProfileName("");
         } 
 
@@ -270,7 +269,8 @@ const MyCourses = ({
         if (newProfileName != "false") {
             setSelectedProfileName(newProfileName);
         } else {
-            if (selectedProfileCoursesIsLocalStorage) {
+            if (selectedProfileCoursesIsLocalStorage && editableText) {
+                console.log("här");
                 setSelectedProfileName(profileName);
                 setSelectedProfileCoursesIsLocalStorage(false);
 
@@ -284,6 +284,7 @@ const MyCourses = ({
 
     setTemporaryProfileNameUpdateProfile("");
     setTemporarySelectedCoursesUpdateProfile([]);
+        setEditableText(false);
 
     setTest(!test);
   };
