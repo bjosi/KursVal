@@ -10,13 +10,10 @@
 
 .menu_container {
   width: 1000px;
-  height: 60px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  position: fixed;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 1rem;
 }
 
 @media screen and (max-width: 1000px) {
@@ -37,7 +34,7 @@
   color: white;
   display: flex;
   flex-direction: column;
-  margin: 1rem;
+  margin: 1rem 1rem 0rem 1rem;
 }
 
 .menu-item h1 {

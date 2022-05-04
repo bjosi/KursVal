@@ -37,8 +37,7 @@ const TableMatrix = ({
     "5.4",
     "5.5",
   ];
-    const uppfyllda = [];
-    
+  const uppfyllda = [];
 
   const MakeArr = ({ input }) => {
     const arr = [];
@@ -58,15 +57,15 @@ const TableMatrix = ({
     }
 
     return (
-        <>
-            <div className="vertical_div_k" >
+      <>
+        <div className="vertical_div_k">
           <p className="p_tag"> {input.coursecode} </p>
         </div>
         {arr.map((s, index) =>
-            s ? (
-                <div key={index} className="vertical_div_g"></div>
-            ) : (
-                    <div className="vertical_div" key={index}  >
+          s ? (
+            <div key={index} className="vertical_div_g"></div>
+          ) : (
+            <div className="vertical_div" key={index}>
               <p></p>
             </div>
           )
@@ -76,14 +75,17 @@ const TableMatrix = ({
   };
 
   return (
-      <>
-          {selectedProfileCourses.length === 0 ? <> </> :
-              <Matrix
-                  kunskaper={kunskaper}
-                  MakeArr={MakeArr}
-                  selectedCourses={selectedCourses}
-                  selectedProfileCourses={selectedProfileCourses}
-              />}
+    <>
+      {selectedProfileCourses.length === 0 ? (
+        <> </>
+      ) : (
+        <Matrix
+          kunskaper={kunskaper}
+          MakeArr={MakeArr}
+          selectedCourses={selectedCourses}
+          selectedProfileCourses={selectedProfileCourses}
+        />
+      )}
       <MatrixInfo
         selectedCourses={selectedCourses}
         setSelectedCourses={setSelectedCourses}
