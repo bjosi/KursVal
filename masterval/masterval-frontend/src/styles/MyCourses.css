@@ -120,34 +120,32 @@
   margin: 0 0 1rem 0;
 }
 
-
-.semester_block_collision_container{
+.semester_block_collision_container {
   margin-top: 1rem;
- 
 }
 
-.semester_block_collision{
+.semester_block_collision {
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-weight: 400;
 }
 
-.dot{
-  background-color:#2b6778;
+.dot {
+  background-color: #2b6778;
   border-radius: 20px;
   width: 5px;
   height: 5px;
   margin: 0 0.2rem 0 0.8rem;
 }
 
-.semester_block_collision .text{
-  color:#2b6778;
+.semester_block_collision .text {
+  color: #2b6778;
   font-weight: 400;
 }
 
-.warning_box{
-  background-color:#f9a26c;
+.warning_box {
+  background-color: #f9a26c;
   padding: 0.4rem;
   margin-right: 0.5rem;
   border-radius: 5px;
@@ -247,6 +245,7 @@
 
 .upper_header_link {
   font-size: 0.75rem;
+  font-family: "Lato";
   text-decoration: none;
   color: black;
   cursor: pointer;
@@ -267,12 +266,16 @@
 }
 
 .change_profile_name_icon {
-  margin-left: 0.2rem;
+  margin-left: 0rem;
   margin-bottom: 0.1rem;
-  color: lightgrey;
+  color: #2b6778;
   font-size: 1rem;
   font-family: "Lato", sans-serif;
   cursor: pointer;
+}
+
+.change_profile_name_icon:hover {
+  opacity: 0.8;
 }
 
 .semester_header {
@@ -486,7 +489,7 @@
   margin: 0 1rem;
   border: 1px solid black;
   padding: 0.5rem 1rem;
-  height:2.5rem;
+  height: 2.5rem;
 }
 
 .profile_update_succeeded {
@@ -543,10 +546,10 @@
 }
 
 .submit_name_change {
-    width: 1.7rem;
-    height: 1.5rem;
-    font-size: 1rem;
-    background-color: #bec8a7;
-    color: white;
-    border-radius: 2px;
+  width: 1.7rem;
+  height: 1.5rem;
+  font-size: 1rem;
+  background-color: #bec8a7;
+  color: white;
+  border-radius: 2px;
 }
