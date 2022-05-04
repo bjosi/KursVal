@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import MyCourses from "../Pages/MyCourses";
 import LogIn from "../Pages/LogIn";
+import CoursesCounter from "./CoursesCounter/CourseCounter";
 import { signup, useAuth, logout, login } from "../firebase";
 import Browse from "../Pages/Browse";
 import Loading from "../Pages/Loading";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Backdrop from "../components/Backdrop/Backdrop";
+import "../styles/DisplayCourse.css";
+import "../Pages/Browse.css";
 
 import {
   faUser,
@@ -37,12 +41,15 @@ const NavBar = ({
   setSelectedProfileName,
   setFilterState,
 }) => {
+  const [backdrop, setBackdrop] = useState(false);
+
   async function handleLogout() {
     console.log(isloggedin);
     try {
       await logout();
       setisloggedin(false);
       console.log(isloggedin);
+      setBackdrop(false);
     } catch {}
   }
 
@@ -65,14 +72,18 @@ const NavBar = ({
                 <h1>Hem</h1>
               </div>
             </Link>
+
             <Link to="/MyCourses">
               <div className="menu-item">
                 <FontAwesomeIcon icon={faSuitcase} />
+                <CoursesCounter
+                  selectedProfileCourses={selectedProfileCourses}
+                />
                 <h1>Mina kurser</h1>
               </div>
             </Link>
             {isloggedin ? (
-              <Link to="/" onClick={handleLogout}>
+              <Link to="/" onClick={() => setBackdrop(true)}>
                 <div className="menu-item">
                   <FontAwesomeIcon icon={faUser} />
                   <h1>Logga ut</h1>
@@ -88,6 +99,23 @@ const NavBar = ({
             )}
           </div>
         </div>
+
+        <Backdrop onClose={() => setBackdrop(false)} open={backdrop}>
+          <div className="logout_popup">
+            <p> S�ker p� att du vill logga ut? </p>
+            <button className="search_btn_popup" onClick={() => handleLogout()}>
+              {" "}
+              Logga ut{" "}
+            </button>
+
+            <div className="close_button_container">
+              <div className="close_button" onClick={() => setBackdrop(false)}>
+                X
+              </div>
+            </div>
+          </div>
+        </Backdrop>
+
         <Switch>
           <Route path="/MyCourses">
             <MyCourses

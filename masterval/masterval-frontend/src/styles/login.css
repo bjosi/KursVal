@@ -68,16 +68,39 @@
     padding: 1em;
 }
 
-.error_msg {
-
-    height: 3em;
-    background-color: rgba(228,38,53,.38);
-    border: 0.2em solid red;
-    width: 35%;
-    align-content: center;
+.logout_popup {
+    width: 30vw;
+    height: 7rem;
+    position: relative;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
-    color: white;
+}
+
+.search_btn_popup {
+    width: 6rem;
+    height: 1.7rem;
+    font-family: "Lato", sans-serif;
+    color: #fff;
+    background-color: #f9a26c;
+    border: none;
+    border-radius: 2px;
+}
+
+.error_msg {
+    height: 3em;
+    background-color: white;
+    border: 0.2em solid #d52a3b;
+    width: 35vw;
+    align-content: center;
+    display: flex;
+    align-items: center;
+    color: black;
     text-align: center;
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+    justify-content: center;
 }
 
 .my_courses_header_login {
