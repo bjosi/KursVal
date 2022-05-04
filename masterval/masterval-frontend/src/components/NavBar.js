@@ -6,6 +6,10 @@ import Browse from "../Pages/Browse";
 import Loading from "../Pages/Loading";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Backdrop from "../components/Backdrop/Backdrop";
+import "../styles/DisplayCourse.css";
+import "../Pages/Browse.css";
+
 
 import {
   faUser,
@@ -17,6 +21,8 @@ import {
 
 //stylesheet
 import "../styles/NavBar.css";
+
+
 
 const NavBar = ({
   selectedCourses,
@@ -37,16 +43,22 @@ const NavBar = ({
   setSelectedProfileName,
   setFilterState,
 }) => {
+
+
+    const [backdrop, setBackdrop] = useState(false);
+
   async function handleLogout() {
     console.log(isloggedin);
     try {
       await logout();
       setisloggedin(false);
-      console.log(isloggedin);
+        console.log(isloggedin);
+        setBackdrop(false)
     } catch {}
   }
 
-  return (
+    return (
+
     <>
       <Router>
         <div className="menu">
@@ -64,15 +76,16 @@ const NavBar = ({
                 <FontAwesomeIcon icon={faHouse} />
                 <h1>Hem</h1>
               </div>
-            </Link>
+                      </Link>
+
             <Link to="/MyCourses">
               <div className="menu-item">
                 <FontAwesomeIcon icon={faSuitcase} />
                 <h1>Mina kurser</h1>
               </div>
             </Link>
-            {isloggedin ? (
-              <Link to="/" onClick={handleLogout}>
+                        {isloggedin ? (
+                            <Link to="/" onClick={() => setBackdrop(true)}>
                 <div className="menu-item">
                   <FontAwesomeIcon icon={faUser} />
                   <h1>Logga ut</h1>
@@ -87,7 +100,23 @@ const NavBar = ({
               </Link>
             )}
           </div>
-        </div>
+                </div>
+
+
+                <Backdrop onClose={() => setBackdrop(false)} open={backdrop}>
+                    <div className="logout_popup">
+                        <p> Säker på att du vill logga ut? </p>
+                        <button className="search_btn_popup" onClick={() => handleLogout()}> Logga ut </button>
+
+                        <div className="close_button_container">
+                            <div className="close_button" onClick={() => setBackdrop(false)}>
+                                X
+                            </div>
+                        </div>
+                    </div>
+                </Backdrop>
+
+
         <Switch>
           <Route path="/MyCourses">
             <MyCourses

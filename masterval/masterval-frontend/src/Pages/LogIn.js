@@ -107,7 +107,7 @@ const LogIn = ({
       <div className="fields">
         {errorlogin ? (
           <div className="error_msg">
-            <p> there was an error</p>
+            <p className="error_p"> Fel email eller lösenord </p>
           </div>
         ) : (
           <> </>
