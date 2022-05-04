@@ -18,7 +18,6 @@ const FilterMenu = ({
 
     setMyFilter(filterVal);
     setFilterState(filterVal);
-    console.log(myFilter);
     const myFilt = filterVal
       .filter((myFilter) => myFilter.checked)
       .map((filt) => filt.name);

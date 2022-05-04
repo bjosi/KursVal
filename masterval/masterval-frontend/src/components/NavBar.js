@@ -52,8 +52,13 @@ const NavBar = ({
         <div className="menu">
           <div className="menu_container">
             <div className="first-menu-item">
-              <FontAwesomeIcon icon={faTag} />
+              <Link to="/">
+                <div className="menu-item">
+                  <FontAwesomeIcon icon={faTag} />
+                </div>
+              </Link>
             </div>
+
             <Link to="/">
               <div className="menu-item">
                 <FontAwesomeIcon icon={faHouse} />

@@ -45,7 +45,6 @@ const Browse = ({
           <div
             style={{
               width: "300px",
-              backgroundColor: "white",
               position: "relative",
             }}
           >

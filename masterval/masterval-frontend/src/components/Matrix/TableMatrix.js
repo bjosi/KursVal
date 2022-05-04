@@ -39,7 +39,37 @@ const TableMatrix = ({
   ];
   const uppfyllda = [];
 
-  const MakeArr = ({ input }) => {
+  const m_arr = () => {
+    const array_return = [];
+    let a = [];
+
+    /*a.push(kunskaper[0]);
+        for (let i = 0; i < selectedProfileCourses.length; i++) {
+            a.push(i);
+        }
+        array_return.push(a);*/
+    var splited = "";
+
+    for (let j = 1; j < kunskaper.length; j++) {
+      a = [];
+      //a.push(kunskaper[j]);
+      for (let i = 0; i < selectedProfileCourses.length; i++) {
+        splited = selectedProfileCourses[i].uChosen.split(",");
+        if (splited.includes(kunskaper[j])) {
+          a.push(true);
+          uppfyllda[j] = kunskaper[j];
+        } else {
+          a.push(false);
+        }
+      }
+      array_return.push(a);
+    }
+
+    console.log(array_return);
+    return array_return;
+  };
+
+  /* const MakeArr = ({ input }) => {
     const arr = [];
     const splited = input.uChosen.split(",");
     var count = 0;
@@ -55,7 +85,6 @@ const TableMatrix = ({
         }
       }
     }
-
     return (
       <>
         <div className="vertical_div_k">
@@ -72,7 +101,8 @@ const TableMatrix = ({
         )}
       </>
     );
-  };
+
+  };*/
 
   return (
     <>

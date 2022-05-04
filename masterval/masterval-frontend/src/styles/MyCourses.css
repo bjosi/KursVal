@@ -27,18 +27,18 @@
   padding-right: 0.5rem;
 }
 
-    .inner_wrapper_my_courses h2 {
-        margin: 0 0 1rem 0.5rem;
-    }
+.inner_wrapper_my_courses h2 {
+  margin: 0 0 1rem 0.5rem;
+}
 
 .empty_period {
-    background-color: white;
-    padding: 1rem;
-    margin: 1rem 0rem;
-    margin-right: 0.5rem;
-    margin-left: 0.5rem;
-    height: 9.5rem;
-    opacity: 50%;
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem 0rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  height: 9.5rem;
+  opacity: 50%;
 }
 
 .period_1 {
@@ -120,6 +120,41 @@
   margin: 0 0 1rem 0;
 }
 
+
+.semester_block_collision_container{
+  margin-top: 1rem;
+ 
+}
+
+.semester_block_collision{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 400;
+}
+
+.dot{
+  background-color:#2b6778;
+  border-radius: 20px;
+  width: 5px;
+  height: 5px;
+  margin: 0 0.2rem 0 0.8rem;
+}
+
+.semester_block_collision .text{
+  color:#2b6778;
+  font-weight: 400;
+}
+
+.warning_box{
+  background-color:#f9a26c;
+  padding: 0.4rem;
+  margin-right: 0.5rem;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+}
+
 .toggle_overview {
   display: flex;
   font-weight: 700;
@@ -127,7 +162,6 @@
   background: #fff;
   margin-top: 1rem;
 }
-
 
 .overview {
   display: flex;
@@ -176,7 +210,7 @@
 
 .my_courses_header {
   background-color: white;
-   padding-top: 60px;
+  padding-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -243,7 +277,7 @@
 
 .semester_header {
   background-color: white;
-  padding: 1.5rem 0 2rem 0;
+  padding: 2rem 0 2rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -347,6 +381,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .summary_normal_text {
@@ -360,8 +395,7 @@
 }
 
 .div_summary_text {
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin: 0.5rem 1rem 0.5rem 1rem;
 }
 
 .summary_bold_text {
@@ -447,11 +481,12 @@
 }
 
 .select_profile {
-  width: 80%;
+  width: 85%;
   font-family: "Lato", sans-serif;
   margin: 0 1rem;
   border: 1px solid black;
-  padding: 1em;
+  padding: 0.5rem 1rem;
+  height:2.5rem;
 }
 
 .profile_update_succeeded {
@@ -485,25 +520,33 @@
   visibility: visible;
 }
 
-.my_courses_info{
-    display:flex;
-    justify-content: flex-end;
-    margin: 0 0 0.5rem 1rem;
+.my_courses_info {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 0.5rem 1rem;
 }
 .my_courses_info p {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
-
 .my_courses_info .course_block_icon {
-    height: 1rem;
-    width: 1rem;
-    margin-left: 2px;
+  height: 1rem;
+  width: 1rem;
+  margin-left: 2px;
 }
 
 .info_move_course {
-    height: 1.25rem;
-    width: 1.25rem;
-    color: #bec8a7;
-    margin-right: 0.2rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  color: #bec8a7;
+  margin-right: 0.2rem;
+}
+
+.submit_name_change {
+    width: 1.7rem;
+    height: 1.5rem;
+    font-size: 1rem;
+    background-color: #bec8a7;
+    color: white;
+    border-radius: 2px;
 }

@@ -21,6 +21,72 @@ const Semesters = ({
   );
   // const coursesInSemester = selectedProfileCourses.map((course) => console.log(course.semester));
 
+
+
+  const CollisionOfBlocks = ({ }) => {
+
+    const corsesInPeriod1Block1 = selectedProfileCourses.filter(
+      (item) => item.semester === semester  && item.courseblock === "1" && (item.period === "1" ||  item.period === "1,2")
+    );
+    const corsesInPeriod1Block2 = selectedProfileCourses.filter(
+      (item) => item.semester === semester  && item.courseblock === "2" && (item.period === "1" ||  item.period === "1,2")
+    );
+    const corsesInPeriod1Block3 = selectedProfileCourses.filter(
+      (item) => item.semester === semester  && item.courseblock === "4" && (item.period === "1" ||  item.period === "1,2")
+    );
+    const corsesInPeriod1Block4 = selectedProfileCourses.filter(
+      (item) => item.semester === semester  && item.courseblock === "4" && (item.period === "1" ||  item.period === "1,2")
+    );
+    const corsesInPeriod2Block1 = selectedProfileCourses.filter(
+      (item) => item.semester === semester  && item.courseblock === "1" && (item.period === "2" ||  item.period === "1,2")
+    );
+    const corsesInPeriod2Block2 = selectedProfileCourses.filter(
+      (item) => item.semester === semester  && item.courseblock === "2" && (item.period === "2" ||  item.period === "1,2")
+    );
+    const corsesInPeriod2Block3 = selectedProfileCourses.filter(
+      (item) => item.semester === semester  && item.courseblock === "3" && (item.period === "2" ||  item.period === "1,2")
+    );
+    const corsesInPeriod2Block4 = selectedProfileCourses.filter(
+      (item) => item.semester === semester  && item.courseblock === "4" && (item.period === "2" ||  item.period === "1,2")
+    );
+
+    let collisionCounter = 0;
+    if(corsesInPeriod1Block1.length > 1)  collisionCounter++
+    if(corsesInPeriod1Block2.length > 1)  collisionCounter++
+    if(corsesInPeriod1Block3.length > 1)  collisionCounter++
+    if(corsesInPeriod1Block4.length > 1)  collisionCounter++
+    if(corsesInPeriod2Block1.length > 1)  collisionCounter++
+    if(corsesInPeriod2Block2.length > 1)  collisionCounter++
+    if(corsesInPeriod2Block3.length > 1)  collisionCounter++
+    if(corsesInPeriod2Block4.length > 1)  collisionCounter++
+    
+    
+    console.log(corsesInPeriod2Block4)
+    return(
+      <div className="semester_block_collision_container">
+        <div className="semester_block_collision">
+        {collisionCounter > 0 ? <div className="semester_block_collision"><div className="warning_box">OBS!</div> Block-krock under: </div>  : ""}
+        <ul>
+        {corsesInPeriod1Block1.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 1, block 1</div></div>  : ""}
+        {corsesInPeriod1Block2.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 1, block 2</div></div>  : ""}
+        {corsesInPeriod1Block3.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 1, block 3</div></div>  : ""}
+        {corsesInPeriod1Block4.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 1, block 4</div></div>  : ""}
+        {corsesInPeriod2Block1.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 2, block 1</div></div>  : ""}
+        {corsesInPeriod2Block2.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 2, block 2</div></div>  : ""}
+        {corsesInPeriod2Block3.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 2, block 3</div></div>  : ""}
+        {corsesInPeriod2Block4.length > 1 ?  <div className="semester_block_collision"><Dot/><div className="text"> Period 2, block 4</div></div>  : ""}
+        </ul>
+        </div>
+      </div>
+
+    )
+     
+      
+    
+  }
+  
+
+
   coursesInSemester.map((course) => (HPPerSemester += course.coursepoints));
   return (
     <>
@@ -42,9 +108,12 @@ const Semesters = ({
             Du har {30 - HPPerSemester} HP kvar för att läsa på helfart den här
             terminen
           </h2>
-        )}
-          </div>
           
+        )}
+
+        <CollisionOfBlocks></CollisionOfBlocks>
+      </div>
+
       <DisplayPeriod
         courseinfo={selectedProfileCourses}
         setSelectedCourses={setSelectedCourses}
@@ -57,6 +126,12 @@ const Semesters = ({
 
       />
     </>
+  );
+};
+
+const Dot = ({}) => {
+  return (
+    <div className="dot"></div>
   );
 };
 

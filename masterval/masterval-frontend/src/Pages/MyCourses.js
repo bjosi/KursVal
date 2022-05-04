@@ -15,6 +15,7 @@ import {
   faArrowsRotate,
   faCircleCheck,
   faTrashCan,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import ProfileSelector from "../components/ProfileSelector";
 import { useAuth } from "../firebase";
@@ -211,6 +212,22 @@ const MyCourses = ({
   };
 
   const onSave = async () => {
+    const vetenskaplig_metod = [
+      {
+        area: "Medieteknik,Datateknik",
+        courseblock: "3",
+        coursecode: "TNM107",
+        courselevel: "Avancerad nivå",
+        coursename: "Vetenskaplig metod",
+        coursepoints: 6,
+        period: "2",
+        place: "Norrköping",
+        progcode: "6CMEN",
+        progname: "Civilingenjör i medieteknik",
+        semester: 9,
+        uChosen: "2.2,2.5,3.2,3.3,4.1,5.1,5.2,5.3,5.5",
+      },
+    ];
     let profileName;
     let coursesSelected;
 
@@ -397,11 +414,22 @@ const MyCourses = ({
               ))}
             </select>
           )}
-          <FontAwesomeIcon
-            onClick={editName}
-            className="change_profile_name_icon"
-            icon={editableText ? faCircleCheck : faPen}
-          />
+          {isloggedin ? (
+            <>
+              {" "}
+              {editableText ? (
+                <button className="submit_name_change">
+                  <FontAwesomeIcon onClick={editName} icon={faCheck} />{" "}
+                </button>
+              ) : (
+                <FontAwesomeIcon
+                  onClick={editName}
+                  className="change_profile_name_icon"
+                  icon={faPen}
+                />
+              )}
+            </>
+          ) : null}
         </h3>
 
         <h6

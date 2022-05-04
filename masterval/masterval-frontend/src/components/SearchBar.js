@@ -18,10 +18,10 @@ const SearchBar = ({ searchHandler, semesterHandler }) => {
         }}
         type="text"
         id="header-search"
-        placeholder="S&ouml;k kurs"
+        placeholder="S&ouml;k kurskod eller kursnamn"
         name="s"
       />
-      <select
+      {/* <select
         className="terminInput"
         onChange={(e) => {
           semesterHandler(e.target.value);
@@ -31,17 +31,17 @@ const SearchBar = ({ searchHandler, semesterHandler }) => {
         name="f"
       >
         <option value="Termin">Termin ...</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-      </select>
+        <option value="7">Hösttermin, åk 4</option>
+        <option value="8">Vårtermin, åk 4</option>
+        <option value="9">Hösttermin, åk 5</option>
+      </select> */}
       <button
         className="search_btn"
         type="submit"
         onClick={(e) => {
           e.preventDefault();
           searchHandler(query);
-          semesterHandler(semester);
+          //semesterHandler(semester);
         }}
       >
         S&ouml;k kurser
