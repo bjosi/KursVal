@@ -52,6 +52,7 @@ const Browse = ({
               filters={filters}
               selectedFilters={selectedFilters}
               setSelectedFilters={setSelectedFilters}
+              setFilterState={setFilterState}
             />
             <div className="close_button_container">
               <div className="close_button" onClick={() => setBackdrop(false)}>
