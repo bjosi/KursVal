@@ -61,7 +61,8 @@ function App() {
   );
 
   useEffect(() => {
-    localStorage.setItem("username", username);
+      localStorage.setItem("username", username);
+      console.log(isloggedin);
   }, [username]);
 
   const myFilter = [

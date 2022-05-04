@@ -45,11 +45,7 @@ const Matrix = ({
         return (<div className="horisontal" > {arr.map((s) => (ret(s, 0)))}</div>)
     }
 
-    const onhov = () => {
-     //   document.getElementById('vert').style.backgroundColor = 'red';
-        console.log("hej");
-    }
-
+    
     return (
         <div className="the_matrix">
 

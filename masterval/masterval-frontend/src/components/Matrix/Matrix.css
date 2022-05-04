@@ -21,8 +21,7 @@
 .the_matrix_igen {
     display: flex;
     flex-direction: column;
-    align-content: center;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 @media (width > 55vw) {
