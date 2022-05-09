@@ -6,76 +6,82 @@ import "./Backdrop/Backdrop.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareCaretRight } from "@fortawesome/free-solid-svg-icons";
 
+const Btn_moveCourse = ({
+  courseinfo,
+  setSelectedCourses,
+  selectedCourses,
+  setSelectedProfileCourses,
+  selectedProfileCourses,
+  selectedProfileCoursesIsLocalStorage,
+}) => {
+  const [backdrop, setBackdrop] = useState(false);
 
-const Btn_moveCourse = ({ courseinfo, setSelectedCourses, selectedCourses,
-    setSelectedProfileCourses,
-    selectedProfileCourses, selectedProfileCoursesIsLocalStorage }) => {
+  let newTerm;
 
-    const [backdrop, setBackdrop] = useState(false);
+  if (courseinfo.semester == 7) {
+    newTerm = 9;
+  } else {
+    newTerm = 7;
+  }
 
-    let newTerm;
+  useEffect(() => {
+    if (selectedProfileCoursesIsLocalStorage && selectedCourses.length > 0) {
+      console.log("testarBarahehe");
+      setSelectedProfileCourses(selectedCourses);
+    }
+  }, [selectedCourses]);
 
-    if (courseinfo.semester == 7) {
-        newTerm = 9
+  const handleConfirm = () => {
+    if (selectedProfileCoursesIsLocalStorage) {
+      setSelectedCourses(
+        selectedCourses.map((item) =>
+          item.coursecode === courseinfo.coursecode
+            ? { ...item, semester: newTerm }
+            : item
+        )
+      );
     } else {
-        newTerm = 7
+      setSelectedProfileCourses(
+        selectedProfileCourses.map((item) =>
+          item.coursecode === courseinfo.coursecode
+            ? { ...item, semester: newTerm }
+            : item
+        )
+      );
     }
+    setBackdrop(false);
+  };
 
-
-    useEffect(() => {
-
-        if (selectedProfileCoursesIsLocalStorage && selectedCourses.length > 0) {
-            console.log("testarBarahehe")
-            setSelectedProfileCourses(selectedCourses);
+  return (
+    <>
+      <button
+        className={
+          courseinfo.semester === 8 ? "btn-movecoursehidden" : "btn-movecourse"
         }
-    }, [selectedCourses]);
+        onClick={() => setBackdrop(true)}
+      >
+        {" "}
+        <FontAwesomeIcon icon={faSquareCaretRight} />{" "}
+      </button>
 
-
-    const handleConfirm = () => {
-
-
-        if (selectedProfileCoursesIsLocalStorage) {
-
-            setSelectedCourses(
-                selectedCourses.map(item =>
-                    item.coursecode === courseinfo.coursecode
-                        ? { ...item, semester: newTerm }
-                        : item
-                ))
-
-        } else {
-            setSelectedProfileCourses(
-                selectedProfileCourses.map(item =>
-                    item.coursecode === courseinfo.coursecode
-                        ? { ...item, semester: newTerm }
-                        : item
-                ))
-        }
-        setBackdrop(false);
-    }
-
-
-    return( <>
-        <button className={courseinfo.semester === 8 ? 'btn-movecoursehidden' : "btn-movecourse"}
-            onClick={()=>setBackdrop(true)}> <FontAwesomeIcon icon={faSquareCaretRight} /> </button>
-
-
-        <Backdrop onClose={() => setBackdrop(false)} open={backdrop}>
-            <div style={{}}>
-                <div className="box">
-                    <div className="close_button_container">
-                        <div className="close_button" onClick={() => setBackdrop(false)}>
-                            X
-                        </div>
-                    </div>
-                    <p> Vill du flytta kursen till termin {newTerm}? </p>
-                    <button onClick={handleConfirm}>Okej</button>
-                    <button onClick={() => setBackdrop(false)}>Avbryt</button>
-                </div>
+      <Backdrop onClose={() => setBackdrop(false)} open={backdrop}>
+        <div style={{}}>
+          <div className="box">
+            <div className="close_button_container">
+              <div className="close_button" onClick={() => setBackdrop(false)}>
+                X
+              </div>
             </div>
-        </Backdrop>
-
-
+            {newTerm === 9 ? (
+              <p>Vill du flytta kursen till höstermin, åk 5?</p>
+            ) : (
+              <p>Vill du flytta kursen till höstermin, åk 4?</p>
+            )}
+            <button onClick={handleConfirm}>Okej</button>
+            <button onClick={() => setBackdrop(false)}>Avbryt</button>
+          </div>
+        </div>
+      </Backdrop>
     </>
   );
 };
