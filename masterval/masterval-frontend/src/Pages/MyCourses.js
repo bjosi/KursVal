@@ -446,8 +446,12 @@ const MyCourses = ({
           }
         >
           Ange annat profilnamn
-        </h6>
-
+              </h6>
+              {isloggedin && selectedProfileCoursesIsLocalStorage ?
+                  <h6 className="save_profile_explanation_text">Detta är en temporär profil. Ge den ett nytt namn och klicka på "Spara profil" för att spara den till din samling av profiler.</h6>
+                  :
+                  null
+              }
         <ToggleOverviewButton
           showOverview={showOverview}
           setShowOverview={setShowOverview}

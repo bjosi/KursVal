@@ -553,3 +553,13 @@
   color: white;
   border-radius: 2px;
 }
+
+
+.save_profile_explanation_text {
+    font-size: 0.6rem;
+    font-family: "Lato";
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    margin: auto;
+}

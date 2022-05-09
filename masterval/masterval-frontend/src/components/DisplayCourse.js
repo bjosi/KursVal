@@ -211,7 +211,7 @@ const Results = ({ courseinfo }) => {
           target="_blank"
           rel="noreferrer"
         >
-          Besök kurshemsidan
+          Gå till kursplanen
         </a>{" "}
       </div>
     </div>
