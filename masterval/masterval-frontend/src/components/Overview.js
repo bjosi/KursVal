@@ -5,7 +5,7 @@ import "../styles/MyCourses.css";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import ProgressBar from "./ProgressBar";
 
-const Overview = ({ selectedCourses,selectedProfileName }) => {
+const Overview = ({ selectedCourses, selectedProfileName }) => {
   let totalHP = 0;
   let percentageTotalHP = 0;
   let totalAdvancedHP = 0;
@@ -70,8 +70,8 @@ const Overview = ({ selectedCourses,selectedProfileName }) => {
   }
 
   return (
-      <div className="overview">
-          <h1 className="title">Översikt över {selectedProfileName}</h1>
+    <div className="overview">
+      <h1 className="title">Översikt över {selectedProfileName}</h1>
       <div className="the_progress_bars">
         <div className="cirkular_progressbar_wrapper">
           <h2 className="center">Totalt HP</h2>
@@ -96,7 +96,7 @@ const Overview = ({ selectedCourses,selectedProfileName }) => {
           <div className="div_display_progress">
             <p className="bold_text">
               {" "}
-              Kurser p&aring; avancerad niva inom medieteknik
+              Kurser p&aring; avancerad nivå inom medieteknik
             </p>
             <ProgressBar progress={mediaAdvancedHP / 30} />
             <p className="normal_text"> {mediaAdvancedHP} av 30 HP</p>
@@ -105,7 +105,7 @@ const Overview = ({ selectedCourses,selectedProfileName }) => {
           <div className="div_display_progress">
             <p className="bold_text">
               {" "}
-              Kurser p&aring; avancerad niva inom datateknik
+              Kurser p&aring; avancerad nivå inom datateknik
             </p>
             <ProgressBar progress={dataAdvancedHP / 30} />
             <p className="normal_text"> {dataAdvancedHP} av 30 HP </p>
